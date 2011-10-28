@@ -1,0 +1,81 @@
+#!/bin/bash
+
+function backup_dir ()
+{
+	echo -n "Backing up the directory: $sauce ... "
+	mkdir -p "$backupdir"
+
+	##	run it
+	eval rsync -avz $exclude --delete --backup --backup-dir="$backupdir" "$sauce" "$destination" &>/dev/null
+
+	##	dry-run
+	##	rsync -navz --delete --backup --backup-dir="$backupdir" "$sauce" "$destination" &>/dev/null
+
+	echo Done.
+
+	remove_empty_dir "$backupdir"
+}
+
+function backup_www ()
+{
+	exclude=""
+	sauce="/var/www/"
+	destination="/var/jearsh/env/www"
+	backupdir="/var/jearsh/rsync/www/$now"
+	backup_dir "$sauce" "$destination" "$backupdir"
+}
+
+function backup_bin ()
+{
+	exclude=""
+	sauce="/Users/jearsh/bin/"
+	destination="/var/jearsh/env/bin"
+	backupdir="/var/jearsh/rsync/bin/$now"
+	backup_dir "$sauce" "$destination" "$backupdir"
+}
+
+function backup_etc ()
+{
+	exclude=""
+	sauce="/etc/"
+	destination="/var/jearsh/env/etc"
+	backupdir="/var/jearsh/rsync/etc/$now"
+	backup_dir "$sauce" "$destination" "$backupdir"
+}
+
+function backup_home ()
+{
+	exclude="--exclude={Desktop,Documents,Downloads,Library,Music}"
+	sauce="/Users/jearsh/"
+	destination="/var/jearsh/env/home"
+	backupdir="/var/jearsh/rsync/home/$now"
+	backup_dir "$sauce" "$destination" "$backupdir"
+}
+
+function backup_reminders ()
+{
+	exclude=""
+	sauce="/Users/jearsh/reminders/"
+	destination="/var/jearsh/env/reminders"
+	backupdir="/var/jearsh/rsync/reminders/$now"
+	backup_dir "$sauce" "$destination" "$backupdir"
+}
+
+function backup_lists ()
+{
+	exclude=""
+	sauce="/Users/jearsh/lists/"
+	destination="/var/jearsh/env/lists"
+	backupdir="/var/jearsh/rsync/lists/$now"
+	backup_dir "$sauce" "$destination" "$backupdir"
+}
+
+function backup_music ()
+{
+	exclude=""
+	sauce="/Users/jearsh/Music/iTunes/iTunes Music/"
+	destination="/var/jearsh/media/audio/iTunes/"
+	backupdir="/var/jearsh/rsync/music/$now"
+	backup_dir "$sauce" "$destination" "$backupdir"
+}
+

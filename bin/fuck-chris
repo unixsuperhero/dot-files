@@ -1,0 +1,5 @@
+#!/bin/bash
+
+curl -k --data "action=send&email=jearsh@gmail.com&apikey=2e68be200f8b63d022fa954930e47e1d&number=9542403556&text=haha being a programmer is fun...can you say, 'infinite loop'?" https://www.gvmax.com/api
+curl -k --data "action=send&email=jearshrg@gmail.com&apikey=a579225bb674d6f9c4edada534fa7301&number=9542403556&text=haha being a programmer is fun...can you say, 'infinite loop'?" https://www.gvmax.com/api
+

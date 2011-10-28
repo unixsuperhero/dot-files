@@ -1,0 +1,15 @@
+
+function transmissionBugTicket () {
+  url=trac.transmissionbt.com/ticket/3144
+  newhash=$(curl -s trac.transmissionbt.com/ticket/3144 | sed 's/\s*var form_token.*//;s/\s*<p>Opened.*//' | md5)
+
+  if [[ "$newhash" == "b78215be9543944449dd70c4a5003240" ]]
+  then
+    growlnotify -n "MiniNotify" -m "$url has NONONONONONO updated" "Website Was Updated"
+  else
+    growlnotify -n "MiniNotify" -m "$url has been updated" "Website Was Updated"
+  fi
+}
+
+transmissionBugTicket
+

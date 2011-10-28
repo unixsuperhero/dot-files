@@ -1,0 +1,32 @@
+
+function now ()
+{
+	return $(date +%Y%m%d%H%M%S)
+}
+
+function remove_empty_dir ()
+{
+	files=$(ls "$1")
+
+	if [[ ${#files} == 0 ]]
+	then
+		echo "Removing empty directory: $1"
+		rm -rf "$1"
+	fi
+	echo
+}
+
+function ensure_paths ()
+{
+		## create any directories that need to be created
+		for var in $1
+		do
+			if [ "$var" != "-e" ] ; then
+				if [ ! -d $(dirname "$var") ]
+				then
+					echo "Creating directory: $(dirname $var)"
+					mkdir -p $(dirname "$var")
+				fi
+			fi
+		done
+}

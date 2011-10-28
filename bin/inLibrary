@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+
+file="$(basename "$*")"
+echo
+echo "[ $file ]"
+inlib="$(find "/Users/jearsh/Music/iTunes/iTunes Music/" -iname "$file")"
+if (( ${#inlib} ))
+then
+  echo "${#inlib} ${inlib}"
+  #echo -n "FOUND: "
+  printf "%s output: '%s'" "FOUND: " "$(find "/Users/jearsh/Music/iTunes/iTunes Music/" -iname "$file")"
+  #find "/Users/jearsh/Music/iTunes/iTunes Music/" -iname "$file"
+else
+  #echo -n "NOT FOUND: "
+  printf "%s" "NOT FOUND: "
+fi
+find "/Users/jearsh/Music/iTunes/" -iname "$file"
+
+
+

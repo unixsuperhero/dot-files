@@ -1,0 +1,2 @@
+#!/bin/bash
+sudo sh -c "/bin/echo -n enabled > /private/etc/ScreenSharing.launchd"

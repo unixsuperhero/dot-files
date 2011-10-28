@@ -1,0 +1,5 @@
+
+## Connect to undernet via 127.0.0.1:6777
+
+/opt/local/bin/socat TCP4-LISTEN:4242,bind=localhost,range=127.0.0.1/32,fork SOCKS4A:127.0.0.1:irc.undernet.org:6667,socksport=9050 > socat_log.$$ 2>&1
+

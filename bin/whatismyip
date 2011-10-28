@@ -1,0 +1,5 @@
+#!/bin/sh
+
+#curl `curl -s whatismyip.com | grep -o 'www[a-z./]*/automation/[a-z0-9.]*'`
+curl ifconfig.me/ip
+echo

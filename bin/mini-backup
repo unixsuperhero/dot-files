@@ -1,0 +1,34 @@
+#!/bin/bash
+
+. /Users/jearsh/bin/bash.library
+. /Users/jearsh/bin/mini-backup.library
+
+now=$(date +%Y%m%d%H%M%S)
+
+case $1 in
+	'') echo; echo "Usage: mini-backup (lists|music|bin|etc|home|reminders|-edit)"; echo ;;
+  '-edit')
+    cd /Users/jearsh/bin
+    vim -O mini-backup mini-backup.library bash.library ;;
+	'lists') backup_lists ;;
+	'music') backup_music ;;
+	'bin') backup_bin ;;
+	'etc') backup_etc ;;
+	'home') backup_home ;;
+	'reminders') backup_reminders ;;
+	'www') backup_www ;;
+	'all')
+					backup_lists
+#backup_music
+					backup_bin
+					backup_www
+					backup_etc
+					backup_home
+					backup_reminders ;;
+	*)
+			echo
+			echo "Invalid Option: $1"
+			echo
+			echo "Usage: mini-backup (lists|music|bin|etc|home|reminders)"
+			echo ;;
+esac

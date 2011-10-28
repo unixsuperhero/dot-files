@@ -1,0 +1,53 @@
+alias gg='git log --decorate --stat --graph --pretty=format:"%d %Cgreen%h%Creset (%ar - %Cred%an%Creset), %s%n"'
+
+alias staging_console="heroku console --app saveology-admin-staging"
+alias admin_console="heroku console --app saveology-admin-production"
+
+alias d="dirty"
+alias notes='vim ~/Documents/saveology/notes.txt'
+alias t='tig'
+alias up='rake db:migrate && rake db:test:prepare'
+alias tigrc='vim ~/.tigrc'
+alias vimrc='vim ~/.vimrc'
+alias bashrc='vim ~/.bashrc.local'
+alias r='rails'
+alias h='heroku'
+alias knight='afplay -v .4 ~/Music/krtheme.wav&'
+alias lube='rake db:test:prepare'
+alias focus='rake cucumber:focus'
+alias mustache='git add . && git stash'
+alias poop='git stash pop'
+alias unhitch='hitch -u'
+alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
+
+specjour() {
+  bundle exec specjour
+}
+
+staging() {
+  gp staging
+  heroku rake db:migrate --app saveology-admin-staging
+  heroku restart --app saveology-admin-staging
+  open http://staging.saveology.com
+}
+
+admin(){
+  heroku pgbackups:capture --expire --app saveology-deals-production
+  gp production-admin master
+  heroku rake db:migrate --app saveology-admin-production
+  heroku restart --app saveology-admin-production
+  open http://admin.saveology.com
+}
+admin_nobackup(){
+  gp production-admin master
+  heroku rake db:migrate --app saveology-admin-production
+  heroku restart --app saveology-admin-production
+  open http://admin.saveology.com
+}
+
+customer(){
+  gp production-deals master
+  heroku restart --app saveology-deals-production
+  open http://www.saveology.com
+}
+

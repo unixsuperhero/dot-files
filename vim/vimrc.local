@@ -1,0 +1,44 @@
+" /Users/jtoyota/.vimrc.local
+
+
+" Josh's Aliases for Conque Term
+"
+
+let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_CWInsert      = 1
+
+" My customizations
+hi CursorLine ctermbg=236 term=none cterm=none
+
+" Grep only within the files that are open in vim
+command! -nargs=* Jgrep :silent bufdo vimgrepadd <args> %
+ca jgrep Jgrep
+command! -nargs=* Bash ConqueTermVSplit <args>
+ca bbash Bash
+
+set nowrap splitright splitbelow cursorline
+set t_Co=256
+
+" normal mode mappings
+" TODO: create the mappings for visual mode too
+nmap gf :vert wincmd f<CR>
+nmap gF :vert wincmd F<CR>
+
+
+
+
+
+
+" Other peoples' handy stuff
+" <leader> is '\' by default
+nmap <leader>z :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+if filereadable(expand('~/.vimrc.josh'))
+  source ~/.vimrc.josh
+endif

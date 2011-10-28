@@ -1,0 +1,61 @@
+#!/bin/bash
+
+case $1 in
+
+	'') clear
+			count=0
+			for a in ~/lists/*
+			do
+				if [ -f $a ]
+				then
+					printf '%-30s' $(basename "$a")
+					count=$count+1
+					if [ $count == 4 ]
+					then
+						count=0
+						printf '\n'
+					fi
+				fi
+			done
+
+			for a in ~/lists/*
+			do
+				if [ -d $a ]
+				then
+					abase=$(basename "$a")
+					echo
+					echo $abase
+					count=0
+					for b in $a/*
+					do
+						count=$[ $count + 1 ]
+						if [ $count -gt 7 ]
+						then
+							printf '\n'
+							count=1
+						fi
+						printf '%2s%-18s' " " "$(basename $b)"
+					done
+					echo
+				fi
+			done
+			echo
+			cd ~/lists
+			echo "Enter command: "
+			read -e input
+			if [[ ${input%% *} == "edit" ]] 
+			then
+				vim ~/lists/${input#edit }
+			else
+				clear
+				cat ~/lists/$input | grep -v "^[ 	]*[#]" ; echo
+			fi
+			;;
+	-e) vim ~/lists/$2;; # use cut to decide if a directory needs to be made or not
+	-g) grep -Ri "$2" ~/lists/*;;
+	*) clear; cat ~/lists/$1 | grep -v "^[ 	]*[#]" ; echo;;
+
+esac
+
+#cd ~/lists
+

@@ -1,0 +1,125 @@
+#!/bin/bash
+
+if [[ -n $1 && $1 == "-edit" ]]
+then
+  vim $0
+  exit
+fi
+
+PATH="/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/opt/local/sbin:/usr/local/mysql-5.1.33-osx10.5-x86/bin:/Users/jearsh/bin:/sw/bin:/opt/local/man:/Users/jearsh/gobin:/Users/jearsh/gobin"
+resources="/Users/jearsh/bin/resources"
+
+TODOFILE="/Users/jearsh/lists/mini-notify/todo"
+LINES=`cat $TODOFILE | wc -l`
+LINE=$(( ($RANDOM % $LINES) + 1 ))
+message=`head -$LINE $TODOFILE | tail -1`
+
+mnn="MiniNotify"
+mnt="Jearsh Reminder"
+mnm="$message"
+mni="$resources/todo-list.icns"
+
+growlnotify -n "$mnn" -m "$mnm" --image "$mni" "$mnt"
+
+exit
+
+###[ Old Settings ]###
+#
+# mni="$resources/alert.png"
+# growlnotify --name "$mnn" --title "$mnt" --message "$mnm" --image "$mni"
+#
+######################
+
+## WINNER! growlnotify --image "/Users/jearsh/bin/resources/alert.png" --name "MiniNotify" --title "Jearsh Reminders" --message "Testing the preferences right now"
+##    --name, --title, --message, --image
+##
+## growlnotify --image "/Users/jearsh/bin/resources/alert.png" --name "MiniNotification" --title "Jearsh Remind" --message "Testing pref number two"
+## growlnotify --image "/Users/jearsh/bin/resources/alert.png" --name "OtherApp" --title "oApp Title" --message "oApp message goes here..."
+
+# GROWLNOTIFY(1)		  BSD General Commands Manual		GROWLNOTIFY(1)
+# 
+# NAME      growlnotify -- send a notification to Growl
+# 
+# SYNOPSIS
+#      growlnotify [-hsvuwc] [-i ext] [-I filepath] [--image filepath]
+# 		 [-a appname] [-p priority] [-H host] [-P password]
+# 		 [--port port] [-n name] [-A method] [--progress value]
+# 		 [-m message] [-t] [title]
+# 
+# DESCRIPTION
+#      growlnotify posts a distributed notification to Growl.
+# 
+#      -n, --name name
+# 		 Sets the application name to register the notification under.
+# 		 By default 'growlnotify' is used.
+# 
+#      title	 The title of the notification.
+# 
+#      -t, --title
+#      Verbosely say that the next arg is the title
+# 
+#      -m, --message message
+# 		 Uses message instead of stdin as the notification message
+# 		 (also called description).  If message is '-', stdin is still
+# 		 used.
+#
+#      -p, --priority priority
+#      If -p is used then priority can be an int between -2 and 2 or can be a
+#      named key in the following list: Very Low, Moderate, Normal,
+#      High, Emergency. (default is 0).
+# 
+# 		 Priority is not supported by all displays, so this may be
+# 		 ignored.
+# 
+#      -s, --sticky
+# 		 Causes the notification to stick around until clicked.
+# 
+#      -w, --wait  Causes growlnotify to wait until the notification is dis-
+# 		 missed (either by clicking or timing out) before it returns.
+# 
+#      --progress  Set a progress value for this notification.
+# 
+# EXAMPLES
+# 	   % growlnotify --help     # Displays this help file.
+# 
+# 	   growlnotify --appIcon Xcode Build complete -m 'growlnotify has finished building'
+
+## [ Image Related Options ]
+#      -a, --appIcon name
+# 		 Sets the notification's application icon to the icon for the
+# 		 given application name. If you don't specify a notification
+# 		 icon, this will be used instead of it; if you specify both,
+# 		 the application icon may be used as a badge (that is, dis-
+# 		 played in a corner of the notification icon, superimposed on
+# 		 top of it), or the display may show both separately.
+# 
+# 		 Icons are not supported by all displays, so this may be
+# 		 ignored.
+# 
+#      -i, --icon ext
+# 		 Sets the notification icon to the default icon for the given
+# 		 extension or HFS-encoded file type. For example, -i mp3 and
+# 		 -i 'MP3 ' (note the space in the second example) will both
+# 		 use the icon for MP3 files.
+# 
+# 		 Icons are not supported by all displays, so this may be
+# 		 ignored.
+# 
+#      -I, --iconpath path
+# 		 Sets the notification icon to the given file's icon (the icon
+# 		 you would see in the Finder if you were looking at the file).
+# 
+# 		 Icons are not supported by all displays, so this may be
+# 		 ignored.
+# 
+#      --image path
+# 		 Sets the notification icon to contents of the given image
+# 		 file. As of Mac OS X 10.3, this file must be in PNG, JPEG,
+# 		 TIFF, PICT, PDF, JPEG 2000, Adobe Photoshop, BMP, .ico, or
+# 		 .icns format. If the image data is in a format Growl doesn't
+# 		 recognize, the notification will still go through, and the
+# 		 icon will be ignored.
+# 
+# 		 Icons are not supported by all displays, so this may be
+# 		 ignored anyway.
+

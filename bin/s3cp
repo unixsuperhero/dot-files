@@ -1,0 +1,5 @@
+#!/bin/bash
+
+/usr/bin/env ruby /usr/local/sbin/s3sync/s3sync.rb $*
+echo
+
