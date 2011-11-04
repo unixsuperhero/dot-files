@@ -1,0 +1,22 @@
+#!/bin/bash
+
+export dot_dir=$HOME/dot.jearsh
+
+if [[ "$1" == "--tree" ]]
+then
+  find -L "$dot_dir" -type d -depth +0 | egrep -v '[.]git' | sed 's/.*dot.jearsh.//'
+  exit 0
+fi
+
+if [[ $# -lt 2 ]]
+then
+  exit 1
+fi
+
+a="$1"
+b="$dot_dir/$2"
+base=$(basename $a)
+newname=${base#.}
+mv -v $a $b/$newname
+ln -s $b/$newname $a
+

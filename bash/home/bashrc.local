@@ -24,6 +24,11 @@ source ~/.bashrc.paul
 
 alias j="jobs"
 
+## screen aliases
+alias sls="screen -ls"
+alias sx="screen -x"
+alias sS="screen -S"
+
 ## So we can use ConqueTerm
 #alias vim="~/Applications/MacVim.app/Contents/MacOS/Vim"
 alias vim='/Users/jtoyota/Applications/MacVim.app/Contents/MacOS/Vim'
@@ -36,10 +41,25 @@ export VIMBUNDLES="$HOME/.vimbundles"
 alias newb=lube
 alias :e="vim"
 
-function seconds_to_ymd()
+function seconds_to_ymd() { date -jr $1 +'%Y-%m-%d %H:%M:%S'; }
+
+function rofl()
 {
-  date -jr $1 +'%Y-%m-%d %H:%M:%S';
+  echo
+  cat <<"LOL"
+ROFL:ROFL:LOL:ROFL:ROFL
+           |
+  L   /---------
+ LOL===       []\
+  L    \         \
+        \_________\
+          |     |
+       -------------/
+LOL
+  echo
 }
+
+function lol() { yes "$(rofl;sleep 1; clear)"; }
 
 export PS1='\[\e[0;33m\]\u@mini:\[\e[0;36m\] \w'
 export PROMPT_COMMAND="echo -ne '\033]0;mini\007'"

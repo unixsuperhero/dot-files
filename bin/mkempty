@@ -28,7 +28,7 @@ META
 
 # ^_~
 
-cd /Users/jearsh/bin
+cd $HOME/bin
 case $1 in
   xml)
     cat empties/empty.xml
