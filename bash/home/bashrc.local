@@ -20,6 +20,14 @@ specjour() {
 source ~/.bashrc.paul
 
 
+## My custom bash environment
+
+source $HOME/aliases.sh
+source $HOME/exports.sh
+source $HOME/functions.sh
+source $HOME/ps1rc.sh
+
+
 ## Josh's Personal Stuff
 
 alias j="jobs"

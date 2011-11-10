@@ -98,6 +98,10 @@
 
 
 
+# [ GIT ALIASES ]
+
+  alias gsf="gst | grep '^#.*/' | egrep -o '[a-z]+/.*'"
+
 
 # [ GIT REMINDER ALIASES ]
 

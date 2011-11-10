@@ -51,6 +51,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal 
 
 " have gf open file under cursor in vertical split
 nnoremap gf :vs <cfile><CR>
+nnoremap  :vert stjump<CR>
 vnoremap < <gv  " visual shifting (does not exit Visual mode)
 vnoremap > >gv 
 nnoremap > >>
@@ -58,6 +59,7 @@ nnoremap < <<
 nnoremap j gj
 nnoremap k gk
 nnoremap K kJ
+nnoremap ,c :vert wincmd <C-]><CR>
 
 hi! link fsize Directory      "cterm=none ctermfg=4 ctermbg=Black
 hi flink cterm=none ctermfg=3 ctermbg=0
