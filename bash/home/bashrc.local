@@ -1,5 +1,12 @@
-if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then source "$HOME/.rvm/scripts/rvm" ; fi
-[[ -r $rvm_path/scripts/completion ]] && source $rvm_path/scripts/completion
+
+## function to source files
+source_file() { [[ -r "$1" ]] && source "$1"; }
+
+## Paul's Stuff
+source_file "/Users/jtoyota/.bashrc.paul"
+
+source_file "$HOME/.rvm/scripts/rvm"
+source_file "$rvm_path/scripts/completion"
 
 HASHROCKET_DIR="$HOME/Sites"
 
@@ -12,20 +19,40 @@ alias mustache='git add . && git stash'
 alias poop='git stash pop'
 alias unhitch='hitch -u'
 alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
-specjour() {
-  bundle exec specjour
+
+fail() {
+  echo "Running:"
+  echo '--------------------------------'
+  declare -f fail
+  the_date=$(date +"%Y%m%d%H%M%S")
+  log_file="fail.${the_date}.log"
+  echo '--------------------------------'
+  echo 'log_file: [tmp/'$log_file'] the_date: ['$the_date']'
+  echo '--------------------------------'
+  echo
+  rake db:migrate db:test:prepare
+  specjour | tee "tmp/$log_file"
+  [[ -r "tmp/fail.log" ]] && rm "tmp/fail.log"
+  ln -s "$(pwd)/tmp/$log_file" "tmp/fail.log"
 }
 
-## Paul's Stuff
-source ~/.bashrc.paul
+failed_tests() {
+  sed -n '/Failing Scenarios/,$p' "tmp/fail.log" | grep -o 'features[/][^#]*' | sed 's/ *$//' | sed 's/.*//'
+}
 
+unfail() {
+  the_date=$(date +"%Y%m%d%H%M%S")
+  log_file="fail.${the_date}.log"
+  cucumber -f progress $(failed_tests) | tee "tmp/$log_file"
+  [[ -r "tmp/fail.log" ]] && rm "tmp/fail.log"
+  ln -s "$(pwd)/tmp/$log_file" "tmp/fail.log"
+}
 
 ## My custom bash environment
-
-source $HOME/aliases.sh
-source $HOME/exports.sh
-source $HOME/functions.sh
-source $HOME/ps1rc.sh
+source_file "$HOME/aliases.sh"
+source_file "$HOME/exports.sh"
+source_file "$HOME/functions.sh"
+source_file "$HOME/ps1rc.sh"
 
 
 ## Josh's Personal Stuff
@@ -39,7 +66,7 @@ alias sS="screen -S"
 
 ## So we can use ConqueTerm
 #alias vim="~/Applications/MacVim.app/Contents/MacOS/Vim"
-alias vim='/Users/jtoyota/Applications/MacVim.app/Contents/MacOS/Vim'
+#alias vim='/Users/jtoyota/Applications/MacVim.app/Contents/MacOS/Vim'
 alias glog='git log --oneline --decorate --name-status'
 alias glogn='git log --oneline --decorate --name-only'
 
@@ -48,6 +75,25 @@ export VIMBUNDLES="$HOME/.vimbundles"
 
 alias newb=lube
 alias :e="vim"
+
+alias vim="vim -O2"
+
+function gs() {
+  re='/Untracked/,$s/#[[:space:]]*([^ ]*$)/\1/p;s/.*: *//p'
+  case $1 in
+    -h)
+      cont='s/app.controllers.(.*)_controller.rb/Controller: \1/'
+      view='s/app.views.(.*)[.]html.*/View: \1/'
+      feat='s/features.(.*).feature/Test: \1/'
+      git status | sed -En "$re" | grep "$2" | sed -E "/^$/d;$cont;$view;$feat" | sort -u ;;
+    '' | *)
+      git status | sed -En "$re" | grep "$1" | sed '/^$/d' | sort -u ;;
+  esac
+
+  #git status | sed -n 's/.*:[^a-z]*//'
+  #git status | grep -o ': .*' | sed 's/[^a-z]*//' | grep "$1" | sort -u
+  #git status | sed -n 's/.*: *//p' | grep "$1" | sort -u
+}
 
 function seconds_to_ymd() { date -jr $1 +'%Y-%m-%d %H:%M:%S'; }
 

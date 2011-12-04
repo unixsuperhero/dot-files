@@ -20,10 +20,6 @@ alias poop='git stash pop'
 alias unhitch='hitch -u'
 alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
 
-specjour() {
-  bundle exec specjour
-}
-
 staging() {
   gp staging
   heroku rake db:migrate --app saveology-admin-staging
@@ -50,4 +46,6 @@ customer(){
   heroku restart --app saveology-deals-production
   open http://www.saveology.com
 }
+
+alias production=customer
 

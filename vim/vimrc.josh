@@ -7,15 +7,16 @@ syntax on                                         " Turn syntax highlighting on
 filetype plugin on                                " Enable loading filetype plugins
 filetype indent on                                " Enable loading indentation plugins
 
-set nostartofline
-set textwidth=80
+"set textwidth=80                                 " The # of chars on a line before [set wrap] adds a newline
+"set autowrite                                    " Write contents of the file, if it has been modified, on buffer exit
+set nolist                                        " (Show/Don't Show) special characters represententing whitespace
+set nostartofline                                 " I have no ideal what this does right now....
 set expandtab                                     " turn tabs into spaces (or: noexpandtab - do not turn tabs into spaces, a tab is a tab)
 set shiftround                                    " Round indent to multiple of 'shiftwidth' for > and < commands
 set tabstop=2                                     " Use 2 spaces for <Tab> and :retab
 set shiftwidth=2                                  " Use 2 spaces for (auto)indent
 set softtabstop=2                                 " added by josh, saw it in a different vimrc
 set hidden                                        " Allow a modified buffer to be put in the bg, keeping the undo history, etc.
-"set autowrite                                     " Write contents of the file, if it has been modified, on buffer exit
 set incsearch                                     " Enable incremental search
 set nohlsearch                                    " Don't highlight results of a search
 set ignorecase                                    " Case insensitive search by default
@@ -374,6 +375,8 @@ function! FixListSyntax()
   syn match listSmX  /((.*))/
   syn match listTime /\d\d\d\d-\d\d-\d\d ..:..:../
 endfunction
+
+set nolist                                        " (Show/Don't Show) special characters represententing whitespace
 
 "au Syntax * :RainbowParenthesesLoadRound
 "au Syntax * :RainbowParenthesesLoadBraces
