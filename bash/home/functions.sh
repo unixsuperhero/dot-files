@@ -176,13 +176,18 @@ repo_changed () {
   cd $last_dir ### my change 2011-12-06 11:10:56
 }
 
+list_repos() {
+  for repo in ${repos//:/ }
+  do
+    echo "$repo"
+  done
+}
+
 list_changes() {
-  repo_changed "/Users/jtoyota/lists"
-  repo_changed "/Users/jtoyota/Sites/fantasy"
-  repo_changed "/Users/jtoyota/Sites/funding"
-  repo_changed "/Users/jtoyota/Sites/cli-tracker"
-  repo_changed "/Users/jtoyota/Sites/saveology"
-  repo_changed "/Users/jtoyota/dot.jearsh"
+  for repo in ${repos//:/ }
+  do
+    repo_changed "$repo"
+  done
   echo "|"
 }
 

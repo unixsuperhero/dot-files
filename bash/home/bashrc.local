@@ -50,4 +50,5 @@ alias :e="vim"
 
 alias vim="vim -O2"
 
+export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cli-tracker:$HOME/Sites/saveology:$HOME/dot.jearsh"
 
