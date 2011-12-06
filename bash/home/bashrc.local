@@ -20,34 +20,6 @@ alias poop='git stash pop'
 alias unhitch='hitch -u'
 alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
 
-fail() {
-  echo "Running:"
-  echo '--------------------------------'
-  declare -f fail
-  the_date=$(date +"%Y%m%d%H%M%S")
-  log_file="fail.${the_date}.log"
-  echo '--------------------------------'
-  echo 'log_file: [tmp/'$log_file'] the_date: ['$the_date']'
-  echo '--------------------------------'
-  echo
-  rake db:migrate db:test:prepare
-  specjour | tee "tmp/$log_file"
-  [[ -r "tmp/fail.log" ]] && rm "tmp/fail.log"
-  ln -s "$(pwd)/tmp/$log_file" "tmp/fail.log"
-}
-
-failed_tests() {
-  sed -n '/Failing Scenarios/,$p' "tmp/fail.log" | grep -o 'features[/][^#]*' | sed 's/ *$//' | sed 's/.*//'
-}
-
-unfail() {
-  the_date=$(date +"%Y%m%d%H%M%S")
-  log_file="fail.${the_date}.log"
-  cucumber -f progress $(failed_tests) | tee "tmp/$log_file"
-  [[ -r "tmp/fail.log" ]] && rm "tmp/fail.log"
-  ln -s "$(pwd)/tmp/$log_file" "tmp/fail.log"
-}
-
 ## My custom bash environment
 source_file "$HOME/aliases.sh"
 source_file "$HOME/exports.sh"
@@ -77,74 +49,5 @@ alias newb=lube
 alias :e="vim"
 
 alias vim="vim -O2"
-
-function gs() {
-  re='/Untracked/,$s/#[[:space:]]*([^ ]*$)/\1/p;s/.*: *//p'
-  case $1 in
-    -h)
-      cont='s/app.controllers.(.*)_controller.rb/Controller: \1/'
-      view='s/app.views.(.*)[.]html.*/View: \1/'
-      feat='s/features.(.*).feature/Test: \1/'
-      git status | sed -En "$re" | grep "$2" | sed -E "/^$/d;$cont;$view;$feat" | sort -u ;;
-    '' | *)
-      git status | sed -En "$re" | grep "$1" | sed '/^$/d' | sort -u ;;
-  esac
-
-  #git status | sed -n 's/.*:[^a-z]*//'
-  #git status | grep -o ': .*' | sed 's/[^a-z]*//' | grep "$1" | sort -u
-  #git status | sed -n 's/.*: *//p' | grep "$1" | sort -u
-}
-
-function seconds_to_ymd() { date -jr $1 +'%Y-%m-%d %H:%M:%S'; }
-
-function rofl()
-{
-  echo
-  cat <<"LOL"
-ROFL:ROFL:LOL:ROFL:ROFL
-           |
-  L   /---------
- LOL===       []\
-  L    \         \
-        \_________\
-          |     |
-       -------------/
-LOL
-  echo
-}
-
-function lol() { yes "$(rofl;sleep 1; clear)"; }
-
-export PS1='\[\e[0;33m\]\u@mini:\[\e[0;36m\] \w'
-export PROMPT_COMMAND="echo -ne '\033]0;mini\007'"
-
-#### do ssh before screen
-
-## if you are connected remotely, change the prompt/title
-if [[ -n $SSH_CONNECTION ]]
-then
-	export PS1='\[\e[0;33m\]\u@mini (ssh):\[\e[0;36m\] \w'
-	export PROMPT_COMMAND="echo -ne '\033]0;mini (ssh)\007'"
-fi
-
-#### do screen after ssh
-#### because the screen session will be used from locally/remotely
-#### regardless of where it was created from
-
-## if you are in a screen session, change the prompt/title
-if [[ -n $STY ]] #if [[ $TERM == 'screen' ]]
-then
-	export PS1="\[\e[0;33m\]\u@screen (${STY##*.}.${WINDOW}):\[\e[0;36m\] \w"
-	export PROMPT_COMMAND="echo -ne '\033]0;screen\007'"
-fi
-
-## if you are in a vim shell, change the prompt/title
-if [[ -n $VIM ]]
-then
-	export PS1='\[\e[0;33m\]\u@mini (vim):\[\e[0;37m\] \w'
-	export PROMPT_COMMAND="echo -ne '\033]0;mini (vim)\007'"
-fi
-
-export PS1="$PS1 \$(git_prompt_info '(%s)')\n$> \[\e[0;0m\]"
 
 

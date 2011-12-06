@@ -1,5 +1,5 @@
 
-export PS1='\[\e[0;33m\]\u@mini:\[\e[0;36m\] \w\n\$> \[\e[0;0m\]'
+export PS1='\[\e[0;33m\]\u@mini:\[\e[0;36m\] \w'
 export PROMPT_COMMAND="echo -ne '\033]0;mini\007'"
 
 #### do ssh before screen
@@ -7,7 +7,7 @@ export PROMPT_COMMAND="echo -ne '\033]0;mini\007'"
 ## if you are connected remotely, change the prompt/title
 if [[ -n $SSH_CONNECTION ]]
 then
-	export PS1='\[\e[0;33m\]\u@mini (ssh):\[\e[0;36m\] \w\n\$> \[\e[0;0m\]'
+	export PS1='\[\e[0;33m\]\u@mini (ssh):\[\e[0;36m\] \w'
 	export PROMPT_COMMAND="echo -ne '\033]0;mini (ssh)\007'"
 fi
 
@@ -18,19 +18,16 @@ fi
 ## if you are in a screen session, change the prompt/title
 if [[ -n $STY ]] #if [[ $TERM == 'screen' ]]
 then
-	export PS1="\[\e[0;33m\]\u@screen (${STY##*.}.${WINDOW}):\[\e[0;36m\] \w\n\$> \[\e[0;0m\]"
+	export PS1="\[\e[0;33m\]\u@screen (${STY##*.}.${WINDOW}):\[\e[0;36m\] \w"
 	export PROMPT_COMMAND="echo -ne '\033]0;screen\007'"
 fi
 
 ## if you are in a vim shell, change the prompt/title
 if [[ -n $VIM ]]
 then
-	export PS1='\[\e[0;33m\]\u@mini (vim):\[\e[0;37m\] \w\n\$> \[\e[0;0m\]'
+	export PS1='\[\e[0;33m\]\u@mini (vim):\[\e[0;37m\] \w'
 	export PROMPT_COMMAND="echo -ne '\033]0;mini (vim)\007'"
 fi
 
-
-
-
-
+export PS1="$PS1 \$(git_prompt_info '(%s)')\n\[\e[0;31m\]\$(list_changes)\n\[\e[0;33m\]$> \[\e[0;0m\]"
 
