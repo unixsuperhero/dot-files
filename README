@@ -1,0 +1,9 @@
+
+  These are my dot files.  I keep them all in one
+folder and have symlinks to them from the original
+locations.
+
+Example:
+
+  $HOME/.vimrc -> $HOME/dot.files/vim/vimrc.josh
+
