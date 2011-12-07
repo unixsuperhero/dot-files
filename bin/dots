@@ -3,10 +3,10 @@ config="${HOME}/.listrc"
 source "$config"
 . $HOME/bin/bash.library
 . $HOME/bin/list.library
-cd "${lists_dir}"
+cd "${dots_dir}"
 case $1 in
 	-e)
-    vim -O3 $(find . -type f | grep -i "$2") ;;
+    vim -O3 $(find . -type f | grep -v '[.]git'| grep -i "$2") ;;
   -new | --new)
     newfilename="new/$(date +'%Y%m%d.%s')"
     vim $newfilename ;;
@@ -23,7 +23,7 @@ case $1 in
     find `pwd` -type d -depth 1 -not -path '*nogrep*' -and -not -path 'home' -and -not -path '*.git*' -and -not -path '*erlang*' -exec grep -RiIl "$garg" "{}" \;
     ;;
   -dir | --dir)
-    echo "${lists_dir}"; exit ;;
+    echo "${dots_dir}"; exit ;;
   -api | --api)
 		garg="${@/-api/}"
 		garg=${garg# }
@@ -33,21 +33,21 @@ case $1 in
 		;;
   -find | -f | --find)
     not='(erlang.api|home|.git|android-sdk-mac|DS_Store|nogrep)'
-    ls -1 "${lists_dir}" | grep -vE "$not" | while read line
+    ls -1 "${dots_dir}" | grep -vE "$not" | while read line
     do
-      find -L "${lists_dir}/${line}" -type f | grep -vE "$not" | grep "$2"
+      find -L "${dots_dir}/${line}" -type f | grep -vE "$not" | grep "$2"
     done ;;
   -ff | --ff | --findall | --find-all)
-		find "${lists_dir}" -type f | grep "$2" ;;
+		find "${dots_dir}" -type f | grep "$2" ;;
 	-ls | --ls)
-    if [ -z ${lists_dir}/$2 ]
+    if [ -z ${dots_dir}/$2 ]
     then
       echo
-      cd ${lists_dir}
+      cd ${dots_dir}
       ls -GRp
     else
       echo
-      ls -GRp ${lists_dir}/$2
+      ls -GRp ${dots_dir}/$2
       echo
     fi
     ;;
@@ -63,7 +63,7 @@ case $1 in
 		vim $0 ;;
 	-all | --all)
 		ls -R ;;
-  *) cat $(find . -type f | grep -i "$1") ; echo ;;
+  *) cat $(find . -type f | grep -v '[.]git' | grep -i "$1") ; echo ;;
 esac
 
 #  Changelog

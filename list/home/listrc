@@ -6,6 +6,7 @@
 ##
 
 lists_dir="${HOME}/lists"
+dots_dir="${HOME}/Desktop/dot.jearsh"
 #lists_dir="/Volumes/jearsh/env/lists"
 debug=0
 
