@@ -4,7 +4,6 @@ alias staging_console="heroku console --app saveology-admin-staging"
 alias admin_console="heroku console --app saveology-admin-production"
 
 alias d="dirty"
-alias notes='vim ~/Documents/saveology/notes.txt'
 alias t='tig'
 alias up='rake db:migrate && rake db:test:prepare'
 alias tigrc='vim ~/.tigrc'

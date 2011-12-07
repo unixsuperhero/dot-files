@@ -36,9 +36,6 @@ alias sls="screen -ls"
 alias sx="screen -x"
 alias sS="screen -S"
 
-## So we can use ConqueTerm
-#alias vim="~/Applications/MacVim.app/Contents/MacOS/Vim"
-#alias vim='/Users/jtoyota/Applications/MacVim.app/Contents/MacOS/Vim'
 alias glog='git log --oneline --decorate --name-status'
 alias glogn='git log --oneline --decorate --name-only'
 
@@ -47,8 +44,6 @@ export VIMBUNDLES="$HOME/.vimbundles"
 
 alias newb=lube
 alias :e="vim"
-
-alias vim="vim -O2"
 
 export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cli-tracker:$HOME/Sites/saveology:$HOME/dot.jearsh"
 
