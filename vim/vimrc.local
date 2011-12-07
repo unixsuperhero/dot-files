@@ -1,13 +1,14 @@
 " /Users/jtoyota/.vimrc.local
 
+"" Josh's edits:
+
 " Grep only within the files that are open in vim
 command! -nargs=* Jgrep :silent bufdo vimgrepadd <args> %
 ca jgrep Jgrep
 
 set nowrap splitright splitbelow
 set t_Co=256
-
-"set cursorline
+"set cursorline       " I don't want the line highlighted
 
 " normal mode mappings
 " TODO: create the mappings for visual mode too

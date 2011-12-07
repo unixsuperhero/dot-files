@@ -45,6 +45,43 @@ case $1 in
 		cat $0 | grep -v "^[ 	]*[#]"
 		echo ;;
 
+  -dot)
+    case $2 in
+      bash) vim -O ~/.bashrc{,.local,.paul} ~/.hashrc ;;
+      vim) vim -O ~/.vimrc{,.josh,.local} ;;
+      profile) vim -O1 ~/.bash_profile ;;
+      alias|aliases) vim -O1 ~/aliases.sh;;
+      export) vim -O1 ~/exports.sh;;
+      fun|functions) vim -O1 ~/functions.sh;;
+      input|inputrc) vim -O1 ~/.inputrc;;
+      ps1) vim -O1 ~/ps1rc.sh;;
+      list|lists) 
+        d="~/hashrocket/dotmatrix"
+        vim -O ~/.listrc $d/.vim/{syntax,autoload}/lists.vim ;;
+      hashrocket)
+        d="~/hashrocket/dotmatrix"
+        $d/.{gitconfig,hashrc,screenrc,vim/plugin/hashrocket.vim,vimrc} ;;
+      screen|screenrc) vim -O1 ~/.screenrc ;;
+      ''|*)
+        cat <<-CAT
+
+  The options for editing dot files is:
+    bash
+    vim
+    profile
+    alias | aliases
+    export
+    fun | functions
+    input | inputrc
+    ps1
+    list | lists
+    hashrocket
+    screen | screenrc
+
+CAT
+        ;;
+    esac ;;
+
 	-e)
 		remove_switch $@
 
