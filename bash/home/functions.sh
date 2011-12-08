@@ -183,6 +183,10 @@ list_repos() {
   done
 }
 
+gcd () {
+  cd $(list_repos | grep -i "$1")
+}
+
 list_changes() {
   for repo in ${repos//:/ }
   do
