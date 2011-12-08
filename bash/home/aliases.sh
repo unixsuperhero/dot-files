@@ -128,3 +128,4 @@
     alias sample_lsc='ls -ACGF'
 
 alias turl='curl --socks5-hostname localhost:51892'
+alias deliver="gp staging && gp"
