@@ -63,7 +63,8 @@ case $1 in
 		vim $0 ;;
 	-all | --all)
 		ls -R ;;
-  *) cat $(find . -type f | grep -v '[.]git' | grep -i "$1") ; echo ;;
+  *) vim -O3 $(find . -type f | grep -v '[.]git' | grep -i "$1") ;;
+  #  cat     $(find . -type f | grep -v '[.]git' | grep -i "$1") ;;
 esac
 
 #  Changelog
