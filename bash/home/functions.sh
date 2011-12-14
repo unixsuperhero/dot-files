@@ -230,7 +230,7 @@ unfail() {
 
 function gs() {
 
-  gst | sed -n "s/...//;/$1/p" | sort -u
+  gst | sed "s/...//" | grep "$1" | sort -u
 
   #re='/Untracked/,$s/#[[:space:]]*([^ ]*$)/\1/p;s/.*: *//p'
   #case $1 in
