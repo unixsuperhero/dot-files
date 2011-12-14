@@ -47,3 +47,17 @@ alias :e="vim"
 
 export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cli-tracker:$HOME/Sites/saveology:$HOME/dot.jearsh:$HOME/Sites/spon"
 
+
+## bash completions
+function _gcd() {
+  COMPREPLY=($(compgen -W "${repos//:/ }"))
+}
+
+complete -F _gcd gcd
+
+function _gs() {
+  COMPREPLY=($(compgen -W "$(gs)"))
+}
+
+complete -F _gs gs
+
