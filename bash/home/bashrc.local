@@ -43,6 +43,7 @@ export PATH="$PATH:$HOME/bin"
 export VIMBUNDLES="$HOME/.vimbundles"
 
 alias newb=lube
+alias vim="/usr/local/Cellar/macvim/7.3-61/MacVim.app/Contents/MacOS/Vim"
 alias :e="vim"
 
 export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cli-tracker:$HOME/Sites/saveology:$HOME/dot.jearsh:$HOME/Sites/spon"
@@ -50,13 +51,16 @@ export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cl
 
 ## bash completions
 function _gcd() {
-  COMPREPLY=($(compgen -W "${repos//:/ }"))
+  cur=${COMP_WORDS[COMP_CWORD]}
+  for a in ${repos//:/ }; do wordlist+="$(basename $a) "; done
+  COMPREPLY=($(compgen -W "$wordlist" $cur))
 }
 
 complete -F _gcd gcd
 
 function _gs() {
-  COMPREPLY=($(compgen -W "$(gs)"))
+  cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(compgen -W "$(gs)" $cur))
 }
 
 complete -F _gs gs
