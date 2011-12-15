@@ -247,3 +247,12 @@ function gs() {
   #git status | grep -o ': .*' | sed 's/[^a-z]*//' | grep "$1" | sort -u
   #git status | sed -n 's/.*: *//p' | grep "$1" | sort -u
 }
+
+_man () {
+  if (man $1 | grep '^BUILTIN'); then
+    man bash | col -b | sed -n '/^SHELL BUILTIN/,$p' | less +/$1
+  else
+    man $1
+  fi
+}
+
