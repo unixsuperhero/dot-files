@@ -1,13 +1,15 @@
 
+export my_home="/Users/jtoyota"
+
 ## Paths: ~/lists and ~/.listrc
-export l="/Users/jearsh/lists"
-export list_dir="/Users/jearsh/lists"
-export lists_dir="/Users/jearsh/lists"
-export mylistrc="/Users/jearsh/.listrc"
+export l="$my_home/lists"  # export l="$HOME/lists"
+export list_dir="$my_home/lists"  # export list_dir="$HOME/lists"
+export lists_dir="$my_home/lists"  # export lists_dir="$HOME/lists"
+export mylistrc="$my_home/.listrc"  # export mylistrc="$HOME/.listrc"
 
 ## Paths: ~/bin
-export bin="/Users/jearsh/bin"
-export mybin="/Users/jearsh/bin"
+export bin="$my_home/bin"  # export bin="$HOME/bin"
+export mybin="$my_home/bin"  # export mybin="$HOME/bin"
 
 ## s3 / s3sync env(s)
 export AWS_ACCESS_KEY_ID="1JGCQN7DF0SFABE4DBG2"
