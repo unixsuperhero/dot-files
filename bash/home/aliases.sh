@@ -130,3 +130,4 @@
 alias turl='curl --socks5-hostname localhost:51892'
 alias deliver="gp staging && gp"
 alias gac="git add . ; git commit -v"
+alias rdm="bundle exec rake db:migrate db:test:prepare"
