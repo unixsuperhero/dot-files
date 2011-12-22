@@ -1,0 +1,52 @@
+
+" -----------------------
+" ----- Set Options -----
+" -----------------------
+
+set nowrap                      " Don't wordwrap
+set splitright splitbelow       " More natural splitting
+
+" -------------------------
+" ----- Abbreviations -----
+" -------------------------
+
+" switch to a buffer in a vertical split
+ca vb vert sb
+
+" when you open a file and you don't have write permissions
+" (:w!!) will do a sudo write, bypassing the restriction
+ca w!! w ! sudo tee "%"
+
+
+" ------------------------
+" ----- Key Mappings -----
+" ------------------------
+
+" have gf open filename under cursor in vertical split
+" instead of hiding the current window
+nnoremap gF :vert wincmd F<CR>
+
+" Not sure which of these 2 is better:
+"nnoremap gf :vs <cfile><CR>
+nnoremap gf :vert wincmd f<CR>
+
+" the same thing but with tags
+nnoremap  :vert stjump<CR>
+
+" easier indentation in visual mode
+vnoremap < <gv  " visual shifting (does not exit Visual mode)
+vnoremap > >gv 
+
+" easier indentation in normal mode
+nnoremap > >>
+nnoremap < <<
+
+" more natural way of moving the cursor
+" up/down 1 line when the 'wrap' option is set
+nnoremap j gj
+nnoremap k gk
+
+" (shift j) appends the next line to the current line
+" this adds (shift k) to append the current line
+" to the prev. line
+nnoremap K kJ
