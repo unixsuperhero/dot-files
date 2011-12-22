@@ -1,10 +1,35 @@
 
+" -------------------------------
+" ----- Syntax Highlighting -----
+" -------------------------------
+
+syntax on                                         " Turn syntax highlighting on
+filetype plugin on                                " Enable loading filetype plugins
+filetype indent on                                " Enable loading indentation plugins
+
 " -----------------------
 " ----- Set Options -----
 " -----------------------
 
 set nowrap                      " Don't wordwrap
 set splitright splitbelow       " More natural splitting
+
+  " tabs vs. spaces. (spaces win)
+set expandtab                   " a tab is turned into spaces, a tab is no longer a tab
+set shiftround                  " Round indent to multiple of 'shiftwidth' for > and < commands
+set tabstop=2                   " Use 2 spaces for <Tab> and :retab
+set shiftwidth=2                " Use 2 spaces for (auto)indent
+set softtabstop=2               " added by josh, saw it in a different vimrc
+
+  " searching with [/?]
+set incsearch               " show matches as i type them
+set nohlsearch              " when searching, don't highlight matches.  i use :match for that
+set ignorecase              " case insensitive, because it's easier
+set smartcase               " case sensitive if you use capitals in your search
+
+  " hashrocket changes these settings, i'm resetting them to the default
+  " values
+set nolist                                        " (Show/Don't Show) special characters represententing whitespace
 
 " -------------------------
 " ----- Abbreviations -----
