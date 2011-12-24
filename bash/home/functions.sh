@@ -198,6 +198,19 @@ list_changes() {
 
 ## Run and rerun the test suite automagically
 
+retest () {
+  if [[ -z $1 ]]; then
+    cucumber -f progress $(_failed_tests) | tee "tmp/fail.log"
+  else
+    rake db:migrate db:test:prepare
+    specjour | tee "tmp/fail.log"
+  fi
+}
+
+_failed_tests() {
+  sed -n '/Failing Scenarios/,$p' "tmp/fail.log" | grep -o 'features[/][^#]*' | sed 's/ *$//' | sed 's/.*//'
+}
+
 fail() {
   echo "Running:"
   echo '--------------------------------'
