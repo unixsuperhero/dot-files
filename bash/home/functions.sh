@@ -186,6 +186,7 @@ list_repos() {
 gcd () {
   cd $(list_repos | grep -i "$1")
 }
+alias hcd="gcd"
 
 list_changes() {
   for repo in ${repos//:/ }
@@ -200,10 +201,10 @@ list_changes() {
 
 retest () {
   if [[ -z $1 ]]; then
-    cucumber -f progress $(_failed_tests) | tee "tmp/fail.log"
+    bundle exec cucumber -f progress $(_failed_tests) | tee "tmp/fail.log"
   else
-    rake db:migrate db:test:prepare
-    specjour | tee "tmp/fail.log"
+    bundle exec rake db:migrate db:test:prepare
+    bundle exec specjour | tee "tmp/fail.log"
   fi
 }
 
