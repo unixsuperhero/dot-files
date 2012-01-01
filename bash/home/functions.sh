@@ -127,7 +127,6 @@ function lol() { yes "$(rofl;sleep 1; clear)"; }
 ## List the git repos on my machine that changed
 
 repo_changed () {
-  last_dir=`pwd` ### my change 2011-12-06 11:11:17
   cd $1 ### my change 2011-12-06 11:11:17
   local g="$(git rev-parse --git-dir 2>/dev/null)"
   if [ -n "$g" ]; then
@@ -135,7 +134,6 @@ repo_changed () {
     [[ $(git status --porcelain | wc -l | grep -o '[0-9]+') -gt 0 ]] &&
       echo -n "| ${1/$HOME/~} "
   fi
-  cd $last_dir ### my change 2011-12-06 11:10:56
 }
 
 list_repos() {
@@ -151,11 +149,12 @@ gcd () {
 alias hcd="gcd"
 
 list_changes() {
-  for repo in ${repos//:/ }
-  do
+  last_dir=`pwd` ### my change 2011-12-06 11:11:17
+  for repo in ${repos//:/ }; do
     repo_changed "$repo"
   done
   echo "|"
+  cd $last_dir ### my change 2011-12-06 11:10:56
 }
 
 
