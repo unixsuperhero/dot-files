@@ -20,6 +20,8 @@ alias poop='git stash pop'
 alias unhitch='hitch -u'
 alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
 
+alias make_pdf="cupsfilter -o fit-to-page -o cpi=18 -o lpi=11"
+
 ## My custom bash environment
 source_file "$HOME/aliases.sh"
 source_file "$HOME/exports.sh"
@@ -47,7 +49,7 @@ alias vim="/usr/local/Cellar/macvim/7.3-61/MacVim.app/Contents/MacOS/Vim"
 alias :e="vim"
 
 export gems="$GEM_HOME/gems"
-export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cli-tracker:$HOME/Sites/saveology:$HOME/dot.jearsh:/Users/jtoyota/Sites/dotmatrix:$HOME/Sites/spon"
+export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cli-tracker:$HOME/Sites/saveology:$HOME/dot.jearsh:/Users/jtoyota/Sites/dotmatrix"
 
 
 ## bash completions

@@ -128,6 +128,6 @@
     alias sample_lsc='ls -ACGF'
 
 alias turl='curl --socks5-hostname localhost:51892'
-alias deliver="gp staging && gp"
+alias deliver="gp && gp staging && heroku rake db:migrate --app saveology-admin-staging && heroku restart --app saveology-admin-staging"
 alias gac="git add . ; git commit -v"
 alias rdm="bundle exec rake db:migrate db:test:prepare"

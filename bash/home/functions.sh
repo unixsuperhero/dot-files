@@ -131,47 +131,9 @@ repo_changed () {
   cd $1 ### my change 2011-12-06 11:11:17
   local g="$(git rev-parse --git-dir 2>/dev/null)"
   if [ -n "$g" ]; then
-    local r
-    local b
-    local d
-    local s
-    # Rebasing
-    if [ -d "$g/rebase-apply" ] ; then
-      if test -f "$g/rebase-apply/rebasing" ; then
-        r="|REBASE"
-      fi
-      b="$(git symbolic-ref HEAD 2>/dev/null)"
-    # Interactive rebase
-    elif [ -f "$g/rebase-merge/interactive" ] ; then
-      r="|REBASE-i"
-      b="$(cat "$g/rebase-merge/head-name")"
-    # Merging
-    elif [ -f "$g/MERGE_HEAD" ] ; then
-      r="|MERGING"
-      b="$(git symbolic-ref HEAD 2>/dev/null)"
-    else
-      if [ -f "$g/BISECT_LOG" ] ; then
-        r="|BISECTING"
-      fi
-      if ! b="$(git symbolic-ref HEAD 2>/dev/null)" ; then
-        if ! b="$(git describe --exact-match HEAD 2>/dev/null)" ; then
-          b="$(cut -c1-7 "$g/HEAD")..."
-        fi
-      fi
-    fi
-
-    # Dirty Branch
-    local newfile='?? '
-    if [ -n "$ZSH_VERSION" ]; then
-      newfile='\?\? '
-    fi
-    d=''
-    s=$(git status --porcelain 2> /dev/null)
-    [[ $s =~ "$newfile" ]] && d+='+'
-    [[ $s =~ "M " ]] && d+='*'
-    [[ $s =~ "D " ]] && d+='-'
-
-    [[ -z $r && -z $d ]] || echo -n "| ${1/$HOME/~} (${r}${d}) " ### my change 2011-12-06 11:11:02 
+    ### my change 2011-12-06 11:11:02 
+    [[ $(git status --porcelain | wc -l | grep -o '[0-9]+') -gt 0 ]] &&
+      echo -n "| ${1/$HOME/~} "
   fi
   cd $last_dir ### my change 2011-12-06 11:10:56
 }
@@ -201,7 +163,12 @@ list_changes() {
 
 retest () {
   if [[ -z $1 ]]; then
-    bundle exec cucumber -f progress $(_failed_tests) | tee "tmp/fail.log"
+    if bundle exec cucumber -f progress $(_failed_tests) |
+      tee "tmp/_fail.log"
+    then
+      rm tmp/fail.log
+      mv tmp/_fail.log tmp/fail.log
+    fi
   else
     bundle exec rake db:migrate db:test:prepare
     bundle exec specjour | tee "tmp/fail.log"
@@ -209,7 +176,10 @@ retest () {
 }
 
 _failed_tests() {
-  sed -n '/Failing Scenarios/,$p' "tmp/fail.log" | grep -o 'features[/][^#]*' | sed 's/ *$//' | sed 's/.*//'
+  sed -n '/Failing Scenarios/,$p' "tmp/fail.log" |
+    grep -o 'features[/][^#]*' |
+    sed 's/ *$//' |
+    sed 's/.*//'
 }
 
 fail() {
