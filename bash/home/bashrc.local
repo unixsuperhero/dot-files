@@ -49,7 +49,16 @@ alias vim="/usr/local/Cellar/macvim/7.3-61/MacVim.app/Contents/MacOS/Vim"
 alias :e="vim"
 
 export gems="$GEM_HOME/gems"
-export repos="$HOME/lists:$HOME/Sites/fantasy:$HOME/Sites/funding:$HOME/Sites/cli-tracker:$HOME/Sites/saveology:$HOME/dot.jearsh:/Users/jtoyota/Sites/dotmatrix"
+
+ repos="$HOME/lists"                    ; repos+=":"
+repos+="$HOME/Sites/fantasy"            ; repos+=":"
+repos+="$HOME/Sites/kikin"              ; repos+=":"
+#repos+="$HOME/Sites/funding"           ; repos+=":"
+repos+="$HOME/Sites/cli-tracker"        ; repos+=":"
+repos+="$HOME/Sites/saveology"          ; repos+=":"
+repos+="$HOME/dot.jearsh"               ; repos+=":"
+repos+="$HOME/Sites/dotmatrix"
+export repos
 
 
 ## bash completions

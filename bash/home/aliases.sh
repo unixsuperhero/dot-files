@@ -77,8 +77,8 @@
 
   alias eirssi="sudo vim ~/.irssi/config"
 
-  alias ebash="sudo vim /private/etc/bashrc"
-  alias sbash="source /private/etc/bashrc"
+  alias ebash="sudo vim $HOME/.bashrc.local"
+  alias sbash="source $HOME/.bashrc.local"
 
   alias eprofile="sudo vim /private/etc/profile"
   alias sprofile="source /private/etc/profile"
