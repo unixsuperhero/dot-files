@@ -45,11 +45,18 @@ Explanation
     unalias $alias_name
 
 
+# -------
+#  FACES
+# -------
+  alias ~_~="echo;echo ~_~;echo"
+  alias ^_^="echo;echo ^_^;echo"
+
 # ----------
 #  COMMANDS
 # ----------
 
   ##------ curl ------
+
 
     alias torcurl="curl -x 127.0.0.1:8118"
 

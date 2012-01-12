@@ -194,10 +194,18 @@ retest () {
 }
 
 _failed_tests() {
-  sed -n '/Failing Scenarios/,$p' "tmp/fail.log" |
-    grep -o 'features[/][^#]*' |
-    sed 's/ *$//' |
-    sed 's/.*//'
+  if [[ -z $1 ]]; then
+    sed -n '/Failing Scenarios/,$p' "tmp/fail.log" |
+      grep -o 'features[/][^#]*' |
+      sed 's/ *$//' |
+      sed 's/.*//'
+  else
+    sed -n '/Failing Scenarios/,$p' "tmp/fail.log" |
+      grep -o 'features[/][^#]*' |
+      sed 's/ *$//' |
+      sed 's/.*//' |
+      sed 's/:[0-9][0-9]*//'
+  fi
 }
 
 fail() {
@@ -217,7 +225,8 @@ fail() {
 }
 
 failed_tests() {
-  sed -n '/Failing Scenarios/,$p' "tmp/fail.log" | grep -o 'features[/][^#]*' | sed 's/ *$//' | sed 's/.*//'
+  #sed -n '/Failing Scenarios/,$p' "tmp/fail.log" | grep -o 'features[/][^#]*' | sed 's/ *$//' | sed 's/.*//'
+  _failed_tests $@
 }
 
 unfail() {
