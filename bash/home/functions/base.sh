@@ -1,14 +1,8 @@
 
-cat <<MSG
-
-# sourcing functions
-$> source $BASH_SOURCE
-
-MSG
-
-source_file "$HOME/functions/git.sh"
-source_file "$HOME/functions/rails.sh"
-source_file "$HOME/functions/test_suite.sh"
+source '$HOME/functions/git.sh'
+source '$HOME/functions/rails.sh'
+source '$HOME/functions/test_suite.sh'
+# Functions
 
 eman() {
   man "$1" | col -b | vim -

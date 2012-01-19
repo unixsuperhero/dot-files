@@ -62,6 +62,7 @@ case $1 in
     count=$(echo "$matches" | wc -l)
     oo=$([[ $count -gt 1 ]] && echo 2 || echo 1)
     vim -O$oo $matches
+    source $HOME/.bashrc
   ;;
 esac
 

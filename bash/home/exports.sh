@@ -17,3 +17,14 @@ export AWS_SECRET_ACCESS_KEY="mSp5FMTN0t7QBKqRS7vEFRHeN+tALyelTiv7MIVo"
 
 export rgvpn="173.203.44.236"
 
+export v="app/views"
+export m="app/models"
+export c="app/controllers"
+export t="features"
+
+export saveology="$HOME/Sites/saveology"
+export iterator="$HOME/Sites/iterat.org"
+export kikin="$HOME/Sites/kikin/"
+export clit="$HOME/Sites/cli-tracker"
+export funding="$HOME/Sites/funding"
+

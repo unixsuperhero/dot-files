@@ -1,6 +1,6 @@
 
 ## function to source files
-source_file() { [[ -r "$1" ]] && source "$1"; }
+source_file() { [ -r "$1" ] && source "$1"; }
 
 ## Paul's Stuff
 source_file "/Users/jtoyota/.bashrc.paul"
@@ -57,6 +57,8 @@ repos+="$HOME/Sites/funding"            ; repos+=":"
 repos+="$HOME/Sites/cli-tracker"        ; repos+=":"
 repos+="$HOME/Sites/saveology"          ; repos+=":"
 repos+="$HOME/dot.jearsh"               ; repos+=":"
+repos+="$HOME/Sites/up2speed"           ; repos+=":"
+repos+="$HOME/Sites/iterat.org"         ; repos+=":"
 repos+="$HOME/Sites/dotmatrix"
 export repos
 

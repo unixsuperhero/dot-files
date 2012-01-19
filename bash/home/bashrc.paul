@@ -28,12 +28,14 @@ staging() {
 
 admin(){
   heroku pgbackups:capture --expire --app saveology-deals-production
-  gp production-admin master
-  heroku rake db:migrate --app saveology-admin-production
-  heroku restart --app saveology-admin-production
-  open http://admin.saveology.com
+  _admin
 }
+
 admin_nobackup(){
+  _admin
+}
+
+_admin () {
   gp production-admin master
   heroku rake db:migrate --app saveology-admin-production
   heroku restart --app saveology-admin-production
