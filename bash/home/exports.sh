@@ -28,3 +28,8 @@ export kikin="$HOME/Sites/kikin/"
 export clit="$HOME/Sites/cli-tracker"
 export funding="$HOME/Sites/funding"
 
+
+staging="saveology-admin-staging"
+admin="saveology-admin-production"
+deals="saveology-deals-production"
+

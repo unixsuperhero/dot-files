@@ -216,14 +216,12 @@ CAT
 		#clear
 		cat $@ | grep -v "^[ 	]*[#]"
 		## cat ~/lists/$1 | grep -v "^[ 	]*[#]"
-		echo;;
+		echo ;;
 
 esac
 
 #exit 0
 
-cat <<OLDCAT &>/dev/null
-OLDCAT
 
 #  Changelog
 #

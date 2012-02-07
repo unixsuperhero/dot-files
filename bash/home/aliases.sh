@@ -163,7 +163,12 @@ Explanation
 
 
 alias turl='curl --socks5-hostname localhost:51892'
-alias deliver="gp && gp staging && heroku rake db:migrate --app saveology-admin-staging && heroku restart --app saveology-admin-staging"
+alias deliver="gp && (gp staging || gp -f staging) && heroku rake db:migrate --app saveology-admin-staging && heroku restart --app saveology-admin-staging"
 alias gac="git add . ; git commit -v"
 alias rdm="bundle exec rake db:migrate db:test:prepare"
 alias columnize='column -c $COLUMNS | column -t'
+
+alias bunee="bundle exec"
+alias rami="bunee rake db:migrate db:test:prepare"
+alias migrate="bunee rake db:migrate db:test:prepare"
+

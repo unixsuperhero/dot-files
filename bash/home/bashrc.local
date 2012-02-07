@@ -45,6 +45,7 @@ export PATH="$PATH:$HOME/bin"
 export VIMBUNDLES="$HOME/.vimbundles"
 
 alias newb=lube
+alias vim="/usr/local/Cellar/vim/7.3.333/bin/vim"
 alias vim="/usr/local/Cellar/macvim/7.3-61/MacVim.app/Contents/MacOS/Vim"
 alias :e="vim"
 

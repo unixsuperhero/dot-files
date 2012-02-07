@@ -61,6 +61,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap K kJ
 nnoremap ,c :vert wincmd <C-]><CR>
+nnoremap ,f :CommandT<cr>
 
 hi! link fsize Directory      "cterm=none ctermfg=4 ctermbg=Black
 hi flink cterm=none ctermfg=3 ctermbg=0
