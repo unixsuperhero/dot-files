@@ -3,29 +3,29 @@
 # battery status script
 #
 
-BATTERY=$(pmset -g batt | egrep -o '[0-9]+%')
-CHARGE=${BATTERY//%/}
+function colorize
+{
+  case $1 in
+    '') echo -e "\033[0;0m" ;;
+    red) echo -e "\033[0;31m" ;;
+    yel) echo -e "\033[0;33m" ;;
+    grn) echo -e "\033[0;36m" ;;
+    clear) echo -e "\033[0;0m" ;;
+    green) echo -e "\033[0;36m" ;;
+    yellow) echo -e "\033[0;33m" ;;
+    *) echo -e "\033[0;0m" ;;
+  esac
+}
 
-NON="\033[0;0m"
-RED="\033[0;31m"
-YEL="\033[0;33m"
-GRN="\033[0;36m"
+function ascii_battery
+{
+  BATTERY=$(pmset -g batt | egrep -o '[0-9]+%')
+  CHARGE=${BATTERY//%/}
 
-# COLOUR="$RED"
+  color="green"
+  [ "$CHARGE" -lt "60" ] && color="yellow" # Yellow
+  [ "$CHARGE" -lt "30" ] && color="red" # Green
 
-if [ "$CHARGE" -gt "99" ]
-then
-   CHARGE=100
-fi
+  echo -e "$(colorize)[$(colorize $color)${CHARGE}$(colorize)}"
+}
 
-if [ "$CHARGE" -gt "30" ]
-then
-   COLOUR="$YEL"
-fi
-
-if [ "$CHARGE" -gt "60" ]
-then
-   COLOUR="$GRN"
-fi
-
-echo -e "  ${NON}[${COLOUR} ${CHARGE}% ${NON}]="

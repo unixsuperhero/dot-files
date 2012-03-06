@@ -24,10 +24,11 @@ alias make_pdf="cupsfilter -o fit-to-page -o cpi=18 -o lpi=11"
 
 ## My custom bash environment
 source_file "$HOME/.osxrc"
-source_file "$HOME/.bashrc.ps1" #source_file "$HOME/ps1rc.sh"
-source_file "$HOME/.bashrc.alias" #source_file "$HOME/aliases.sh"
-source_file "$HOME/.bashrc.export" #source_file "$HOME/exports.sh"
-source_file "$HOME/.bashrc.function" #source_file "$HOME/functions.sh"
+source_file "$HOME/.bashrc.ps1"
+source_file "$HOME/.bashrc.alias"
+source_file "$HOME/.bashrc.export"
+source_file "$HOME/.bashrc.battery"
+source_file "$HOME/.bashrc.function"
 
 
 ## Josh's Personal Stuff

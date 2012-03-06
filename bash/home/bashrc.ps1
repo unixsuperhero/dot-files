@@ -29,5 +29,5 @@ then
 	export PROMPT_COMMAND="echo -ne '\033]0;mini (vim)\007'"
 fi
 
-export PS1="$PS1 \$(git_prompt_info '(%s)')\$(source ~/.bashrc.battery)\n\[\e[0;31m\]\$(list_changes)\n\[\e[0;33m\]$> \[\e[0;0m\]"
+export PS1="$PS1 \$(git_prompt_info '(%s)')\$(ascii_battery)\n\[\e[0;31m\]\$(list_changes)\n\[\e[0;33m\]$> \[\e[0;0m\]"
 
