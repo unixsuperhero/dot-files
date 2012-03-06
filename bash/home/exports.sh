@@ -17,19 +17,38 @@ export AWS_SECRET_ACCESS_KEY="mSp5FMTN0t7QBKqRS7vEFRHeN+tALyelTiv7MIVo"
 
 export rgvpn="173.203.44.236"
 
-export v="app/views"
-export m="app/models"
-export c="app/controllers"
-export t="features"
 
-export saveology="$HOME/Sites/saveology"
-export iterator="$HOME/Sites/iterat.org"
-export kikin="$HOME/Sites/kikin/"
-export clit="$HOME/Sites/cli-tracker"
-export funding="$HOME/Sites/funding"
+################## rails paths ##################
 
+v="app/views"
+m="app/models"
+c="app/controllers"
+t="features"
+
+export v m c t 
+
+##################### repos #####################
+
+saveology="$HOME/Sites/saveology"
+iterator="$HOME/Sites/iterat.org"
+kikin="$HOME/Sites/kikin/"
+clit="$HOME/Sites/cli-tracker"
+funding="$HOME/Sites/funding"
+
+export saveology iterator kikin clit funding
+
+
+################## heroku apps ##################
 
 staging="saveology-admin-staging"
 admin="saveology-admin-production"
 deals="saveology-deals-production"
+production="$deals"
+
+export staging admin deals production
+
+
+# BC ENVIRONMENT ARGS
+
+export BC_ENV_ARGS="-l"
 

@@ -1,4 +1,25 @@
 
+
+function cleanup_branches ()
+{
+  gco master
+  gpr
+  git branch | sed 's/..//' | grep -v master |
+  while read branch
+  do
+    read -u 1 -p "$branch (y/n): " yn
+    if [[ $yn == "y" ]]
+    then
+      gco "$branch"
+      gpr origin master
+      gco master
+      gb -d "$branch"
+    else
+      echo "Skipping $branch ..."
+    fi
+  done
+}
+
 ## Have a searchable/parsable list of the files that have changed
 
 function gs() {

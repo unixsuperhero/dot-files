@@ -156,6 +156,7 @@ Explanation
   alias git_aliases="alias | grep git"
   alias gsf="gs"
   alias gss="git status -s"
+  alias gprm="gpr origin master"
 
 # -------------------------------------------------------------------------
 # THE FOLLOWING ARE NOTES ABOUT ALIASES IN GENERAL OR SPECIFIC TO A COMMAND
@@ -166,9 +167,17 @@ alias turl='curl --socks5-hostname localhost:51892'
 alias deliver="gp && (gp staging || gp -f staging) && heroku rake db:migrate --app saveology-admin-staging && heroku restart --app saveology-admin-staging"
 alias gac="git add . ; git commit -v"
 alias rdm="bundle exec rake db:migrate db:test:prepare"
-alias columnize='column -c $COLUMNS | column -t'
+alias columnize='column -c $[$COLUMNS*2] | column -t'
 
 alias bunee="bundle exec"
 alias rami="bunee rake db:migrate db:test:prepare"
 alias migrate="bunee rake db:migrate db:test:prepare"
+
+alias timestamp="date +%Y%m%d%H%M%S"
+alias time-stamp="date +%Y-%m-%d-%H-%M-%S"
+alias dateonly="date +%Y%m%d"
+alias date-only="date +%Y-%m-%d"
+alias timeonly="date +%H%M%S"
+alias time-only="date +%H-%M-%S"
+alias time:only="date +%H:%M:%S"
 
