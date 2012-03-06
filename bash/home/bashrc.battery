@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# battery status script
+#
+
+BATTERY=$(pmset -g batt | egrep -o '[0-9]+%')
+CHARGE=${BATTERY//%/}
+
+NON="\033[0;0m"
+RED="\033[0;31m"
+YEL="\033[0;33m"
+GRN="\033[0;36m"
+
+# COLOUR="$RED"
+
+if [ "$CHARGE" -gt "99" ]
+then
+   CHARGE=100
+fi
+
+if [ "$CHARGE" -gt "30" ]
+then
+   COLOUR="$YEL"
+fi
+
+if [ "$CHARGE" -gt "60" ]
+then
+   COLOUR="$GRN"
+fi
+
+echo -e "  ${NON}[${COLOUR} ${CHARGE}% ${NON}]="
