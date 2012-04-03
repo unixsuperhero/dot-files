@@ -23,6 +23,16 @@ function dot_install()
   fi
   ln -s "$(pwd)/hashrocket" $HOME/
 
+  echo "Symlinking dotmatrix dotfiles"
+  test -f $HOME/.bashrc && mv $HOME/.bashrc $bkup/
+  test -f $HOME/.vim && mv $HOME/.vim $bkup/
+  test -f $HOME/.vimrc && mv $HOME/.vimrc $bkup/
+  ln -nfs $HOME/hashrocket/dotmatrix/.bashrc $HOME/
+  ln -nfs $HOME/hashrocket/dotmatrix/.hashrc $HOME/
+  ln -nfs $HOME/hashrocket/dotmatrix/.vim $HOME/
+  ln -nfs $HOME/hashrocket/dotmatrix/.vimrc $HOME/
+  sh $HOME/hashrocket/dotmatrix/bin/vimbundles.sh
+
   for bins in bin bin/empties bin/resources bin/tests; do
     mkdir -pv "${HOME}/$bins"
     for fil in $bins/*; do
