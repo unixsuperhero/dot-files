@@ -1,33 +1,37 @@
 #!/bin/bash
 
-bkup="backup/home/$(date +%s)"
-
-function dot_setup()
+stamp=$(date +%s)
+function dot_install()
 {
-  for dots in bash/home list/home hitch vim
-  do
-    for fil in $dots/*
-    do
-      if [ -f "$HOME/.$(basename $fil)" ]
-      then
+  bkup="backup/home/$stamp"
+  for dots in bash/home list/home vim; do
+    for fil in $dots/*; do
+      if [ -f "$HOME/.$(basename $fil)" ]; then
         mkdir -pv "$bkup" | sed 's/^/mkdir: /'
         mv -v "$HOME/.$(basename $fil)" "${bkup}/"
+        echo rm "$HOME/.$(basename $fil)" >> uninstall.$stamp.sh
+        echo mv -v "${bkup}/.$(basename $fil)" "$HOME/.$(basename $fil)" >> uninstall.$stamp.sh
       fi
       ln -s "$(pwd)/$fil" "$HOME/.$(basename $fil)"
     done
   done
 
-  for bins in bin bin/empties bin/resources bin/tests
-  do
+  if [ -e "$HOME/hashrocket" ]; then
+    mv $HOME/hashrocket $bkup/
+    echo rm "$HOME/hashrocket" >> uninstall.$stamp.sh
+    echo mv -v $bkup/hashrocket "$HOME/" >> uninstall.$stamp.sh
+  fi
+  ln -s "$(pwd)/hashrocket" $HOME/
+
+  for bins in bin bin/empties bin/resources bin/tests; do
     mkdir -pv "${HOME}/$bins"
-    for fil in $bins/*
-    do
-      if [ -f "$fil" ]
-      then
-        if [ -f "$HOME/$fil" ]
-        then
+    for fil in $bins/*; do
+      if [ -f "$fil" ]; then
+        if [ -f "$HOME/$fil" ]; then
           mkdir -pv "$bkup/$bins" | sed 's/^/mkdir: /'
           mv -v "$HOME/$fil" "${bkup}/$fil"
+          echo rm "$HOME/$fil" >> uninstall.$stamp.sh
+          echo mv -v "${bkup}/$fil" "$HOME/$fil" >> uninstall.$stamp.sh
         fi
         ln -s "$(pwd)/$fil" "${HOME}/$fil"
       fi
@@ -35,7 +39,59 @@ function dot_setup()
   done
 }
 
-dot_setup
+function dot_uninstall()
+{
+  bkup="backup/home/$(date +%s)"
+  for dots in bash/home list/home vim; do
+    for fil in $dots/*; do
+      if [ -f "$HOME/.$(basename $fil)" ]; then
+        mkdir -pv "$bkup" | sed 's/^/mkdir: /'
+        mv -v "$HOME/.$(basename $fil)" "${bkup}/"
+      fi
+    done
+  done
+
+  for bins in hashrocket bin bin/empties bin/resources bin/tests; do
+    mkdir -pv "${HOME}/$bins"
+    for fil in $bins/*; do
+      if [ -f "$fil" ]; then
+        if [ -f "$HOME/$fil" ]; then
+          mkdir -pv "$bkup/$bins" | sed 's/^/mkdir: /'
+          mv -v "$HOME/$fil" "${bkup}/$fil"
+        fi
+      fi
+    done
+  done
+}
+
+function dot_backup()
+{
+  bkup="backup/home/$stamp"
+  for dots in bash/home list/home vim; do
+    for fil in $dots/*; do
+      if [ -f "$HOME/.$(basename $fil)" ]; then
+        mkdir -pv "$bkup" | sed 's/^/mkdir: /'
+        cp -v "$HOME/.$(basename $fil)" "${bkup}/"
+      fi
+    done
+  done
+
+  if [ -e "$HOME/hashrocket" ]; then cp $HOME/hashrocket $bkup/; fi
+
+  for bins in bin bin/empties bin/resources bin/tests; do
+    for fil in $bins/*; do
+      if [ -f "$fil" ]; then
+        if [ -f "$HOME/$fil" ]; then
+          mkdir -pv "$bkup/$bins" | sed 's/^/mkdir: /'
+          cp -v "$HOME/$fil" "${bkup}/$fil"
+        fi
+      fi
+    done
+  done
+}
+
+#dot_install
+dot_backup
 
 ## # /etc/bashrc
 ## sudo mv /etc/bashrc $dot_dir/bash/etc/
