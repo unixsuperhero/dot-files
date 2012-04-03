@@ -1,109 +1,41 @@
 #!/bin/bash
 
-export dot_dir=$HOME/dot.jearsh
-## ln -s /Users/jtoyota/Desktop/dot.jearsh $dot_dir
+bkup="backup/home/$(date +%s)"
 
-function dotify()
+function dot_setup()
 {
-  dot_dir=$HOME/dot.jearsh
-  a="$1"
-  b="$dot_dir/$2"
-  base=$(basename $a)
-  newname=${base#.}
-  mv -v $a $b/$newname
-  ln -s $b/$newname $a
+  for dots in bash/home list/home hitch vim
+  do
+    for fil in $dots/*
+    do
+      if [ -f "$HOME/.$(basename $fil)" ]
+      then
+        mkdir -pv "$bkup" | sed 's/^/mkdir: /'
+        mv -v "$HOME/.$(basename $fil)" "${bkup}/"
+      fi
+      ln -s "$(pwd)/$fil" "$HOME/.$(basename $fil)"
+    done
+  done
+
+  for bins in bin bin/empties bin/resources bin/tests
+  do
+    mkdir -pv "${HOME}/$bins"
+    for fil in $bins/*
+    do
+      if [ -f "$fil" ]
+      then
+        if [ -f "$HOME/$fil" ]
+        then
+          mkdir -pv "$bkup/$bins" | sed 's/^/mkdir: /'
+          mv -v "$HOME/$fil" "${bkup}/$fil"
+        fi
+        ln -s "$(pwd)/$fil" "${HOME}/$fil"
+      fi
+    done
+  done
 }
 
-dotify /Users/jtoyota/.bash_profile bash/home
-dotify /Users/jtoyota/.bashrc.local bash/home
-dotify /Users/jtoyota/.bashrc.paul bash/home
-dotify /Users/jtoyota/.inputrc bash/home
-
-dotify /Users/jtoyota/.listrc list/home
-
-dotify /Users/jtoyota/.hitch_export_authors hitch
-dotify /Users/jtoyota/.hitch_pairs hitch
-dotify /Users/jtoyota/.hitchrc hitch
-
-## /Users/jtoyota/.ssh/id_rsa
-## /Users/jtoyota/.ssh/id_rsa.pub
-## /Users/jtoyota/.ssh/known_hosts
-
-dotify /Users/jtoyota/.vimrc vim
-dotify /Users/jtoyota/.vimrc.josh vim
-dotify /Users/jtoyota/.vimrc.local vim
-
-dotify /Users/jtoyota/bin/4chan bin
-dotify /Users/jtoyota/bin/backupxsl bin
-dotify /Users/jtoyota/bin/bash.library bin
-dotify /Users/jtoyota/bin/bcw bin
-dotify /Users/jtoyota/bin/bkupBookmarks bin
-dotify /Users/jtoyota/bin/budget bin
-dotify /Users/jtoyota/bin/calc bin
-dotify /Users/jtoyota/bin/chkrg bin
-dotify /Users/jtoyota/bin/Chrome-Vertical-Tabs bin
-dotify /Users/jtoyota/bin/chsize bin
-dotify /Users/jtoyota/bin/clockout bin
-dotify /Users/jtoyota/bin/contacts bin
-dotify /Users/jtoyota/bin/decode bin
-dotify /Users/jtoyota/bin/demonoid bin
-dotify /Users/jtoyota/bin/demonoid.php bin
-dotify /Users/jtoyota/bin/dict bin
-dotify /Users/jtoyota/bin/dmilo-videos bin
-dotify /Users/jtoyota/bin/extract-links bin
-dotify /Users/jtoyota/bin/ffmem bin
-dotify /Users/jtoyota/bin/fuck-chris bin
-dotify /Users/jtoyota/bin/ichat.auto-away bin
-dotify /Users/jtoyota/bin/inLibrary bin
-dotify /Users/jtoyota/bin/is_interactive bin
-dotify /Users/jtoyota/bin/list bin
-dotify /Users/jtoyota/bin/list.library bin
-dotify /Users/jtoyota/bin/locatedir bin
-dotify /Users/jtoyota/bin/mini-backup bin
-dotify /Users/jtoyota/bin/mini-backup.library bin
-dotify /Users/jtoyota/bin/mini-notify bin
-dotify /Users/jtoyota/bin/mkbashscript bin
-dotify /Users/jtoyota/bin/mkdvd bin
-dotify /Users/jtoyota/bin/mkempty bin
-dotify /Users/jtoyota/bin/ntmp bin
-dotify /Users/jtoyota/bin/oldlist bin
-dotify /Users/jtoyota/bin/pick-contest bin
-dotify /Users/jtoyota/bin/remove_content bin
-dotify /Users/jtoyota/bin/rgdump bin
-dotify /Users/jtoyota/bin/rgxmldump bin
-dotify /Users/jtoyota/bin/s3cp bin
-dotify /Users/jtoyota/bin/s3env bin
-dotify /Users/jtoyota/bin/scratch bin
-dotify /Users/jtoyota/bin/sms bin
-dotify /Users/jtoyota/bin/sortdu bin
-dotify /Users/jtoyota/bin/start_libble_torrents bin
-dotify /Users/jtoyota/bin/start_libble_torrents.php bin
-dotify /Users/jtoyota/bin/startmysql bin
-dotify /Users/jtoyota/bin/startvnc bin
-dotify /Users/jtoyota/bin/stest bin
-dotify /Users/jtoyota/bin/torrent bin
-dotify /Users/jtoyota/bin/torrent.php bin
-dotify /Users/jtoyota/bin/undernet bin
-dotify /Users/jtoyota/bin/userfeed bin
-dotify /Users/jtoyota/bin/VerticalChrome bin
-dotify /Users/jtoyota/bin/vidfeed bin
-dotify /Users/jtoyota/bin/watch4updates bin
-dotify /Users/jtoyota/bin/whatismyip bin
-dotify /Users/jtoyota/bin/yaws bin
-
-dotify /Users/jtoyota/bin/empties/empty.php bin/empties
-dotify /Users/jtoyota/bin/empties/empty.sh bin/empties
-dotify /Users/jtoyota/bin/empties/empty.xml bin/empties
-dotify /Users/jtoyota/bin/empties/empty.xsl bin/empties
-
-dotify /Users/jtoyota/bin/resources/alert.png bin/resources
-dotify /Users/jtoyota/bin/resources/todo-list.icns bin/resources
-
-dotify /Users/jtoyota/bin/tests/args bin/tests
-dotify /Users/jtoyota/bin/tests/dbtest bin/tests
-dotify /Users/jtoyota/bin/tests/news bin/tests
-dotify /Users/jtoyota/bin/tests/pipe2script bin/tests
-
+dot_setup
 
 ## # /etc/bashrc
 ## sudo mv /etc/bashrc $dot_dir/bash/etc/

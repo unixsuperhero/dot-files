@@ -62,6 +62,7 @@ repos+="$HOME/Sites/saveology"          ; repos+=":"
 repos+="$HOME/dot.jearsh"               ; repos+=":"
 repos+="$HOME/Sites/up2speed"           ; repos+=":"
 repos+="$HOME/Sites/iterat.org"         ; repos+=":"
+repos+="$HOME/Sites/unmarklet"          ; repos+=":"
 repos+="$HOME/Sites/dotmatrix"
 export repos
 

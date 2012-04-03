@@ -181,3 +181,5 @@ alias timeonly="date +%H%M%S"
 alias time-only="date +%H-%M-%S"
 alias time:only="date +%H:%M:%S"
 
+alias merchant_emails='heroku rake vouchers:merchant_email --app saveology-admin-production'
+alias merchant_test_emails='heroku rake vouchers:merchant_test_email --app saveology-admin-production'

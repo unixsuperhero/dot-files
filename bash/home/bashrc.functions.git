@@ -93,3 +93,13 @@ list_changes() {
   echo "|"
 }
 
+stage () {
+  staging_repo="git@heroku.com:saveology-admin-staging.git"
+  branch=$(basename $(git symbolic-ref HEAD))
+  gco -b "${branch}-staging"
+  git pull --rebase $staging_repo master
+  gp $staging_repo "${branch}-staging:master"
+  gco "${branch}"
+  gb -D "${branch}-staging"
+}
+

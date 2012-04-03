@@ -19,13 +19,29 @@ function colorize
 
 function ascii_battery
 {
-  BATTERY=$(pmset -g batt | egrep -o '[0-9]+%')
-  CHARGE=${BATTERY//%/}
+  battery=$(pmset -g batt | egrep -o '[0-9]+%')
+  charge=${battery//%/}
 
   color="green"
-  [ "$CHARGE" -lt "60" ] && color="yellow" # Yellow
-  [ "$CHARGE" -lt "30" ] && color="red" # Green
+  [ "$charge" -lt "60" ] && color="yellow" # yellow
+  [ "$charge" -lt "30" ] && color="red" # green
 
-  echo -e "$(colorize)[$(colorize $color)${CHARGE}$(colorize)}"
+  echo -e "$(colorize)[$(colorize $color)${charge}$(colorize)}"
+}
+
+function tmux_battery
+{
+  battery=$(pmset -g batt | egrep -o '[0-9]+%')
+  charge=${battery//%/}
+  clear="#[bg=black fg=white]"
+  attr_prefix="tmux set-option -g status-right-attr"
+  attr_setting="default"
+
+  color="green"
+  [ "$charge" -lt "60" ] && color="yellow"
+  [ "$charge" -lt "30" ] && color="red" && attr_setting="blink"
+
+  $($attr_prefix $attr_setting)
+  echo "${clear}[#[bg=${color}]${clear}#[fg=${color}]${charge}${clear}}"
 }
 

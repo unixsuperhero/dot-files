@@ -46,9 +46,8 @@ set updatecount=50                                " Write swap file to disk afte
 set enc=utf-8                                     " Use UTF-8 as the default buffer encoding
 "set shortmess=filnxtToO                          " this is the default value, changed it to avoid the hit-enter message
 set viminfo='200,\"100,/9000,:9000,n~/.viminfo    " Remember things between sessions
+set backupskip=/tmp/*,/private/tmp/*" 
 
-" hello ( world ( this ) (is a test) (and (all of) that) fun stuff)
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif  " Go back to the position the cursor was on the last time this file was edited
 
 " have gf open file under cursor in vertical split
 nnoremap gf :vs <cfile><CR>
@@ -132,11 +131,6 @@ hi link b StatusLine
 hi link c Search
 hi link d DiffChange
 
-" Syntax Highlighting for my "list" system
-" Extract these into their own syntax file
-let g:listFiles="{*/lists/*,/Volumes/jearsh/*/readme}"
-
-au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
 "au BufNewFile  */lists/* set filetype=lists
 "au BufNewFile  */lists/* set syntax=lists
 "au BufRead     */lists/* set filetype=lists
@@ -147,8 +141,30 @@ au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
 "au BufNewFile,BufRead,BufReadPost * silent call SaveRecentFile()
 "
 
+
+" Syntax Highlighting for my "list" system
+" Extract these into their own syntax file
+let g:listFiles="{*/lists/*,/Volumes/jearsh/*/readme}"
+
+" --------------------------- AUTOCOMMANDS ---------------------------
+
+  " bin/list ---------------------------------------------------------
+au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
 au Filetype */lists/* runtime! ~/.vim/syntax/lists.vim
-set backupskip=/tmp/*,/private/tmp/*" 
+
+  " Go back to the position the cursor
+  " was on the last time this file was
+  " edited
+  " ------------------------------------------------------------------
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
+
+  " makeprgs ---------------------------------------------------------
+au FileType ruby     setlocal makeprg=ruby\ -c\ %
+au FileType haml     setlocal makeprg=haml\ -c\ %
+au FileType sh       setlocal makeprg=bash\ -n\ %
+au FileType cucumber setlocal makeprg=bundle\ exec\ cucumber\ %
+au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
+
 
 "1,$retab!
 
