@@ -11,6 +11,8 @@ Example:
 To install:
 
   ./setup
+
     ...or...
+
   sh setup
 
