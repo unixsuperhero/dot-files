@@ -100,8 +100,8 @@ function dot_backup()
   done
 }
 
-#dot_install
-dot_backup
+#dot_backup
+dot_install
 
 ## # /etc/bashrc
 ## sudo mv /etc/bashrc $dot_dir/bash/etc/
