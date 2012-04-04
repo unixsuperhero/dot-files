@@ -1,4 +1,3 @@
-Third Test
 Authors Josh(CORE GURU), Paul(No Where), Dante(Mr Smooth), Jon(Turned upside down) 
   These are my dot files.  I keep them all in one
 folder and have symlinks to them from the original
@@ -7,4 +6,11 @@ locations.
 Example:
 
   $HOME/.vimrc -> $HOME/dot.files/vim/vimrc.josh
+
+
+To install:
+
+  ./setup
+    ...or...
+  sh setup
 
