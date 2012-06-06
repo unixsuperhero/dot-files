@@ -148,6 +148,6 @@ rake () { bundle exec rake $@; }
 function login_to_heroku()
 {
   heroku login
-  ssh-add $(find ~/.ssh -type f -not -iname '*.pub' -and -not -iname 'authorized*' -and -not -iname 'known_hosts' -and -not -iname 'config')
+  ssh-add $(ls ~/.ssh/*.pub | sed 's/[.]pub$//')
 }
 
