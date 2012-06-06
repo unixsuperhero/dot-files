@@ -4,6 +4,8 @@ rails_new () {
   _setup_gems
   _setup_rspec
   _setup_user_table
+  rake db:migrate
+  git aa; gc -m 'migrating db tables'
 }
 
 _rails_g () {

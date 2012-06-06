@@ -93,12 +93,26 @@ list_changes() {
   echo "|"
 }
 
+rebase () {
+  # this defaults to rebasing off of master, because
+  # it is very uncommon that 2+ of us collab. on a
+  # remote repo (so our branch doesn't have an upstream
+  # set, to gpr off of)
+  cb="$(current_branch)"
+  gco master; git pull --rebase
+  gco "$cb"; git rebase master
+}
+
+current_branch() { basename $(git symbolic-ref HEAD); }
+
 stage () {
-  staging_repo="git@heroku.com:saveology-admin-staging.git"
-  branch=$(basename $(git symbolic-ref HEAD))
+  app="saveology-admin-staging"
+  staging_repo="git@heroku.com:${app}.git"
+  branch=$(current_branch)
   gco -b "${branch}-staging"
   git pull --rebase $staging_repo master
   gp $staging_repo "${branch}-staging:master"
+  heroku rake db:migrate --app ${app}
   gco "${branch}"
   gb -D "${branch}-staging"
 }

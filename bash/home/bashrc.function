@@ -1,11 +1,4 @@
 
-cat <<MSG
-
-# sourcing functions
-$> source $BASH_SOURCE
-
-MSG
-
 source_file "$HOME/.bashrc.functions.git"
 source_file "$HOME/.bashrc.functions.rails"
 source_file "$HOME/.bashrc.functions.test_suite"
@@ -151,4 +144,10 @@ _man () {
 
 cucumber () { bundle exec cucumber $@; }
 rake () { bundle exec rake $@; }
+
+function login_to_heroku()
+{
+  heroku login
+  ssh-add $(find ~/.ssh -type f -not -iname '*.pub' -and -not -iname 'authorized*' -and -not -iname 'known_hosts' -and -not -iname 'config')
+}
 

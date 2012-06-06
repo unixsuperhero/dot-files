@@ -157,6 +157,8 @@ Explanation
   alias gsf="gs"
   alias gss="git status -s"
   alias gprm="gpr origin master"
+  alias gpremote="gp origin $(current_branch)"
+  alias gpremotef="gp -f origin $(current_branch)"
 
 # -------------------------------------------------------------------------
 # THE FOLLOWING ARE NOTES ABOUT ALIASES IN GENERAL OR SPECIFIC TO A COMMAND
@@ -165,7 +167,7 @@ Explanation
 
 alias turl='curl --socks5-hostname localhost:51892'
 alias deliver="gp && (gp staging || gp -f staging) && heroku rake db:migrate --app saveology-admin-staging && heroku restart --app saveology-admin-staging"
-alias gac="git add . ; git commit -v"
+alias gac="git aa; gc -v"
 alias rdm="bundle exec rake db:migrate db:test:prepare"
 alias columnize='column -c $[$COLUMNS*2] | column -t'
 

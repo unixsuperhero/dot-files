@@ -61,6 +61,8 @@ nnoremap k gk
 nnoremap K kJ
 nnoremap ,c :vert wincmd <C-]><CR>
 nnoremap ,f :CommandT<cr>
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> ss <C-w>s
 
 hi! link fsize Directory      "cterm=none ctermfg=4 ctermbg=Black
 hi flink cterm=none ctermfg=3 ctermbg=0
@@ -150,6 +152,7 @@ let g:listFiles="{*/lists/*,/Volumes/jearsh/*/readme}"
 
   " bin/list ---------------------------------------------------------
 au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
+au BufNewFile,BufRead,BufReadPost */lists/hon set wrap
 au Filetype */lists/* runtime! ~/.vim/syntax/lists.vim
 
   " Go back to the position the cursor
@@ -163,6 +166,8 @@ au FileType ruby     setlocal makeprg=ruby\ -c\ %
 au FileType haml     setlocal makeprg=haml\ -c\ %
 au FileType sh       setlocal makeprg=bash\ -n\ %
 au FileType cucumber setlocal makeprg=bundle\ exec\ cucumber\ %
+au FileType markdown setlocal makeprg=markdown\ %
+au FileType javascript setlocal makeprg=node\ %
 au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
 
 
@@ -211,6 +216,10 @@ ab HHMMSS =strftime("%H%M%S")
 
 ab YYYYmmddHHMMSS =strftime("%Y%m%d%H%M%S")
 ab yyyymmddHHMMSS =strftime("%Y%m%d%H%M%S")
+
+"" useful command abbreviations
+"----- used for % %:h %:r, etc.
+ca :: %
 
 
 
