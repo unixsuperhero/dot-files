@@ -4,6 +4,15 @@ source_file "$HOME/.bashrc.functions.ssh"
 source_file "$HOME/.bashrc.functions.rails"
 source_file "$HOME/.bashrc.functions.test_suite"
 
+ff() {
+# Name: Fuzzy Finder for Bash
+# Author: Joshua Toyota
+# Created At: 2012-06-14 11:25:00
+# Description:
+#    Find files with a series of letters in the given order, but not necessarily next to each other.
+find . -type f | grep -i $(echo ".*$(echo "$1" | sed 's/./&.*/g')")
+}
+
 eman() {
   man "$1" | col -b | vim -
 }
