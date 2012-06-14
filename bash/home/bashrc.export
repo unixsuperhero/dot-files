@@ -34,8 +34,9 @@ iterator="$HOME/Sites/iterat.org"
 kikin="$HOME/Sites/kikin/"
 clit="$HOME/Sites/cli-tracker"
 funding="$HOME/Sites/funding"
+mag="$HOME/Sites/magazineco"
 
-export saveology iterator kikin clit funding
+export saveology iterator kikin clit funding mag
 
 
 ################## heroku apps ##################

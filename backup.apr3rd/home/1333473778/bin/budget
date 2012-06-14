@@ -1,0 +1,106 @@
+#!/bin/bash
+
+case $1 in
+	-e) vim ~/budget.awk;;
+	-t) awk -F '[ \t]*;[ \t]*' '
+			BEGIN {
+				months["01"] = "January";
+				months["02"] = "February";
+				months["03"] = "March";
+				months["04"] = "April";
+				months["05"] = "May";
+				months["06"] = "June";
+				months["07"] = "July";
+				months["08"] = "August";
+				months["09"] = "September";
+				months["10"] = "October";
+				months["11"] = "November";
+				months["12"] = "December";
+			}
+			{
+				if(substr($1,0,1) != "#") {
+					split($1, date, /\//);
+					month[ date[1] ] = date[1];
+					category[ $2 ] = $2;
+					cat[ date[1] "," $2 ] = $2;
+					s[ date[1] "," $2 ] += $4;
+				}
+			}
+			END {
+				print;
+				for(m in month) {
+					print "-----------------------------------------";
+					print "  Month: " months[m];
+					print "-----------------------------------------";
+					for(c in category) {
+						if(cat[m "," c]) printf "  %-18s %20s\n", cat[ m "," c], sprintf("%-0.2f", s[m "," c]);
+					}
+					print;
+					print;
+				}
+			}' ~/budget.awk
+			;;
+	-s) awk -F '[ \t]*;[ \t]*' '
+			{
+				if(substr($1,0,1) != "#") {
+					cat[$2] = $2;
+					s[$2] += $4;
+				}
+			}
+			END {
+				for(name in cat) {
+					printf "%-15s %10s\n", cat[name], sprintf("%-0.2f", s[name])
+				}
+			}' ~/budget.awk
+			;;
+	-m) awk -F '[ \t]*;[ \t]*' '
+			BEGIN {
+				months["01"] = "January";
+				months["02"] = "February";
+				months["03"] = "March";
+				months["04"] = "April";
+				months["05"] = "May";
+				months["06"] = "June";
+				months["07"] = "July";
+				months["08"] = "August";
+				months["09"] = "September";
+				months["10"] = "October";
+				months["11"] = "November";
+				months["12"] = "December";
+				print
+			}
+			{
+				if(substr($1,0,1) != "#") {
+					split($1, date, /\//);
+					month[ date[1] ] = date[1];
+					if($4 > 0)
+						earn[date[1]] += $4;
+					else
+						spent[date[1]] += $4;
+				}
+			}
+			END {
+				for(m in month) {
+					print "---------------------------------------------";
+					print "  " months[m]
+					print "---------------------------------------------";
+					print
+					printf "  %-15s %15s\n", "Spendings: ", spent[m];
+					printf "  %-15s %15s\n", "Earnings: ", earn[m];
+					print "  -------------------------------";
+					printf "  %-15s %15s\n", "Difference: ", sprintf("%-0.2f", spent[m] + earn[m])
+					print
+					print
+					print
+				}
+				print
+			}' ~/budget.awk
+			;;
+	*) awk -F "[ \t]*;[ \t]*" '
+			{
+				if(substr($1,0,1) != "#") {
+					printf "%-10s%-15s%-40s%20s\n", $1, $2, $3, $4
+				}
+			}' ~/budget.awk
+			;;
+esac

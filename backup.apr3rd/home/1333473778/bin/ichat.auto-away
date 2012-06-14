@@ -1,0 +1,10 @@
+#!/bin/bash
+
+matches=`ps awwux | grep 'iChat.app' | wc -l`
+
+if [ $matches == "2" ]
+then
+	echo "running osascript"
+	osascript /var/jearsh/dev/applescript/scripts/ichat.auto-away.applescript
+fi
+

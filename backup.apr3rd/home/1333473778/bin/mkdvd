@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo /Applications/Burn.app/Contents/Resources/ffmpeg -threads 8 -i "$1" -target ntsc-dvd -ac 2 -aspect 16:9 -acodec mp2 -ab 224000 "$2" -padtop 58 -padbottom 58
+/Applications/Burn.app/Contents/Resources/ffmpeg -threads 8 -i "$1" -target ntsc-dvd -ac 2 -aspect 16:9 -acodec mp2 -ab 224000 "$2" -padtop 58 -padbottom 58
+

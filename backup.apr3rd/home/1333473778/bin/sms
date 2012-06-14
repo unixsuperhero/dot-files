@@ -1,0 +1,48 @@
+#!/bin/bash
+
+number=$1
+re='^(1?[0-9]{7,15}) (.*)$'
+garg="${@}"
+if [[ $garg =~ $re ]]
+then
+  echo "garg ($garg) matches re ($re)"
+else 
+  echo "garg ($garg) DOES ____NOT____ match re ($re)"
+fi
+garg="${garg/$re/}"
+#garg="${garg/$1/}"
+garg=${garg# }
+
+echo "star: "
+echo ${BASH_REMATCH[*]}
+echo "zero: "
+echo ${BASH_REMATCH[0]}
+echo "one: "
+echo ${BASH_REMATCH[1]}
+echo "two: "
+echo ${BASH_REMATCH[2]}
+
+
+num2txt="${BASH_REMATCH[1]}"
+txt2txt="${BASH_REMATCH[2]}"
+
+# IT WORKS~!!!! =D
+# IT WORKS~!!!! =D
+# IT WORKS~!!!! =D
+# IT WORKS~!!!! =D
+
+
+echo
+echo "$garg"
+echo
+echo "------------------------"
+echo
+echo curl -k --data "action=send&email=jearsh@gmail.com&apikey=2e68be200f8b63d022fa954930e47e1d&number=${num2txt}&text=${txt2txt}" https://www.gvmax.com/api
+echo curl -k --data "action=send&email=jearshrg@gmail.com&apikey=a579225bb674d6f9c4edada534fa7301&number=${num2txt}&text=${txt2txt}" https://www.gvmax.com/api
+
+echo curl -k --data "action=send&email=jearshrg@gmail.com&apikey=a579225bb674d6f9c4edada534fa7301&number=${num2txt}&text=${txt2txt}" https://www.gvmax.com/api
+
+curl -k --data "action=send&email=jearsh@gmail.com&apikey=2e68be200f8b63d022fa954930e47e1d&number=${num2txt}&text=${txt2txt}" https://www.gvmax.com/api
+
+echo
+

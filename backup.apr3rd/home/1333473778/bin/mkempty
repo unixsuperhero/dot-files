@@ -1,0 +1,57 @@
+#!/bin/bash
+
+cat <<META &>/dev/null
+
+AUTHOR       : jearsh
+NAME         : Joshua Toyota
+DATE         : 2011-01-14 09:19:41
+VERSION      : v0.1a
+
+DESCRIPTION  :
+  This script will be used to generate different types of files.  The files it
+generates typically contain source code.  Source files often require specific
+elements and formats.  This script prepopulates the new file with these required
+elements.  As well as, common but optional elements, for convenience.
+
+  This script will be used to make different types of new files, prepopulated
+with the required elements for that file type.  As well as, common but optional
+elements.
+
+  This script generates new files
+
+TODO         :
+  The To Do list goes here...
+
+META
+
+## Start writing the script here:
+
+# ^_~
+
+cd $HOME/bin
+case $1 in
+  xml)
+    cat empties/empty.xml
+    ;;
+  xsl)
+    cat empties/empty.xsl
+    ;;
+  php)
+    cat empties/empty.php
+    ;;
+  sh|bash|shell|script)
+    bash empties/empty.sh
+    ;;
+  *)
+    cat <<MSG
+
+    Sorry, that file type is not recognized.  Currently we have:
+
+  xml, xsl, sh, bash, shell, script, php
+
+  Try one of those...
+
+MSG
+  ;;
+esac
+

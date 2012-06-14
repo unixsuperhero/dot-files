@@ -1,0 +1,78 @@
+#!/bin/bash
+config="${HOME}/.listrc"
+source "$config"
+. $HOME/bin/bash.library
+. $HOME/bin/list.library
+cd "${lists_dir}"
+case $1 in
+	-e)
+    vim -O3 $(find . -type f | grep -i "$2") ;;
+  -new | --new)
+    newfilename="new/$(date +'%Y%m%d.%s')"
+    vim $newfilename ;;
+	-g)
+		garg="${@/-g/}"
+		garg=${garg# }
+    notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
+    find `pwd` -type d -depth 1 -not -path '*nogrep*' -not -path 'home' -not -path '*.git*' -not -path '*erlang*' -exec grep -RiI "$garg" "{}" \; | grep -E '^.{1,200}$'
+    ;;
+	-gl | --gl)
+		garg="${@/-gl/}"
+		garg=${garg# }
+    notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
+    find `pwd` -type d -depth 1 -not -path '*nogrep*' -and -not -path 'home' -and -not -path '*.git*' -and -not -path '*erlang*' -exec grep -RiIl "$garg" "{}" \;
+    ;;
+  -dir | --dir)
+    echo "${lists_dir}"; exit ;;
+  -api | --api)
+		garg="${@/-api/}"
+		garg=${garg# }
+    grep -IRin --exclude="nogrep" "$garg" ~/lists/erlang/api ;;
+	-map | --map)
+		find . | sed 's#^..##' | vim -
+		;;
+  -find | -f | --find)
+    not='(erlang.api|home|.git|android-sdk-mac|DS_Store|nogrep)'
+    ls -1 "${lists_dir}" | grep -vE "$not" | while read line
+    do
+      find -L "${lists_dir}/${line}" -type f | grep -vE "$not" | grep "$2"
+    done ;;
+  -ff | --ff | --findall | --find-all)
+		find "${lists_dir}" -type f | grep "$2" ;;
+	-ls | --ls)
+    if [ -z ${lists_dir}/$2 ]
+    then
+      echo
+      cd ${lists_dir}
+      ls -GRp
+    else
+      echo
+      ls -GRp ${lists_dir}/$2
+      echo
+    fi
+    ;;
+	-cat | --cat)
+		if [ -z $2 ]; then
+      find . -type d -not -path '*.git*' -not -path 'home' -not -path '*nogrep*' -not -path '*erlang*api*' | column
+      echo
+		else
+      shift
+      ls -AFR $@   ### Used to be $2 then $* now $@
+		fi ;;
+	-edit | --edit)
+		vim $0 ;;
+	-all | --all)
+		ls -R ;;
+  *) cat $(find . -type f | grep -i "$1") ; echo ;;
+esac
+
+#  Changelog
+#
+# [ 2011-12-07 12:13:57 ]
+#   Changed the functionality of list/notes to take a search
+# pattern instead of a filename.
+#
+#	[ 2010-02-15 21:43:13 ]
+#		Removed all of the clear commands, because those commands are
+#	not very unix-like, and go against typical reusability conventions.
+#

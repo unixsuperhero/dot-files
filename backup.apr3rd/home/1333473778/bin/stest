@@ -1,0 +1,45 @@
+#!/bin/bash
+
+case $1 in
+
+  '')
+    cat <<EOMSG
+
+I don't know what to make of this cmd with no args...
+
+EOMSG
+;;
+
+  *)
+    if [ -f "$HOME/bin/tests/$1" ]
+    then
+      cat <<EOMSG
+
+This is a test file:
+  $HOME/bin/tests/$1
+
+EOMSG
+
+zz=$1
+echo "1 = "$1
+echo "@ = "$@
+shift
+echo "1 = "$1
+echo "@ = "$@
+echo
+echo "zz = "$zz
+echo
+bash $HOME/bin/tests/$zz $@
+
+    else
+      cat <<EOMSG
+
+This is NOT a test file:
+  $HOME/bin/tests/$1
+
+EOMSG
+    fi
+;;
+
+esac
+

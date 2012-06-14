@@ -1,0 +1,29 @@
+#!/bin/bash
+
+tmppath="/Volumes/jearsh/code/scripts/tmp"
+
+if [[ -n $1 ]]
+then
+	if [[ "$1" == "-edit" ]]
+	then
+		vim /Users/jearsh/bin/ntmp
+		exit
+	fi
+	if [[ "$1" == "-path" ]]
+	then
+		echo "$tmppath"
+		exit
+	fi
+fi
+
+if [[ -d $tmppath ]]
+then
+	tmpdate=`date +%s`
+	touch "${tmppath}/${tmpdate}.sh"
+	vim "${tmppath}/${tmpdate}.sh"
+else
+	echo
+	echo "tmpdate: ${tmppath} does not exist!"
+	echo
+fi
+

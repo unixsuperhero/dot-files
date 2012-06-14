@@ -1,0 +1,29 @@
+#!/bin/bash
+
+cat <<META &>/dev/null
+
+AUTHOR       : jearsh
+NAME         : Joshua Toyota
+DATE         : 2011-01-14 19:54:33
+VERSION      : v0.1a
+
+DESCRIPTION  :
+  Get the dictionary definitions of every word passed to the script.
+
+TODO         :
+  (x) Accept multiple words, and define them all.
+  ( ) Add switches for different things.  Can't think of any right now.
+
+META
+
+## Start writing the script here:
+
+# ^_~
+
+for a in $@
+do
+  curl -s dict://dict.org/d:$a | grep -v '^\(220\|221\|250\|150\|151\)'
+done
+
+
+

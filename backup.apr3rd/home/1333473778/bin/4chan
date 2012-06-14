@@ -1,0 +1,60 @@
+#!/usr/bin/php
+<?php
+	$folder = $argv[2];
+	$url = $argv[1];
+	//$url = 'http://img.4chan.org/b/res/170691932.html#q170691932';
+	$csize = 1;
+	$lsize = 0;
+
+	if(! $folder)
+	{
+		$matches = array();
+		preg_match('/([0-9][0-9][0-9]*)/', $url, $matches);
+		$folder = $matches[1];
+	}
+
+	$path = "/Users/jearsh/4chan/$folder";
+	@mkdir($path);
+
+	$repeat = true;
+
+	while($repeat) {
+		$curl = curl_init("$url");
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$sauce = curl_exec($curl);
+
+		if($csize != strlen($sauce)) {
+			$htmlfile = fopen("$path/$folder-" . time() . ".html", 'w');
+			$sauce2 = preg_replace('#s.jpg#', '.jpg', $sauce);
+			fwrite($htmlfile, preg_replace('#http://[^"]*4chan.org/[^"]*(thumb|src)/#', './', $sauce2));
+			fclose($htmlfile);
+		}
+
+		$matches = array();
+		preg_match_all('#(http://[^"]*4chan.org/[^"]*src/([^"]*))"#', $sauce, $matches);
+
+		$links = $matches[1];
+
+		//echo "Downloading ", count($links), " images...\n";
+
+		foreach($links as $index => $link) {
+			$filename = $matches[2][$index];
+
+			if(file_exists("$path/$filename"))
+				continue;
+
+			$save_to = fopen("$path/$filename", 'w');
+			$temp = curl_init($link);
+			curl_setopt($temp, CURLOPT_FILE, $save_to);
+			curl_exec($temp);
+			fclose($save_to);
+		}
+
+		$lsize = $csize;
+		$csize = strlen($sauce);
+
+		if(strpos($sauce, '<title>4chan - 404</title>') !== false) $repeat = false;
+	}
+
+	echo "Done with $folder $url\n";
+?>

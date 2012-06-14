@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "CLOCK  IN: $(date +%s) ($$)"
+echo "CLOCK OUT: $(date +%s) ($$)"
+                                  
+echo "CLOCK  IN: $(date +%s) ($$)" >>/Users/jearsh/lists/log/work-timeline
+echo "CLOCK OUT: $(date +%s) ($$)" >>/Users/jearsh/lists/log/work-timeline
+

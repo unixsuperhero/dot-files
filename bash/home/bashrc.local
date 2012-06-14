@@ -2,43 +2,20 @@
 ## function to source files
 source_file() { [ -r "$1" ] && source "$1"; }
 
-## Paul's Stuff
-source_file "/Users/jtoyota/.bashrc.paul"
+## My custom bash environment
+source_file "$HOME/.osxrc"
+source_file "$HOME/.bashrc.function"
+source_file "$HOME/.bashrc.alias"
+source_file "$HOME/.bashrc.battery"
+source_file "$HOME/.bashrc.export"
+source_file "$HOME/.bashrc.ps1"
+source_file "$HOME/.bashrc.saveology"
 
 source_file "$HOME/.rvm/scripts/rvm"
 source_file "$rvm_path/scripts/completion"
 
-HASHROCKET_DIR="$HOME/Sites"
-
-alias r='rails'
-alias h='heroku'
-alias knight='afplay -v .4 ~/Music/krtheme.wav&'
-alias lube='rake db:test:prepare'
-alias focus='rake cucumber:focus'
-alias mustache='git add . && git stash'
-alias poop='git stash pop'
-alias unhitch='hitch -u'
-alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
-
-alias make_pdf="cupsfilter -o fit-to-page -o cpi=18 -o lpi=11"
-
-## My custom bash environment
-source_file "$HOME/.osxrc"
-source_file "$HOME/.bashrc.ps1"
-source_file "$HOME/.bashrc.alias"
-source_file "$HOME/.bashrc.export"
-source_file "$HOME/.bashrc.battery"
-source_file "$HOME/.bashrc.function"
-
-
-## Josh's Personal Stuff
-
-alias j="jobs"
-
-## screen aliases
-alias sls="screen -ls"
-alias sx="screen -x"
-alias sS="screen -S"
+HASHROCKET_DIR="$HOME/hashrocket"
+REPO_DIR="$HASHROCKET_DIR"
 
 alias glog='git log --oneline --decorate --name-status'
 alias glogn='git log --oneline --decorate --name-only'
@@ -46,28 +23,29 @@ alias glogn='git log --oneline --decorate --name-only'
 export PATH="$PATH:$HOME/bin"
 export VIMBUNDLES="$HOME/.vimbundles"
 
-alias newb=lube
-alias vim="/usr/local/Cellar/vim/7.3.333/bin/vim"
-alias vim="/usr/local/Cellar/macvim/7.3-61/MacVim.app/Contents/MacOS/Vim"
+#alias vim="/usr/local/Cellar/vim/7.3.333/bin/vim"
+#alias vim="/usr/local/Cellar/macvim/7.3-61/MacVim.app/Contents/MacOS/Vim"
 alias :e="vim"
+alias :q="exit"
 
 export gems="$GEM_HOME/gems"
 
- repos="$HOME/lists"                       ; repos+=":"
-repos+="$HOME/Sites/fantasy"               ; repos+=":"
-repos+="$HOME/Sites/kikin"                 ; repos+=":"
-repos+="$HOME/Sites/funding"               ; repos+=":"
-repos+="$HOME/Sites/cli-tracker"           ; repos+=":"
-repos+="$HOME/Sites/saveology"             ; repos+=":"
-repos+="$HOME/dot.jearsh"                  ; repos+=":"
-repos+="$HOME/Sites/up2speed"              ; repos+=":"
-repos+="$HOME/Sites/iterat.org"            ; repos+=":"
-repos+="$HOME/Sites/anti.js"               ; repos+=":"
-repos+="$HOME/Sites/node_speed_rps"        ; repos+=":"
-repos+="$HOME/Sites/anshou.herokuapps.com" ; repos+=":"
-repos+="$HOME/Sites/dotmatrix"
+add_repo_to_env() { [ -d "$1" ] && repos+="${1}" && [ -z "$2" ] && repos+=":"; }
+repos=""
+add_repo_to_env "$HOME/lists"
+add_repo_to_env "$REPO_DIR/fantasy"
+add_repo_to_env "$REPO_DIR/kikin"
+add_repo_to_env "$REPO_DIR/funding"
+add_repo_to_env "$REPO_DIR/cli-tracker"
+add_repo_to_env "$REPO_DIR/saveology"
+add_repo_to_env "$HOME/dot.jearsh"
+add_repo_to_env "$REPO_DIR/up2speed"
+add_repo_to_env "$REPO_DIR/iterat.org"
+add_repo_to_env "$REPO_DIR/anti.js"
+add_repo_to_env "$REPO_DIR/node_speed_rps"
+add_repo_to_env "$REPO_DIR/anshou.herokuapps.com"
+add_repo_to_env "$REPO_DIR/dotmatrix" 1
 export repos
-
 
 ## bash completions
 function _gcd() {
@@ -75,13 +53,11 @@ function _gcd() {
   for a in ${repos//:/ }; do wordlist+="$(basename $a) "; done
   COMPREPLY=($(compgen -W "$wordlist" $cur))
 }
-
 complete -F _gcd gcd
 
 function _gs() {
   cur=${COMP_WORDS[COMP_CWORD]}
   COMPREPLY=($(compgen -W "$(gs)" $cur))
 }
-
 complete -F _gs gs
 

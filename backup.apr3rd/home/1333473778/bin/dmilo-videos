@@ -1,0 +1,24 @@
+
+if [[ -n $1 ]]; then
+  if [[ "$1" == "-edit" ]]; then
+    vim $0
+    exit
+  fi
+fi
+
+errors=`curl -sL videos.miamigov.com | grep -i 'Server Error'`
+#errors=`curl -sL videos.miamigov.com | grep -i 'Server Error' | grep -o '\S\S*'`
+
+if [[ ${#errors} > 0 ]]; then
+  echo "there were errors:"
+  echo -n "'"
+  echo -n "${errors}"
+  echo -n "'"
+  echo -n " - ${#errors}"
+  echo
+else
+  echo
+  echo "no errors, videos should be accessible at videos.miamigov.com, search for 'donna milo'"
+  echo
+fi
+

@@ -1,0 +1,35 @@
+
+alias staging_console="heroku console --app saveology-admin-staging"
+alias admin_console="heroku console --app saveology-admin-production"
+
+staging() {
+  gp staging
+  heroku rake db:migrate --app saveology-admin-staging
+  heroku restart --app saveology-admin-staging
+  open http://staging.saveology.com
+}
+
+admin(){
+  heroku pgbackups:capture --expire --app saveology-deals-production
+  _admin
+}
+
+admin_nobackup(){
+  _admin
+}
+
+_admin () {
+  gp production-admin master
+  heroku rake db:migrate --app saveology-admin-production
+  heroku restart --app saveology-admin-production
+  open http://admin.saveology.com
+}
+
+customer(){
+  gp production-deals master
+  heroku restart --app saveology-deals-production
+  open http://www.saveology.com
+}
+
+alias production=customer
+

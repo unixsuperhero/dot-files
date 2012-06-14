@@ -1,0 +1,83 @@
+#!/bin/bash
+
+config="${HOME}/.listrc"
+source "$config"
+. $HOME/bin/bash.library
+. $HOME/bin/list.library
+cd "${dots_dir}"
+case $1 in
+	-e) vim -O3 $(find . -type f | grep -v '[.]git'| grep -i "$2") ;;
+  -dir | --dir) echo "${dots_dir}"; exit ;;
+	-map | --map) find . | sed 's#^..##' | vim - ;;
+  -ff | --ff | --findall | --find-all) find "${dots_dir}" -type f | grep "$2" ;;
+	-edit | --edit) vim $0 ;;
+	-all | --all) ls -R ;;
+  -new | --new)
+    newfilename="new/$(date +'%Y%m%d.%s')"
+    vim $newfilename ;;
+	-g)
+		garg="${@/-g/}"
+		garg=${garg# }
+    notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
+    find `pwd` -type d -depth 1 -not -path '*nogrep*' -not -path 'home' -not -path '*.git*' -not -path '*erlang*' -exec grep -RiI "$garg" "{}" \; | grep -E '^.{1,200}$'
+    ;;
+	-gl | --gl)
+		garg="${@/-gl/}"
+		garg=${garg# }
+    notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
+    find `pwd` -type d -depth 1 -not -path '*nogrep*' -and -not -path 'home' -and -not -path '*.git*' -and -not -path '*erlang*' -exec grep -RiIl "$garg" "{}" \;
+    ;;
+  -api | --api)
+		garg="${@/-api/}"
+		garg=${garg# }
+    grep -IRin --exclude="nogrep" "$garg" ~/lists/erlang/api ;;
+  -find | -f | --find)
+    not='(erlang.api|home|.git|android-sdk-mac|DS_Store|nogrep)'
+    ls -1 "${dots_dir}" | grep -vE "$not" | while read line
+    do
+      find -L "${dots_dir}/${line}" -type f | grep -vE "$not" | grep "$2"
+    done ;;
+	-ls | --ls)
+    if [ -z ${dots_dir}/$2 ]
+    then
+      echo
+      cd ${dots_dir}
+      ls -GRp
+    else
+      echo
+      ls -GRp ${dots_dir}/$2
+      echo
+    fi
+    ;;
+	-cat | --cat)
+		if [ -z $2 ]; then
+      find . -type d -not -path '*.git*' -not -path 'home' -not -path '*nogrep*' -not -path '*erlang*api*' | column
+      echo
+		else
+      shift
+      ls -AFR $@   ### Used to be $2 then $* now $@
+		fi ;;
+  *)
+    matches=$(find . -type f | grep -v '[.]git' | grep -i "$1")
+    count=$(echo "$matches" | wc -l)
+    oo=$([[ $count -gt 1 ]] && echo 2 || echo 1)
+    vim -O$oo $matches
+    source $HOME/.bashrc
+  ;;
+esac
+
+#  Changelog
+#
+# [ 2011-12-31 18:46:55 ]
+#   case *) now opens only 1 or 2 vertical splits.
+# 1 if only 1 file is opened
+# 2 if 2+ files are opened
+#
+# [ 2011-12-07 12:13:57 ]
+#   Changed the functionality of list/notes to take a search
+# pattern instead of a filename.
+#
+#	[ 2010-02-15 21:43:13 ]
+#		Removed all of the clear commands, because those commands are
+#	not very unix-like, and go against typical reusability conventions.
+#

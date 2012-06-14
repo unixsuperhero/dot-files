@@ -1,0 +1,9 @@
+
+function add_ssh_keys () {
+  for a in $(ls ~/.ssh/*.pub)
+  do
+    priv=${a%*.pub}
+    ssh-add "$priv"
+  done
+}
+

@@ -1,0 +1,26 @@
+#!/bin/bash
+
+while read line
+do
+  echo "pipe2script: '$line'"
+done
+
+exit
+
+cat <<LOG
+
+  $> cat <<PIPE | ~/bin/tests/pipe2script
+  > Hello world
+  > this is
+  > a test
+  > for all
+  > too see
+  > PIPE
+  pipe2script: 'Hello world'
+  pipe2script: 'this is'
+  pipe2script: 'a test'
+  pipe2script: 'for all'
+  pipe2script: 'too see'
+
+LOG
+

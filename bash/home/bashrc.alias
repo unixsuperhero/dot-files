@@ -130,8 +130,8 @@ Explanation
 
   alias eirssi="sudo vim ~/.irssi/config"
 
-  alias ebash="sudo vim $HOME/.bashrc.local"
-  alias sbash="source $HOME/.bashrc.local"
+  alias ebash="vim $HOME/.bashrc*"
+  alias sbash="source $HOME/.bashrc"
 
   alias eprofile="sudo vim /private/etc/profile"
   alias sprofile="source /private/etc/profile"
@@ -159,11 +159,11 @@ Explanation
   alias gprm="gpr origin master"
   alias gpremote="gp origin $(current_branch)"
   alias gpremotef="gp -f origin $(current_branch)"
+  alias gst="git status -s"
 
 # -------------------------------------------------------------------------
 # THE FOLLOWING ARE NOTES ABOUT ALIASES IN GENERAL OR SPECIFIC TO A COMMAND
 # -------------------------------------------------------------------------
-
 
 alias turl='curl --socks5-hostname localhost:51892'
 alias deliver="gp && (gp staging || gp -f staging) && heroku rake db:migrate --app saveology-admin-staging && heroku restart --app saveology-admin-staging"
@@ -185,3 +185,8 @@ alias time:only="date +%H:%M:%S"
 
 alias merchant_emails='heroku rake vouchers:merchant_email --app saveology-admin-production'
 alias merchant_test_emails='heroku rake vouchers:merchant_test_email --app saveology-admin-production'
+
+alias unhitch='hitch -u'
+alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
+alias make_pdf="cupsfilter -o fit-to-page -o cpi=18 -o lpi=11"
+

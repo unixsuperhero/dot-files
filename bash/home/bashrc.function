@@ -1,5 +1,6 @@
 
 source_file "$HOME/.bashrc.functions.git"
+source_file "$HOME/.bashrc.functions.ssh"
 source_file "$HOME/.bashrc.functions.rails"
 source_file "$HOME/.bashrc.functions.test_suite"
 

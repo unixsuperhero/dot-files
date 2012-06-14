@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [[ "$1" == "-edit" ]]
+then
+  vim "$0"
+  exit
+fi
+
+echo;echo "[ Zeus ]";echo
+echo "uptime;echo;df -h /" | ssh -T zeus
+
+echo;echo "[ Morpheus ]";echo
+echo "uptime;echo;df -h /" | ssh -T meus
+
+echo;echo "[ Titan ]";echo
+echo "uptime;echo;df -h /;echo;echo 'show processlist'|mysql -u rampage -pqweer|egrep -v '[sS]leep'" | ssh -T titan
+
+echo;echo "[ pro ]";echo
+echo "uptime;echo;df -h /" | ssh -T pro
+
+exit 0
+read -sp "Enter server password: " pw
+

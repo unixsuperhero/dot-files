@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo
+for a in {1..38}
+do
+  echo -n "Run #${a} ... "
+  curl -s http://pro.redgage.com/content/jmtpoetremove -o /tmp/wouldyoukindly/tamilcelebrity.$a.log
+  echo "done"
+done
+echo
+
