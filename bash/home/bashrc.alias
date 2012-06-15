@@ -150,17 +150,6 @@ Explanation
   alias   apollo="ssh apollo"
 
 
-
-# [ GIT ALIASES ]
-
-  alias git_aliases="alias | grep git"
-  alias gsf="gs"
-  alias gss="git status -s"
-  alias gprm="gpr origin master"
-  alias gpremote="gp origin $(current_branch)"
-  alias gpremotef="gp -f origin $(current_branch)"
-  alias gst="git status -s"
-
 # -------------------------------------------------------------------------
 # THE FOLLOWING ARE NOTES ABOUT ALIASES IN GENERAL OR SPECIFIC TO A COMMAND
 # -------------------------------------------------------------------------

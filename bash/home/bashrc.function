@@ -1,5 +1,4 @@
 
-source_file "$HOME/.bashrc.functions.git"
 source_file "$HOME/.bashrc.functions.ssh"
 source_file "$HOME/.bashrc.functions.rails"
 source_file "$HOME/.bashrc.functions.test_suite"
@@ -135,14 +134,6 @@ LOL
 }
 
 function lol() { yes "$(rofl;sleep 1; clear)"; }
-
-
-## List the git repos on my machine that changed
-
-gcd () {
-  cd $(list_repos | grep -i "$1")
-}
-alias hcd="gcd"
 
 _man () {
   if (man $1 | grep '^BUILTIN'); then
