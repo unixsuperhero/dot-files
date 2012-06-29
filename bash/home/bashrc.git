@@ -12,6 +12,8 @@
   alias gpremote="gp origin $(current_branch)"
   alias gpremotef="gp -f origin $(current_branch)"
   alias gst="git status -s"
+  alias gcm="gc -m"
+  alias gc-m="gcm"
 
 # functions
 
