@@ -92,8 +92,10 @@ CAT
     elif [ -d "$2" ]; then
       if [ -f "${2}/index" ]; then
         vim -O "${2}/index"
+        exit
       elif [ -f "${2}/list" ]; then
         vim -O "${2}/list"
+        exit
       else
         ls "${2}/"
         echo
@@ -132,7 +134,7 @@ CAT
 		garg="${@/-g/}"
 		garg=${garg# }
     notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
-    find `pwd` -type d -depth 1 -not -path '*nogrep*' -not -path 'home' -not -path '*.git*' -not -path '*erlang*' -exec grep -RiI "$garg" "{}" \; | grep -E '^.{1,200}$'
+    find `pwd` -type d -depth 1 -not -path '*nogrep*' -not -path 'home' -not -path '*.git*' -not -path '*erlang*' -exec egrep -RiI "$garg" "{}" \; | egrep -E '^.{1,200}$'
     ;;
 
 	-gl | --gl)
