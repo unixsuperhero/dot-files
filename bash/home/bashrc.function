@@ -2,6 +2,17 @@
 source_file "$HOME/.bashrc.functions.ssh"
 source_file "$HOME/.bashrc.functions.rails"
 source_file "$HOME/.bashrc.functions.test_suite"
+source_file "$HOME/.bashrc.functions.temporary"
+
+def ()
+{
+    echo; echo '[ which ]' 2>/dev/null
+    which -a "$1" 2>/dev/null
+    echo; echo '[ alias ]' 2>/dev/null
+    alias "$1" 2>/dev/null
+    echo; echo '[ declare -f ]' 2>/dev/null
+    declare -f "$1" 2>/dev/null
+}
 
 ff() {
 # Name: Fuzzy Finder for Bash
@@ -136,10 +147,17 @@ LOL
 function lol() { yes "$(rofl;sleep 1; clear)"; }
 
 _man () {
-  if (man $1 | grep '^BUILTIN'); then
-    man bash | col -b | sed -n '/^SHELL BUILTIN/,$p' | less +/$1
-  else
-    man $1
+  #if (man $1 | grep '^BUILTIN'); then
+  if man -w $1; then
+    # bash_cache man_builtin_md5='c683936240e1e9d036ae1f53df76fa22'
+    manbuiltin=$(man -w builtin)
+    manbuiltin='c683936240e1e9d036ae1f53df76fa22'
+    manone=$(man -w $1)
+    if [ $manbuiltin == $(md5 $manone | awk '{print $NF}') ]; then
+      man bash | col -b | sed -n '/^SHELL BUILTIN/,$p' | less +/^[[:space:]]*$1
+    else
+      man $1
+    fi
   fi
 }
 

@@ -5,12 +5,15 @@ source_file() { [ -r "$1" ] && source "$1"; }
 ## My custom bash environment
 source_file "$HOME/.osxrc"
 source_file "$HOME/.bashrc.git"
+source_file "$HOME/.bashrc.vim"
 source_file "$HOME/.bashrc.function"
 source_file "$HOME/.bashrc.alias"
 source_file "$HOME/.bashrc.battery"
 source_file "$HOME/.bashrc.export"
 source_file "$HOME/.bashrc.ps1"
 source_file "$HOME/.bashrc.saveology"
+
+source_file "$HOME/.bashrc.autocomplete.git"
 
 source_file "$HOME/.rvm/scripts/rvm"
 source_file "$rvm_path/scripts/completion"
@@ -61,4 +64,10 @@ function _gs() {
   COMPREPLY=($(compgen -W "$(gs)" $cur))
 }
 complete -F _gs gs
+
+function _gco() {
+  cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=($(compgen -W "$(gb)" $cur))
+}
+complete -o default -F _gco gco
 

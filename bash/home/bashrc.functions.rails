@@ -18,6 +18,12 @@ _setup_rspec () {
   _rails_g "rspec:install"
 }
 
+_setup_devise_table () {
+  _rails_g "devise:install"
+  _rails_g "devise $1"
+  _rails_g "devise:views"
+}
+
 _setup_user_table () {
   _rails_g "devise:install"
   _rails_g "devise User"

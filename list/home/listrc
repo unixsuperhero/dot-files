@@ -1,13 +1,15 @@
 
 ##
-##  Config file for:
-##
-##    ~/bin/lists
+##  Config file for: ~/bin/lists
+##              And: ~/bin/dots
 ##
 
 lists_dir="${HOME}/lists"
-dots_dir="${HOME}/Desktop/dot.jearsh"
 #lists_dir="/Volumes/jearsh/env/lists"
+
+dots_dir="/Volumes/Anshou/dot.jearsh"
+#dots_dir="${HOME}/Desktop/dot.jearsh"
+
 debug=0
 
 

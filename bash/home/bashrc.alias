@@ -1,8 +1,35 @@
+
+<<"NOTES"
+  HOWTO: {Ignore,Skip,Bypass} an alias
+  <<-"bash script"
+    alias cp="cp -v"
+    cp $from $to    # cp with the -v option (uses the alias)
+    \cp $from $to   # cp without the -v option (bypasses the alias)
+  "bash script"
+
+  EXPLANATION: (#1)
+    By starting the command with a backslash, '\', you are essentially escaping
+  the first character, which will not match the alias.  Any alpha (/[a-z]/)
+  character that is escaped, simply returns that character.  So, it's an
+  interesting way to bypass an alias.
+
+  EXPLANATION: (#2)
+    Start the line with a backslash. ("\")  This basically escapes the first
+  letter in the command's name, which is just the character itself.
+  ("\j" == "j") So this way, you are running the same command, but the alias
+  matcher won't find a match.
+
+    eg:
+      $> \cp /path/to/source /path/to/destination
+        ...instead of...
+      $> cp /path/to/source /path/to/destination
+NOTES
+
   # -------------------------------------------------------------------
   # SO THAT I KNOW THE COMMON ARGUMENTS I LIKE TO USE WITH THE COMMANDS
   # -------------------------------------------------------------------
 
-cat <<"Explanation"
+<<"Explanation"
 
   Command Templates (Much like a command cheat sheet.)
 
@@ -18,6 +45,7 @@ Explanation
     alias $alias_name="git log --summary"
     alias $alias_name="git log --name-only"
     alias $alias_name="git log --name-status"
+    alias $alias_name="git log --stat"
     unalias $alias_name
 
     alias_name=ls_cheat_sheet
@@ -57,7 +85,6 @@ Explanation
 
   ##------ curl ------
 
-
     alias torcurl="curl -x 127.0.0.1:8118"
 
   ##------ bind ------
@@ -78,6 +105,21 @@ Explanation
     alias ls1dir="ls -A1Gd */"
     alias lsldir="ls -AlGd */"
 
+  ##------ grep ------
+
+    alias grep="egrep --color -I"
+    alias grepn="egrep -IRin"
+    alias grepl="egrep -IRil"
+
+  ##------ mail ------
+
+    alias mbox="mail -f ~/mbox"
+
+  ##------ cp & mv ------
+
+    alias cp="cp -v"      # verbosely show the files being copied
+    alias mv="mv -v"      # verbosely show the files being moved
+
   ##-------- screen --------
 
     alias sls="screen -ls"
@@ -89,16 +131,6 @@ Explanation
     alias subscreen="screen -e^Ss"
     alias subsx="subscreen -x"
     alias subsS="subscreen -S"
-
-  ##------ grep ------
-
-    alias grep="egrep --color -I"
-    alias grepn="egrep -IRin"
-    alias grepl="egrep -IRil"
-
-  ##------ mail ------
-
-    alias mbox="mail -f ~/mbox"
 
 
 # -----------------------
@@ -124,6 +156,7 @@ Explanation
   alias vssh="cat ~/.ssh/config"
   alias lssh="less ~/.ssh/config"
   alias evim="vim ~/.vimrc"
+  alias ehosts="sudo vim /etc/hosts"
   alias eapache="sudo vim /private/etc/apache2/httpd.conf"
   alias ehttpd="eapache"
   alias ewww="eapache"

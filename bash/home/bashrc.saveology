@@ -3,7 +3,7 @@ alias staging_console="heroku console --app saveology-admin-staging"
 alias admin_console="heroku console --app saveology-admin-production"
 
 staging() {
-  gp staging
+  gp -f staging master
   heroku rake db:migrate --app saveology-admin-staging
   heroku restart --app saveology-admin-staging
   open http://staging.saveology.com

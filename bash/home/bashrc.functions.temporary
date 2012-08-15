@@ -1,0 +1,67 @@
+<<"INFO"
+  [ Title  ] Git Savepoint
+  [ Author ] Joshua Toyota
+  [ Date   ] 2012-08-14 21:08:08
+
+  [ Functions ]
+    savepoint()
+    default_savepoint_cmsg()
+    cmsg_add()
+
+  [ Description ]
+    savepoint will show you the diff of each
+  file that has been modified and let you add to
+  it in the commit message.
+INFO
+
+function debug_LOG ()
+{
+  [ -z $DEBUG_LOG ] || echo "$@"
+}
+
+function cmsg_add ()
+{
+    echo "cmsg='${cmsg%;}' # reset with this command"
+    if [ ! -z "${1}" ]
+    then
+      cmsg="${cmsg} ${1};"
+      echo "cmsg='${cmsg%;}' # new cmsg"
+    fi
+}
+
+function default_savepoint_cmsg () { echo -n '[ savepoint ]'; }
+
+function savepoint ()
+{
+  DEBUG_LOG=true
+  DEBUG_LOG=
+  cmsg="$(default_savepoint_cmsg)"
+  for f in $(gs)
+  do
+    echo "[------------[ $f ]------------]"
+    gd "$f" 2>/dev/null
+    debug_LOG "gd ended with $?"
+
+    gdc "$f" 2>/dev/null
+    debug_LOG "gdc ended with $?"
+
+    echo "Add to commit message:"
+    read append
+    cmsg_add "$append"
+  done
+
+  clear
+  cmsg="${cmsg%;}"
+  echo; echo "Commit Message: $cmsg"
+  echo; echo "git aa; gc -m '$cmsg'"
+  echo; echo "Pass anything to commit.  Press ENTER to skip commit."
+  read do_commit
+  if [ -z "$do_commit" ]; then
+    echo "Skipping commit..."
+  else
+    echo "Committing..."
+    git aa
+    gst
+    gc -m "$cmsg"
+  fi
+}

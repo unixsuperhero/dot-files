@@ -47,6 +47,9 @@ function dot_install()
       fi
     done
   done
+
+  ## [ Setup syntax coloring for bin/list in vim ]
+  ln -s "$(pwd)/vim/vimbundles/vim-lists" "${HOME}/.vimbundles/"
 }
 
 function dot_uninstall()
