@@ -44,24 +44,10 @@ add_repo_to_env() {
   [ -z "$2" ] && repos+=":"
 }
 
-## setup repos env
 repos=""
-for repo in $(get_repos_in_repo_dir); do add_repo_to_env "$repo"; done
-
-# add_repo_to_env "$REPO_DIR/fantasy"
-# add_repo_to_env "$REPO_DIR/kikin"
-# add_repo_to_env "$REPO_DIR/funding"
-# add_repo_to_env "$REPO_DIR/cli-tracker"
-# add_repo_to_env "$REPO_DIR/saveology"
-# add_repo_to_env "$REPO_DIR/up2speed"
-# add_repo_to_env "$REPO_DIR/iterat.org"
-# add_repo_to_env "$REPO_DIR/anti.js"
-# add_repo_to_env "$REPO_DIR/node_speed_rps"
-# add_repo_to_env "$REPO_DIR/anshou.herokuapps.com"
-# add_repo_to_env "$REPO_DIR/dotmatrix"
-add_repo_to_env "$HOME/dot.jearsh"
+for repo in $(get_repos_in_repo_dir) "$HOME/dot.jearsh"
+do add_repo_to_env "$repo"; done
 add_repo_to_env "$HOME/lists" 1
-echo "repos: $repos"
 export repos
 
 ## bash completions
