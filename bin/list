@@ -133,15 +133,25 @@ CAT
 	-g)
 		garg="${@/-g/}"
 		garg=${garg# }
-    notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
-    find `pwd` -type d -depth 1 -not -path '*nogrep*' -not -path 'home' -not -path '*.git*' -not -path '*erlang*' -exec egrep -RiI "$garg" "{}" \; | egrep -E '^.{1,200}$'
+    #notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
+    good_dirs="$(find . -type d -depth 1 | egrep -v 'nogrep|\.git|home|erlang')"
+    egrep -RiI "$garg" $good_dirs | egrep -E '^.{1,200}$'
+    #find . -type d -depth 1 | egrep -v 'nogrep|\.git|home|erlang' | xargs -I "{}" egrep -RiI "$garg" "{}" | egrep -E '^.{1,200}$'
+    #find . -type d -depth 1 | egrep -v 'nogrep|\.git|home|erlang' | xargs egrep -RiI "$garg" | egrep -E '^.{1,200}$'
+    #egrep -RiI "$garg" $(find . -type d -depth 1 | egrep -v 'nogrep|\.git|home|erlang') |  egrep -E '^.{1,200}$'
+
+    # [ original ]
+    #find `pwd`/ -type d -depth 1 -not -path '*nogrep*' -not -path 'home' -not -path '*.git*' -not -path '*erlang*' -exec egrep -RiI "$garg" "{}" \; | egrep -E '^.{1,200}$'
     ;;
 
 	-gl | --gl)
 		garg="${@/-gl/}"
 		garg=${garg# }
-    notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
-    find `pwd` -type d -depth 1 -not -path '*nogrep*' -and -not -path 'home' -and -not -path '*.git*' -and -not -path '*erlang*' -exec grep -RiIl "$garg" "{}" \;
+    #notpaths="-not -path '*nogrep' -and -not -path '*.git' -and -not -path '*erlang/api'"
+    good_dirs="$(find . -type d -depth 1 | egrep -v 'nogrep|\.git|home|erlang')"
+    grep -RiIl "$garg" $good_dirs
+    # [ original ]
+    # find `pwd`/ -type d -depth 1 -not -path '*nogrep*' -and -not -path 'home' -and -not -path '*.git*' -and -not -path '*erlang*' -exec grep -RiIl "$garg" "{}" \;
     ;;
 
   -dir | --dir)
