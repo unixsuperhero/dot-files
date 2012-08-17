@@ -25,9 +25,33 @@ _admin () {
   open http://admin.saveology.com
 }
 
+last_heroku_version_for() {
+  heroku releases --app "$1" | egrep -o '^v[0-9]+' | head -1 | sed 's/v//'
+}
+next_heroku_version_for() {
+  last=$(last_heroku_version_for "$1")
+  echo $[ $last + 1 ]
+}
+remote_repo_for() {
+  git remote -v | grep "$1" | head -1 | awk '{print $1}'
+}
+
 customer(){
-  gp production-deals master
-  heroku restart --app saveology-deals-production
+  local app="saveology-deals-production"
+  local remote="$(remote_repo_for $app)"
+
+  # get the next tag version number
+  local last_version=$(git tag | tail -1)
+  local next_version="v$[ ${last_version#v} + 1 ]"
+
+  # set the tag message
+  message="$(date +%Y-%m-%d): Pushing to production. Heroku v$(next_heroku_version_for $app)."
+
+  # create the tag
+  git tag -a "$next_version" -m "$message"
+
+  gp $remote master
+  heroku restart --app $app
   open http://www.saveology.com
 }
 
