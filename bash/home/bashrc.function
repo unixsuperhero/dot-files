@@ -6,11 +6,8 @@ source_file "$HOME/.bashrc.functions.temporary"
 
 def ()
 {
-    echo; echo '[ which ]' 2>/dev/null
     which -a "$1" 2>/dev/null
-    echo; echo '[ alias ]' 2>/dev/null
     alias "$1" 2>/dev/null
-    echo; echo '[ declare -f ]' 2>/dev/null
     declare -f "$1" 2>/dev/null
 }
 

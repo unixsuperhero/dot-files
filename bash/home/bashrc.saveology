@@ -1,6 +1,11 @@
 
+# deprecated
 alias staging_console="heroku console --app saveology-admin-staging"
 alias admin_console="heroku console --app saveology-admin-production"
+
+# new way
+alias staging_console="heroku run script/rails console -a $staging"
+alias admin_console="heroku run script/rails console -a $admin"
 
 staging() {
   gp -f staging master
@@ -50,7 +55,7 @@ customer(){
   # create the tag
   git tag -a "$next_version" -m "$message"
 
-  gp $remote master
+  gp --tags $remote master
   heroku restart --app $app
   open http://www.saveology.com
 }
