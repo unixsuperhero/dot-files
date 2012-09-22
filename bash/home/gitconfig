@@ -1,0 +1,47 @@
+# ---------------------------------------- #
+#    I honestly don't use most of this.    #
+#    I use:                                #
+#      - The user information.             #
+#      - The colors.                       #
+#      - The "aa" alias.                   #
+# ---------------------------------------- #
+
+[user]
+	name = Joshua Toyota
+	email = jearsh@gmail.com
+
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = true
+[alias]
+    aa = add --all
+    amend = commit --amend
+    b = branch
+    ci = commit
+    co = checkout
+    dc = diff --cached
+    dh1 = diff HEAD~1
+    di = diff
+    div = divergence
+    ds = diff --stat=160,120
+    fa = fetch --all
+    ff = merge --ff-only
+    gn = goodness
+    gnc = goodness --cached
+    h = !git head
+    head = !git l -1
+    l = "!source ~/.githelpers && pretty_git_log"
+    la = !git l --all
+    noff = merge --no-ff
+    pom = push origin master
+    pullff = pull --ff-only
+    r = !git l -20
+    ra = !git r --all
+    st = status
+[push]
+	default = tracking
+[core]
+	quotepath = false

@@ -163,8 +163,14 @@ Explanation
 
   alias eirssi="sudo vim ~/.irssi/config"
 
-  alias ebash="vim $HOME/.bashrc*"
+  alias ebash="vim $HOME/.{h,b}ashrc*"
   alias sbash="source $HOME/.bashrc"
+  function fbash () {
+    ls -1d ~/.{h,b}ashrc* | grep -i $@
+  }
+  function gbash () {
+    egrep -r $@ ~/.{b,h}ashrc*
+  }
 
   alias eprofile="sudo vim /private/etc/profile"
   alias sprofile="source /private/etc/profile"

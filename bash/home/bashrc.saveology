@@ -7,6 +7,42 @@ alias admin_console="heroku console --app saveology-admin-production"
 alias staging_console="heroku run script/rails console -a $staging"
 alias admin_console="heroku run script/rails console -a $admin"
 
+at_vs_star () {
+  for a in $*; do
+    echo "*arg='$a'"
+  done
+  as_args $*
+  for a in $@; do
+    echo "@arg='$a'"
+  done
+  as_args $@
+  for a in "$*"; do
+    echo "q*arg='$a'"
+  done
+  as_args "$*"
+  for a in "$@"; do
+    echo "q@arg='$a'"
+  done
+  as_args "$@"
+}
+
+as_args () {
+  echo '[ as args ]'
+  cnt=$#
+  for((a=1;a<=$cnt;a++)); do
+    echo "$a='$1'"
+    shift
+  done
+}
+
+# run commands on our redis server
+hra ()
+{
+  #redis-cli -h panga.redistogo.com -p 9181 -a 28300424cd348fbe651953474e39613e $@
+  read -ra REDIS <<< "$(heroku config -a $admin | grep -o 'redistogo:.*' | sed 's/\(redistogo\)\{0,1\}[:@]/ /g;s/ //' | awk '{printf "%s %s %s", $2, $3, $1}')"
+  redis-cli -h ${REDIS[0]} -p ${REDIS[1]} -a ${REDIS[2]} "$@"
+}
+
 staging() {
   gp -f staging master
   heroku rake db:migrate --app saveology-admin-staging
