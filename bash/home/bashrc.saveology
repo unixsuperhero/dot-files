@@ -1,11 +1,11 @@
 
 # deprecated
-alias staging_console="heroku console --app saveology-admin-staging"
-alias admin_console="heroku console --app saveology-admin-production"
+alias staging_console="heroku console --app $(app_name staging)"
+alias admin_console="heroku console --app $(app_name admin)"
 
 # new way
-alias staging_console="heroku run script/rails console -a $staging"
-alias admin_console="heroku run script/rails console -a $admin"
+alias staging_console="heroku run script/rails console -a \$(app_name staging)"
+alias admin_console="heroku run script/rails console -a \$(app_name admin)"
 
 at_vs_star () {
   for a in $*; do
@@ -45,9 +45,9 @@ hra ()
 
 staging() {
   gp -f staging master
-  heroku rake db:migrate --app saveology-admin-staging
-  heroku restart --app saveology-admin-staging
-  open http://staging.saveology.com
+  heroku run rake db:migrate --app $(app_name staging)
+  heroku restart --app $(app_name staging)
+  open http://stage.saveology.com
 }
 
 admin(){
@@ -59,11 +59,18 @@ admin_nobackup(){
   _admin
 }
 
+_api () {
+  gp api master
+  heroku run rake db:migrate --app $(app_name api)
+  heroku restart --app $(app_name api)
+  open http://api.saveology.com
+}
+
 _admin () {
-  gp production-admin master
-  heroku rake db:migrate --app saveology-admin-production
-  heroku restart --app saveology-admin-production
-  open http://admin.saveology.com
+  gp admin master
+  heroku run rake db:migrate --app $(app_name admin)
+  heroku restart --app $(app_name admin)
+  open http://admins.saveology.com
 }
 
 last_heroku_version_for() {
@@ -78,21 +85,14 @@ remote_repo_for() {
 }
 
 customer(){
-  local app="saveology-deals-production"
+  local app="$(app_name production)"
   local remote="$(remote_repo_for $app)"
 
-  # get the next tag version number
-  local last_version=$(git tag | tail -1)
-  local next_version="v$[ ${last_version#v} + 1 ]"
-
-  # set the tag message
-  message="$(date +%Y-%m-%d): Pushing to production. Heroku v$(next_heroku_version_for $app)."
-
   # create the tag
-  git tag -a "$next_version" -m "$message"
+  #git tag -a "$next_version" -m "$message"
 
-  gp --tags $remote master
-  heroku restart --app $app
+  gp production master
+  heroku restart --app $(app_name production)
   open http://www.saveology.com
 }
 

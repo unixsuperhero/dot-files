@@ -12,6 +12,7 @@ source_file "$HOME/.bashrc.battery"
 source_file "$HOME/.bashrc.export"
 source_file "$HOME/.bashrc.ps1"
 source_file "$HOME/.bashrc.saveology"
+source_file "$HOME/.bashrc.heroku"
 
 source_file "$HOME/.bashrc.autocomplete.git"
 

@@ -7,13 +7,14 @@
 
   alias git_aliases="alias | grep git"
   alias gsf="gs"
-  alias gss="git status -s"
   alias gprm="gpr origin master"
   alias gpremote="gp origin $(current_branch)"
   alias gpremotef="gp -f origin $(current_branch)"
   alias gst="git status -s"
   alias gcm="gc -m"
   alias gc-m="gcm"
+  alias egcon="vim .git/config"
+  alias gcon="cat .git/config"
 
 # functions
 
@@ -63,6 +64,8 @@
     #git status | grep -o ': .*' | sed 's/[^a-z]*//' | grep "$1" | sort -u
     #git status | sed -n 's/.*: *//p' | grep "$1" | sort -u
   }
+
+  alias gss="gs"
 
   _setup_git () {
     [[ -d .git ]] || git init .
@@ -125,13 +128,16 @@
     gco "$cb"; git rebase master
   }
 
+  app_name() {
+    git remote -v | grep "^[^[:space:]]*${1}[^[:space:]]*[[:space:]]" | sed 's/.*://;s/\.git.*//' | head -1
+  }
+
   stage () {
-    app="saveology-admin-staging"
-    staging_repo="git@heroku.com:${app}.git"
+    app="$(app_name staging)"
     branch=$(current_branch)
     gco -b "${branch}-staging"
-    git pull --rebase $staging_repo master
-    gp $staging_repo "${branch}-staging:master"
+    git pull --rebase staging master
+    gp staging "HEAD:master"
     heroku rake db:migrate --app ${app}
     gco "${branch}"
     gb -D "${branch}-staging"

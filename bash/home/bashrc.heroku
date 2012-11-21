@@ -1,0 +1,5 @@
+
+function app_for() {
+  git remote -v | grep -i "$1" | grep -o ':.*[.]git' | sed 's/^://;s/[.]git$//' | head -1
+}
+
