@@ -10,7 +10,7 @@ source_file "$HOME/.bashrc.function"
 source_file "$HOME/.bashrc.alias"
 source_file "$HOME/.bashrc.battery"
 source_file "$HOME/.bashrc.export"
-source_file "$HOME/.bashrc.ps1"
+#source_file "$HOME/.bashrc.ps1"
 source_file "$HOME/.bashrc.saveology"
 source_file "$HOME/.bashrc.heroku"
 

@@ -1,0 +1,435 @@
+: 1352129035:0;ls
+: 1352129045:0;vim .zshrc
+: 1352129070:0;ls
+: 1352129071:0;exit
+: 1352141642:0;ls
+: 1352141645:0;bin
+: 1352141646:0;ls
+: 1352141653:0;..
+: 1352141654:0;ls
+: 1352141658:0;hash
+: 1352141660:0;hashrocket
+: 1352141661:0;ls
+: 1352141688:0;def hcd
+: 1352141695:0;source ~/.bashrc
+: 1352141714:0;ls
+: 1352141721:0;def def
+: 1352141725:0;def
+: 1352141728:0;exit
+: 1352141807:0;ls
+: 1352141810:0;ls -A
+: 1352141818:0;vim .zlogin
+: 1352141830:0;vim .zshrc
+: 1352141853:0;hcd hashrocket
+: 1352141859:0;hashrocket
+: 1352141860:0;ls
+: 1352141862:0;cd saveology
+: 1352141864:0;ls
+: 1352141893:0;run-help exit
+: 1352141923:0;which-command exit
+: 1352141927:0;exit
+: 1353035686:0;ls
+: 1353035736:0;touch fuck
+: 1353035738:0;gst
+: 1353035744:0;gs
+: 1353035748:0;rm fuck
+: 1353035763:0;glod -9
+: 1353035775:0;source ~/.bashrc
+: 1353035793:0;ls
+: 1353035808:0;reset
+: 1353035810:0;exit
+: 1353035820:0;echo $SHELL
+: 1353035825:0;export
+: 1353035829:0;export | grep -i zsh
+: 1353035835:0;env
+: 1353035840:0;env | grep -i zsh
+: 1353035862:0;source ~/.hashrc
+: 1353035863:0;ls
+: 1353035868:0;exit
+: 1353035874:0;echo $PS1
+: 1353035889:0;touch fff
+: 1353035891:0;echo $PS1
+: 1353035901:0;gst
+: 1353035904:0;gs
+: 1353035906:0;gss
+: 1353035911:0;rm fff
+: 1353035928:0;vim ~/.zshrc
+: 1353035961:0;vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh 
+: 1353036043:0;current_repository
+: 1353036057:0;echo $ref
+: 1353036072:0;current_branch
+: 1353036083:0;def current_branch
+: 1353036091:0;man zsh
+: 1353036134:0;man zshall
+: 1353036222:0;zcalc
+: 1353036227:0;zcalc 2+3
+: 1353036231:0;xcalc 3+3
+: 1353036250:0;k
+: 1353036252:0;kill -9 %1
+: 1353036257:0;killall x11
+: 1353036263:0;ps awwux | grep -i x
+: 1353036289:0;ps awwux
+: 1353036301:0;killall startx
+: 1353036311:0;killall X11
+: 1353036320:0;ps
+: 1353036324:0;ps a
+: 1353036325:0;ps aw
+: 1353036326:0;ps aww
+: 1353036327:0;ps awwu
+: 1353036330:0;ps awwux
+: 1353036334:0;ps ax
+: 1353036339:0;ps axw
+: 1353036341:0;ps axww
+: 1353036345:0;ps ax | less
+: 1353036353:0;clear
+: 1353036354:0;ls
+: 1353036357:0;gb
+: 1353036360:0;gss
+: 1353036375:0;cd
+: 1353036376:0;ls
+: 1353036386:0;Applications/
+: 1353036387:0;ls
+: 1353036389:0;cd
+: 1353036392:0;cd Desktop
+: 1353036395:0;cd
+: 1353036396:0;Desktop
+: 1353036399:0;cd
+: 1353036416:0;ls
+: 1353036418:0;man zsh
+: 1353036429:0;exit
+: 1353158397:0;pwd
+: 1353158399:0;cd
+: 1353158407:0;ls -Ad
+: 1353158412:0;ls -Ad */
+: 1353158421:0;ls -Ad .*/
+: 1353158431:0;.oh-my-zsh
+: 1353158432:0;ls
+: 1353158436:0;..
+: 1353158568:0;ls .oh-my-zsh/plugins/heroku/
+: 1353158573:0;ls -A .oh-my-zsh/plugins/heroku/
+: 1353158581:0;file .oh-my-zsh/plugins/heroku/_heroku 
+: 1353158585:0;cat .oh-my-zsh/plugins/heroku/_heroku 
+: 1353158771:0;man bash | col -b | grep -i root
+: 1353158785:0;man -w ps1
+: 1353158789:0;man -s ps1
+: 1353158792:0;man -k ps1
+: 1353158795:0;man -k PS1
+: 1353158798:0;man -k \$PS1
+: 1353158802:0;man -w \$PS1
+: 1353158906:0;man zsh
+: 1353158915:0;man zshall
+: 1353159239:0;echo $PROMPT
+: 1353159247:0;echo $PS1
+: 1353159257:0;[ $PROMPT -eq $PS1 ]
+: 1353159263:0;[ $PROMPT == $PS1 ]
+: 1353159268:0;[[ $PROMPT == $PS1 ]]
+: 1353159272:0;test $PROMPT == $PS1
+: 1353159280:0;test "$PROMPT == $PS1"
+: 1353159285:0;test '$PROMPT == $PS1'
+: 1353159305:0;echo $?
+: 1353159314:0;test '$PROMPT != $PS1'
+: 1353159316:0;echo $?
+: 1353159323:0;test $PROMPT != $PS1
+: 1353159325:0;echo $?
+: 1353159330:0;test $PROMPT == $PS1
+: 1353159341:0;test "$PROMPT" == "$PS1"
+: 1353159354:0;test "$PROMPT" -eq "$PS1"
+: 1353159366:0;[ "$PROMPT" -eq "$PS1" ] && echo 'hi'
+: 1353159370:0;[ "$PROMPT" == "$PS1" ] && echo 'hi'
+: 1353159374:0;[ "$PROMPT" == "$PS1" ] && echo 'hi' || echo 'bye'
+: 1353159380:0;[[ "$PROMPT" == "$PS1" ]] && echo 'hi' || echo 'bye'
+: 1353159386:0;[[ "$PROMPT" != "$PS1" ]] && echo 'hi' || echo 'bye'
+: 1353159438:0;[[ "$PROMPT" == "$PS1" ]] && echo 'hi' || echo 'bye'
+: 1353159449:0;[[ "$PROMPT" == "$PS1" ]]
+: 1353159453:0;echo $?
+: 1353159458:0;[[ "$PROMPT" != "$PS1" ]]
+: 1353159460:0;echo $?
+: 1353159482:0;ls .oh-my-zsh
+: 1353159543:0;ls .oh-my-zsh/custom
+: 1353159550:0;vim .oh-my-zsh/custom/example.zsh
+: 1353159780:0;vim .oh-my-zsh
+: 1353160280:0;echo $ZSH
+: 1353160290:0;ls .z
+: 1353160298:0;cat .zlogin
+: 1353160307:0;cat .zsh_history
+: 1353160332:0;cat .zshrc.pre-oh-my-zsh
+: 1353160342:0;cat .zshrc
+: 1353160502:0;ls
+: 1353160505:0;cd .oh-my-zsh
+: 1353160506:0;ls
+: 1353160509:0;cat oh-my-zsh.sh
+: 1353160518:0;cat -n oh-my-zsh.sh
+: 1353160788:0;echo $fpath
+: 1353160791:0;echo $ENV
+: 1353160849:0;cat -n oh-my-zsh.sh
+: 1353179360:0;pwd
+: 1353179369:0;vim oh-my-zsh.sh
+: 1353179500:0;vim .
+: 1353179912:0;cd
+: 1353179913:0;ls
+: 1353179917:0;cd -
+: 1353179919:0;~
+: 1353179920:0;ls
+: 1353179923:0;ls -A
+: 1353179985:0;.oh-my-zsh/
+: 1353179986:0;ls
+: 1353180092:0;cat plugins/battery/battery.plugin.zsh
+: 1353180159:0;plugins
+: 1353180160:0;ls
+: 1353180177:0;run-help jsdflskdfjsdfjsdjf
+: 1353180186:0;run-help run-help
+: 1353180199:0;run-help jsdflskdfjsdfjsdjfhhhhhIdsflsdjf
+: 1353180224:0;ls
+: 1353180233:0;ls brew
+: 1353180276:0;paste <(cat brew/_brew) <(cat brew/brew.plugin.zsh)
+: 1353180334:0;cat brew/_brew
+: 1353180430:0;cat brew/brew.plugin.zsh
+: 1353180438:0;brew list -1
+: 1353180443:0;echo $fpath
+: 1353180458:0;for $fp ($fpath); do echo $fp; done
+: 1353180960:0;for fp ($fpath); do echo $fp; done
+: 1353180992:0;pwd
+: 1353180992:0;ls
+: 1353181007:0;for f (g*(N)); do echo $f; done
+: 1353181012:0;for f (g*); do echo $f; done
+: 1353181045:0;for f (g*); do echo $f $; done
+: 1353181070:0;for f (g*); do echo $f $N; done
+: 1353181075:0;for f (g*(N)); do echo $f $N; done
+: 1353181084:0;for f (g*(N)); do echo $f $lsN; done
+: 1353181088:0;run-help echo
+: 1353181176:0;jobs
+: 1353181231:0;ls
+: 1353181252:0;vim -O bundler/*
+: 1353182220:0;ls cap
+: 1353182248:0;ls capiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+: 1353182251:0;ls
+: 1353182264:0;ls cap
+: 1353182268:0;cat cap/cap.plugin.zsh
+: 1353182567:0;ls
+: 1353182631:0;ls -A compleat/
+: 1353182636:0;cat compleat/compleat.plugin.zsh
+: 1353182693:0;brew info compleat
+: 1353182698:0;brew search compleat
+: 1353182789:0;ls
+: 1353182946:0;cat dircycle/dircycle.plugin.zsh 
+: 1353183031:0;ls
+: 1353183054:0;clear
+: 1353183054:0;ls
+: 1353183060:0;ls dirpersist
+: 1353183064:0;cat dirpersist/dirpersist.plugin.zsh
+: 1353183136:0;ls
+: 1353183166:0;cat -m extract/_extract extract/extract.plugin.zsh 
+: 1353183169:0;cat -n extract/_extract extract/extract.plugin.zsh 
+: 1353183334:0;ls
+: 1353183383:0;llllllllllssssssssssssssssssssssssssssssssssssssssssssssssssssssskl        kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkllk
+: 1353183386:0;ls
+: 1353183426:0;ls fasd
+: 1353183432:0;cat fasd/fasd.plugin.zsh
+: 1353183502:0;brew info fasd
+: 1353183573:0;curl github.com/clvv/fasd | less
+: 1353183581:0;curl -L github.com/clvv/fasd | less
+: 1353184231:0;ls
+: 1353184235:0;ls autojump
+: 1353184239:0;cat autojump/autojump.plugin.zsh
+: 1353184251:0;ls
+: 1353185804:0;echo $github
+: 1353185842:0;~
+: 1353185851:0;hcd
+: 1353185858:0;cd hashrocket
+: 1353185858:0;ls
+: 1353185953:0;git clone https://github.com/dmondark/.irssi.git dmondarks-dot.irssi
+: 1353186035:0;cd dmondarks-dot.irssi
+: 1353186036:0;ls
+: 1353186043:0;vim config
+: 1353186296:0;jobs
+: 1353186306:0;for a (*); do file $a; done
+: 1353186416:0;for a (*(f)); do file $a; done
+: 1353186427:0;for a (*(F)); do file $a; done
+: 1353186432:0;for a (*(D)); do file $a; done
+: 1353186435:0;for a (*(d)); do file $a; done
+: 1353186448:0;for a (*(N)); do file $a; done
+: 1353186469:0;gst
+: 1353186473:0;gd
+: 1353186478:0;git diff
+: 1353186608:0;for a (*(k)); do file $a; done
+: 1353186613:0;for a (*(r)); do file $a; done
+: 1353186616:0;for a (*(u)); do file $a; done
+: 1353186624:0;for a (*(fi)); do file $a; done
+: 1353186633:0;for a (*(g)); do file $a; done
+: 1353186747:0;for a (*(.)); do file $a; done
+: 1353186752:0;for a (.); do file $a; done
+: 1353186758:0;for a (*(.)); do file $a; done
+: 1353186769:0;echo (*(.))
+: 1353186774:0;echo *(.)
+: 1353186779:0;vim -O *(.)
+: 1353186881:0;gst
+: 1353186884:0;gd
+: 1353186890:0;git diff
+: 1353186952:0;..
+: 1353186953:0;ls
+: 1353186964:0;ln -s dmondarks-dot.irssi ~/.irssi
+: 1353186968:0;brew search irssi
+: 1353186981:0;brew list
+: 1353186991:0;brew install irssi
+: 1353259140:0;pwd
+: 1353259146:0;ls
+: 1353260045:0;gst
+: 1353260047:0;pwd
+: 1353260051:0;clear
+: 1353260052:0;ls
+: 1353260067:0;heroku
+: 1353260069:0;ls
+: 1353260079:0;ls heroku
+: 1353260085:0;vim heroku/_heroku
+: 1353260335:0;jobs
+: 1353260336:0;gst
+: 1353260339:0;ls
+: 1353260367:0;ls jake-node
+: 1353260374:0;vim jake-node/jake-node.plugin.zsh
+: 1353260502:0;jobs
+: 1353260503:0;gst
+: 1353260505:0;clear
+: 1353260506:0;ls
+: 1353260511:0;ls kate
+: 1353260529:0;cat kate/kate.plugin.zsh
+: 1353260537:0;brew info kate
+: 1353260542:0;brew search kate
+: 1353260585:0;ls
+: 1353330581:0;list -e wiki/logins
+: 1353330674:0;ls
+: 1353330690:0;cd oyaji
+: 1353330690:0;ls
+: 1353330694:0;gcon
+: 1353330699:0;cat .git/config
+: 1353330870:0;host soflawhirlpoolrepairs.com
+: 1353346405:0;gst
+: 1353346406:0;pwd
+: 1353346448:0;glod -9
+: 1353346456:0;glg
+: 1353346469:0;gl gg
+: 1353346470:0;glgg
+: 1353346486:0;git log --oneline --decorate
+: 1353346519:0;exit
+: 1353511853:0;jobs
+: 1353511868:0;ebash
+: 1353511889:0;ls -1d ~/.?ashrc*
+: 1353511915:0;ls -1d ~/.{h,b}ashrc*
+: 1353511942:0;ls ~/.?ashrc*(.)
+: 1353511954:0;for a (~/.?ashrc*(.)); do echo $a; done
+: 1353511961:0;for a (~/.?ashrc*(F)); do echo $a; done
+: 1353511968:0;for a (~/.?ashrc*(%)); do echo $a; done
+: 1353511973:0;for a (~/.?ashrc*(l)); do echo $a; done
+: 1353511976:0;for a (~/.?ashrc*(L)); do echo $a; done
+: 1353512068:0;for a (~/.?ashrc*(@)); do echo $a; done
+: 1353512097:0;ls -1 ~/.?ashrc*(@)
+: 1353512107:0;ls -l ~/.?ashrc*(@)
+: 1353512120:0;ls -1 ~/.?ashrc*(@)
+: 1353512129:0;file ~/.?ashrc*(@)
+: 1353512182:0;(cd /anshou/dot.jearsh; gst)
+: 1353512188:0;(cd /anshou/dot.jearsh; gss)
+: 1353512262:0;(cd /anshou/dot.jearsh; gd)
+: 1353512267:0;(cd /anshou/dot.jearsh; gdiff)
+: 1353512272:0;(cd /anshou/dot.jearsh; git d)
+: 1353512290:0;(cd /anshou/dot.jearsh; git diff)
+: 1353512297:0;(cd /anshou/dot.jearsh; git diff-files)
+: 1353512303:0;(cd /anshou/dot.jearsh; git diff-index)
+: 1353512322:0;(cd /anshou/dot.jearsh; git diff-stages)
+: 1353512333:0;(cd /anshou/dot.jearsh; git diff-tree)
+: 1353512381:0;(cd /anshou/dot.jearsh; git diff --tree)
+: 1353512384:0;(cd /anshou/dot.jearsh; git diff --files)
+: 1353512387:0;(cd /anshou/dot.jearsh; git diff --index)
+: 1353512389:0;(cd /anshou/dot.jearsh; git diff --full-index)
+: 1353512403:0;ls
+: 1353512448:0;ls lein
+: 1353512454:0;cat lein/lein.plugin.zsh
+: 1353512491:0;ls
+: 1353512508:0;ls -l ~/.*(@)
+: 1353512548:0;cd ..
+: 1353512549:0;pwd
+: 1353512555:0;/anshou
+: 1353512555:0;ls
+: 1353512560:0;dot.jearsh
+: 1353512561:0;ls
+: 1353512563:0;gst
+: 1353512566:0;gd
+: 1353512569:0;git diff
+: 1353512763:0;man pushln
+: 1353512785:0;pushln --help
+: 1353512801:0;echo $pushln
+: 1353513386:0;fg
+: 1353514154:0;gss
+: 1353514181:0;cat bash/home/bashrc.heroku
+: 1353514283:0;gd bash/home/bashrc.saveology
+: 1353514292:0;git diff bash/home/bashrc.saveology
+: 1353514360:0;git diff bash/home/bashrc.*
+: 1353514564:0;gss
+: 1353514615:0;git aa; gc -m 'added .zshrc; git,heroku,saveology functions'
+: 1353514620:0;glod -9
+: 1353514636:0;ls
+: 1353514645:0;vim bash/home/bashrc.local
+: 1353514670:0;gss
+: 1353514678:0;git add .
+: 1353514679:0;gst
+: 1353514682:0;git add ../tmp/
+: 1353514683:0;gst
+: 1353514685:0;gss
+: 1353514705:0;vim ../.gitignore
+: 1353514715:0;gss
+: 1353514751:0;git reset ../tmp/man-zshall
+: 1353514753:0;gst
+: 1353514754:0;gss
+: 1353514759:0;git aa
+: 1353514760:0;gst
+: 1353514765:0;git add --all
+: 1353514769:0;gss
+: 1353514807:0;git add --all ..
+: 1353514808:0;gss
+: 1353514813:0;gdc
+: 1353514817:0;git diff --cached
+: 1353514834:0;gc -m 'updated gitignore'
+: 1353514875:0;pwd
+: 1353514884:0;cd ../..
+: 1353514885:0;ls
+: 1353514889:0;ll
+: 1353514890:0;ls -A
+: 1353514908:0;.z*
+: 1353514911:0;ls .z*
+: 1353514925:0;for a (.z*(@)) echo $a
+: 1353514928:0;for a (.z*(@)) {echo $a}
+: 1353514932:0;for a (.z*) {echo $a}
+: 1353514937:0;for a (.z*) echo $a
+: 1353515076:0;for a (.z*) echo ${a#.}
+: 1353515181:0;for a (.z*) { echo mv -v $a /Volumes/Anshou/dot.jearsh/zsh/${a#.} && echo ln -s /Volumes/Anshou/dot.jearsh/zsh/${a#.} $a }
+: 1353515201:0;for a (.z*) { mv -v $a /Volumes/Anshou/dot.jearsh/zsh/${a#.} && ln -s /Volumes/Anshou/dot.jearsh/zsh/${a#.} $a }
+: 1353515213:0;ls -l .z*
+: 1353515218:0;cat .zshrc
+: 1353515269:0;ls
+: 1353515270:0;pwd
+: 1353515281:0;echo $PROMPT
+: 1353515286:0;source ~/.bashrc
+: 1353515315:0;pwd
+: 1353515320:0;/Volumes/Anshou/dot.jearsh
+: 1353515322:0;ls
+: 1353515332:0;grep -rin 'ps1' bash
+: 1353515397:0;echo $PS1
+: 1353515402:0;echo $PROMPT
+: 1353515415:0;grep -rin 'prompt'bash
+: 1353515417:0;grep -rin 'prompt' bash
+: 1353515480:0;vim ~/.bashrc
+: 1353515573:0;echo $SHELL
+: 1353515577:0;echo $ZSH
+: 1353515603:0;test $ZSH && echo 'something' || echo 'nothing'
+: 1353515609:0;test $FUCKCKKCZSH && echo 'something' || echo 'nothing'
+: 1353515623:0;[ $ZSH ] && true || false
+: 1353515625:0;$?
+: 1353515634:0;true; echo $?
+: 1353515638:0;false; echo $?
+: 1353515647:0;jobs
+: 1353515648:0;fg
+: 1353515658:0;ls
+: 1353515676:0;vim bash/home/bash
+: 1353515679:0;vim bash/home/bashrc.
+: 1353515682:0;vim bash/home/bashrc
+: 1353515690:0;ls -l ~/.bashrc
+: 1353515706:0;vim hashrocket/dotmatrix/.bashrc
+: 1353515806:0;exit
