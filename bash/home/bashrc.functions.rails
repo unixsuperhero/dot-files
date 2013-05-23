@@ -1,11 +1,33 @@
 
 rails_new () {
   _setup_git
+  _setup_rvmrc
   _setup_gems
   _setup_rspec
   _setup_user_table
   rake db:migrate
   git aa; gc -m 'migrating db tables'
+}
+
+_setup_rvmrc () {
+  cat <<"RVMRC" >.rvmrc
+#!/usr/bin/env bash
+
+export folder_name="$(basename $(pwd))"
+export environment_id="ruby-1.9.3-p125@${folder_name}"
+
+if [[ -d "${rvm_path:-$HOME/.rvm}/environments" \
+  && -s "${rvm_path:-$HOME/.rvm}/environments/$environment_id" ]] ; then
+  \. "${rvm_path:-$HOME/.rvm}/environments/$environment_id"
+else
+  rvm --create  "$environment_id"
+fi
+
+RVMRC
+  git add .
+  git commit -m 'added folder-agnostic rvmrc'
+  cd ..
+  cd -
 }
 
 _rails_g () {
@@ -31,38 +53,31 @@ _setup_user_table () {
 }
 
 _setup_gems () {
-  cat <<Gemfile >Gemfile
+  cat <<"Gemfile" >Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0'
-
-gem 'sqlite3'
-
-# Javascript
-gem 'zurb-foundation'
-gem 'jquery-rails'
-
-# Rails stuff
-gem 'hashrocket-rails'
+gem 'rails', '3.2.2'
+gem 'pg'
+gem 'mongo_mapper'
+gem 'bson_ext'
+gem 'decent_exposure'
+gem 'haml'
+gem 'haml-rails'
+gem 'jquery-rails', '>= 1.0.12'
+gem 'twitter-bootstrap-rails'
 gem 'devise'
-gem 'fabrication'
 
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier'
 end
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'faker'
+  gem 'fabrication', '0.9.5'
   gem 'rspec-rails'
-end
-
-group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'capybara'
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 Gemfile
   bundle

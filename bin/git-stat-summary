@@ -1,0 +1,4 @@
+#!/bin/bash
+cd $PWD
+git log $@ --format="! %cd %ae" --stat --date=short | egrep '!|changed' | ~/bin/git-stat-summary-ruby.rb
+#cat -n <(git log -10 --format="! %cd %ae" --stat --date=short | grep '!|changed') #| ruby ~/bin/git-stat-summary-ruby.rb

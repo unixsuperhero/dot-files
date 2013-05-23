@@ -10,7 +10,9 @@ source_file "$HOME/.bashrc.function"
 source_file "$HOME/.bashrc.alias"
 source_file "$HOME/.bashrc.battery"
 source_file "$HOME/.bashrc.export"
-#source_file "$HOME/.bashrc.ps1"
+if [[ $SHELL == "/bin/bash" ]]; then
+  source_file "$HOME/.bashrc.ps1"
+fi
 source_file "$HOME/.bashrc.saveology"
 source_file "$HOME/.bashrc.heroku"
 
@@ -35,29 +37,29 @@ alias :q="exit"
 
 export gems="$GEM_HOME/gems"
 
-## hcd command setup
-get_repos_in_repo_dir() {
-  cd $REPO_DIR
-  find $(pwd -L)/ -type d -depth 1 | sed 's@//*@/@g'
-}
-add_repo_to_env() {
-  [ -d "$1" ] && repos+="${1}" &&
-  [ -z "$2" ] && repos+=":"
-}
-
-repos=""
-for repo in $(get_repos_in_repo_dir) "$HOME/dot.jearsh"
-do add_repo_to_env "$repo"; done
-add_repo_to_env "$HOME/lists" 1
-export repos
-
-## bash completions
-function _gcd() {
-  cur=${COMP_WORDS[COMP_CWORD]}
-  for a in ${repos//:/ }; do wordlist+="$(basename $a) "; done
-  COMPREPLY=($(compgen -W "$wordlist" $cur))
-}
-complete -F _gcd gcd
+## ## hcd command setup
+## get_repos_in_repo_dir() {
+##   cd $REPO_DIR
+##   find $(pwd -L)/ -type d -depth 1 | sed 's@//*@/@g'
+## }
+## add_repo_to_env() {
+##   [ -d "$1" ] && repos+="${1}" &&
+##   [ -z "$2" ] && repos+=":"
+## }
+## 
+## repos=""
+## for repo in $(get_repos_in_repo_dir) "$HOME/dot.jearsh"
+## do add_repo_to_env "$repo"; done
+## add_repo_to_env "$HOME/lists" 1
+## export repos
+## 
+## ## bash completions
+## function _gcd() {
+##   cur=${COMP_WORDS[COMP_CWORD]}
+##   for a in ${repos//:/ }; do wordlist+="$(basename $a) "; done
+##   COMPREPLY=($(compgen -W "$wordlist" $cur))
+## }
+## complete -F _gcd gcd
 
 function _gs() {
   cur=${COMP_WORDS[COMP_CWORD]}
@@ -70,4 +72,30 @@ function _gco() {
   COMPREPLY=($(compgen -W "$(gb)" $cur))
 }
 complete -o default -F _gco gco
+export EDITOR=vim
 
+  export HEROKU_BINSTUB_PATH="/Users/jearsh/bin/app-binstubs"
+  export REMOTE_BINSTUB_PATH="./stubs"
+  export PATH="$HEROKU_BINSTUB_PATH:$REMOTE_BINSTUB_PATH:$PATH"
+
+  function stub_search_string() {
+    echo ".*$(echo "$1" | sed 's/./&.*/g')"
+  }
+  function search_stubs() {
+    ls -1 "$HEROKU_BINSTUB_PATH" | grep -i "$(stub_search_string $1)" | head -1
+  }
+  function bcd() {
+    cd $($(search_stubs $1))
+  }
+  export HEROKU_BINSTUB_PATH="/Users/jearsh/bin/app-binstubs"
+  export PATH="$HEROKU_BINSTUB_PATH:$PATH"
+
+  function stub_search_string() {
+    echo ".*$(echo "$1" | sed 's/./&.*/g')"
+  }
+  function search_stubs() {
+    ls -1 "$HEROKU_BINSTUB_PATH" | grep -i "$(stub_search_string $1)" | head -1
+  }
+  function bcd() {
+    cd $($(search_stubs $1))
+  }

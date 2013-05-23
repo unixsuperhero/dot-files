@@ -89,9 +89,9 @@
   }
 
   list_repos() {
-    for repo in ${repos//:/ }
+    for repo in $(echo $repos | column -s: -t)
     do
-      echo "$repo"
+      echo $repo
     done
   }
 
@@ -135,11 +135,11 @@
   stage () {
     app="$(app_name staging)"
     branch=$(current_branch)
-    gco -b "${branch}-staging"
+    git checkout -b "${branch}-staging"
     git pull --rebase staging master
-    gp staging "HEAD:master"
+    git push staging "HEAD:master"
     heroku rake db:migrate --app ${app}
-    gco "${branch}"
-    gb -D "${branch}-staging"
+    git checkout "${branch}"
+    git branch -D "${branch}-staging"
   }
 

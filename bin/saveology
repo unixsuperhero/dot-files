@@ -1,0 +1,66 @@
+#!/bin/zsh
+
+function goto_repo() {
+  [[ $(pwd) == "$REPO_DIR/slaveology/saveology" ]] && return 0
+  cd $REPO_DIR/slaveology/saveology
+  source .rvmrc
+}
+
+case $1 in
+  '')
+    cat <<NOTES
+      USAGE: saveology [-e <file>]
+
+      What should the default behavior be?
+        cd to ~/hashrocket/slaveology/saveology?
+NOTES
+
+    goto_repo
+  ;;
+
+  -e)
+    cd ~/lists
+    args=()
+    for i ({2..$#@}) args[$(( $i - 1 ))]="apps/saveology/$@[$i]"
+
+    echo "Make any missing directories"
+    for f ($args) mkdir -pv $(dirname $f)
+    vim -O $args
+  ;;
+
+  -edit | --edit) vim $0 ;;
+
+  console | con | c)
+    goto_repo
+
+    [[ $2 == 's' ]] && heroku run rails console -a save-stage && exit
+    [[ $2 == 'a' ]] && heroku run rails console -a save-admin && exit
+    [[ $2 == 'p' ]] && heroku run rails console -a save-prod && exit
+    script/rails console && exit
+  ;;
+
+  psql | pg | p)
+    goto_repo
+
+    [[ $2 == 's' ]] && heroku pg:psql -a save-stage && exit
+    [[ $2 == 'a' ]] && heroku pg:psql -a save-admin && exit
+    [[ $2 == 'p' ]] && heroku pg:psql -a save-prod && exit
+    psql saveology_development && exit
+  ;;
+
+  *)
+    cat <<NOTES
+    ERROR: UNKNOWN COMMAND
+    ERROR: UNKNOWN COMMAND
+
+      USAGE: saveology [-e <file>]
+
+      What should the default behavior be?
+        cd to ~/hashrocket/slaveology/saveology?
+
+    ERROR: UNKNOWN COMMAND
+    ERROR: UNKNOWN COMMAND
+NOTES
+  ;;
+
+esac

@@ -17,7 +17,15 @@ ff() {
 # Created At: 2012-06-14 11:25:00
 # Description:
 #    Find files with a series of letters in the given order, but not necessarily next to each other.
-find . -type f | grep -i "$(echo "$1" | sed 's/./&.*/g')"
+# find . -type f | grep -i "$(echo "$1" | sed 's/./&.*/g')"
+
+# Updated: 2013-01-24 09:38:19
+
+  git grep -l '' -- "*$(echo "$1" | sed 's/./&*/g')"
+}
+
+vff() {
+  vim $(ff $1)
 }
 
 eman() {

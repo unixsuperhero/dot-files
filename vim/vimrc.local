@@ -29,3 +29,12 @@ if filereadable(expand('~/.vimrc.josh'))
   source ~/.vimrc.josh
 endif
 
+"if executable('rrails')
+"  nmap ,p :!RAILS_ENV=test rrails rspec --format=progress %<cr>
+"  nmap ,f :!RAILS_ENV=test rrails rspec %<cr>
+"  nmap ,l :exec(':!RAILS_ENV=test rrails rspec %:' . line('.'))<cr>
+"else
+  nmap ,p :!rspec --format=progress %<cr>
+  nmap ,f :!rspec %<cr>
+  nmap ,l :exec("!rspec %:" . line("."))<cr>
+"endif

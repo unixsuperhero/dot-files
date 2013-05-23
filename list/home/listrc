@@ -5,6 +5,7 @@
 ##
 
 lists_dir="${HOME}/lists"
+saveology_lists_dir="${HOME}/saveology_lists"
 #lists_dir="/Volumes/jearsh/env/lists"
 
 dots_dir="/Volumes/Anshou/dot.jearsh"

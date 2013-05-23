@@ -1,0 +1,7 @@
+#!/bin/bash
+
+for a in $(git remote)
+do
+  echo Fetching $a ...
+  git fetch "$a"
+done

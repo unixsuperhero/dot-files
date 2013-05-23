@@ -1,5 +1,5 @@
 
-source '$HOME/.bashrc.functions.git'
+#source '$HOME/.bashrc.functions.git'
 source '$HOME/.bashrc.functions.rails'
 source '$HOME/.bashrc.functions.test_suite'
 # Functions

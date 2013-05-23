@@ -39,7 +39,7 @@ at_vs_star () {
 as_args () {
   echo '[ as args ]'
   cnt=$#
-  for((a=1;a<=$cnt;a++)); do
+  for (( a=1; a<=$cnt; a++ )) ; do
     echo "$a='$1'"
     shift
   done
@@ -53,14 +53,15 @@ hra ()
   redis-cli -h ${REDIS[0]} -p ${REDIS[1]} -a ${REDIS[2]} "$@"
 }
 
-staging() {
+alias gp="git push"
+deprecated_staging() {
   gp -f staging master
   heroku run rake db:migrate --app $(app_name staging)
   heroku restart --app $(app_name staging)
   open http://stage.saveology.com
 }
 
-admin(){
+deprecated_admin(){
   heroku pgbackups:capture --expire --app saveology-deals-production
   _admin
 }
@@ -94,7 +95,7 @@ remote_repo_for() {
   git remote -v | grep "$1" | head -1 | awk '{print $1}'
 }
 
-customer(){
+deprecated_customer(){
   local app="$(app_name production)"
   local remote="$(remote_repo_for $app)"
 
@@ -106,7 +107,7 @@ customer(){
   open http://www.saveology.com
 }
 
-alias production=customer
+alias deprecated_production=customer
 
 # annotate models, using the same methodology we already use, yield only necessary changes:
 alias annotate="bundle exec annotate -p after -e tests,fixtures"
