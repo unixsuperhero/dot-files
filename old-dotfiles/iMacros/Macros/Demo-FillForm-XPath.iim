@@ -1,0 +1,34 @@
+'Sample macro for selecting elements using XPath
+VERSION BUILD=00000 RECORDER=CR
+URL GOTO=http://www.iopus.com/imacros/demo/v6/f1/form.asp
+
+'The XPATH expression must identify single element
+'otherwise "RuntimeError: unambiguous XPath expression" is fired
+'Next command uses full path to indentify input element
+TAG XPATH="/html/body/table[2]/tbody/tr/td[1]/table/tbody/tr[3]/td/table/tbody/tr[2]/td/form/div/center/table/tbody/tr/td[3]/small/input[1]" CONTENT="Tom Tester"
+
+'While full path can be very lengthy id() function may help, see
+' http://www.w3.org/TR/xpath#corelib
+TAG XPATH="id('TestForm')/div/center/table/tbody/tr[2]/td[3]/select" CONTENT=$Pizza
+
+'XPath axis can also be used to shorten expression, see
+' http://www.w3.org/TR/xpath#axes
+TAG XPATH="id('TestForm')/descendant::select[2]" CONTENT=$Water
+'You can also use attrubutes value
+TAG XPATH="id('TestForm')/descendant::input[@name='C7']" CONTENT=YES
+TAG XPATH="id('TestForm')/descendant::select[@name='dessert']" CONTENT=$Apple<SP>Pie:$Fruits
+TAG XPATH="id('TestForm')/descendant::input[@value='Yes']" CONTENT=YES
+
+'Sometimse you might have a need for case-insesitive search
+'Here are some examples
+SET !ENCRYPTION NO
+'Search in lower case
+TAG XPATH="id('TestForm')/descendant::input[translate(@name, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')='reg_code']" CONTENT=demo123 
+'Search in upper case
+TAG XPATH="id('TestForm')/descendant::textarea[translate(@name, 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')='REMARKS']" CONTENT="Hi!\n\niMacros fills forms ;-)\n\nTom"
+
+'If you have only one submit button on a page
+'the expression can be very short and self-descriptive
+TAG XPATH="/descendant::input[@type='submit']"
+WAIT SECONDS=5
+URL GOTO=http://www.iopus.com/imacros/home/msg/ok.htm 

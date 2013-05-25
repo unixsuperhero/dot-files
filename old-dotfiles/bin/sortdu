@@ -1,0 +1,70 @@
+#!/bin/bash
+
+case $1 in
+  '') 
+  #cd "$HOME/bin"
+  #SORTDU="$(du -hs *)"
+  du -hs * | tee >(grep [0-9]G | sort -rn) >(grep [0-9]M | sort -rn) >(grep [0-9]K | sort -rn) >(grep [0-9]B | sort -rn) >/dev/null
+;;
+  '-edit') vim $0  ;;
+  *)
+  ARGS="$@"
+  cat -n <<HI
+  '$#' = $#
+  $ARGS
+HI
+  #SORTDU="$(du -hs "$@")"
+du -hs $@ | tee >(grep [0-9]G | sort -rn) >(grep [0-9]M | sort -rn) >(grep [0-9]K | sort -rn) >(grep [0-9]B | sort -rn) >/dev/null
+
+;;
+esac
+
+if [ -z $SORTDU ]
+then
+  echo "sortdu is empty "
+else
+  echo "sortdu is not empty "
+fi
+
+  #SORTDU="$(du -hs $THESTUFF)"
+
+  #echo "$SORTDU" | grep [0-9]G | sort -rn
+  #echo "$SORTDU" | grep [0-9]M | sort -rn
+  #echo "$SORTDU" | grep [0-9]K | sort -rn
+  #echo "$SORTDU" | grep [0-9]B | sort -rn
+
+
+cat <<FUCK >/dev/null
+
+du -hs * | tee >(grep [0-9]G | sort -rn) >(grep [0-9]M | sort -rn) >(grep [0-9]K | sort -rn) >(grep [0-9]B | sort -rn) >/dev/null
+
+cat <<DUHSC | tee >(grep [0-9]G | sort -rn) >(grep [0-9]M | sort -rn) >(grep [0-9]K | sort -rn) >(grep [0-9]B | sort -rn)
+4.0K    /Volumes/jearsh/TODO
+112K    /Volumes/jearsh/abcdir.txt
+ 60G    /Volumes/jearsh/backup
+531M    /Volumes/jearsh/buffer
+ 12K    /Volumes/jearsh/code
+5.2G    /Volumes/jearsh/dev
+ 30M    /Volumes/jearsh/drivers
+4.8G    /Volumes/jearsh/env
+109M    /Volumes/jearsh/files
+376M    /Volumes/jearsh/itunes.mcs.20091221.tar
+159G    /Volumes/jearsh/media
+9.6M    /Volumes/jearsh/photos
+ 48M    /Volumes/jearsh/records
+ 11G    /Volumes/jearsh/rsync
+ 12G    /Volumes/jearsh/software
+ 39G    /Volumes/jearsh/tmp
+4.5G    /Volumes/jearsh/work
+297G    total
+DUHSC
+
+du -hs /var/jearsh/{work,dev, | tee >(grep [0-9]B | sort -rn) >(grep [0-9]K | sort -rn) >(grep [0-9]M | sort -rn) >(grep [0-9]G | sort -rn) >/dev/null
+
+du -hs $HOME/work/* | tee >(grep [0-9]M | sort -rn) 1>/dev/null
+
+------------------------------------------------------
+------------------------------------------------------
+
+du -hs $HOME/work/* | tee >(grep [0-9]K | sort -rn) 1>/dev/null
+FUCK

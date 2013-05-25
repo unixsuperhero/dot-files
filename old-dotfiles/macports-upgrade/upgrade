@@ -1,0 +1,18 @@
+#!/bin/bash
+
+(
+  mpu="/Users/jearsh/macports-upgrade"
+  mkdir -pv $mpu
+  cd $mpu
+  sudo port list installed               | tee -a 2.001.list.installed.nonverbose.log
+  sudo port -v list installed            | tee -a 2.002.list.installed.verbose.log
+  sudo port -y selfupdate                | tee -a 2.003.dry.selfupdate.nonverbose.log
+  sudo port -yv selfupdate               | tee -a 2.004.dry.selfupdate.verbose.log
+  sudo port -v selfupdate                | tee -a 2.005.run.selfupdate.verbose.log
+  sudo port list outdated                | tee -a 2.006.list.outdated.nonverbose.log
+  sudo port -v list outdated             | tee -a 2.007.list.outdated.verbose.log
+  sudo port -y upgrade tor               | tee -a 2.008.dry.upgrade.tor.nonverbose.log
+  sudo port -yv upgrade tor              | tee -a 2.009.dry.upgrade.tor.verbose.log
+  sudo port -v upgrade tor               | tee -a 2.010.run.upgrade.tor.verbose.log
+) | tee -a 2.011.all.log
+

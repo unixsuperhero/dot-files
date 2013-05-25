@@ -1,0 +1,17 @@
+#!/bin/bash
+
+case $1 in
+  '')
+    echo
+    echo "USAGE: [-edit] SEARCH REPLACE"
+    echo
+    exit;;
+  '-edit')
+    vim $0
+    exit;;
+esac
+
+newps1="$(echo "$1" | sed "s/$2/$3/")"
+
+echo $newps1
+

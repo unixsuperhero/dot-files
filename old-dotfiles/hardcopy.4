@@ -1,0 +1,87 @@
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `transfer_type_id` int(11) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `amount` float(11,3) DEFAULT NULL,
+  `balance` float(11,3) DEFAULT NULL,
+  `pending` int(1) DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `updated_on` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `public_transfer_ibfk_1` (`user_id`),
+  KEY `public_transfer_ibfk_2` (`transfer_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=34085 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `public_transaction`
+--
+
+LOCK TABLES `public_transaction` WRITE;
+/*!40000 ALTER TABLE `public_transaction` DISABLE KEYS */;
+INSERT INTO `public_transaction` VALUES (1,15,1,'Monthly Earnings',1,0.026,0.026,0,'2008-08-01 00:00:00','2008-08-01 00:00:00'),(2,30,1,'Monthly Earnings',1,0.271,0.271,0,'2008-08-01 00:00:00','2008-08-01 00:00:00'),(3,31,1,'Monthly Earnings',1,0.769,0.769,0,'2008-08-
+INSERT INTO `public_transaction` VALUES (13307,3479,1,'Monthly Earnings',1,0.068,5.009,0,'2009-11-01 00:00:00',NULL),(13308,3486,1,'Monthly Earnings',1,0.071,0.829,0,'2009-11-01 00:00:00',NULL),(13309,3487,1,'Monthly Earnings',1,0.355,21.060,0,'2009-11-01 00:00:00',NU
+INSERT INTO `public_transaction` VALUES (29293,7066,1,'Monthly Earnings',1,0.001,0.011,0,'2010-03-01 00:00:00',NULL),(29294,7069,1,'Monthly Earnings',1,0.003,0.007,0,'2010-03-01 00:00:00',NULL),(29295,7070,1,'Monthly Earnings',1,0.001,0.007,0,'2010-03-01 00:00:00',NUL
+/*!40000 ALTER TABLE `public_transaction` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2010-04-21 23:56:39
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+public_transaction.0.20100421.sql                                                                                                                                                                                                                         49,1           All
+
+rampage@titan (screen): ~
+$> jobs
+
+rampage@titan (screen): ~
+$> scp public_transaction.0.20100421.sql jearsh@jearsh.com:rg/backups/sql/
+Password:
+public_transaction.0.20100421.sql                                                                                                                                                                                                         100% 2390KB   1.2MB/s   00:02
+
+rampage@titan (screen): ~
+$> jobs
+
+rampage@titan (screen): ~
+$> rgdb
+Enter password:
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 391901
+Server version: 5.1.36-log Source distribution
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+

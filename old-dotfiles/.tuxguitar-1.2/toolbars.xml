@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<toolbars>
+<toolbar enabled="true" name="file.items"/>
+<toolbar enabled="true" name="edit.items"/>
+<toolbar enabled="true" name="property.items"/>
+<toolbar enabled="true" name="track.items"/>
+<toolbar enabled="true" name="duration.items"/>
+<toolbar enabled="true" name="beat.items"/>
+<toolbar enabled="true" name="composition.items"/>
+<toolbar enabled="true" name="transport.items"/>
+<toolbar enabled="true" name="marker.items"/>
+<toolbar enabled="true" name="layout.items"/>
+<toolbar enabled="true" name="view.items"/>
+<toolbar enabled="true" name="effect.items"/>
+<toolbar enabled="true" name="dynamic.items"/>
+</toolbars>

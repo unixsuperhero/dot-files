@@ -1,0 +1,44 @@
+--->  Computing dependencies for libevent.
+For libevent: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate libevent @1.4.13_0 (dry run)
+Skipping activate libevent @1.4.14b_0 (dry run)
+--->  Computing dependencies for zlib.
+For zlib: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate zlib @1.2.3_4 (dry run)
+Skipping activate zlib @1.2.5_0 (dry run)
+--->  Computing dependencies for openssl.
+For openssl: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate openssl @0.9.8l_0 (dry run)
+Skipping activate openssl @1.0.0a_1 (dry run)
+--->  Computing dependencies for tor.
+For tor: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate tor @0.2.1.21_0 (dry run)
+Skipping activate tor @0.2.1.26_0 (dry run)

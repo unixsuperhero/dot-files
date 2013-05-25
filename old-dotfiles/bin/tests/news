@@ -1,0 +1,46 @@
+#!/usr/bin/python
+
+import MySQLdb
+import urllib2
+from xml.dom import minidom
+
+def update_feeds():
+	mysql = MySQLdb.connect (host = "localhost", user = "root", passwd = "", db = "rss")
+	db = mysql.cursor()
+	db.execute("SELECT * FROM subscription")
+	row = db.fetchone()
+	print "subscription id = ", row[0]
+	db.close()
+	mysql.close()
+
+subscriptions = [
+		['AbsolutePunk', 'http://www.absolutepunk.net/external.php?type=rss2&forumids=165'],
+		['Command Line Fu', 'http://feeds2.feedburner.com/Command-line-fu'],
+		['Digg News', 'http://digg.com/rss/indexnews.xml'],
+		['Forgive Durden', 'http://www.forgivedurden.com/blog/feed/'],
+		['Guitar Music Theory Lessons', 'http://recordings.talkshoe.com/rss37557.xml'],
+		['Torrentz - Music', 'http://torrentz.com/feed_music'],
+		['Parsed - Computer Tips', 'http://parsed.org/rss.xml'],
+		['Reddit Programming', 'http://programming.reddit.com/.rss'],
+		['Shell Fu','http://feeds.feedburner.com/Shell-fu'],
+		['Slashdot','http://rss.slashdot.org/Slashdot/slashdot'],
+		['Unclutterer','http://feeds.feedburner.com/unclutterer'],
+		['xkcd','http://www.xkcd.com/rss.xml'],
+		['Zen Habits','http://feeds.feedburner.com/zenhabits']
+		]
+
+mysql = MySQLdb.connect(host="localhost",user="root",passwd="",db="rss")
+db = mysql.cursor()
+
+#for feed in subscriptions:
+#	result = db.execute("INSERT INTO subscription (title, link, created_on, updated_on) VALUES ('" + feed[0] + "', '" + feed[1] + "', NOW(), NOW())")
+
+result = db.execute("SELECT * FROM subscription")
+
+row = db.fetchone()
+while row:
+	print row
+	row = db.fetchone()
+
+db.close()
+mysql.close()

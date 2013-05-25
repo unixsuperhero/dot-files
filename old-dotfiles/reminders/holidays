@@ -1,0 +1,10 @@
+REM January 1 +5 MSG New Year's Day %b.%
+
+REM February 14 +14 MSG Valentine's Day %b.%
+
+REM March 17 MSG St. Patrick's Day %b.%
+
+REM Thursday 22 November MSG Thanksgiving %b.%
+
+REM December 25 +60 MSG Christmas %b.%
+REM December 31 +5 MSG New Years Eve %b.%

@@ -1,0 +1,46 @@
+
+defscrollback 20000
+logfile $HOME/Screenlogs/screenlog.%n.%Y%m%d
+#chdir [directory]
+
+#--- Syntax items ---
+#screenEscape   xxx match /\\./  
+#									 links to Special
+#screenTodo     xxx contained NOTE XXX FIXME TODO
+#									 links to Todo
+#screenComment  xxx start=/#/ end=/$/  display oneline contains=screenTodo,@Spell 
+#									 links to Comment
+#screenVariable xxx match /$\(\h\w*\|{\h\w*}\)/  display contained 
+#									 links to Identifier
+#screenCommands xxx
+#										pastefont         colon             defmonitor        aclgrp            defhstatus        addacl            
+#										hardstatus        hardstatus        copy_reg          multiuser         ignorecase        verbose           
+#										writelock         compacthist       partial_state     autonuke          info              echo              
+#										mapnotnext        number            escape            defobuflimit      removebuf         screen            
+#										redisplay         copy              resize            bce               displays          msgwait           
+#										defmode           defencoding       kill              chacl             kanji             monitor           
+#										hstatus           aclchg            msgminwait        command           digraph           vbell             
+#										dumptermcap       vbell_msg         setsid            caption           encoding          umask             
+#										startup_message   bufferfile        defzombie         obuflimit         setenv            defwrap           
+#										deflogin          defcharset        defflow           stuff             wall              bell_msg          
+#										altscreen         readreg           xoff              nethack           quit              defutf8           
+#										split             logfile           register          paste             vbellwait         meta              
+#										focus             sessionname       hardcopydir       defgr             logtstamp         charset           
+#										scrollback        pow_detach_msg    termcapinfo       su                defslowpaste      activity          
+#										remove            defkanji          xon               version           reset             readbuf           
+#										autodetach        width             unsetenv          exec              pow_detach        process           
+#										debug             wrap              lastmsg           fit               crlf              flow              
+#										mapdefault        silencewait       sleep             only              markkeys          dinfo             
+#										gr                defbreaktype      slowpaste         utf8              license           clear             
+#										maxwin            deflog            chdir             maptimeout        eval              shell             
+#										at                suspend           source            height            lockscreen        hardcopy          
+#										title             termcap           terminfo          partial           other             allpartial        
+#										defsilence        term              pow_break         detach            writebuf          breaktype         
+#										zombie            c1                time              history           defbce            shelltitle        
+#										ins_reg           sorendition       acldel            help              acladd            bindkey           
+#										break             password          console           defwritelock      defshell          prev              
+#										silence           log               hardcopy_append   aclumask          copy_regcrlf      defc1             
+#										attrcolor         printcmd          nonblock          next              select            bind              
+#										login             login             windows           defescape         defautonuke       windowlist        
+#										defscrollback                                                                                               
+#									 links to Keyword

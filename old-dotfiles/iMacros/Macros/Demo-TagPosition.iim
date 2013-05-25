@@ -1,0 +1,15 @@
+﻿VERSION BUILD=300002      
+TAB T=1     
+TAB CLOSEALLOTHERS  
+URL GOTO=http://www.iopus.com/imacros/demo/v6/pos/index.htm     
+'
+'All links have the same name, so we use the POS= parameter to distinguish
+'between the 1st, 2nd and 3rd link.
+'
+'Note: In this specific example, we could have used the "URL Click Mode"
+'instead of "Link Name Click Mode" as workaround, but this is not always possible
+'(e. g. when the URL changes dynamically)
+'
+TAG POS={{!LOOP}} TYPE=A ATTR=TXT:Click<SP>to<SP>open<SP>this<SP>page   
+WAIT SECONDS=1
+BACK  

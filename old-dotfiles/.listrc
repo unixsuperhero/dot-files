@@ -1,0 +1,12 @@
+
+##
+##  Config file for:
+##
+##    ~/bin/lists
+##
+
+#lists_dir="${HOME}/lists"
+lists_dir="/Volumes/Library/env/lists"
+debug=0
+
+

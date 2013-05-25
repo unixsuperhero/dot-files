@@ -1,0 +1,8 @@
+--->  Updating the ports tree
+--->  Updating MacPorts base sources using rsync
+MacPorts base version 1.8.2 installed,
+MacPorts base version 1.9.1 downloaded.
+--->  MacPorts base is outdated, selfupdate would install 1.9.1 (dry run)
+
+The ports tree has been updated. To upgrade your installed ports, you should run
+  port upgrade outdated

@@ -1,0 +1,141 @@
+[Thu Feb 25 17:28:04 2010]: LoginDialog: login setupGui 1
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'NX_HOME' to '/Users/jearsh'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'NX_ROOT' to '/Users/jearsh/.nx'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'NX_SYSTEM' to '/usr/NX'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'NX_CLIENT' to '/Applications/NX Client for OSX.app/Contents/MacOS/nxclient'
+[Thu Feb 25 17:28:04 2010]: Trying the XAUTHORITY environment variable with value [/Users/jearsh/.Xauthority].
+[Thu Feb 25 17:28:04 2010]: Utility::getXAuthorityFilePath: /Users/jearsh/.Xauthority
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'XAUTHORITY' to '/Users/jearsh/.Xauthority'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'LD_LIBRARY_PATH' to '/usr/NX/lib'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'HOME' to '/Users/jearsh'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'PATH' to '/usr/bin:/bin:/usr/sbin:/sbin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'NX_TEMP' to '/tmp'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'TEMP' to '/tmp'
+[Thu Feb 25 17:28:04 2010]: Setting environment variable 'NX_VERSION' to '3.4.0'
+[Thu Feb 25 17:28:05 2010]: Trying to write the ssh key into [/Users/jearsh/.nx/temp/13826/keylog]
+[Thu Feb 25 17:28:05 2010]: SSH key file path [/Users/jearsh/.nx/temp/13826/keylog]
+[Thu Feb 25 17:28:05 2010]: Removing the prevous NXProtocolSSH class
+[Thu Feb 25 17:28:05 2010]: Called destructor for protocol class
+[Thu Feb 25 17:28:05 2010]: Running nxssh protocol with version [3.4.0]
+[Thu Feb 25 17:28:05 2010]: LoginDialog: startProgressTimer
+[Thu Feb 25 17:28:05 2010]: LoginDialog::ShowConnectionStatus code=[240] str=[Setting up the environment] error=[0]
+[Thu Feb 25 17:28:05 2010]: ProgressDialog::printNxStatus: [Setting up the environment]
+[Thu Feb 25 17:28:05 2010]: LoginDialog: startProgressTimer
+[Thu Feb 25 17:28:05 2010]: Showing progress dialog: Setting up the environment
+[Thu Feb 25 17:28:05 2010]: Starting the Mac X server from the login dialog.
+[Thu Feb 25 17:28:05 2010]: Starting the X server on MacOS/X.
+[Thu Feb 25 17:28:05 2010]: Launchd service detected on socket '/tmp/launch-EleHYy/:0'.
+[Thu Feb 25 17:28:05 2010]: Skipping the X server starting.
+[Thu Feb 25 17:28:05 2010]: LoginDialog::ShowConnectionStatus code=[241] str=[Connecting to files.redgage.com] error=[0]
+[Thu Feb 25 17:28:05 2010]: ProgressDialog::printNxStatus: [Connecting to files.redgage.com]
+[Thu Feb 25 17:28:05 2010]: LoginDialog::connectHost() nxsshline=/usr/NX/bin/nxssh -nx -p 22 -i /Users/jearsh/.nx/temp/13826/keylog nx@files.redgage.com -x -2 -4 -o RhostsAuthentication no -o PasswordAuthentication no -o RSAAuthentication no -o RhostsRSAAuthentication no -o PubkeyAuthentication yes -B -E
+[Thu Feb 25 17:28:05 2010]: Using NX_STDIN flag redirection for [nxssh] process
+[Thu Feb 25 17:28:05 2010]: Using NX_STDOUT flag redirection for [nxssh] process
+[Thu Feb 25 17:28:05 2010]: Using NX_STDERR flag redirection for [nxssh] process
+[Thu Feb 25 17:28:05 2010]: SpawnProcess method has returned [1]
+[Thu Feb 25 17:28:05 2010]: Process [nxssh] running with pid [13828]
+[Thu Feb 25 17:28:06 2010]: Received line from nxssh process [NX> 203 NXSSH running with pid: 13828] with code [203]
+[Thu Feb 25 17:28:06 2010]: Received code[203]
+[Thu Feb 25 17:28:06 2010]: NXProtocol: trying to read ssh pid from '13828' - read '13828'
+[Thu Feb 25 17:28:06 2010]: Received line from nxssh process [NX> 285 Enabling check on switch command] with code [285]
+[Thu Feb 25 17:28:06 2010]: Received code[285]
+[Thu Feb 25 17:28:06 2010]: Received line from nxssh process [NX> 285 Enabling skip of SSH config files] with code [285]
+[Thu Feb 25 17:28:06 2010]: Received code[285]
+[Thu Feb 25 17:28:06 2010]: Received line from nxssh process [NX> 285 Setting the preferred NX options] with code [285]
+[Thu Feb 25 17:28:06 2010]: Received code[285]
+[Thu Feb 25 17:28:06 2010]: Received line from nxssh process [NX> 200 Connected to address: 174.129.228.243 on port: 22] with code [200]
+[Thu Feb 25 17:28:06 2010]: Received code[200]
+[Thu Feb 25 17:28:06 2010]: Received line from nxssh process [NX> 202 Authenticating user: nx] with code [202]
+[Thu Feb 25 17:28:06 2010]: Received code[202]
+[Thu Feb 25 17:28:06 2010]: LoginDialog::ShowConnectionStatus code=[242] str=[Connected to files.redgage.com] error=[0]
+[Thu Feb 25 17:28:06 2010]: ProgressDialog::printNxStatus: [Connected to files.redgage.com]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [****USAGE WARNING****] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [This is a private computer system. This computer system, including all] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [related equipment, networks, and network devices (specifically including] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [Internet access) are provided only for authorized use. This computer system] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [may be monitored for all lawful purposes, including to ensure that its use] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [is authorized, for management of the system, to facilitate protection against] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [unauthorized access, and to verify security procedures, survivability, and] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [operational security. Monitoring includes active attacks by authorized entities] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [to test or verify the security of this system. During monitoring, information] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [may be examined, recorded, copied and used for authorized purposes. All] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [information, including personal information, placed or sent over this system] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [may be monitored.] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [Use of this computer system, authorized or unauthorized, constitutes consent] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [to monitoring of this system. Unauthorized use may subject you to criminal] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [prosecution. Evidence of unauthorized use collected during monitoring may be] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [used for administrative, criminal, or other adverse action. Use of this system] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [constitutes consent to monitoring for these purposes.] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [] with code [-1]
+[Thu Feb 25 17:28:07 2010]: Received code[-1]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [NX> 208 Using auth method: publickey] with code [208]
+[Thu Feb 25 17:28:07 2010]: Received code[208]
+[Thu Feb 25 17:28:07 2010]: Received line from nxssh process [NX> 204 Authentication failed.] with code [201]
+[Thu Feb 25 17:28:07 2010]: Received code[201]
+[Thu Feb 25 17:28:07 2010]: Error is [The NX service is not available or the NX access was
+disabled on host files.redgage.com.]
+[Thu Feb 25 17:28:07 2010]: messageError: [The NX service is not available or the NX access was
+disabled on host files.redgage.com.]
+[Thu Feb 25 17:28:07 2010]: printFatalError [The NX service is not available or the NX access was
+disabled on host files.redgage.com.]
+[Thu Feb 25 17:28:07 2010]: KillAllComponents 0xc72c70
+[Thu Feb 25 17:28:07 2010]: LoginDialog: stopAllTimers
+[Thu Feb 25 17:28:07 2010]: LoginDialog: stopProgressTimer
+[Thu Feb 25 17:28:07 2010]: LoginDialog::killAllComponents() stopping NXProtoSSH
+[Thu Feb 25 17:28:07 2010]: StopConnection called
+[Thu Feb 25 17:28:07 2010]: nxssh closing
+[Thu Feb 25 17:28:07 2010]: StopConnection called
+[Thu Feb 25 17:28:07 2010]: NXProcessUnix::StopProcess process [nxssh] with pid [13828]
+[Thu Feb 25 17:28:07 2010]: end of killAllComponents
+[Thu Feb 25 17:28:07 2010]: LoginDialog::ShowConnectionStatus code=[268] str=[The NX service is not available or the NX access was
+disabled on host files.redgage.com.] error=[1]
+[Thu Feb 25 17:28:07 2010]: ProgressDialog::printNxStatus: [The NX service is not available or the NX access was
+disabled on host files.redgage.com.]
+[Thu Feb 25 17:28:07 2010]: Logfile path [/Users/jearsh/.nx/temp/13826/sshlog] exists.
+[Thu Feb 25 17:28:07 2010]: StopConnection called
+[Thu Feb 25 17:28:07 2010]: nxssh closing
+[Thu Feb 25 17:28:07 2010]: StopConnection called
+[Thu Feb 25 17:28:08 2010]: LoginDialog::ShowConnectionStatus code=[251] str=[Disconnecting...] error=[0]
+[Thu Feb 25 17:28:08 2010]: ProgressDialog::printNxStatus: [Disconnecting...]
+[Thu Feb 25 17:28:08 2010]: KillAllComponents 0xc72c70
+[Thu Feb 25 17:28:08 2010]: LoginDialog: stopAllTimers
+[Thu Feb 25 17:28:08 2010]: LoginDialog: stopProgressTimer
+[Thu Feb 25 17:28:08 2010]: LoginDialog::killAllComponents() stopping NXProtoSSH
+[Thu Feb 25 17:28:08 2010]: StopConnection called
+[Thu Feb 25 17:28:08 2010]: nxssh closing
+[Thu Feb 25 17:28:08 2010]: StopConnection called
+[Thu Feb 25 17:28:08 2010]: NXProcessUnix::StopProcess process [nxssh] with pid [13828]
+[Thu Feb 25 17:28:08 2010]: end of killAllComponents
+[Thu Feb 25 17:28:10 2010]: LoginDialog: closeEvent received!
+[Thu Feb 25 17:28:10 2010]: LoginDialog::destructor called begin
+[Thu Feb 25 17:28:10 2010]: LoginDialog: stopAllTimers
+[Thu Feb 25 17:28:10 2010]: LoginDialog: stopProgressTimer
+[Thu Feb 25 17:28:10 2010]: Utility::getPreferencesFile: 'nxclient' -> '/Users/jearsh/.nx/config/nxclient.cfg'
+[Thu Feb 25 17:28:10 2010]: Settings::flush
+[Thu Feb 25 17:28:10 2010]: Called destructor for protocol class
+[Thu Feb 25 17:28:10 2010]: LoginDialog::destructor called end

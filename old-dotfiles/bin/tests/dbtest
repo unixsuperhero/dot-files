@@ -1,0 +1,15 @@
+#!/usr/bin/python
+
+import MySQLdb
+
+mysql = MySQLdb.connect(host="localhost", user="root", passwd="", db="rss")
+base = mysql.cursor()
+
+result = base.execute("select * from subscription")
+row = base.fetchone()
+while row:
+	print row
+	row = base.fetchone()
+
+base.close()
+mysql.close()

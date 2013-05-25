@@ -1,0 +1,15 @@
+#!/bin/bash
+
+function runbackup () {
+bookmarkpath="/Users/jearsh/Library/Application Support/Firefox/Profiles/359ghcms.default/bookmarkbackups"
+grep -o 'uri":"[^"]*"' "$bookmarkpath/$(ls -1tr "$bookmarkpath" | tail -1)" | grep -o 'http://[^"]*'
+}
+
+#runbackup >>/Users/jearsh/lists/wiki/bookmarks
+bkupdate=`date +%Y%m%d`
+cd /Users/jearsh/lists/wiki
+cp bookmarks "bookmarks.$bkupdate."$RANDOM
+runbackup | cat - bookmarks | sort -u >bookmarks.tmp
+cat bookmarks.tmp >bookmarks
+
+

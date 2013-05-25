@@ -1,0 +1,16 @@
+fset age(birthyear) year(today()) - birthyear
+
+REM January 28 +28 			MSG BIRTHDAY: Bonnie turns [age(1992)] %b.%
+
+REM May 10 +28 					MSG BIRTHDAY: Jonathan turns [age(1984)] %b.%
+
+REM June 16 +28 				MSG BIRTHDAY: Mikey turns [age(1986)] %b.%
+
+REM September 19 +28 		MSG BIRTHDAY: Eric turns [age(1988)] %b.%
+
+REM November 18 +28 		MSG BIRTHDAY: Mom turns [age(1959)] %b.%
+REM November 27 +28 		MSG BIRTHDAY: Onee-chan turns [age(1982)] %b.%
+
+REM December 6 +28 			MSG BIRTHDAY: Laura turns [age(1986)] %b.%
+REM December 9 +28 			MSG BIRTHDAY: Jade turns [age(1999)] %b.%
+REM December 24 +28 		MSG BIRTHDAY: Amy turns [age(1985)] %b.%

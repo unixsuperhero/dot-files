@@ -1,0 +1,101 @@
+From jearsh@mini.localhost  Thu Mar 18 00:00:10 2010
+Return-Path: <jearsh@mini.localhost>
+X-Original-To: jearsh
+Delivered-To: jearsh@mini.localhost
+Received: by mini.localhost (Postfix, from userid 501)
+	id 8C4643D5A32; Thu, 18 Mar 2010 00:00:10 -0400 (EDT)
+From: jearsh@mini.localhost (Cron Daemon)
+To: jearsh@mini.localhost
+Subject: Cron <jearsh@mini> /Users/jearsh/bin/mini-backup all
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/Users/jearsh>
+X-Cron-Env: <PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/jearsh/bin:/sw/bin:/opt/local/man>
+X-Cron-Env: <LOGNAME=jearsh>
+X-Cron-Env: <USER=jearsh>
+Message-Id: <20100318040010.8C4643D5A32@mini.localhost>
+Date: Thu, 18 Mar 2010 00:00:01 -0400 (EDT)
+Status: RO
+
+Backing up the directory: /Users/jearsh/lists/ ... Done.
+
+Backing up the directory: /Users/jearsh/bin/ ... Done.
+Removing empty directory: /var/jearsh/rsync/bin/20100318000001
+
+Backing up the directory: /var/www/ ... Done.
+Removing empty directory: /var/jearsh/rsync/www/20100318000001
+
+Backing up the directory: /etc/ ... Done.
+Removing empty directory: /var/jearsh/rsync/etc/20100318000001
+
+Backing up the directory: /Users/jearsh/ ... Done.
+
+Backing up the directory: /Users/jearsh/reminders/ ... Done.
+Removing empty directory: /var/jearsh/rsync/reminders/20100318000001
+
+
+From jearsh@c-65-34-228-23.hsd1.fl.comcast.net  Fri Oct 22 22:20:01 2010
+Return-Path: <jearsh@c-65-34-228-23.hsd1.fl.comcast.net>
+X-Original-To: jearsh
+Delivered-To: jearsh@c-65-34-228-23.hsd1.fl.comcast.net
+Received: by c-65-34-228-23.hsd1.fl.comcast.net (Postfix, from userid 501)
+	id 7127184263B; Fri, 22 Oct 2010 22:20:01 -0400 (EDT)
+From: jearsh@c-65-34-228-23.hsd1.fl.comcast.net (Cron Daemon)
+To: jearsh@c-65-34-228-23.hsd1.fl.comcast.net
+Subject: Cron <jearsh@c-65-34-228-23> /Users/jearsh/bin/whatismyip | ssh sakura "cat - >mini.ip.txt"
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/Users/jearsh>
+X-Cron-Env: <PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/jearsh/bin:/sw/bin:/opt/local/man>
+X-Cron-Env: <LOGNAME=jearsh>
+X-Cron-Env: <USER=jearsh>
+Message-Id: <20101023022001.7127184263B@c-65-34-228-23.hsd1.fl.comcast.net>
+Date: Fri, 22 Oct 2010 22:20:01 -0400 (EDT)
+Status: RO
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0    13    0    13    0     0     17      0 --:--:-- --:--:-- --:--:--    29  0    13    0    13    0     0     16      0 --:--:-- --:--:-- --:--:--    28
+
+From jearsh@c-65-34-228-23.hsd1.fl.comcast.net  Sun Oct 31 01:30:01 2010
+Return-Path: <jearsh@c-65-34-228-23.hsd1.fl.comcast.net>
+X-Original-To: jearsh
+Delivered-To: jearsh@c-65-34-228-23.hsd1.fl.comcast.net
+Received: by c-65-34-228-23.hsd1.fl.comcast.net (Postfix, from userid 501)
+	id DAD718B160E; Sun, 31 Oct 2010 01:30:01 -0400 (EDT)
+From: jearsh@c-65-34-228-23.hsd1.fl.comcast.net (Cron Daemon)
+To: jearsh@c-65-34-228-23.hsd1.fl.comcast.net
+Subject: Cron <jearsh@c-65-34-228-23> /Users/jearsh/bin/whatismyip | ssh sakura "cat - >mini.ip.txt"
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/Users/jearsh>
+X-Cron-Env: <PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/jearsh/bin:/sw/bin:/opt/local/man>
+X-Cron-Env: <LOGNAME=jearsh>
+X-Cron-Env: <USER=jearsh>
+Message-Id: <20101031053001.DAD718B160E@c-65-34-228-23.hsd1.fl.comcast.net>
+Date: Sun, 31 Oct 2010 01:30:01 -0400 (EDT)
+Status: RO
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0    13    0    13    0     0     21      0 --:--:-- --:--:-- --:--:--    22  0    13    0    13    0     0     21      0 --:--:-- --:--:-- --:--:--    22
+
+From jearsh@c-65-34-228-23.hsd1.fl.comcast.net  Sun Oct 31 01:30:01 2010
+Return-Path: <jearsh@c-65-34-228-23.hsd1.fl.comcast.net>
+X-Original-To: jearsh
+Delivered-To: jearsh@c-65-34-228-23.hsd1.fl.comcast.net
+Received: by c-65-34-228-23.hsd1.fl.comcast.net (Postfix, from userid 501)
+	id DDA348B160F; Sun, 31 Oct 2010 01:30:01 -0400 (EDT)
+From: jearsh@c-65-34-228-23.hsd1.fl.comcast.net (Cron Daemon)
+To: jearsh@c-65-34-228-23.hsd1.fl.comcast.net
+Subject: Cron <jearsh@c-65-34-228-23> /Users/jearsh/bin/whatismyip | ssh sakura "cat - >/var/www/myip"
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/Users/jearsh>
+X-Cron-Env: <PATH=/opt/local/bin:/opt/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/jearsh/bin:/sw/bin:/opt/local/man>
+X-Cron-Env: <LOGNAME=jearsh>
+X-Cron-Env: <USER=jearsh>
+Message-Id: <20101031053001.DDA348B160F@c-65-34-228-23.hsd1.fl.comcast.net>
+Date: Sun, 31 Oct 2010 01:30:01 -0400 (EDT)
+Status: RO
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0    13    0    13    0     0     18      0 --:--:-- --:--:-- --:--:--    19  0    13    0    13    0     0     18      0 --:--:-- --:--:-- --:--:--    19
+

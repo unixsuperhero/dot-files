@@ -1,0 +1,46 @@
+<!DOCTYPE NXClientLibSettings>
+<NXClientLibSettings>
+<option key="Connection Name" value="rgfiles"></option>
+<option key="Server Hostname" value="files.redgage.com"></option>
+<option key="Server Port" value="22"></option>
+<option key="Session Type" value=""></option>
+<option key="Custom Session Command" value=""></option>
+<option key="Disk Cache" value="8"></option>
+<option key="Image Cache" value="32"></option>
+<option key="Link Type" value="adsl"></option>
+<option key="Use Render Extension" value="True"></option>
+<option key="Image Compression Method" value="PNG"></option>
+<option key="JPEG Compression Level" value="0"></option>
+<option key="Desktop Geometry" value="640x480+0+0"></option>
+<option key="Keyboard Layout" value="defkeymap"></option>
+<option key="Keyboard Type" value="pc102/defkeymap"></option>
+<option key="Media" value="False"></option>
+<option key="Agent Server" value=""></option>
+<option key="Agent User" value=""></option>
+<option key="CUPS Port" value="1114166"></option>
+<option key="Authentication Key" value="-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAgrc4olPAreuFkRshKx7FcTxBj2v9aMsV1LrFrQGA3Vm1BCxF9sKyv8PjffXO
+ZF5LaR9TYu29WHDwDtJKy4hDV9XH9+vu7wB4IfuNoCgjhov7XZsqV9VmAP9yabGDQKf2BVs0mwrx
+y1HqiqMkX+0Cw5uLiI/cTmg+FpTLStdFMciO+NR6WsYoJa00qm6Of2m7/TktQNH7A9MUy7qQdgJm
+1hXr4MH2o3nfQ4iXnSfECYtK/csw0vXAEtCeEP/7Ut7qRi5oO3Q8P/FCJZ6Lr1NUewtko5p5K92m
+uqq5pKUxB/ifHmiDcq5pXc2XdaDLMlpkBVP3AyK8Io6qyMnLDX02IQIDAQABAoIBAGgNg7asJuAL
+cMp+pxuVJiSqi6GonBN0Pk+V0c+TN8p8I31L5PG2MOY3//p/1ijNawgmWJGSoDwrwtx5h/KW6Myd
+r83p8MwuOnMKtMV9zjHHcnQkFUPP6p/2uFPsa4fnbA79eFXHE4z/C04K6eS2XZHqWtt9cSi1EF+X
+WHCeBkXGtqv16qPIrAj8k6GYsNLQeLYD0RH4KCcOROOy6q+cUu8cft5bxEBa/XqyQe/Ud1e5Nsf5
+wAyYZQXVDby8BtYk3idyxtkTB/QquNXbXyiJ4OlGGuBDGi9FeRYCNmGzWCZo6qQ4KqLm3M4cMmLY
+tuUXOXaVCt7IkBzxi+FokfKbrqUCgYEAvQoOq9+9xZfLGaIHO5xMResJOLGmlROJecXlDn5bf05L
+6IBLN6Mu5e4f4w41ZLg7uzo2Q7q8qjwdTUrz/Pa18yyDXtE8Z4PYKp6UgHOrnDpcIGDP+Q/lJPhY
+Suy6NtoQXq3C2glLbUkvNCbpr6gqZs2pYtWd5K/Y/7D/hK57slcCgYEAsQRsyc46CAJy9gR7MhIa
+s2mk/WrsoqsPgqTy2HP0U5BKguitfzFyRqWgi5piIF43/XtHCkLKR4CrFV50H/4ch3OkAiDpPQAe
+CIsOoci/6OBtIy9fpT/eOPgh0hBNMHQQapOuF8mRn5xZkWKc+TXh5PUiC6mPJugfym9bCxKPQEcC
+gYA6i8fZcTTr4kQTjzvgOVrh+JXliheGagOUxDZZk8awmcYmnr0s4QwgR+x2PKtKo0hUhwXRWh8e
+Nfn5OzJvcNUPGAUjs3eas5maMXzaf3hxrR1lJbajc0nLdmKZ6dEONeEGAZisQF6s3RKSe066iUGA
+j0dbhb8d2VxCbEXmiMdkhwKBgBLf8emiv7VS7Ycl+yzfmVFAFoOe/xRpQQIhLHPACXFPlWJYBQfm
+8dRunKvGDmh9I2M33d9ON9tf8N4acC9pHQmkXvyLHdOPS6SFj03Y5f2i0IBL8Nrh8IQKkTCg5Foi
+Rg3XKV0H9SsbtME3zp0UDb4oFTVBIy522czwCrknhXbJAoGAG62SJL9Rx17uXL3dMu8cSisOQ2tz
+asXdgrhc7wppD+D8vLh/xGftaPb3Tv35WN5WcBy6pqABgVlYRnt6cCgJkBwRkLuKEN7DulDzEms2
+1ZZpfNBe/s8BcnLRNe6xA846xTcfhFaIH2pg0Ho5G66jh50VOzPnDENAveNbuo+7aLw=
+-----END RSA PRIVATE KEY-----"></option>
+<option key="Use SSL Tunnelling" value="True"></option>
+<option key="Enable Fullscreen Desktop" value="False"></option>
+</NXClientLibSettings>

@@ -1,0 +1,20 @@
+﻿VERSION BUILD=4170912     
+TAB T=1     
+TAB CLOSEALLOTHERS     
+URL GOTO=http://www.iopus.com/imacros/demo/v6/savetargetas/ 
+'
+'Note: The SAVETARGETAS event is only available in the IM Browser, not the IE-Plugin    
+'
+'Download 1
+'
+'Define download folder and file
+ONDOWNLOAD FOLDER=*  FILE=+_pdf-file_{{!NOW:yyyymmdd_hhnnss}}  
+'TAG statement, the  CONTENT=EVENT:SAVETARGETAS part was added manually after recording
+TAG POS=1 TYPE=B ATTR=TXT:Open<SP>PDF<SP>Document CONTENT=EVENT:SAVETARGETAS
+'
+'Download 2
+'
+ONDOWNLOAD FOLDER=*  FILE=+_video-file_{{!NOW:yyyymmdd_hhnnss}} 
+TAG POS=1 TYPE=B ATTR=TXT:Play<SP>Video  CONTENT=EVENT:SAVETARGETAS
+
+ 

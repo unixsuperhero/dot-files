@@ -1,0 +1,525 @@
+--->  Updating the ports tree
+Synchronizing local ports tree from rsync://rsync.macports.org/release/ports/
+receiving file list ... done
+
+sent 36 bytes  received 483740 bytes  138221.71 bytes/sec
+total size is 52718922  speedup is 108.97
+--->  Updating MacPorts base sources using rsync
+receiving file list ... done
+
+sent 36 bytes  received 6810 bytes  4564.00 bytes/sec
+total size is 2879032  speedup is 420.54
+MacPorts base version 1.8.2 installed,
+MacPorts base version 1.9.1 downloaded.
+--->  MacPorts base is outdated, installing new version 1.9.1
+Installing new MacPorts release in /opt/local as root:admin; permissions 0755; Tcl-Package in /Library/Tcl
+
+checking build system type... x86_64-apple-darwin10.4.0
+checking host system type... x86_64-apple-darwin10.4.0
+checking target system type... x86_64-apple-darwin10.4.0
+checking MacPorts version... 1.9.1
+checking for sw_vers... /usr/bin/sw_vers
+checking for defaults... /usr/bin/defaults
+checking for xcode-select... /usr/bin/xcode-select
+checking Mac OS X version... 10.6.4
+checking Xcode location... /Developer
+checking Xcode version... 3.2.4
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for gcc... gcc
+checking whether we are using the GNU Objective C compiler... yes
+checking whether gcc accepts -g... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether make sets $(MAKE)... yes
+checking whether ln -s works... yes
+checking for mtree... /usr/sbin/mtree
+checking for chown... /usr/sbin/chown
+checking for cp... /bin/cp
+checking for cpio... /usr/bin/cpio
+checking for diff... /usr/bin/diff
+checking for dscl... /usr/bin/dscl
+checking for file... /usr/bin/file
+checking for bzr... no
+checking for cvs... /usr/bin/cvs
+checking for svn... /usr/bin/svn
+checking for git... no
+checking for hg... no
+checking for gzip... /usr/bin/gzip
+checking for lipo... /usr/bin/lipo
+checking for patch... /usr/bin/patch
+checking for rmdir... /bin/rmdir
+checking for rsync... /usr/bin/rsync
+checking for sed... /usr/bin/sed
+checking for tar... /usr/bin/tar
+checking for unzip... /usr/bin/unzip
+checking for zip... /usr/bin/zip
+checking for bsdmake... /usr/bin/bsdmake
+checking for make... /usr/bin/make
+checking for hdiutil... /usr/bin/hdiutil
+checking for launchd... yes
+checking for launchctl... /bin/launchctl
+checking for xcodebuild... /usr/bin/xcodebuild
+checking for gnutar... /usr/bin/gnutar
+checking for gnumake... /usr/bin/gnumake
+checking for gnupatch... no
+checking for gpatch... no
+checking for bzip2... /usr/bin/bzip2
+checking for lsbom... /usr/bin/lsbom
+checking for mkbom... /usr/bin/mkbom
+checking for pax... /bin/pax
+checking for xar... /usr/bin/xar
+checking for open... /usr/bin/open
+checking for sed... (cached) /usr/bin/sed
+checking which sed flag to use for extended regexp... -E (BSD)
+checking for tar... (cached) /usr/bin/tar
+checking for gnutar... (cached) /usr/bin/gnutar
+checking for which tar variant to use... /usr/bin/gnutar
+checking for /usr/bin/gnutar --no-same-owner support... yes
+checking for patch... (cached) /usr/bin/patch
+checking for gpatch... no
+checking for GNU (FSF) patch... /usr/bin/patch
+checking how to mark unused variables... 
+checking for gcc symbol visibility attribute... __attribute__((visibility("hidden")))
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... -D_THREAD_SAFE
+checking how to run the Objective C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking objc/objc.h usability... yes
+checking objc/objc.h presence... yes
+checking for objc/objc.h... yes
+checking if linking libobjc requires pthreads... no
+checking for Apple Objective-C runtime... yes
+checking for GNU Objective C runtime... no
+configure: Using Apple Objective-C runtime
+checking for Apple Foundation library... yes
+configure: WARNING: GNUSTEP_SYSTEM_ROOT is not defined in your environment, preventing the use of GNUstep's Foundation library
+configure: Using Apple Foundation library
+checking for CoreFoundation framework... yes
+checking for SystemConfiguration framework... yes
+checking for IOKit framework... yes
+checking for CFNotificationCenterGetDarwinNotifyCenter... yes
+checking for whether we will build daemondo... yes
+checking for ports tree... /opt/local/var/macports/sources/rsync.macports.org/release/ports
+checking for MacPorts config directory... ${sysconfdir}/macports
+checking for install user... root
+checking for install group... admin
+checking for macports user... root
+checking what permissions to use for installation directories... 755
+checking for Applications installation directory... /Applications/MacPorts
+checking for Frameworks installation directory... /opt/local/Library/Frameworks
+checking for Universal CPU architectures... x86_64 i386
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... (cached) yes
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking paths.h usability... yes
+checking paths.h presence... yes
+checking for paths.h... yes
+checking sys/file.h usability... yes
+checking sys/file.h presence... yes
+checking for sys/file.h... yes
+checking crt_externs.h usability... yes
+checking crt_externs.h presence... yes
+checking for crt_externs.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking sys/fcntl.h usability... yes
+checking sys/fcntl.h presence... yes
+checking for sys/fcntl.h... yes
+checking sys/cdefs.h usability... yes
+checking sys/cdefs.h presence... yes
+checking for sys/cdefs.h... yes
+checking err.h usability... yes
+checking err.h presence... yes
+checking for err.h... yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking sys/sysctl.h usability... yes
+checking sys/sysctl.h presence... yes
+checking for sys/sysctl.h... yes
+checking readline/readline.h usability... yes
+checking readline/readline.h presence... yes
+checking for readline/readline.h... yes
+checking readline/history.h usability... yes
+checking readline/history.h presence... yes
+checking for readline/history.h... yes
+checking pwd.h usability... yes
+checking pwd.h presence... yes
+checking for pwd.h... yes
+checking sys/paths.h usability... yes
+checking sys/paths.h presence... yes
+checking for sys/paths.h... yes
+checking utime.h usability... yes
+checking utime.h presence... yes
+checking for utime.h... yes
+checking for bzero... yes
+checking for memset... yes
+checking for fgetln... yes
+checking for lockf... yes
+checking for flock... yes
+checking for setmode... yes
+checking for strcasecmp... yes
+checking for strncasecmp... yes
+checking for strlcpy... yes
+checking for copyfile... yes
+checking for clearenv... no
+checking for sysctlbyname... yes
+checking if readlink conforms to POSIX 1003.1a... yes
+checking CommonCrypto/CommonDigest.h usability... yes
+checking CommonCrypto/CommonDigest.h presence... yes
+checking for CommonCrypto/CommonDigest.h... yes
+checking for readline in -lreadline... yes
+checking whether rl_username_completion_function is declared... no
+checking whether rl_filename_completion_function is declared... yes
+checking whether rl_completion_matches is declared... yes
+checking whether username_completion_function is declared... yes
+checking whether filename_completion_function is declared... yes
+checking whether completion_matches is declared... yes
+checking for Tcl configuration... found /usr/lib/tclConfig.sh
+checking for existence of /usr/lib/tclConfig.sh... loading
+checking for Tcl public headers... /usr/include
+checking for tclsh... /usr/bin/tclsh
+checking for Tcl package directory... /Library/Tcl
+checking whether tclsh was compiled with threads... yes
+checking for curl-config... /usr/bin/curl-config
+checking for pkg-config... no
+checking sqlite3.h usability... yes
+checking sqlite3.h presence... yes
+checking for sqlite3.h... yes
+checking sqlite3ext.h usability... yes
+checking sqlite3ext.h presence... yes
+checking for sqlite3ext.h... yes
+checking for Tcl sqlite3 location... /usr/lib/sqlite3
+checking for Tcl Thread package... yes
+checking how to build libraries... shared
+checking that any existing MacPorts install can be upgraded... yes
+configure: creating ./config.status
+config.status: creating src/programs/daemondo/Makefile
+config.status: creating Doxyfile
+config.status: creating Makefile
+config.status: creating Mk/macports.autoconf.mk
+config.status: creating doc/prefix.mtree
+config.status: creating doc/macosx.mtree
+config.status: creating doc/macports.conf
+config.status: creating portmgr/freebsd/Makefile
+config.status: creating src/Makefile
+config.status: creating src/macports1.0/macports_autoconf.tcl
+config.status: creating src/port1.0/port_autoconf.tcl
+config.status: creating src/registry2.0/registry_autoconf.tcl
+config.status: creating src/programs/Makefile
+config.status: creating src/macports1.0/macports_fastload.tcl
+config.status: creating setupenv.bash
+config.status: creating src/pkg_mkindex.sh
+config.status: creating src/config.h
+===> making all in doc
+gzip -c port.1 > port.1.gz
+gzip -c macports.conf.5 > macports.conf.5.gz
+gzip -c portfile.7 > portfile.7.gz
+gzip -c portstyle.7 > portstyle.7.gz
+gzip -c porthier.7 > porthier.7.gz
+gzip -c portgroup.7 > portgroup.7.gz
+===> making all in src
+===> making all in src/cregistry
+gcc -c -DUSE_TCL_STUBS -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common registry.c -o registry.o
+gcc -c -DUSE_TCL_STUBS -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common entry.c -o entry.o
+gcc -c -DUSE_TCL_STUBS -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common sql.c -o sql.o
+gcc -c -DUSE_TCL_STUBS -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common vercomp.c -o vercomp.o
+ar cr cregistry.a registry.o entry.o sql.o vercomp.o
+ranlib cregistry.a
+gcc -c -DUSE_TCL_STUBS -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common sqlext.c -o sqlext.o
+gcc -dynamiclib -g -O2 -W -Wall -pedantic   -Wl,-single_module sqlext.o vercomp.o -o macports.sqlext
+===> making all in src/macports1.0
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common macports.c -o macports.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common get_systemconfiguration_proxies.c -o get_systemconfiguration_proxies.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common sysctl.c -o sysctl.o
+gcc -dynamiclib -g -O2 -W -Wall -pedantic   -Wl,-single_module macports.o get_systemconfiguration_proxies.o sysctl.o -o MacPorts.dylib -L/System/Library/Frameworks/Tcl.framework/Versions/8.5 -ltclstub8.5   -framework CoreFoundation -framework SystemConfiguration
+===> making all in src/port1.0
+===> making all in src/package1.0
+===> making all in src/pextlib1.0
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common Pextlib.c -o Pextlib.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common strsed.c -o strsed.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common fgetln.c -o fgetln.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common md5cmd.c -o md5cmd.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common setmode.c -o setmode.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common xinstall.c -o xinstall.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common fs-traverse.c -o fs-traverse.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common strcasecmp.c -o strcasecmp.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common vercomp.c -o vercomp.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common filemap.c -o filemap.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common sha1cmd.c -o sha1cmd.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common curl.c -o curl.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common rmd160cmd.c -o rmd160cmd.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common sha256cmd.c -o sha256cmd.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common readline.c -o readline.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common uid.c -o uid.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common tracelib.c -o tracelib.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common tty.c -o tty.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common readdir.c -o readdir.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common pipe.c -o pipe.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common flock.c -o flock.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common system.c -o system.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common mktemp.c -o mktemp.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic     -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common realpath.c -o realpath.o
+gcc -dynamiclib -g -O2 -W -Wall -pedantic      -Wl,-single_module Pextlib.o strsed.o fgetln.o md5cmd.o setmode.o xinstall.o fs-traverse.o strcasecmp.o vercomp.o filemap.o sha1cmd.o curl.o rmd160cmd.o sha256cmd.o readline.o uid.o tracelib.o tty.o readdir.o pipe.o flock.o system.o mktemp.o realpath.o -o Pextlib.dylib -L/System/Library/Frameworks/Tcl.framework/Versions/8.5 -ltclstub8.5   -lcurl  -lreadline
+===> making all in src/registry2.0
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic   -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common registry.c -o registry.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic   -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common util.c -o util.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic   -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common entry.c -o entry.o
+gcc -c -DUSE_TCL_STUBS -DTCL_NO_DEPRECATED -g -O2 -W -Wall -pedantic   -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -fno-common entryobj.c -o entryobj.o
+gcc -dynamiclib -g -O2 -W -Wall -pedantic    -Wl,-single_module registry.o util.o entry.o entryobj.o ../cregistry/cregistry.a -o registry.dylib -L/System/Library/Frameworks/Tcl.framework/Versions/8.5 -ltclstub8.5   -lsqlite3
+===> making all in src/darwintracelib1.0
+gcc -g -O2 -W -Wall -pedantic  -fPIC -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include"  -c -o darwintrace.o darwintrace.c
+gcc -dynamiclib -g -O2 -W -Wall -pedantic  -fPIC  -Wl,-single_module darwintrace.o -o darwintrace.dylib  
+===> making all in src/port
+sed -e 's,@TCLSH\@,/usr/bin/tclsh,g' -e 's,@macports_tcl_dir\@,/opt/local/share/macports/Tcl,g' portmirror.tcl > portmirror
+sed -e 's,@TCLSH\@,/usr/bin/tclsh,g' -e 's,@macports_tcl_dir\@,/opt/local/share/macports/Tcl,g' portindex.tcl > portindex
+sed -e 's,@TCLSH\@,/usr/bin/tclsh,g' -e 's,@macports_tcl_dir\@,/opt/local/share/macports/Tcl,g' port.tcl > port
+===> making all in src/programs
+===> making all in src/programs/daemondo
+mkdir -p build
+gcc -g -O2 -W -Wall  -DHAVE_CONFIG_H -I.. -I.  -I"/usr/include" -I../..  -c -o main.o main.c
+gcc -g -O2 -W -Wall  -o build/daemondo -framework CoreFoundation -framework SystemConfiguration -framework IOKit main.o
+===> making install in doc
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/etc/macports
+cat prefix.mtree | /usr/sbin/mtree -U -e -p /opt/local > /dev/null
+if test -L "/opt/local/man" ; then \
+		rm -f "/opt/local/man"; \
+	fi
+if test ! -e "/opt/local/man" ; then \
+		ln -s share/man /opt/local/man; \
+	fi
+/usr/bin/install -c -o root -g admin -m 444 macports.conf /opt/local/etc/macports/macports.conf.default
+if test ! -e /opt/local/etc/macports/macports.conf ; then \
+		set -x; \
+		/usr/bin/install -c -o root -g admin -m 644 macports.conf /opt/local/etc/macports; \
+	fi
+/usr/bin/install -c -o root -g admin -m 444 sources.conf /opt/local/etc/macports/sources.conf.default
+if test ! -e /opt/local/etc/macports/sources.conf ; then \
+		set -x; \
+		/usr/bin/install -c -o root -g admin -m 644 sources.conf /opt/local/etc/macports; \
+	fi
+/usr/bin/install -c -o root -g admin -m 444 variants.conf /opt/local/etc/macports/variants.conf.default
+if test ! -e /opt/local/etc/macports/variants.conf ; then \
+		set -x; \
+		/usr/bin/install -c -o root -g admin -m 644 variants.conf /opt/local/etc/macports; \
+	fi
+# delete old uncompressed man pages if they exist
+for m in port.1; do rm -f /opt/local/share/man/man1/$m ; done
+for m in macports.conf.5; do rm -f /opt/local/share/man/man5/$m ; done
+for m in portfile.7 portstyle.7 porthier.7 portgroup.7; do rm -f /opt/local/share/man/man7/$m ; done
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/install
+/usr/bin/install -c -o root -g admin -m 644 prefix.mtree /opt/local/share/macports/install/
+/usr/bin/install -c -o root -g admin -m 644 macosx.mtree /opt/local/share/macports/install/
+/usr/bin/install -c -o root -g admin -m 444 port.1.gz /opt/local/share/man/man1
+/usr/bin/install -c -o root -g admin -m 444 macports.conf.5.gz /opt/local/share/man/man5
+/usr/bin/install -c -o root -g admin -m 444 portfile.7.gz /opt/local/share/man/man7
+/usr/bin/install -c -o root -g admin -m 444 portstyle.7.gz /opt/local/share/man/man7
+/usr/bin/install -c -o root -g admin -m 444 porthier.7.gz /opt/local/share/man/man7
+/usr/bin/install -c -o root -g admin -m 444 portgroup.7.gz /opt/local/share/man/man7
+===> making install in src
+===> making install in src/cregistry
+make[2]: Nothing to be done for `install'.
+===> making install in src/macports1.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/macports1.0
+/usr/bin/install -c -o root -g admin -m 444 MacPorts.dylib /opt/local/share/macports/Tcl/macports1.0
+/usr/bin/install -c -o root -g admin -m 444 pkgIndex.tcl /opt/local/share/macports/Tcl/macports1.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/macports1.0
++ for file in macports.tcl macports_dlist.tcl macports_util.tcl macports_autoconf.tcl macports_index.tcl macports_fastload.tcl
++ /usr/bin/install -c -o root -g admin -m 444 macports.tcl /opt/local/share/macports/Tcl/macports1.0/macports.tcl
++ for file in macports.tcl macports_dlist.tcl macports_util.tcl macports_autoconf.tcl macports_index.tcl macports_fastload.tcl
++ /usr/bin/install -c -o root -g admin -m 444 macports_dlist.tcl /opt/local/share/macports/Tcl/macports1.0/macports_dlist.tcl
++ for file in macports.tcl macports_dlist.tcl macports_util.tcl macports_autoconf.tcl macports_index.tcl macports_fastload.tcl
++ /usr/bin/install -c -o root -g admin -m 444 macports_util.tcl /opt/local/share/macports/Tcl/macports1.0/macports_util.tcl
++ for file in macports.tcl macports_dlist.tcl macports_util.tcl macports_autoconf.tcl macports_index.tcl macports_fastload.tcl
++ /usr/bin/install -c -o root -g admin -m 444 macports_autoconf.tcl /opt/local/share/macports/Tcl/macports1.0/macports_autoconf.tcl
++ for file in macports.tcl macports_dlist.tcl macports_util.tcl macports_autoconf.tcl macports_index.tcl macports_fastload.tcl
++ /usr/bin/install -c -o root -g admin -m 444 macports_index.tcl /opt/local/share/macports/Tcl/macports1.0/macports_index.tcl
++ for file in macports.tcl macports_dlist.tcl macports_util.tcl macports_autoconf.tcl macports_index.tcl macports_fastload.tcl
++ /usr/bin/install -c -o root -g admin -m 444 macports_fastload.tcl /opt/local/share/macports/Tcl/macports1.0/macports_fastload.tcl
+/usr/bin/install -c -o root -g admin -m 444 pkgIndex.tcl /opt/local/share/macports/Tcl/macports1.0
+echo "/Library/Tcl" > /opt/local/var/macports/.tclpackage
+if test -z "" && test "/Library/Tcl/macports1.0" != "/opt/local/share/macports/Tcl/macports1.0" && test -w "/Library/Tcl"; then \
+		if ! test -L "/Library/Tcl/macports1.0" && test -d "/Library/Tcl/macports1.0"; then \
+			rm -rf "/Library/Tcl/macports1.0" || true; \
+		fi; \
+		if ! test -e "/Library/Tcl/macports1.0"; then \
+			ln -s "/opt/local/share/macports/Tcl/macports1.0" "/Library/Tcl/macports1.0" || true; \
+		fi; \
+	fi
+===> making install in src/port1.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 port.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portchecksum.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portconfigure.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portextract.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portfetch.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portmain.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portbuild.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portpatch.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portutil.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portinstall.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portuninstall.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portdepends.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portdestroot.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portlint.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portclean.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 porttest.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portactivate.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portdeactivate.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portsubmit.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 port_autoconf.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portstartupitem.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 porttrace.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portlivecheck.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portdistcheck.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portmirror.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portload.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portunload.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portdistfiles.tcl /opt/local/share/macports/Tcl/port1.0
++ for file in port.tcl portchecksum.tcl portconfigure.tcl portextract.tcl portfetch.tcl portmain.tcl portbuild.tcl portpatch.tcl portutil.tcl portinstall.tcl portuninstall.tcl portdepends.tcl portdestroot.tcl portlint.tcl portclean.tcl porttest.tcl portactivate.tcl portdeactivate.tcl portsubmit.tcl port_autoconf.tcl portstartupitem.tcl porttrace.tcl portlivecheck.tcl portdistcheck.tcl portmirror.tcl portload.tcl portunload.tcl portdistfiles.tcl fetch_common.tcl
++ /usr/bin/install -c -o root -g admin -m 444 fetch_common.tcl /opt/local/share/macports/Tcl/port1.0
+/usr/bin/install -c -o root -g admin -m 444 pkgIndex.tcl /opt/local/share/macports/Tcl/port1.0
+===> making install in src/package1.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 package.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portdmg.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portmdmg.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portmpkg.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portpkg.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portportpkg.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portrpm.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portsrpm.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portdpkg.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portunarchive.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portarchive.tcl /opt/local/share/macports/Tcl/package1.0
++ for file in package.tcl portdmg.tcl portmdmg.tcl portmpkg.tcl portpkg.tcl portportpkg.tcl portrpm.tcl portsrpm.tcl portdpkg.tcl portunarchive.tcl portarchive.tcl portarchivefetch.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portarchivefetch.tcl /opt/local/share/macports/Tcl/package1.0
+/usr/bin/install -c -o root -g admin -m 444 pkgIndex.tcl /opt/local/share/macports/Tcl/package1.0
+===> making install in src/pextlib1.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/pextlib1.0
+/usr/bin/install -c -o root -g admin -m 444 Pextlib.dylib /opt/local/share/macports/Tcl/pextlib1.0
+/usr/bin/install -c -o root -g admin -m 444 pkgIndex.tcl /opt/local/share/macports/Tcl/pextlib1.0
+===> making install in src/registry2.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/registry2.0
+/usr/bin/install -c -o root -g admin -m 444 registry.dylib /opt/local/share/macports/Tcl/registry2.0
+/usr/bin/install -c -o root -g admin -m 444 pkgIndex.tcl /opt/local/share/macports/Tcl/registry2.0
+[ ! -d /opt/local/share/macports/Tcl/registry1.0 ] || rm -vrf /opt/local/share/macports/Tcl/registry1.0
+/opt/local/share/macports/Tcl/registry1.0/pkgIndex.tcl
+/opt/local/share/macports/Tcl/registry1.0/portimage.tcl
+/opt/local/share/macports/Tcl/registry1.0/portuninstall.tcl
+/opt/local/share/macports/Tcl/registry1.0/receipt_flat.tcl
+/opt/local/share/macports/Tcl/registry1.0/receipt_sqlite.tcl
+/opt/local/share/macports/Tcl/registry1.0/registry.tcl
+/opt/local/share/macports/Tcl/registry1.0/registry_autoconf.tcl
+/opt/local/share/macports/Tcl/registry1.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/registry2.0
+/usr/bin/install -c -o root -g admin -m 444 registry.dylib /opt/local/share/macports/Tcl/registry2.0
++ for file in registry.tcl registry_autoconf.tcl registry_util.tcl receipt_flat.tcl receipt_sqlite.tcl portimage.tcl portuninstall.tcl
++ /usr/bin/install -c -o root -g admin -m 444 registry.tcl /opt/local/share/macports/Tcl/registry2.0/registry.tcl
++ for file in registry.tcl registry_autoconf.tcl registry_util.tcl receipt_flat.tcl receipt_sqlite.tcl portimage.tcl portuninstall.tcl
++ /usr/bin/install -c -o root -g admin -m 444 registry_autoconf.tcl /opt/local/share/macports/Tcl/registry2.0/registry_autoconf.tcl
++ for file in registry.tcl registry_autoconf.tcl registry_util.tcl receipt_flat.tcl receipt_sqlite.tcl portimage.tcl portuninstall.tcl
++ /usr/bin/install -c -o root -g admin -m 444 registry_util.tcl /opt/local/share/macports/Tcl/registry2.0/registry_util.tcl
++ for file in registry.tcl registry_autoconf.tcl registry_util.tcl receipt_flat.tcl receipt_sqlite.tcl portimage.tcl portuninstall.tcl
++ /usr/bin/install -c -o root -g admin -m 444 receipt_flat.tcl /opt/local/share/macports/Tcl/registry2.0/receipt_flat.tcl
++ for file in registry.tcl registry_autoconf.tcl registry_util.tcl receipt_flat.tcl receipt_sqlite.tcl portimage.tcl portuninstall.tcl
++ /usr/bin/install -c -o root -g admin -m 444 receipt_sqlite.tcl /opt/local/share/macports/Tcl/registry2.0/receipt_sqlite.tcl
++ for file in registry.tcl registry_autoconf.tcl registry_util.tcl receipt_flat.tcl receipt_sqlite.tcl portimage.tcl portuninstall.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portimage.tcl /opt/local/share/macports/Tcl/registry2.0/portimage.tcl
++ for file in registry.tcl registry_autoconf.tcl registry_util.tcl receipt_flat.tcl receipt_sqlite.tcl portimage.tcl portuninstall.tcl
++ /usr/bin/install -c -o root -g admin -m 444 portuninstall.tcl /opt/local/share/macports/Tcl/registry2.0/portuninstall.tcl
+/usr/bin/install -c -o root -g admin -m 444 pkgIndex.tcl /opt/local/share/macports/Tcl/registry2.0
+===> making install in src/darwintracelib1.0
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/share/macports/Tcl/darwintrace1.0
+/usr/bin/install -c -o root -g admin -m 444 darwintrace.dylib /opt/local/share/macports/Tcl/darwintrace1.0
+===> making install in src/port
+cat ../../doc/prefix.mtree | /usr/sbin/mtree -U -d -e -p /opt/local > /dev/null
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/bin
+/usr/bin/install -c -d -o root -g admin -m 755 /opt/local/var/macports
+/usr/bin/install -c -o root -g admin -m 555 port portindex portmirror /opt/local/bin/
+/usr/bin/install -c -o root -g admin -m 444 port-help.tcl  /opt/local/var/macports/
+cd /opt/local/bin && ln -s -f port portf
+===> making install in src/programs
+===> making install in src/programs/daemondo
+mkdir -p build
+/usr/bin/install -c -o root -g admin -m 555 build/daemondo /opt/local/bin
+[ ! -f /opt/local/etc/macports/mp_version ] || rm -vf /opt/local/etc/macports/mp_version
+/usr/bin/install -c -o root -g admin -m 444 setupenv.bash  /opt/local/share/macports/
+/usr/bin/tclsh src/upgrade_sources_conf_default.tcl /opt/local
+/usr/bin/tclsh src/dep_map_clean.tcl "/opt/local/share/macports/Tcl"
+
+Congratulations, you have successfully installed the MacPorts system. To get the Portfiles and update the system, add /opt/local/bin to your PATH and run:
+
+sudo port -v selfupdate
+
+Please read "man port", the MacPorts guide at http://guide.macports.org/ and Wiki at http://trac.macports.org/ for full documentation.
+
+
+The ports tree has been updated. To upgrade your installed ports, you should run
+  port upgrade outdated

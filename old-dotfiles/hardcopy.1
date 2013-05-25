@@ -1,0 +1,78 @@
+  1 @public/redesign/header@
+  2
+  3 <?php $user = $this->get('user'); ?>
+  4     <div id="mainArea">
+  5       <div id="profileMain">
+  6           <div id="userIcon"><img src="http://redgage-profiles.s3.amazonaws.com/<?php echo strtolower($user->username); ?>/profile-large.jpg" /></div>
+  7             <div id="general">
+  8                 <div id="userName"><?php echo $user->username; ?></div>
+  9                 <?php $ppb = $this->get('profile_basic'); if($ppb->full_name): ?><div id="realName"><?php echo $ppb->full_name; ?></div><?php endif; ?>
+ 10                 <?php if($ppb->hometown): ?><div id="loc"><?php echo $ppb->hometown; ?></div><?php endif; ?>
+ 11                 <?php $status = $this->get('status');
+ 12                 if($status): ?>
+ 13                 <div id="status">"<?php echo preg_replace('/&(amp;)+/', '&', $status->status); ?>"<span id="time"><?php echo ago($status->created_on); ?></span></div>
+ 14                 <?php endif; ?>
+ 15             </div>
+ 16         </div>
+ 17       <div id="profileTabs">
+ 18             <a href="#" class="sel">News Feed</a>
+ 19             <a href="#" class="section">Content</a>
+ 20             <a href="#" class="section">Wall Post</a>
+ 21             <hr />
+ 22         </div>
+ 23 <!--------------------------- NEWS FEED --------------------------->
+ 24         <div class="show" id="newsFeed">
+ 25             <div id="centerContent">
+ 26             <?php echo $this->get('feed_output'); ?>
+ 27             </div>
+ 28             <div id="pagerBottom">
+ 29                 <a href="#" class="number">&#9664;</a>
+ 30                 <a href="#" class="number">1</a>
+ 31                 <span class="sel">2</span>
+ 32                 <a href="#" class="number">3</a>
+ 33                 <a href="#" class="number">4</a>
+ 34                 <a href="#" class="number">5</a>
+ 35                 <a href="#" class="number">&#9654;</a>
+ 36             </div>
+ 37         </div>
+systems/public/views/redesign/profile.php                                                                                                                                                                                                                   22,14          Top
+ 35                                                                                                                                   | 507
+ 36     $c = new Criteria();                                                                                                          | 508 +--- 20 lines: function _getCommentsByUserId($user_id, $descending = null) {------------------------------------------------------
+ 37     $c->add(PublicUserAttributePeer::USERNAME(), $username);                                                                      | 528
+ 38     if(! $user = PublicUserAttributePeer::doSelectOne($c)) return 'error...user not found';                                       | 529   function _getCommentsFromPager(&$rs) { /** blessed by joins (to revert s/Join//gc) **/
+ 39                                                                                                                                   | 530     $results = array();
+ 40     $rapid_user = $user->getRapidUser();                                                                                          | 531     $user_id = $this->request->session('user_id');
+ 41     $this->set('user', $user);                                                                                                    | 532     $this->load('models/PublicContentJoin.php'); //moved up...it was the line aftr $ob->removable... (josh 1/27/09 @ 4:03pm)
+ 42                                                                                                                                   | 533
+ 43     $c = new Criteria;                                                                                                            | 534     while($rs->next()) {
+ 44     $c->add(PublicProfileBasicPeer::USER_ID(), $user->user_id);                                                                   | 535       $om = PublicCommentPeer::getOMClass();
+ 45     $basic_info = PublicProfileBasicPeer::doSelectOne($c);                                                                        | 536       $cl = Propel::import($om);
+ 46                                                                                                                                   | 537       $ob = new $cl();
+ 47     $this->set('profile_basic', $basic_info);                                                                                     | 538       $ob->hydrate($rs, 1);
+ 48                                                                                                                                   | 539
+ 49     /*                                                                                                                            | 540       $ob->removable = ($user_id == $ob->user_id);
+ 50     $user = $rapid_user;                                                                                                          | 541
+ 51     echo '<pre>';                                                                                                                 | 542       if($this->runtime->control == 'profile' && $this->runtime->action == 'comments') //refactoring comments (josh 1/27/09 @ 4:03
+ 52     var_dump($user);                                                                                                              | 543       { //refactoring comments
+ 53     die('...die');                                                                                                                | 544         $select = new Criteria();
+ 54     */                                                                                                                            | 545         $select->add(PublicContentJoinPeer::ID(), $ob->content_id);
+ 55                                                                                                                                   | 546         $content = PublicContentJoinPeer::doSelectOne($select);
+ 56     // x. get status                                                                                                              | 547         $ob->aPublicContent = $content;
+ 57           // @public/status/index@                                                                                                | 548       } //refactoring comments
+ 58     $this->jump('public', 'status', 'reindex');                                                                                   | 549
+ 59                                                                                                                                   | 550       $select = new Criteria();
+ 60     // x. get feeds by user  --- sp/template :: 2236                                                                              | 551       $select->add(PublicCommentPeer::PARENT_ID(), $ob->id);
+ 61           // @public/feed/profile@                                                                                                | 552       $reply_count = PublicCommentPeer::doCount($select);
+ 62     $this->jump('public', 'feed', 'reProfile');                                                                                   | 553
+ 63                                                                                                                                   | 554       $ob->reply_count = $reply_count;
+ 64     // x. get friend count                                                                                                        | 555
+ 65     // x. get friends                                                                                                             | 556       $om = PublicUserAttributePeer::getOMClass();
+ 66           // @public/friend/index@                                                                                                | 557       $cl = Propel::import($om);
+ 67     $this->jump('public', 'friend', 'reindex');                                                                                   | 558       $ob2 = new $cl();
+ 68                                                                                                                                   | 559       $ob2->hydrate($rs, PublicCommentPeer::numColumns()+1);
+ 69     // x. get favorites                                                                                                           | 560
+ 70           // @public/favorite/profile@                                                                                            | 561       $ob->aPublicUserAttribute = $ob2;
+ 71     $this->jump('public', 'favorite', 'reprofile');                                                                               | 562
+systems/public/redesign.php                                                                                         53,16-18        8% systems/public/comment.php                                                                                           552,4-7        41%
+
+0-$ subscreen(0) > pro>   1*$ bash  2$ subscreen(2) > rampa  3$ bash  4$ pro> subsubscreen(4)  5$ bash                                                                                                                                        @0.00 0.00 0.00 Thu Jul 22 14:30

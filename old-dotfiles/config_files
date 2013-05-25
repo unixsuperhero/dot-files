@@ -1,0 +1,29 @@
+
+## Home Directory
+## /Users/jearsh
+
+  /Users/jearsh/aliases.sh
+  /Users/jearsh/functions.sh
+  /Users/jearsh/exports.sh
+  /Users/jearsh/ps1rc.sh
+  /Users/jearsh/s3env.sh
+  /Users/jearsh/.bash_history
+  /Users/jearsh/.bashrc
+  /Users/jearsh/.config
+  /Users/jearsh/.gitconfig
+  /Users/jearsh/.inputrc
+  /Users/jearsh/.listrc
+  /Users/jearsh/.profile
+  /Users/jearsh/.screenrc
+  /Users/jearsh/.vimrc
+  /Users/jearsh/pro.bashrc
+
+## /etc Directory
+## /etc
+
+  /etc/bashrc
+  /etc/profile
+  /etc/ssh_config
+  /etc/sshd_config
+  /etc/sudoers
+

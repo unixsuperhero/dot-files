@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#############################################
+#
+#	Author: Joshua Toyota
+#	Date: 2010-01-08 14:58:44
+#	Description:
+#		This script gets a list of hrefs from
+#		the URL passed as a parameter.
+#
+#############################################
+
+## use lynx if you have it
+
+if [[ -n $1 && $1 == "-edit" ]]
+then
+  vim ~/bin/extract-links
+  exit
+fi
+
+if [[ `which lynx` ]]
+then
+	## Lynx Method: Outputs the full url and is easier to type
+
+	output=`lynx -dump $1 | sed -n '/Visible links/,$ p' | grep -o 'http://.*' | sort -u`
+  if [[ -z $output ]]
+  then
+    output=`lynx -dump $1 | sed -n '/References$/,$ p' | grep -o 'http://.*' | sort -u`
+  fi
+
+  echo "$output"
+
+else
+	## Curl Method: Works fine, but the lynx method is cleaner
+
+	curl -s $1 |
+		grep -i 'href\s*=' |
+		sed 's/>/\n>/g;s/.*href\s*=\s*"//;s/".*//' |
+		sort -u
+fi
+
+## Old methods
+## -----------
+##
+## lynx -dump $1 | grep -o 'http://.*' | sort -u

@@ -1,0 +1,533 @@
+aspell                         @0.60.6         textproc/aspell
+aterm                          @1.0.1          x11/aterm
+autoconf                       @2.68           devel/autoconf
+automake                       @1.11.1         devel/automake
+bzip2                          @1.0.6          archivers/bzip2
+cppunit                        @1.12.1         devel/cppunit
+ctags                          @5.8            devel/ctags
+curl                           @7.21.2         net/curl
+curl-ca-bundle                 @7.21.2         net/curl-ca-bundle
+ddclient                       @3.8.0          net/ddclient
+dirac                          @1.0.2          multimedia/dirac
+dnsupdate                      @2.8            aqua/dnsupdate
+docbook-xml-4.1.2              @4.1.2          textproc/docbook-xml-4.1.2
+docbook-xml-4.2                @4.2            textproc/docbook-xml-4.2
+docbook-xml-4.3                @4.3            textproc/docbook-xml-4.3
+docbook-xml-4.4                @4.4            textproc/docbook-xml-4.4
+eb                             @4.4.3          textproc/eb
+eblook                         @1.6.1-media-20101027 textproc/eblook
+emacs                          @23.2           editors/emacs
+erlang                         @R14A           lang/erlang
+Eterm                          @0.9.5          x11/Eterm
+expat                          @2.0.1          textproc/expat
+ez-ipupdate                    @3.0.11b7       net/ez-ipupdate
+faac                           @1.28           audio/faac
+faad2                          @2.7            audio/faad2
+ffmpeg                         @0.6.1          multimedia/ffmpeg
+freetype                       @2.4.3          print/freetype
+gawk                           @3.1.8          lang/gawk
+gettext                        @0.18.1.1       devel/gettext
+giflib                         @4.1.6          graphics/giflib
+git-core                       @1.7.3.2        devel/git-core
+glib2                          @2.26.0         devel/glib2
+gmake                          @3.82           devel/gmake
+gperf                          @3.0.4          devel/gperf
+groff                          @1.20.1         sysutils/groff
+help2man                       @1.38.2         textproc/help2man
+imlib2                         @1.4.2          graphics/imlib2
+ipcheck                        @0.242          net/ipcheck
+irssi                          @0.8.15         irc/irssi
+istumbler                      @98             aqua/istumbler
+jpeg                           @8b             graphics/jpeg
+kismet                         @2010-07-R1     net/kismet
+lame                           @3.98.4         audio/lame
+libast                         @0.7            devel/libast
+libevent                       @1.4.14b        devel/libevent
+libiconv                       @1.13.1         textproc/libiconv
+libid3tag                      @0.15.1b        audio/libid3tag
+libidn                         @1.19           mail/libidn
+libogg                         @1.2.1          multimedia/libogg
+liboil                         @0.3.17         devel/liboil
+libpcap                        @1.1.1          net/libpcap
+libpng                         @1.2.44         graphics/libpng
+libsdl                         @1.2.14         devel/libsdl
+libtheora                      @1.1.1          multimedia/libtheora
+libtool                        @2.4            devel/libtool
+libtool-devel                  @2.3a           devel/libtool-devel
+libusb                         @1.0.8          devel/libusb
+libusb-compat                  @0.1.3          devel/libusb-compat
+libvorbis                      @1.3.2          audio/libvorbis
+libxml2                        @2.7.7          textproc/libxml2
+lookup                         @1.4-media-20101010 textproc/lookup
+lynx                           @2.8.7rel.1     www/lynx
+lzmautils                      @4.32.7         archivers/lzmautils
+m4                             @1.4.15         devel/m4
+metasploit3                    @3.0            security/metasploit3
+mp4v2                          @1.9.1          multimedia/mp4v2
+ncurses                        @5.7            devel/ncurses
+ncursesw                       @5.7            devel/ncursesw
+openssl                        @1.0.0a         devel/openssl
+optipng                        @0.6.4          graphics/optipng
+p5-error                       @0.17016        perl/p5-error
+p5-io-socket-ssl               @1.26           perl/p5-io-socket-ssl
+p5-locale-gettext              @1.05           perl/p5-locale-gettext
+p5-net-libidn                  @0.12           perl/p5-net-libidn
+p5-net-ssleay                  @1.36           perl/p5-net-ssleay
+p7zip                          @9.13           archivers/p7zip
+pcre                           @8.10           devel/pcre
+perl5                          @5.8.9          lang/perl5
+perl5.8                        @5.8.9          lang/perl5.8
+pkgconfig                      @0.25           devel/pkgconfig
+pngcrush                       @1.7.12         graphics/pngcrush
+popt                           @1.16           devel/popt
+pv                             @1.1.4          sysutils/pv
+rb-actionmailer                @2.2.2          ruby/rb-actionmailer
+rb-actionpack                  @2.2.2          ruby/rb-actionpack
+rb-activerecord                @2.2.2          ruby/rb-activerecord
+rb-activeresource              @2.2.2          ruby/rb-activeresource
+rb-activesupport               @2.2.2          ruby/rb-activesupport
+rb-rails                       @2.3.5          ruby/rb-rails
+rb-rake                        @0.8.7          ruby/rb-rake
+rb-rubygems                    @1.3.7          ruby/rb-rubygems
+rb-sqlite3                     @1.2.4          ruby/rb-sqlite3
+readline                       @6.1.002        devel/readline
+remind                         @03.01.09       textproc/remind
+rsync                          @3.0.7          net/rsync
+ruby                           @1.8.7-p302     lang/ruby
+schroedinger                   @1.0.10         multimedia/schroedinger
+screen                         @4.0.3          sysutils/screen
+socat                          @1.7.1.1        sysutils/socat
+sqlite3                        @3.7.3          databases/sqlite3
+texinfo                        @4.13           textproc/texinfo
+tor                            @0.2.1.26       security/tor
+unrar                          @3.9.10         archivers/unrar
+vim                            @7.3.47         editors/vim
+watch                          @3.2.8          sysutils/watch
+wget                           @1.12           net/wget
+x264                           @20100603       multimedia/x264
+xmlcatmgr                      @2.2            textproc/xmlcatmgr
+xorg-bigreqsproto              @1.1.1          x11/xorg-bigreqsproto
+xorg-inputproto                @2.0            x11/xorg-inputproto
+xorg-kbproto                   @1.0.5          x11/xorg-kbproto
+xorg-libice                    @1.0.7          x11/xorg-libice
+xorg-libsm                     @1.2.0          x11/xorg-libsm
+xorg-libX11                    @1.3.6          x11/xorg-libX11
+xorg-libXau                    @1.0.6          x11/xorg-libXau
+xorg-libXdmcp                  @1.1.0          x11/xorg-libXdmcp
+xorg-libXext                   @1.2.0          x11/xorg-libXext
+xorg-libXmu                    @1.1.0          x11/xorg-libXmu
+xorg-libXrandr                 @1.3.1          x11/xorg-libXrandr
+xorg-libXres                   @1.0.5          x11/xorg-libXres
+xorg-libXt                     @1.0.9          x11/xorg-libXt
+xorg-randrproto                @1.3.2          x11/xorg-randrproto
+xorg-renderproto               @0.11.1         x11/xorg-renderproto
+xorg-resourceproto             @1.1.0          x11/xorg-resourceproto
+xorg-util-macros               @1.11.0         x11/xorg-util-macros
+xorg-xcmiscproto               @1.2.1          x11/xorg-xcmiscproto
+xorg-xextproto                 @7.1.2          x11/xorg-xextproto
+xorg-xf86bigfontproto          @1.2.0          x11/xorg-xf86bigfontproto
+xorg-xproto                    @7.0.19         x11/xorg-xproto
+xorg-xtrans                    @1.2.5          x11/xorg-xtrans
+xrender                        @0.9.6          x11/xrender
+XviD                           @1.2.2          multimedia/XviD
+yasm                           @1.1.0          lang/yasm
+zlib                           @1.2.5          archivers/zlib
+aspell                         @0.60.6         textproc/aspell
+aterm                          @1.0.1          x11/aterm
+autoconf                       @2.68           devel/autoconf
+automake                       @1.11.1         devel/automake
+bzip2                          @1.0.6          archivers/bzip2
+cppunit                        @1.12.1         devel/cppunit
+ctags                          @5.8            devel/ctags
+curl                           @7.21.2         net/curl
+curl-ca-bundle                 @7.21.2         net/curl-ca-bundle
+ddclient                       @3.8.0          net/ddclient
+dirac                          @1.0.2          multimedia/dirac
+dnsupdate                      @2.8            aqua/dnsupdate
+docbook-xml-4.1.2              @4.1.2          textproc/docbook-xml-4.1.2
+docbook-xml-4.2                @4.2            textproc/docbook-xml-4.2
+docbook-xml-4.3                @4.3            textproc/docbook-xml-4.3
+docbook-xml-4.4                @4.4            textproc/docbook-xml-4.4
+eb                             @4.4.3          textproc/eb
+eblook                         @1.6.1-media-20101027 textproc/eblook
+emacs                          @23.2           editors/emacs
+erlang                         @R14A           lang/erlang
+Eterm                          @0.9.5          x11/Eterm
+expat                          @2.0.1          textproc/expat
+ez-ipupdate                    @3.0.11b7       net/ez-ipupdate
+faac                           @1.28           audio/faac
+faad2                          @2.7            audio/faad2
+ffmpeg                         @0.6.1          multimedia/ffmpeg
+freetype                       @2.4.3          print/freetype
+gawk                           @3.1.8          lang/gawk
+gettext                        @0.18.1.1       devel/gettext
+giflib                         @4.1.6          graphics/giflib
+git-core                       @1.7.3.2        devel/git-core
+glib2                          @2.26.0         devel/glib2
+gmake                          @3.82           devel/gmake
+gperf                          @3.0.4          devel/gperf
+groff                          @1.20.1         sysutils/groff
+help2man                       @1.38.2         textproc/help2man
+imlib2                         @1.4.2          graphics/imlib2
+ipcheck                        @0.242          net/ipcheck
+irssi                          @0.8.15         irc/irssi
+istumbler                      @98             aqua/istumbler
+jpeg                           @8b             graphics/jpeg
+kismet                         @2010-07-R1     net/kismet
+lame                           @3.98.4         audio/lame
+libast                         @0.7            devel/libast
+libevent                       @1.4.14b        devel/libevent
+libiconv                       @1.13.1         textproc/libiconv
+libid3tag                      @0.15.1b        audio/libid3tag
+libidn                         @1.19           mail/libidn
+libogg                         @1.2.1          multimedia/libogg
+liboil                         @0.3.17         devel/liboil
+libpcap                        @1.1.1          net/libpcap
+libpng                         @1.2.44         graphics/libpng
+libsdl                         @1.2.14         devel/libsdl
+libtheora                      @1.1.1          multimedia/libtheora
+libtool                        @2.4            devel/libtool
+libtool-devel                  @2.3a           devel/libtool-devel
+libusb                         @1.0.8          devel/libusb
+libusb-compat                  @0.1.3          devel/libusb-compat
+libvorbis                      @1.3.2          audio/libvorbis
+libxml2                        @2.7.7          textproc/libxml2
+lookup                         @1.4-media-20101010 textproc/lookup
+lynx                           @2.8.7rel.1     www/lynx
+lzmautils                      @4.32.7         archivers/lzmautils
+m4                             @1.4.15         devel/m4
+metasploit3                    @3.0            security/metasploit3
+mp4v2                          @1.9.1          multimedia/mp4v2
+ncurses                        @5.7            devel/ncurses
+ncursesw                       @5.7            devel/ncursesw
+openssl                        @1.0.0a         devel/openssl
+optipng                        @0.6.4          graphics/optipng
+p5-error                       @0.17016        perl/p5-error
+p5-io-socket-ssl               @1.26           perl/p5-io-socket-ssl
+p5-locale-gettext              @1.05           perl/p5-locale-gettext
+p5-net-libidn                  @0.12           perl/p5-net-libidn
+p5-net-ssleay                  @1.36           perl/p5-net-ssleay
+p7zip                          @9.13           archivers/p7zip
+pcre                           @8.10           devel/pcre
+perl5                          @5.8.9          lang/perl5
+perl5.8                        @5.8.9          lang/perl5.8
+pkgconfig                      @0.25           devel/pkgconfig
+pngcrush                       @1.7.12         graphics/pngcrush
+popt                           @1.16           devel/popt
+pv                             @1.1.4          sysutils/pv
+rb-actionmailer                @2.2.2          ruby/rb-actionmailer
+rb-actionpack                  @2.2.2          ruby/rb-actionpack
+rb-activerecord                @2.2.2          ruby/rb-activerecord
+rb-activeresource              @2.2.2          ruby/rb-activeresource
+rb-activesupport               @2.2.2          ruby/rb-activesupport
+rb-rails                       @2.3.5          ruby/rb-rails
+rb-rake                        @0.8.7          ruby/rb-rake
+rb-rubygems                    @1.3.7          ruby/rb-rubygems
+rb-sqlite3                     @1.2.4          ruby/rb-sqlite3
+readline                       @6.1.002        devel/readline
+remind                         @03.01.09       textproc/remind
+rsync                          @3.0.7          net/rsync
+ruby                           @1.8.7-p302     lang/ruby
+schroedinger                   @1.0.10         multimedia/schroedinger
+screen                         @4.0.3          sysutils/screen
+socat                          @1.7.1.1        sysutils/socat
+sqlite3                        @3.7.3          databases/sqlite3
+texinfo                        @4.13           textproc/texinfo
+tor                            @0.2.1.26       security/tor
+unrar                          @3.9.10         archivers/unrar
+vim                            @7.3.47         editors/vim
+watch                          @3.2.8          sysutils/watch
+wget                           @1.12           net/wget
+x264                           @20100603       multimedia/x264
+xmlcatmgr                      @2.2            textproc/xmlcatmgr
+xorg-bigreqsproto              @1.1.1          x11/xorg-bigreqsproto
+xorg-inputproto                @2.0            x11/xorg-inputproto
+xorg-kbproto                   @1.0.5          x11/xorg-kbproto
+xorg-libice                    @1.0.7          x11/xorg-libice
+xorg-libsm                     @1.2.0          x11/xorg-libsm
+xorg-libX11                    @1.3.6          x11/xorg-libX11
+xorg-libXau                    @1.0.6          x11/xorg-libXau
+xorg-libXdmcp                  @1.1.0          x11/xorg-libXdmcp
+xorg-libXext                   @1.2.0          x11/xorg-libXext
+xorg-libXmu                    @1.1.0          x11/xorg-libXmu
+xorg-libXrandr                 @1.3.1          x11/xorg-libXrandr
+xorg-libXres                   @1.0.5          x11/xorg-libXres
+xorg-libXt                     @1.0.9          x11/xorg-libXt
+xorg-randrproto                @1.3.2          x11/xorg-randrproto
+xorg-renderproto               @0.11.1         x11/xorg-renderproto
+xorg-resourceproto             @1.1.0          x11/xorg-resourceproto
+xorg-util-macros               @1.11.0         x11/xorg-util-macros
+xorg-xcmiscproto               @1.2.1          x11/xorg-xcmiscproto
+xorg-xextproto                 @7.1.2          x11/xorg-xextproto
+xorg-xf86bigfontproto          @1.2.0          x11/xorg-xf86bigfontproto
+xorg-xproto                    @7.0.19         x11/xorg-xproto
+xorg-xtrans                    @1.2.5          x11/xorg-xtrans
+xrender                        @0.9.6          x11/xrender
+XviD                           @1.2.2          multimedia/XviD
+yasm                           @1.1.0          lang/yasm
+zlib                           @1.2.5          archivers/zlib
+--->  Updating the ports tree
+--->  Updating MacPorts base sources using rsync
+MacPorts base version 1.8.2 installed,
+MacPorts base version 1.9.1 downloaded.
+--->  MacPorts base is outdated, selfupdate would install 1.9.1 (dry run)
+
+The ports tree has been updated. To upgrade your installed ports, you should run
+  port upgrade outdated
+--->  Updating the ports tree
+Synchronizing local ports tree from rsync://rsync.macports.org/release/ports/
+receiving file list ... done
+
+sent 36 bytes  received 483740 bytes  138221.71 bytes/sec
+total size is 52718922  speedup is 108.97
+--->  Updating MacPorts base sources using rsync
+receiving file list ... done
+
+sent 36 bytes  received 6810 bytes  4564.00 bytes/sec
+total size is 2879032  speedup is 420.54
+MacPorts base version 1.8.2 installed,
+MacPorts base version 1.9.1 downloaded.
+--->  MacPorts base is outdated, selfupdate would install 1.9.1 (dry run)
+
+The ports tree has been updated. To upgrade your installed ports, you should run
+  port upgrade outdated
+aspell                         @0.60.6         textproc/aspell
+autoconf                       @2.68           devel/autoconf
+bzip2                          @1.0.6          archivers/bzip2
+curl                           @7.21.2         net/curl
+curl-ca-bundle                 @7.21.2         net/curl-ca-bundle
+eb                             @4.4.3          textproc/eb
+eblook                         @1.6.1-media-20101027 textproc/eblook
+emacs                          @23.2           editors/emacs
+erlang                         @R14A           lang/erlang
+expat                          @2.0.1          textproc/expat
+faac                           @1.28           audio/faac
+ffmpeg                         @0.6.1          multimedia/ffmpeg
+freetype                       @2.4.3          print/freetype
+gawk                           @3.1.8          lang/gawk
+gettext                        @0.18.1.1       devel/gettext
+git-core                       @1.7.3.2        devel/git-core
+glib2                          @2.26.0         devel/glib2
+gmake                          @3.82           devel/gmake
+help2man                       @1.38.2         textproc/help2man
+imlib2                         @1.4.2          graphics/imlib2
+ipcheck                        @0.242          net/ipcheck
+irssi                          @0.8.15         irc/irssi
+jpeg                           @8b             graphics/jpeg
+kismet                         @2010-07-R1     net/kismet
+lame                           @3.98.4         audio/lame
+libevent                       @1.4.14b        devel/libevent
+libiconv                       @1.13.1         textproc/libiconv
+libid3tag                      @0.15.1b        audio/libid3tag
+libidn                         @1.19           mail/libidn
+libogg                         @1.2.1          multimedia/libogg
+liboil                         @0.3.17         devel/liboil
+libpcap                        @1.1.1          net/libpcap
+libpng                         @1.2.44         graphics/libpng
+libtool                        @2.4            devel/libtool
+libusb                         @1.0.8          devel/libusb
+libvorbis                      @1.3.2          audio/libvorbis
+libxml2                        @2.7.7          textproc/libxml2
+lookup                         @1.4-media-20101010 textproc/lookup
+lynx                           @2.8.7rel.1     www/lynx
+m4                             @1.4.15         devel/m4
+mp4v2                          @1.9.1          multimedia/mp4v2
+ncurses                        @5.7            devel/ncurses
+ncursesw                       @5.7            devel/ncursesw
+openssl                        @1.0.0a         devel/openssl
+optipng                        @0.6.4          graphics/optipng
+p5-error                       @0.17016        perl/p5-error
+p5-locale-gettext              @1.05           perl/p5-locale-gettext
+p5-net-ssleay                  @1.36           perl/p5-net-ssleay
+p7zip                          @9.13           archivers/p7zip
+pcre                           @8.10           devel/pcre
+pkgconfig                      @0.25           devel/pkgconfig
+pngcrush                       @1.7.12         graphics/pngcrush
+popt                           @1.16           devel/popt
+rb-rails                       @2.3.5          ruby/rb-rails
+rb-rubygems                    @1.3.7          ruby/rb-rubygems
+readline                       @6.1.002        devel/readline
+remind                         @03.01.09       textproc/remind
+ruby                           @1.8.7-p302     lang/ruby
+schroedinger                   @1.0.10         multimedia/schroedinger
+socat                          @1.7.1.1        sysutils/socat
+sqlite3                        @3.7.3          databases/sqlite3
+texinfo                        @4.13           textproc/texinfo
+tor                            @0.2.1.26       security/tor
+unrar                          @3.9.10         archivers/unrar
+vim                            @7.3.47         editors/vim
+watch                          @3.2.8          sysutils/watch
+wget                           @1.12           net/wget
+x264                           @20100603       multimedia/x264
+xorg-bigreqsproto              @1.1.1          x11/xorg-bigreqsproto
+xorg-kbproto                   @1.0.5          x11/xorg-kbproto
+xorg-libice                    @1.0.7          x11/xorg-libice
+xorg-libsm                     @1.2.0          x11/xorg-libsm
+xorg-libX11                    @1.3.6          x11/xorg-libX11
+xorg-libXau                    @1.0.6          x11/xorg-libXau
+xorg-libXdmcp                  @1.1.0          x11/xorg-libXdmcp
+xorg-libXext                   @1.2.0          x11/xorg-libXext
+xorg-libXmu                    @1.1.0          x11/xorg-libXmu
+xorg-libXrandr                 @1.3.1          x11/xorg-libXrandr
+xorg-libXres                   @1.0.5          x11/xorg-libXres
+xorg-libXt                     @1.0.9          x11/xorg-libXt
+xorg-randrproto                @1.3.2          x11/xorg-randrproto
+xorg-renderproto               @0.11.1         x11/xorg-renderproto
+xorg-util-macros               @1.11.0         x11/xorg-util-macros
+xorg-xcmiscproto               @1.2.1          x11/xorg-xcmiscproto
+xorg-xextproto                 @7.1.2          x11/xorg-xextproto
+xorg-xproto                    @7.0.19         x11/xorg-xproto
+xrender                        @0.9.6          x11/xrender
+yasm                           @1.1.0          lang/yasm
+zlib                           @1.2.5          archivers/zlib
+aspell                         @0.60.6         textproc/aspell
+autoconf                       @2.68           devel/autoconf
+bzip2                          @1.0.6          archivers/bzip2
+curl                           @7.21.2         net/curl
+curl-ca-bundle                 @7.21.2         net/curl-ca-bundle
+eb                             @4.4.3          textproc/eb
+eblook                         @1.6.1-media-20101027 textproc/eblook
+emacs                          @23.2           editors/emacs
+erlang                         @R14A           lang/erlang
+expat                          @2.0.1          textproc/expat
+faac                           @1.28           audio/faac
+ffmpeg                         @0.6.1          multimedia/ffmpeg
+freetype                       @2.4.3          print/freetype
+gawk                           @3.1.8          lang/gawk
+gettext                        @0.18.1.1       devel/gettext
+git-core                       @1.7.3.2        devel/git-core
+glib2                          @2.26.0         devel/glib2
+gmake                          @3.82           devel/gmake
+help2man                       @1.38.2         textproc/help2man
+imlib2                         @1.4.2          graphics/imlib2
+ipcheck                        @0.242          net/ipcheck
+irssi                          @0.8.15         irc/irssi
+jpeg                           @8b             graphics/jpeg
+kismet                         @2010-07-R1     net/kismet
+lame                           @3.98.4         audio/lame
+libevent                       @1.4.14b        devel/libevent
+libiconv                       @1.13.1         textproc/libiconv
+libid3tag                      @0.15.1b        audio/libid3tag
+libidn                         @1.19           mail/libidn
+libogg                         @1.2.1          multimedia/libogg
+liboil                         @0.3.17         devel/liboil
+libpcap                        @1.1.1          net/libpcap
+libpng                         @1.2.44         graphics/libpng
+libtool                        @2.4            devel/libtool
+libusb                         @1.0.8          devel/libusb
+libvorbis                      @1.3.2          audio/libvorbis
+libxml2                        @2.7.7          textproc/libxml2
+lookup                         @1.4-media-20101010 textproc/lookup
+lynx                           @2.8.7rel.1     www/lynx
+m4                             @1.4.15         devel/m4
+mp4v2                          @1.9.1          multimedia/mp4v2
+ncurses                        @5.7            devel/ncurses
+ncursesw                       @5.7            devel/ncursesw
+openssl                        @1.0.0a         devel/openssl
+optipng                        @0.6.4          graphics/optipng
+p5-error                       @0.17016        perl/p5-error
+p5-locale-gettext              @1.05           perl/p5-locale-gettext
+p5-net-ssleay                  @1.36           perl/p5-net-ssleay
+p7zip                          @9.13           archivers/p7zip
+pcre                           @8.10           devel/pcre
+pkgconfig                      @0.25           devel/pkgconfig
+pngcrush                       @1.7.12         graphics/pngcrush
+popt                           @1.16           devel/popt
+rb-rails                       @2.3.5          ruby/rb-rails
+rb-rubygems                    @1.3.7          ruby/rb-rubygems
+readline                       @6.1.002        devel/readline
+remind                         @03.01.09       textproc/remind
+ruby                           @1.8.7-p302     lang/ruby
+schroedinger                   @1.0.10         multimedia/schroedinger
+socat                          @1.7.1.1        sysutils/socat
+sqlite3                        @3.7.3          databases/sqlite3
+texinfo                        @4.13           textproc/texinfo
+tor                            @0.2.1.26       security/tor
+unrar                          @3.9.10         archivers/unrar
+vim                            @7.3.47         editors/vim
+watch                          @3.2.8          sysutils/watch
+wget                           @1.12           net/wget
+x264                           @20100603       multimedia/x264
+xorg-bigreqsproto              @1.1.1          x11/xorg-bigreqsproto
+xorg-kbproto                   @1.0.5          x11/xorg-kbproto
+xorg-libice                    @1.0.7          x11/xorg-libice
+xorg-libsm                     @1.2.0          x11/xorg-libsm
+xorg-libX11                    @1.3.6          x11/xorg-libX11
+xorg-libXau                    @1.0.6          x11/xorg-libXau
+xorg-libXdmcp                  @1.1.0          x11/xorg-libXdmcp
+xorg-libXext                   @1.2.0          x11/xorg-libXext
+xorg-libXmu                    @1.1.0          x11/xorg-libXmu
+xorg-libXrandr                 @1.3.1          x11/xorg-libXrandr
+xorg-libXres                   @1.0.5          x11/xorg-libXres
+xorg-libXt                     @1.0.9          x11/xorg-libXt
+xorg-randrproto                @1.3.2          x11/xorg-randrproto
+xorg-renderproto               @0.11.1         x11/xorg-renderproto
+xorg-util-macros               @1.11.0         x11/xorg-util-macros
+xorg-xcmiscproto               @1.2.1          x11/xorg-xcmiscproto
+xorg-xextproto                 @7.1.2          x11/xorg-xextproto
+xorg-xproto                    @7.0.19         x11/xorg-xproto
+xrender                        @0.9.6          x11/xrender
+yasm                           @1.1.0          lang/yasm
+zlib                           @1.2.5          archivers/zlib
+--->  Computing dependencies for libevent
+For libevent: skipping org.macports.main (dry run)
+Skipping deactivate libevent @1.4.13_0 (dry run)
+Skipping activate libevent @1.4.14b_0 (dry run)
+Portfile changed since last build; discarding previous state.
+--->  Computing dependencies for zlib
+For zlib: skipping org.macports.main (dry run)
+Skipping deactivate zlib @1.2.3_4 (dry run)
+Skipping activate zlib @1.2.5_0 (dry run)
+Portfile changed since last build; discarding previous state.
+--->  Computing dependencies for openssl
+For openssl: skipping org.macports.main (dry run)
+Skipping deactivate openssl @0.9.8l_0 (dry run)
+Skipping activate openssl @1.0.0a_1 (dry run)
+--->  Computing dependencies for tor
+For tor: skipping org.macports.main (dry run)
+Skipping deactivate tor @0.2.1.21_0 (dry run)
+Skipping activate tor @0.2.1.26_0 (dry run)
+--->  Computing dependencies for libevent.
+For libevent: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate libevent @1.4.13_0 (dry run)
+Skipping activate libevent @1.4.14b_0 (dry run)
+--->  Computing dependencies for zlib.
+For zlib: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate zlib @1.2.3_4 (dry run)
+Skipping activate zlib @1.2.5_0 (dry run)
+--->  Computing dependencies for openssl.
+For openssl: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate openssl @0.9.8l_0 (dry run)
+Skipping activate openssl @1.0.0a_1 (dry run)
+--->  Computing dependencies for tor.
+For tor: skipping org.macports.main (dry run)
+    .. and skipping org.macports.fetch
+    .. and skipping org.macports.checksum
+    .. and skipping org.macports.extract
+    .. and skipping org.macports.patch
+    .. and skipping org.macports.configure
+    .. and skipping org.macports.build
+    .. and skipping org.macports.destroot
+Skipping deactivate tor @0.2.1.21_0 (dry run)
+Skipping activate tor @0.2.1.26_0 (dry run)

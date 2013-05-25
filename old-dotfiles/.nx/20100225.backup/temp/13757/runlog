@@ -1,0 +1,144 @@
+[Thu Feb 25 17:15:12 2010]: Settings::flush
+[Thu Feb 25 17:15:12 2010]: Settings::flush
+[Thu Feb 25 17:15:12 2010]: Utility::getPreferencesFile: 'nxclient' -> '/Users/jearsh/.nx/config/nxclient.cfg'
+[Thu Feb 25 17:15:12 2010]: Settings::flush
+[Thu Feb 25 17:15:13 2010]: LoginDialog: login setupGui 1
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'NX_HOME' to '/Users/jearsh'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'NX_ROOT' to '/Users/jearsh/.nx'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'NX_SYSTEM' to '/usr/NX'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'NX_CLIENT' to '/Applications/NX Client for OSX.app/Contents/MacOS/nxclient'
+[Thu Feb 25 17:15:13 2010]: Trying the XAUTHORITY environment variable with value [/Users/jearsh/.Xauthority].
+[Thu Feb 25 17:15:13 2010]: Utility::getXAuthorityFilePath: /Users/jearsh/.Xauthority
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'XAUTHORITY' to '/Users/jearsh/.Xauthority'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'LD_LIBRARY_PATH' to '/usr/NX/lib'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'HOME' to '/Users/jearsh'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'PATH' to '/usr/bin:/bin:/usr/sbin:/sbin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'NX_TEMP' to '/tmp'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'TEMP' to '/tmp'
+[Thu Feb 25 17:15:13 2010]: Setting environment variable 'NX_VERSION' to '3.4.0'
+[Thu Feb 25 17:15:14 2010]: Trying to write the ssh key into [/Users/jearsh/.nx/temp/13757/keylog]
+[Thu Feb 25 17:15:14 2010]: SSH key file path [/Users/jearsh/.nx/temp/13757/keylog]
+[Thu Feb 25 17:15:14 2010]: Removing the prevous NXProtocolSSH class
+[Thu Feb 25 17:15:14 2010]: Called destructor for protocol class
+[Thu Feb 25 17:15:14 2010]: Running nxssh protocol with version [3.4.0]
+[Thu Feb 25 17:15:14 2010]: LoginDialog: startProgressTimer
+[Thu Feb 25 17:15:14 2010]: LoginDialog::ShowConnectionStatus code=[240] str=[Setting up the environment] error=[0]
+[Thu Feb 25 17:15:14 2010]: ProgressDialog::printNxStatus: [Setting up the environment]
+[Thu Feb 25 17:15:14 2010]: LoginDialog: startProgressTimer
+[Thu Feb 25 17:15:14 2010]: Showing progress dialog: Setting up the environment
+[Thu Feb 25 17:15:15 2010]: Starting the Mac X server from the login dialog.
+[Thu Feb 25 17:15:15 2010]: Starting the X server on MacOS/X.
+[Thu Feb 25 17:15:15 2010]: Launchd service detected on socket '/tmp/launch-EleHYy/:0'.
+[Thu Feb 25 17:15:15 2010]: Skipping the X server starting.
+[Thu Feb 25 17:15:15 2010]: LoginDialog::ShowConnectionStatus code=[241] str=[Connecting to files.redgage.com] error=[0]
+[Thu Feb 25 17:15:15 2010]: ProgressDialog::printNxStatus: [Connecting to files.redgage.com]
+[Thu Feb 25 17:15:15 2010]: LoginDialog::connectHost() nxsshline=/usr/NX/bin/nxssh -nx -p 3389 -i /Users/jearsh/.nx/temp/13757/keylog nx@files.redgage.com -x -2 -4 -o RhostsAuthentication no -o PasswordAuthentication no -o RSAAuthentication no -o RhostsRSAAuthentication no -o PubkeyAuthentication yes -B -E
+[Thu Feb 25 17:15:15 2010]: Using NX_STDIN flag redirection for [nxssh] process
+[Thu Feb 25 17:15:15 2010]: Using NX_STDOUT flag redirection for [nxssh] process
+[Thu Feb 25 17:15:15 2010]: Using NX_STDERR flag redirection for [nxssh] process
+[Thu Feb 25 17:15:15 2010]: SpawnProcess method has returned [1]
+[Thu Feb 25 17:15:15 2010]: Process [nxssh] running with pid [13771]
+[Thu Feb 25 17:15:15 2010]: Received line from nxssh process [NX> 203 NXSSH running with pid: 13771] with code [203]
+[Thu Feb 25 17:15:15 2010]: Received code[203]
+[Thu Feb 25 17:15:15 2010]: NXProtocol: trying to read ssh pid from '13771' - read '13771'
+[Thu Feb 25 17:15:15 2010]: Received line from nxssh process [NX> 285 Enabling check on switch command] with code [285]
+[Thu Feb 25 17:15:15 2010]: Received code[285]
+[Thu Feb 25 17:15:15 2010]: Received line from nxssh process [NX> 285 Enabling skip of SSH config files] with code [285]
+[Thu Feb 25 17:15:15 2010]: Received code[285]
+[Thu Feb 25 17:15:15 2010]: Received line from nxssh process [NX> 285 Setting the preferred NX options] with code [285]
+[Thu Feb 25 17:15:15 2010]: Received code[285]
+[Thu Feb 25 17:15:15 2010]: Received line from nxssh process [NX> 200 Connected to address: 174.129.228.243 on port: 3389] with code [200]
+[Thu Feb 25 17:15:15 2010]: Received code[200]
+[Thu Feb 25 17:15:47 2010]: StopConnection called
+[Thu Feb 25 17:15:47 2010]: nxssh closing
+[Thu Feb 25 17:15:47 2010]: StopConnection called
+[Thu Feb 25 17:15:47 2010]: slotNXsshExited()
+[Thu Feb 25 17:15:47 2010]: LoginDialog: stopAllTimers
+[Thu Feb 25 17:15:47 2010]: LoginDialog: stopProgressTimer
+[Thu Feb 25 17:15:47 2010]: printFatalError [Connection error]
+[Thu Feb 25 17:15:47 2010]: KillAllComponents 0xcc1a70
+[Thu Feb 25 17:15:47 2010]: LoginDialog: stopAllTimers
+[Thu Feb 25 17:15:47 2010]: LoginDialog: stopProgressTimer
+[Thu Feb 25 17:15:47 2010]: LoginDialog::killAllComponents() stopping NXProtoSSH
+[Thu Feb 25 17:15:47 2010]: StopConnection called
+[Thu Feb 25 17:15:47 2010]: nxssh closing
+[Thu Feb 25 17:15:47 2010]: StopConnection called
+[Thu Feb 25 17:15:47 2010]: NXProcessUnix::StopProcess process [nxssh] with pid [13771]
+[Thu Feb 25 17:15:47 2010]: end of killAllComponents
+[Thu Feb 25 17:15:47 2010]: LoginDialog::ShowConnectionStatus code=[269] str=[Connection error] error=[1]
+[Thu Feb 25 17:15:47 2010]: ProgressDialog::printNxStatus: [Connection error]
+[Thu Feb 25 17:15:47 2010]: Logfile path [/Users/jearsh/.nx/temp/13757/sshlog] exists.
+[Thu Feb 25 17:16:01 2010]: LoginDialog::ShowConnectionStatus code=[251] str=[Disconnecting...] error=[0]
+[Thu Feb 25 17:16:01 2010]: ProgressDialog::printNxStatus: [Disconnecting...]
+[Thu Feb 25 17:16:01 2010]: KillAllComponents 0xcc1a70
+[Thu Feb 25 17:16:01 2010]: LoginDialog: stopAllTimers
+[Thu Feb 25 17:16:01 2010]: LoginDialog: stopProgressTimer
+[Thu Feb 25 17:16:01 2010]: LoginDialog::killAllComponents() stopping NXProtoSSH
+[Thu Feb 25 17:16:01 2010]: StopConnection called
+[Thu Feb 25 17:16:01 2010]: nxssh closing
+[Thu Feb 25 17:16:01 2010]: StopConnection called
+[Thu Feb 25 17:16:01 2010]: NXProcessUnix::StopProcess process [nxssh] with pid [13771]
+[Thu Feb 25 17:16:01 2010]: end of killAllComponents
+[Thu Feb 25 17:16:08 2010]: LoginDialog: login setupGui 1
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'NX_HOME' to '/Users/jearsh'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'NX_ROOT' to '/Users/jearsh/.nx'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'NX_SYSTEM' to '/usr/NX'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'NX_CLIENT' to '/Applications/NX Client for OSX.app/Contents/MacOS/nxclient'
+[Thu Feb 25 17:16:08 2010]: Trying the XAUTHORITY environment variable with value [/Users/jearsh/.Xauthority].
+[Thu Feb 25 17:16:08 2010]: Utility::getXAuthorityFilePath: /Users/jearsh/.Xauthority
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'XAUTHORITY' to '/Users/jearsh/.Xauthority'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'LD_LIBRARY_PATH' to '/usr/NX/lib'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'HOME' to '/Users/jearsh'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'PATH' to '/usr/bin:/bin:/usr/sbin:/sbin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin:/usr/NX/bin:/usr/X/bin'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'NX_TEMP' to '/tmp'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'TEMP' to '/tmp'
+[Thu Feb 25 17:16:08 2010]: Setting environment variable 'NX_VERSION' to '3.4.0'
+[Thu Feb 25 17:16:08 2010]: Trying to write the ssh key into [/Users/jearsh/.nx/temp/13757/keylog]
+[Thu Feb 25 17:16:08 2010]: SSH key file path [/Users/jearsh/.nx/temp/13757/keylog]
+[Thu Feb 25 17:16:08 2010]: Removing the prevous NXProtocolSSH class
+[Thu Feb 25 17:16:08 2010]: Called destructor for protocol class
+[Thu Feb 25 17:16:08 2010]: Running nxssh protocol with version [3.4.0]
+[Thu Feb 25 17:16:09 2010]: LoginDialog: startProgressTimer
+[Thu Feb 25 17:16:09 2010]: LoginDialog::ShowConnectionStatus code=[240] str=[Setting up the environment] error=[0]
+[Thu Feb 25 17:16:09 2010]: ProgressDialog::printNxStatus: [Setting up the environment]
+[Thu Feb 25 17:16:09 2010]: LoginDialog: startProgressTimer
+[Thu Feb 25 17:16:09 2010]: Showing progress dialog: Setting up the environment
+[Thu Feb 25 17:16:09 2010]: Starting the Mac X server from the login dialog.
+[Thu Feb 25 17:16:09 2010]: Starting the X server on MacOS/X.
+[Thu Feb 25 17:16:09 2010]: Launchd service detected on socket '/tmp/launch-EleHYy/:0'.
+[Thu Feb 25 17:16:09 2010]: Skipping the X server starting.
+[Thu Feb 25 17:16:09 2010]: LoginDialog::ShowConnectionStatus code=[241] str=[Connecting to files.redgage.com] error=[0]
+[Thu Feb 25 17:16:09 2010]: ProgressDialog::printNxStatus: [Connecting to files.redgage.com]
+[Thu Feb 25 17:16:09 2010]: LoginDialog::connectHost() nxsshline=/usr/NX/bin/nxssh -nx -p 3389 -i /Users/jearsh/.nx/temp/13757/keylog nx@files.redgage.com -x -2 -4 -o RhostsAuthentication no -o PasswordAuthentication no -o RSAAuthentication no -o RhostsRSAAuthentication no -o PubkeyAuthentication yes -B -E
+[Thu Feb 25 17:16:09 2010]: Using NX_STDIN flag redirection for [nxssh] process
+[Thu Feb 25 17:16:09 2010]: Using NX_STDOUT flag redirection for [nxssh] process
+[Thu Feb 25 17:16:09 2010]: Using NX_STDERR flag redirection for [nxssh] process
+[Thu Feb 25 17:16:09 2010]: SpawnProcess method has returned [1]
+[Thu Feb 25 17:16:09 2010]: Process [nxssh] running with pid [13773]
+[Thu Feb 25 17:16:09 2010]: Received line from nxssh process [NX> 203 NXSSH running with pid: 13773] with code [203]
+[Thu Feb 25 17:16:09 2010]: Received code[203]
+[Thu Feb 25 17:16:09 2010]: NXProtocol: trying to read ssh pid from '13773' - read '13773'
+[Thu Feb 25 17:16:09 2010]: Received line from nxssh process [NX> 285 Enabling check on switch command] with code [285]
+[Thu Feb 25 17:16:09 2010]: Received code[285]
+[Thu Feb 25 17:16:09 2010]: Received line from nxssh process [NX> 285 Enabling skip of SSH config files] with code [285]
+[Thu Feb 25 17:16:09 2010]: Received code[285]
+[Thu Feb 25 17:16:09 2010]: Received line from nxssh process [NX> 285 Setting the preferred NX options] with code [285]
+[Thu Feb 25 17:16:09 2010]: Received code[285]
+[Thu Feb 25 17:16:09 2010]: Received line from nxssh process [NX> 200 Connected to address: 174.129.228.243 on port: 3389] with code [200]
+[Thu Feb 25 17:16:09 2010]: Received code[200]
+[Thu Feb 25 17:16:12 2010]: LoginDialog::ShowConnectionStatus code=[251] str=[Disconnecting...] error=[0]
+[Thu Feb 25 17:16:12 2010]: ProgressDialog::printNxStatus: [Disconnecting...]
+[Thu Feb 25 17:16:12 2010]: KillAllComponents 0xcc1a70
+[Thu Feb 25 17:16:12 2010]: LoginDialog: stopAllTimers
+[Thu Feb 25 17:16:12 2010]: LoginDialog: stopProgressTimer
+[Thu Feb 25 17:16:12 2010]: LoginDialog::killAllComponents() stopping NXProtoSSH
+[Thu Feb 25 17:16:12 2010]: StopConnection called
+[Thu Feb 25 17:16:12 2010]: nxssh closing
+[Thu Feb 25 17:16:12 2010]: StopConnection called
+[Thu Feb 25 17:16:12 2010]: NXProcessUnix::StopProcess process [nxssh] with pid [13773]
+[Thu Feb 25 17:16:12 2010]: end of killAllComponents
+[Thu Feb 25 17:16:13 2010]: LoginDialog::showParameterDialog()
+[Thu Feb 25 17:16:19 2010]: WndSessionSettings::showKeyManager()
+[Thu Feb 25 17:17:42 2010]: Save clicked...key=[]
+[Thu Feb 25 17:17:52 2010]: Settings::flush
+[Thu Feb 25 17:17:52 2010]: Settings::flush

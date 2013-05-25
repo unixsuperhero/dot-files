@@ -1,0 +1,11 @@
+VERSION BUILD=6001220     
+TAB T=1     
+TAB CLOSEALLOTHERS    
+URL GOTO=http://www.iopus.com/imacros/demo/v6/fx-file-upload.htm      
+'
+TAG POS=1 TYPE=INPUT:FILE FORM=NAME:frm_upload ATTR=NAME:uploaded_file CONTENT=c:\demo\file-to-upload.txt
+'Display some information for the user
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:frm_upload ATTR=NAME:S1 CONTENT=Done!<SP>The<SP>file<SP>name<SP>is<SP>in<SP>the<SP>upload<SP>box.<SP>We<SP>could<SP>now<SP>click<SP>on<SP>the<SP>SUBMIT<SP>button<SP>or<SP>continue<SP>to<SP>fill<SP>in<SP>the<SP>rest<SP>of<SP>the<SP>form. 
+'
+WAIT SECONDS=1
+

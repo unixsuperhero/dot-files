@@ -1,0 +1,7 @@
+﻿VERSION BUILD=300625    
+TAB T=1     
+TAB CLOSEALLOTHERS   
+URL GOTO=http://www.iopus.com/imacros/demo/v6/extract.htm       
+'Get the values
+TAG POS=29 TYPE=TD ATTR=CLASS:bdytxt&&TXT:*.* EXTRACT=TXT  
+TAG POS=30 TYPE=TD ATTR=CLASS:bdytxt&&TXT:*.* EXTRACT=TXT     

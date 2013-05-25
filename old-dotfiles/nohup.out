@@ -1,0 +1,44 @@
+Password:
+Sorry, try again.
+Password:
+Sorry, try again.
+Password:
+Sorry, try again.
+sudo: 3 incorrect password attempts
+100505 02:38:46 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+100505 02:38:46 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100510 12:24:42 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+touch: /usr/local/mysql/data/mini.local.err: Permission denied
+chown: /usr/local/mysql/data/mini.local.err: Permission denied
+100510 12:24:43 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+/usr/local/mysql/bin/mysqld_safe: line 100: /usr/local/mysql/data/mini.local.err: Permission denied
+rm: /usr/local/mysql/data/mini.local.pid: Permission denied
+/usr/local/mysql/bin/mysqld_safe: line 137: /usr/local/mysql/data/mini.local.err: Permission denied
+100510 12:24:43 mysqld_safe mysqld from pid file /usr/local/mysql/data/mini.local.pid ended
+/usr/local/mysql/bin/mysqld_safe: line 100: /usr/local/mysql/data/mini.local.err: Permission denied
+100510 12:25:10 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+100510 12:25:11 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100601 15:45:20 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+100601 15:45:20 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100611 19:10:20 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+100611 19:10:20 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100617 15:44:27 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+100617 15:44:28 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100712 20:32:57 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+100712 20:32:58 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100813 16:23:00 mysqld_safe Logging to '/usr/local/mysql/data/mini.err'.
+100813 16:23:00 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100817 23:06:09 mysqld_safe Logging to '/usr/local/mysql/data/jearsh.gotdns.com.err'.
+100817 23:06:09 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+100824 17:18:41 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+100824 17:18:41 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+101006 01:56:21 mysqld_safe Logging to '/usr/local/mysql/data/c-65-34-228-23.hsd1.fl.comcast.net.err'.
+101006 01:56:22 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+101011 17:12:45 mysqld_safe Logging to '/usr/local/mysql/data/c-65-34-228-23.hsd1.fl.comcast.net.err'.
+101011 17:12:45 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+101111 02:30:27 mysqld_safe Logging to '/usr/local/mysql/data/c-65-34-228-23.hsd1.fl.comcast.net.err'.
+101111 02:30:27 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+110104 04:19:12 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+110104 04:19:12 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data
+110110 23:34:30 mysqld_safe Logging to '/usr/local/mysql/data/mini.local.err'.
+110110 23:34:31 mysqld_safe Starting mysqld daemon with databases from /usr/local/mysql/data

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+q="select ZFIRSTNAME,ZLASTNAME,ZORGANIZATION from ZABCDRECORD;"
+q="select * from ZABCDRECORD;"
+q=$(cat <<EQ
+      SELECT e.ZADDRESSNORMALIZED, p.ZFIRSTNAME, p.ZLASTNAME, p.ZORGANIZATION
+      FROM ZABCDRECORD as p, ZABCDEMAILADDRESS as e
+      WHERE e.ZOWNER = p.Z_PK;
+EQ)
+q=$(cat <<EQ
+      SELECT p.ZFIRSTNAME, p.ZLASTNAME, p.ZORGANIZATION, e.ZFULLNUMBER
+      FROM ZABCDRECORD as p, ZABCDPHONENUMBER as e
+      WHERE e.ZOWNER = p.Z_PK;
+EQ)
+
+sqlite3 -separator '	' ~/Library/Application\ Support/AddressBook/AddressBook-v22.abcddb "$q" | grep -i "$1"
+
+exit 0
+
+# References
+# 
+# (www) http://hints.macworld.com/article.php?story=20100130052524548
+# (www) http://www.gnufoo.org/contacts/contacts.html
+# 
+# q='.tables'
+# q='.schema ZABCDRECORD'
+# q='.schema ZABCDPHONENUMBER'
+

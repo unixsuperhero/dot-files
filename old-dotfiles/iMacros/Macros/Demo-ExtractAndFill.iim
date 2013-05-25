@@ -1,0 +1,20 @@
+﻿VERSION BUILD=4010333     
+TAB T=1     
+TAB CLOSEALLOTHERS     
+URL GOTO=http://www.iopus.com/imacros/demo/v6/extract.htm       
+'Get the values
+TAG POS=29 TYPE=TD ATTR=CLASS:bdytxt&&TXT:*.* EXTRACT=TXT    
+SET !VAR1 {{!EXTRACT}} 
+SET !EXTRACT NULL
+TAG POS=30 TYPE=TD ATTR=CLASS:bdytxt&&TXT:*.* EXTRACT=TXT    
+SET !VAR2 {{!EXTRACT}}
+SET !EXTRACT NULL
+TAG POS=31 TYPE=TD ATTR=CLASS:bdytxt&&TXT:*.* EXTRACT=TXT  
+SET !VAR3 {{!EXTRACT}}
+SET !EXTRACT NULL
+'Now fill them in a form. This is only one example. You could use it also as part of link  
+URL GOTO=http://www.iopus.com/imacros/demo/v6/f1/form.asp   
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:TestForm ATTR=NAME:Name CONTENT=***Extract<SP>and<SP>Fill<SP>Demo*** 
+'
+'The variables are part of the CONTENT tag. You could use them as part of link
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:TestForm ATTR=NAME:Remarks CONTENT=Extraction<SP>results:<BR><BR>One<SP>dollar<SP>costs<SP>{{!VAR1}}<SP>EURO,<SP>{{!VAR2}}<SP>Pounds<SP>or<SP>{{!VAR3}}<SP>Yen. 

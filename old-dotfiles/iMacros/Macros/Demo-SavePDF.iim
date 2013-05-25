@@ -1,0 +1,35 @@
+﻿VERSION BUILD=4170912     
+TAB T=1     
+TAB CLOSEALLOTHERS     
+URL GOTO=http://www.iopus.com/imacros/demo/v6/pdf/          
+'
+WAIT SECONDS=2
+'
+'1st Download (small file)
+' 
+TAG POS=1 TYPE=A ATTR=TXT:Open<SP>small<SP>PDF<SP>Document     
+ONDOWNLOAD FOLDER=* FILE=+_{{!NOW:yyyymmdd_hhnnss}}   
+SAVEITEM        
+'
+'2nd Download (same as #1 but larger file)
+' 
+URL GOTO=http://www.iopus.com/imacros/demo/v5/pdf/  
+TAG POS=1 TYPE=A ATTR=TXT:*User<SP>Manual*   
+ONDOWNLOAD FOLDER=* FILE=+_{{!NOW:yyyymmdd_hhnnss}}    
+TAB T=1     
+SAVEITEM       
+'
+'
+WAIT SECONDS=3
+URL GOTO=http://www.iopus.com/imacros/home/msg/ok.htm  
+'
+'
+'Note: If *no* Acrobat Reader is installed, the TAG command
+'triggers a normal download of the PDF file. And since no PDF Plugin
+'is opened, the SAVEITEM command simply downloads the open web page.
+'instead of the PDF Plug-In content. 
+'
+'Notes for Firefox:
+' - If you want to DISPLAY a PDF document (and not download it) use: SET !DOWNLOADPDF NO
+' - Saveitem is only required for use within IE or the iMacros Browser, FX does not need it  
+

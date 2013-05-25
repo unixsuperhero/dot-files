@@ -1,0 +1,95 @@
+* About to connect() to www.donnamilo.com port 80 (#0)
+*   Trying 8.6.19.68... connected
+* Connected to www.donnamilo.com (8.6.19.68) port 80 (#0)
+> GET / HTTP/1.1
+> User-Agent: curl/7.19.4 (universal-apple-darwin10.0) libcurl/7.19.4 OpenSSL/0.9.8l zlib/1.2.3
+> Host: www.donnamilo.com
+> Accept: */*
+> 
+< HTTP/1.1 404 Not Found
+< Date: Sun, 14 Mar 2010 05:48:36 GMT
+< Server: Ning HTTP Server 2.0
+< Expires: Thu, 01 Jan 1970 00:00:00 GMT
+< Set-Cookie: xn_visitor=bca2141e-4945-466f-89af-e45eeb9a901f;Path=/;Domain=.donnamilo.com;Expires=Wed, 11-Mar-20 05:48:36 GMT
+< X-XN-Trace-Token: 5ab5e406-5fe4-479e-afb2-5c7148c47592
+< Cache-Control: max-age=0
+< Content-Length: 2901
+< Cache-Control: no-cache="Set-Cookie"
+< 
+{ [data not shown]
+* Connection #0 to host www.donnamilo.com left intact
+* Closing connection #0
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content=""/>
+    <title>Page Not Found</title>
+
+    
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    <style type="text/css">@import url("http://www.ning.com/xn_resources/premium-service/css/new-system.css");</style>
+    <script type="text/javascript" src="http://www.ning.com/xn_resources/premium-service/js/xn.js"></script>
+</head>
+
+<body class="premium-services">
+    <div id="xs">
+        <div id="xn_bar">
+    <div id="xn_bar_menu">
+        <div id="xn_bar_menu_branding">
+            <p id="xn_brand"><a href="http://www.ning.com/"><span>Ning</span></a></p>
+
+            <p id="xn_gyo_link"><a href="http://www.ning.com/">Create Your Own Social Network</a></p>
+        </div>
+
+        <div id="xn_bar_menu_more">
+            <form id="xn_bar_menu_search" method="get" action="http://www.ning.com/search/networks">
+                <fieldset>
+                    <input type="text" name="q" id="xn_bar_menu_search_query" value="Search Networks" accesskey="4" class="text" />
+                    <a href="#" id="xn_bar_menu_search_submit">Search</a>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div id="xs_header">
+    <a href="http://www.ning.com" id="ning-logo">
+        <img src="http://www.ning.com/xn_resources/premium-service/images/design/new_logo_sm.gif" alt="Ning" />
+    </a>
+
+</div>
+		<div id="xs_feature">
+			<div id="xs_intro">
+				<h1>Oops! That page doesn&#8217;t exist.</h1>
+				<p>Would you like to <a href="http://www.ning.com">create a new social network</a> instead?</p>
+			</div>
+		</div>
+
+		<div id="xs_main">
+			<p>Double-check the address you entered. If you entered &#8220;www.ning.com/<em>networkname</em>&#8221;, try &#8220;<em>networkname</em>.ning.com&#8221; instead.</p>
+			<p>If this page should be available, visit the <a href="http://help.ning.com/">Help Center</a>. Otherwise, <a href="http://www.ning.com">create your own social network</a>,
+			or check out the <a href="http://blog.ning.com">Ning Blog</a>.</p>
+			<div class="clear"></div>
+		</div>
+    <div id="footer">
+    <div class="wrapper">
+        <div id="footer-links">
+            Copyright &#169; 2009 Ning, Inc.
+            <a href="http://about.ning.com/">About Ning</a>
+            <a href="http://about.ning.com/legal">Legal</a>
+            <a href="http://help.ning.com/">Resources</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+if (top != self) { top.location.replace('http://www.ning.com'); }
+</script>
+</body>
+</html>

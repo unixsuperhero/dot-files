@@ -1,0 +1,2 @@
+2010/11/04 22:42:06 socat[20134] E connect(3, LEN=16 AF=2 127.0.0.1:9050, 16): Connection refused
+2010/11/04 22:42:18 socat[20136] E connect(3, LEN=16 AF=2 127.0.0.1:9050, 16): Connection refused

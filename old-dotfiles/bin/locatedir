@@ -1,0 +1,7 @@
+#!/bin/bash
+
+locate $@ | while read line
+do
+  dirname "$line"
+done | sort -u
+

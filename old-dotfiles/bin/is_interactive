@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [[ "$1" == "-edit" ]]
+then
+  vim "$0"
+  exit
+fi
+
+if [[ -z $1 ]]
+then
+  echo
+  echo "Usage: is_interactive \$-"
+  echo
+  exit
+fi
+
+if shopt -q login_shell
+then
+  echo "shopt -q login_shell: is interactive"
+else
+  echo "shopt -q login_shell: is not interactive"
+fi
+
+if [[ "${1/*i*/true}" == "true" ]]
+then
+  echo "\${1/*i*/true}: is interactive"
+else
+  echo "\${1/*i*/true}: is not interactive"
+fi
+

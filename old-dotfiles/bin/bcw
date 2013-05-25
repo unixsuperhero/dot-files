@@ -1,0 +1,68 @@
+#!/usr/bin/php
+
+<?php
+
+$variables = array();
+$history = array();
+
+while(true) {
+	$variable = $equation = null;
+	$equation = trim(fgets(STDIN));
+
+	switch($equation) {
+		case '': continue; break;
+
+		case 'quit': die("\n"); break;
+
+		case 'variables':
+			printf("\n%-20s   %20s\n", 'Variable', 'Value');
+			printf("-------------------------------------------\n");
+			foreach($variables as $name => $value)
+				printf("%-20s = %20s\n", $name, $value);
+			echo "\n";
+			break;
+
+		case 'history':
+			foreach($history as $line)
+			{
+				echo "$line\n";
+			}
+			break;
+
+		default:
+			$history[] = $equation;
+			$split = split('=', $equation, 2);
+
+			if(count($split) == 2) {
+				list( $variable, $equation ) = $split;
+				$variable = trim($variable);
+				if(! preg_match('/^[a-z][a-z0-9_]*$/i', $variable))
+				{
+					$variable = null;
+					echo "Error: Bad variable name.\n";
+					continue;
+				}
+			}
+
+			$matches = array();
+			if(preg_match_all('/[a-z][a-z0-9_]*/i', $equation, $matches))
+			{
+				$names = $matches[0];
+				foreach($names as $name) {
+					$replace = isset($variables[$name]) ? $variables[$name] : '0';
+
+					$equation = str_replace($name, $replace, $equation);
+				}
+			}
+
+			$output = shell_exec('echo "' . $equation . '" | bc');
+
+			if($variable && trim($variable)) {
+				$variables[ trim($variable) ] = trim($output);
+			} else {
+				echo "$output";
+			}
+	}
+}
+
+?>

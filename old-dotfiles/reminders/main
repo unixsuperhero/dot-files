@@ -1,0 +1,51 @@
+BANNER %
+
+MSG Download The Prize Fight's CD.%
+MSG Download data.select.party - hanging out with humans.%
+MSG Create the iTunes directory compare in python. (or bash with diff <(find ...) <(find ...)
+
+REM January 30 2009 *14 +6 MSG NOTICE: RedGage Pay Week.%
+REM January 30 2009 *14 MSG SUPER NOTICE: RedGage Pay Day!
+
+REM February 2 2009 *14 +4 MSG !!!! PAY EXPLORICA !!!! %
+
+#REM April 30 2009 *28 +7 MSG COUNTDOWN: %b - Pay for Tai Chi Lessons
+REM June 23 2009 *28 +7 MSG COUNTDOWN: %b - Pay for Tai Chi Lessons
+
+REM March 29 2009 +7 MSG COUNTDOWN: %b - G4 Underground with Morgan Webb premiers.%
+
+REM April 22 2009 +7 MSG %b Bruno will be in town until April 30%
+REM May 5 2009 +7 MSG %s Bruno will be in town until May 12th%
+
+include /Users/jearsh/reminders/birthdays
+
+include /Users/jearsh/reminders/events
+
+include /Users/jearsh/reminders/holidays
+
+#include /Users/jearsh/reminders/library
+
+set daynumber wkdaynum(today())
+
+if daynumber == 1 || daynumber == 2
+  MSG SCHEDULE: Download new albums released this week. %
+	#include /Users/jearsh/reminders/albums
+endif
+
+if daynumber == 6 || daynumber == 0
+	MSG Mil persian exercise
+	include /Users/jearsh/lists/todo/weekends
+endif
+#
+#MSG ---||-------------------------------------------------------------------||---%
+#MSG ---|| Figure out a structure in my RedGage backup files for things like ||---%
+#MSG ---|| Code Snippets, Common commands, Task Reports, etc.                ||---%
+#MSG ---||-------------------------------------------------------------------||---
+#
+#
+#MSG ---||-------------------------------------------------------------------||---%
+#MSG ---|| Review $(list scratch/backup-home-diff) and then:                 ||---%
+#MSG ---|| rm -rf /var/jearsh/backup/home/music                              ||---%
+MSG %
+MSG ---||-------------------------------------------------------------------||--- %
+#

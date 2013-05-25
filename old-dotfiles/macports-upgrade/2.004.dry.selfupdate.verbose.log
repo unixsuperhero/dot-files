@@ -1,0 +1,17 @@
+--->  Updating the ports tree
+Synchronizing local ports tree from rsync://rsync.macports.org/release/ports/
+receiving file list ... done
+
+sent 36 bytes  received 483740 bytes  138221.71 bytes/sec
+total size is 52718922  speedup is 108.97
+--->  Updating MacPorts base sources using rsync
+receiving file list ... done
+
+sent 36 bytes  received 6810 bytes  4564.00 bytes/sec
+total size is 2879032  speedup is 420.54
+MacPorts base version 1.8.2 installed,
+MacPorts base version 1.9.1 downloaded.
+--->  MacPorts base is outdated, selfupdate would install 1.9.1 (dry run)
+
+The ports tree has been updated. To upgrade your installed ports, you should run
+  port upgrade outdated

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Schedule
+#
+# 0 1 * * 0,6 /Users/jearsh/bin/transmission.sh start
+# 0 12 * * 0,6 /Users/jearsh/bin/transmission.sh stop
+
+# 0 1 * * 1-5 /Users/jearsh/bin/transmission.sh start
+# 0 16 * * 1-5 /Users/jearsh/bin/transmission.sh stop
+
+cd `dirname $0`
+case $1 in
+	'') echo; echo "Usage: torrent (open|close|start|stop|list|list-all|limit-down|limit-up|unlimit-down|unlimit-up|-edit)"; echo;;
+	open) open /Applications/Transmission.app; ./torrent.php $@;;
+	-edit) vim $0;;
+	-editphp) vim $0.php;;
+	*) ./torrent.php $@;;
+esac

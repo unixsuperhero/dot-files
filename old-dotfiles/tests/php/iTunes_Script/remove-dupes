@@ -1,0 +1,67 @@
+ls -l "./Downtown Singapore/Punk the Clock 2"; for f in "./Downtown Singapore/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Emanuel/Punk the Clock 2"; for f in "./Emanuel/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Emery/Punk the Clock 2"; for f in "./Emery/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Eminem/Encore"; for f in "./Eminem/Encore"/*; do rm -i "$f"; done
+ls -l "./Eminem/Encore (Bonus CD)"; for f in "./Eminem/Encore (Bonus CD)"/*; do rm -i "$f"; done
+ls -l "./Fall Out Boy/From Under The Cork Tree"; for f in "./Fall Out Boy/From Under The Cork Tree"/*; do rm -i "$f"; done
+ls -l "./Fall Out Boy/Take This To Your Grave-Direct"; for f in "./Fall Out Boy/Take This To Your Grave-Direct"/*; do rm -i "$f"; done
+ls -l "./Finch/What It Is To Burn"; for f in "./Finch/What It Is To Burn"/*; do rm -i "$f"; done
+ls -l "./Further Seems Forever/Emo Diaries #4"; for f in "./Further Seems Forever/Emo Diaries #4"/*; do rm -i "$f"; done
+ls -l "./Gatsby's American Dream/Ribbons And Sugar"; for f in "./Gatsby's American Dream/Ribbons And Sugar"/*; do rm -i "$f"; done
+ls -l "./Glassjaw/Everything You Ever Wanted To Know About Silence"; for f in "./Glassjaw/Everything You Ever Wanted To Know About Silence"/*; do rm -i "$f"; done
+ls -l "./Greely Estates/Punk the Clock 2"; for f in "./Greely Estates/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Head Automatica/Popaganda"; for f in "./Head Automatica/Popaganda"/*; do rm -i "$f"; done
+ls -l "./Hellogoodbye/demo"; for f in "./Hellogoodbye/demo"/*; do rm -i "$f"; done
+ls -l "./It's Like Love/Punk the Clock 2"; for f in "./It's Like Love/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Jawbreaker/Dear You"; for f in "./Jawbreaker/Dear You"/*; do rm -i "$f"; done
+ls -l "./Jimmy Eat World/Bleed American"; for f in "./Jimmy Eat World/Bleed American"/*; do rm -i "$f"; done
+ls -l "./Jimmy Eat World/Clarity"; for f in "./Jimmy Eat World/Clarity"/*; do rm -i "$f"; done
+ls -l "./Jimmy Eat World/Jimmy Eat World - Jebediah Split"; for f in "./Jimmy Eat World/Jimmy Eat World - Jebediah Split"/*; do rm -i "$f"; done
+ls -l "./Jimmy Eat World/Surge Songs"; for f in "./Jimmy Eat World/Surge Songs"/*; do rm -i "$f"; done
+ls -l "./Jimmy Eat World/Unknown Album"; for f in "./Jimmy Eat World/Unknown Album"/*; do rm -i "$f"; done
+ls -l "./Jimmy Eat World/new demos"; for f in "./Jimmy Eat World/new demos"/*; do rm -i "$f"; done
+ls -l "./Jimmy Eat World/www.JimmyEatWorld.net"; for f in "./Jimmy Eat World/www.JimmyEatWorld.net"/*; do rm -i "$f"; done
+ls -l "./Just Surrender/Punk the Clock 2"; for f in "./Just Surrender/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Lil' Zane/Young World _ The Future"; for f in "./Lil' Zane/Young World _ The Future"/*; do rm -i "$f"; done
+ls -l "./Madison/Punk the Clock 2"; for f in "./Madison/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Maria Taylor/11_11"; for f in "./Maria Taylor/11_11"/*; do rm -i "$f"; done
+ls -l "./Mashlin/Punk the Clock 2"; for f in "./Mashlin/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Mewithoutyou/Punk the Clock 2"; for f in "./Mewithoutyou/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Minus the Bear/This Is What I Know About Being Gigantic"; for f in "./Minus the Bear/This Is What I Know About Being Gigantic"/*; do rm -i "$f"; done
+ls -l "./Motion City Soundtrack/Back To The Beat E.P"; for f in "./Motion City Soundtrack/Back To The Beat E.P"/*; do rm -i "$f"; done
+ls -l "./Motion City Soundtrack/Kids For America"; for f in "./Motion City Soundtrack/Kids For America"/*; do rm -i "$f"; done
+ls -l "./New Atlantic/Punk the Clock 2"; for f in "./New Atlantic/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Novice/Punk the Clock 2"; for f in "./Novice/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Number One Fan/Punk the Clock 2"; for f in "./Number One Fan/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Pitbull/M.I.A.M.I.-(Retail)"; for f in "./Pitbull/M.I.A.M.I.-(Retail)"/*; do rm -i "$f"; done
+ls -l "./Rory/Punk the Clock 2"; for f in "./Rory/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Saves The Day/Can't Slow Down"; for f in "./Saves The Day/Can't Slow Down"/*; do rm -i "$f"; done
+ls -l "./Saves The Day/Through Being Cool"; for f in "./Saves The Day/Through Being Cool"/*; do rm -i "$f"; done
+ls -l "./Saves The Day/Vagrant Records-Another Year O"; for f in "./Saves The Day/Vagrant Records-Another Year O"/*; do rm -i "$f"; done
+ls -l "./Something Corporate/Leaving Through the Window"; for f in "./Something Corporate/Leaving Through the Window"/*; do rm -i "$f"; done
+ls -l "./Something Corporate/North"; for f in "./Something Corporate/North"/*; do rm -i "$f"; done
+ls -l "./TV on the Radio/desperate youth, blood thirsty babes"; for f in "./TV on the Radio/desperate youth, blood thirsty babes"/*; do rm -i "$f"; done
+ls -l "./Taking Back Sunday/Louder Now"; for f in "./Taking Back Sunday/Louder Now"/*; do rm -i "$f"; done
+ls -l "./The Ataris/So Long, Astoria"; for f in "./The Ataris/So Long, Astoria"/*; do rm -i "$f"; done
+ls -l "./The Bank Robbers/Punk the Clock 2"; for f in "./The Bank Robbers/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./The June Spirit/Testing Superstition"; for f in "./The June Spirit/Testing Superstition"/*; do rm -i "$f"; done
+ls -l "./The June Spirit/Treat Me Like Someone Else"; for f in "./The June Spirit/Treat Me Like Someone Else"/*; do rm -i "$f"; done
+ls -l "./The June Spirit/Unknown Album"; for f in "./The June Spirit/Unknown Album"/*; do rm -i "$f"; done
+ls -l "./The June Spirit/Unreleased"; for f in "./The June Spirit/Unreleased"/*; do rm -i "$f"; done
+ls -l "./The Lyndsay Diaries/Remember The Memories"; for f in "./The Lyndsay Diaries/Remember The Memories"/*; do rm -i "$f"; done
+ls -l "./The New Amsterdams/Never You Mind"; for f in "./The New Amsterdams/Never You Mind"/*; do rm -i "$f"; done
+ls -l "./The Rocket Summer/Calendar Days"; for f in "./The Rocket Summer/Calendar Days"/*; do rm -i "$f"; done
+ls -l "./The Rocket Summer/Hello Good Friend"; for f in "./The Rocket Summer/Hello Good Friend"/*; do rm -i "$f"; done
+ls -l "./Thirte FS/Punk the Clock 2"; for f in "./Thirte FS/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./This Day And Age/Punk the Clock 2"; for f in "./This Day And Age/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./This Day And Age/Start Over on Monday"; for f in "./This Day And Age/Start Over on Monday"/*; do rm -i "$f"; done
+ls -l "./Thursday/Demos 2005"; for f in "./Thursday/Demos 2005"/*; do rm -i "$f"; done
+ls -l "./Tourmaline/Punk the Clock 2"; for f in "./Tourmaline/Punk the Clock 2"/*; do rm -i "$f"; done
+ls -l "./Ultimate Fakebook/Open Up And Say Awesome"; for f in "./Ultimate Fakebook/Open Up And Say Awesome"/*; do rm -i "$f"; done
+ls -l "./Ultimate Fakebook/This Will Be Laughing Week"; for f in "./Ultimate Fakebook/This Will Be Laughing Week"/*; do rm -i "$f"; done
+ls -l "./Ultimate Fakebook/Unknown Album"; for f in "./Ultimate Fakebook/Unknown Album"/*; do rm -i "$f"; done
+ls -l "./Underoath/Define The Great Line"; for f in "./Underoath/Define The Great Line"/*; do rm -i "$f"; done
+ls -l "./Underoath/The Changing Of Times"; for f in "./Underoath/The Changing Of Times"/*; do rm -i "$f"; done
+ls -l "./Underoath/They're Only Chasing Safety"; for f in "./Underoath/They're Only Chasing Safety"/*; do rm -i "$f"; done
+ls -l "./Young Buck/Straight Outta Cashville"; for f in "./Young Buck/Straight Outta Cashville"/*; do rm -i "$f"; done
+ls -l "./scary kids scaring kids/Punk the Clock 2"; for f in "./scary kids scaring kids/Punk the Clock 2"/*; do rm -i "$f"; done

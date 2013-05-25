@@ -1,0 +1,10 @@
+﻿VERSION BUILD=4000216    
+TAB T=1     
+TAB CLOSEALLOTHERS  
+URL GOTO=http://www.iopus.com/imacros/demo/v6/popup/        
+TAG POS=1 TYPE=A ATTR=HREF:*open3.htm   
+TAB T=4   
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:f3 ATTR=NAME:T1 CONTENT=Popup<SP>3 
+WAIT SECONDS=1
+TAB T=1     
+TAG POS=1 TYPE=A ATTR=HREF:http://*/popup/index.htm   

@@ -1,0 +1,17 @@
+﻿VERSION BUILD=5100314     
+TAB T=1     
+TAB CLOSEALLOTHERS    
+'CLEAR
+'
+FILTER TYPE=IMAGES STATUS=ON 
+'
+URL GOTO=http://www.iopus.com/imacros/demo/v5/filter/ 
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:form1 ATTR=NAME:textfield CONTENT=Image<SP>Filter<SP>ON<SP>(No<SP>images<SP>downloaded<SP>from<SP>server) 
+WAIT SECONDS=3
+'
+FILTER TYPE=IMAGES STATUS=OFF
+'
+REFRESH
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:form1 ATTR=NAME:textfield CONTENT=Image<SP>Filter<SP>OFF<SP>(Web<SP>page<SP>not<SP>filtered) 
+WAIT SECONDS=3
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:form1 ATTR=NAME:textfield CONTENT=Image<SP>Filter<SP>Test<SP>completed

@@ -1,0 +1,54 @@
+VERSION BUILD=603804 
+TAB T=1     
+TAB CLOSEALLOTHERS      
+'Change the default stopwatch file name:
+'The file is saved to the Internet Macros DOWNLOAD folder
+'
+SET !FILESTOPWATCH C:\demo-stopwatch.csv  
+'Note 1: Please change this path on VISTA, as VISTA prevents writing a file to the c:\ root. 
+'Note 2: Use SET !FILESTOPWATCH NO if you do NOT need a response time log file (for example, if you return the values to the Scripting Interface via EXTRACT)   
+
+'
+'Start reponse time measurement  
+'Measure total macro runtime
+STOPWATCH ID=Total
+'Measure load time for first page
+STOPWATCH ID=Firstpage
+URL GOTO=http://www.iopus.com/imacros/demo/v6/stopwatch.htm  
+STOPWATCH ID=Firstpage   
+'
+'
+'Add the measured response time to EXTRACT to return it to Scripting Interface. See the "get-response-time.vbs" example script for details
+'If you use the log file only, you do NOT need this line
+ADD !EXTRACT {{!STOPWATCHTIME}}
+'
+'  
+TAG POS=1 TYPE=A ATTR=HREF:http://www.iopus.com/imacros/demo/v6/f2/automatic-data-entry.asp   
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:WebDataEntry ATTR=NAME:FNAME CONTENT=Tom 
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:WebDataEntry ATTR=NAME:LNAME CONTENT=Tester 
+'Measure server reaction on submit
+STOPWATCH ID=SubmitData
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:WebDataEntry ATTR=NAME:SendButton&&VALUE:Click<SP>to<SP>submit<SP>data 
+STOPWATCH ID=SubmitData 
+'Add this value to EXTRACT, to return it to Scripting Interface
+ADD !EXTRACT {{!STOPWATCHTIME}}
+'Measure time for secure Online store to open
+'go to store
+TAG POS=1 TYPE=A ATTR=TXT:Buy   
+'open store =>  start timer
+TAG POS=1 TYPE=IMG ATTR=ALT:Buy<SP>Now 
+STOPWATCH ID=Store1
+'Add this value to EXTRACT, to return it to Scripting Interface
+ADD !EXTRACT {{!STOPWATCHTIME}}
+'
+'Measure time for second page  
+'TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:order ATTR=NAME:heardabout CONTENT=Internet<SP>Macros<SP>Test 
+STOPWATCH ID=Total
+'Add this value to EXTRACT, to return it to Scripting Interface
+ADD !EXTRACT {{!STOPWATCHTIME}}
+'
+'Tell user where to find the report
+'
+WAIT SECONDS=2
+URL GOTO=http://www.iopus.com/imacros/demo/v6/stopwatch-report.htm
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:form1 ATTR=ID:path CONTENT=C:\demo-stopwatch.csv
