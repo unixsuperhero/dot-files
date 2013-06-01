@@ -5,16 +5,35 @@ source ~/.bashrc.local
 ZSH=$HOME/.oh-my-zsh
 DISABLE_AUTO_TITLE="true"
 
-# Plugins to load from:
-# ~/.oh-my-zsh{,/custom}/plugins/*
-plugins=(git ruby rails rails3 rvm hcd cut)
-
-# Theme:
-ZSH_THEME="unixsuperhero"
-
 # plugins and theme need to be set
 # before this line:
-source $ZSH/oh-my-zsh.sh
+####### source $ZSH/oh-my-zsh.sh
+# Instead of sourcing oh-my-zsh ... only include what I want
+
+function source_oh_my_zsh () {
+  # OH MY ZSH libs
+  for config_file ($ZSH/lib/*.zsh) source $config_file
+
+  # Theme
+  ZSH_THEME="unixsuperhero"
+  source $ZSH/custom/themes/${ZSH_THEME}.zsh-theme
+
+  # Load and run compinit
+  autoload -U compinit
+  compinit -i
+
+  # Plugins
+  # ~/.oh-my-zsh{,/custom}/plugins/*
+  plugins=(git ruby rails rails3 rvm hcd cut)
+  for plugin ($plugins); do
+    if [ -f $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh ]; then
+      source $ZSH_CUSTOM/plugins/$plugin/$plugin.plugin.zsh
+    elif [ -f $ZSH/plugins/$plugin/$plugin.plugin.zsh ]; then
+      source $ZSH/plugins/$plugin/$plugin.plugin.zsh
+    fi
+  done
+}
+source_oh_my_zsh
 
 export PATH=./stubs:$HEROKU_BINSTUB_PATH:.git/safe/../../bin:/Users/jearsh/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/Users/jtoyota/Sites/node_speed_rps/node_modules/js2coffee/node_modules/.bin:/Users/jtoyota/Sites/node_speed_rps/node_modules/js2coffee/bin:/Developer/usr/bin:/Users/jearsh/.rvm/bin
 
