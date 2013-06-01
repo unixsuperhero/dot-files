@@ -16,10 +16,10 @@ fi
 source_file "$HOME/.bashrc.saveology"
 source_file "$HOME/.bashrc.heroku"
 
-source_file "$HOME/.bashrc.autocomplete.git"
+# source_file "$HOME/.bashrc.autocomplete.git"
 
-source_file "$HOME/.rvm/scripts/rvm"
-source_file "$rvm_path/scripts/completion"
+# source_file "$HOME/.rvm/scripts/rvm"
+# source_file "$rvm_path/scripts/completion"
 
 export HASHROCKET_DIR="$HOME/hashrocket"
 export REPO_DIR="$HASHROCKET_DIR"
@@ -35,7 +35,7 @@ export VIMBUNDLES="$HOME/.vimbundles"
 alias :e="vim"
 alias :q="exit"
 
-export gems="$GEM_HOME/gems"
+## export gems="$GEM_HOME/gems"
 
 ## ## hcd command setup
 ## get_repos_in_repo_dir() {
@@ -61,17 +61,17 @@ export gems="$GEM_HOME/gems"
 ## }
 ## complete -F _gcd gcd
 
-function _gs() {
-  cur=${COMP_WORDS[COMP_CWORD]}
-  COMPREPLY=($(compgen -W "$(gs)" $cur))
-}
-complete -F _gs gs
-
-function _gco() {
-  cur=${COMP_WORDS[COMP_CWORD]}
-  COMPREPLY=($(compgen -W "$(gb)" $cur))
-}
-complete -o default -F _gco gco
+# function _gs() {
+#   cur=${COMP_WORDS[COMP_CWORD]}
+#   COMPREPLY=($(compgen -W "$(gs)" $cur))
+# }
+# complete -F _gs gs
+# 
+# function _gco() {
+#   cur=${COMP_WORDS[COMP_CWORD]}
+#   COMPREPLY=($(compgen -W "$(gb)" $cur))
+# }
+# complete -o default -F _gco gco
 export EDITOR=vim
 
   export HEROKU_BINSTUB_PATH="/Users/jearsh/bin/app-binstubs"

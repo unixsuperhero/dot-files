@@ -39,6 +39,10 @@ export PATH=./stubs:$HEROKU_BINSTUB_PATH:.git/safe/../../bin:/Users/jearsh/bin:/
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+EDITOR=vim
+
+remind ~/.reminders
+
 
 
 

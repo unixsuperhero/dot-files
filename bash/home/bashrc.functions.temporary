@@ -1,18 +1,18 @@
-<<"INFO"
-  [ Title  ] Git Savepoint
-  [ Author ] Joshua Toyota
-  [ Date   ] 2012-08-14 21:08:08
-
-  [ Functions ]
-    savepoint()
-    default_savepoint_cmsg()
-    cmsg_add()
-
-  [ Description ]
-    savepoint will show you the diff of each
-  file that has been modified and let you add to
-  it in the commit message.
-INFO
+# <<"INFO" >/dev/null
+#   [ Title  ] Git Savepoint
+#   [ Author ] Joshua Toyota
+#   [ Date   ] 2012-08-14 21:08:08
+# 
+#   [ Functions ]
+#     savepoint()
+#     default_savepoint_cmsg()
+#     cmsg_add()
+# 
+#   [ Description ]
+#     savepoint will show you the diff of each
+#   file that has been modified and let you add to
+#   it in the commit message.
+# INFO
 
 function debug_LOG ()
 {
