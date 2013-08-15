@@ -21,17 +21,21 @@ function dot_install()
     echo rm "$HOME/hashrocket" >> uninstall.$stamp.sh
     echo mv -v $bkup/hashrocket "$HOME/" >> uninstall.$stamp.sh
   fi
-  #ln -s "$(pwd)/hashrocket" $HOME/
 
-  #echo "Symlinking dotmatrix dotfiles"
-  #test -f $HOME/.bashrc && mv $HOME/.bashrc $bkup/
-  #test -f $HOME/.vim && mv $HOME/.vim $bkup/
-  #test -f $HOME/.vimrc && mv $HOME/.vimrc $bkup/
-  #ln -nfs $HOME/hashrocket/dotmatrix/.bashrc $HOME/
-  #ln -nfs $HOME/hashrocket/dotmatrix/.hashrc $HOME/
-  #ln -nfs $HOME/hashrocket/dotmatrix/.vim $HOME/
-  #ln -nfs $HOME/hashrocket/dotmatrix/.vimrc $HOME/
-  #sh $HOME/hashrocket/dotmatrix/bin/vimbundles.sh
+
+  echo "Symlinking dotmatrix dotfiles"
+  rm -rf hashrocket/dotmatrix
+  git clone git@github.com:hashrocket/dotmatrix.git hashrocket/dotmatrix
+  ln -s "$(pwd)/hashrocket" $HOME/
+
+  test -f $HOME/.bashrc && mv -v $HOME/.bashrc $bkup/
+  test -d $HOME/.vim && mv -v $HOME/.vim $bkup/
+  test -f $HOME/.vimrc && mv -v $HOME/.vimrc $bkup/
+  ln -nfs $HOME/hashrocket/dotmatrix/.bashrc $HOME/
+  ln -nfs $HOME/hashrocket/dotmatrix/.hashrc $HOME/
+  ln -nfs $HOME/hashrocket/dotmatrix/.vim $HOME/
+  ln -nfs $HOME/hashrocket/dotmatrix/.vimrc $HOME/
+  sh $HOME/hashrocket/dotmatrix/bin/vimbundles.sh
 
   for bins in bin bin/empties bin/resources bin/tests; do
     mkdir -pv "${HOME}/$bins"
@@ -49,7 +53,7 @@ function dot_install()
   done
 
   ## [ Setup syntax coloring for bin/list in vim ]
-  ln -s "$(pwd)/vim/vimbundles/vim-lists" "${HOME}/.vimbundles/"
+  #ln -s "$(pwd)/vim/vimbundles/vim-lists" "${HOME}/.vimbundles/"
 }
 
 function dot_uninstall()
