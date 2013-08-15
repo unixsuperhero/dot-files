@@ -10,11 +10,14 @@
   alias gprm="gpr origin master"
   alias gpremote="gp origin $(current_branch)"
   alias gpremotef="gp -f origin $(current_branch)"
-  alias gst="git status -s"
+  alias gst="git status"
+  alias gss="gst -s"
   alias gcm="gc -m"
   alias gc-m="gcm"
   alias egcon="vim .git/config"
   alias gcon="cat .git/config"
+  alias glodd="glod -9"
+  alias glogg="glog -9"
 
 # functions
 
@@ -47,7 +50,7 @@
 
   function gs() {
 
-    gst | sed "s/...//;s/.* -> //" | grep "$1" | sort -u
+    gss | sed "s/...//;s/.* -> //" | grep "$1" | sort -u
 
     #re='/Untracked/,$s/#[[:space:]]*([^ ]*$)/\1/p;s/.*: *//p'
     #case $1 in
@@ -65,7 +68,6 @@
     #git status | sed -n 's/.*: *//p' | grep "$1" | sort -u
   }
 
-  alias gss="gs"
 
   _setup_git () {
     [[ -d .git ]] || git init .
