@@ -1,0 +1,4 @@
+*.un~
+vim/vimbundles
+backup/
+hashrocket/dotmatrix
