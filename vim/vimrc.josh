@@ -1,5 +1,5 @@
 " Jearsh's .vimrc file
-" Written in 2009 
+" Written in 2009
 "
 " NOTES ARE AT THE BOTTOM OF THE FILE
 
@@ -46,14 +46,14 @@ set updatecount=50                                " Write swap file to disk afte
 set enc=utf-8                                     " Use UTF-8 as the default buffer encoding
 "set shortmess=filnxtToO                          " this is the default value, changed it to avoid the hit-enter message
 set viminfo='200,\"100,/9000,:9000,n~/.viminfo    " Remember things between sessions
-set backupskip=/tmp/*,/private/tmp/*" 
+set backupskip=/tmp/*,/private/tmp/*"
 
 
 " have gf open file under cursor in vertical split
 nnoremap gf :vs <cfile><CR>
 nnoremap  :vert stjump<CR>
 vnoremap < <gv  " visual shifting (does not exit Visual mode)
-vnoremap > >gv 
+vnoremap > >gv
 nnoremap > >>
 nnoremap < <<
 nnoremap j gj
@@ -93,10 +93,10 @@ hi j cterm=none ctermfg=White ctermbg=Cyan
   hi listM13 cterm=none ctermfg=white ctermbg=0
   hi listM14 cterm=none ctermfg=lightblue ctermbg=white
 
-  syn keyword listOpen listOpen 
-  syn keyword listSmX listSmX 
+  syn keyword listOpen listOpen
+  syn keyword listSmX listSmX
   syn keyword listX listX
-  syn keyword listNS listNS 
+  syn keyword listNS listNS
   syn keyword listM01 listM01
   syn keyword listM02 listM02
   syn keyword listM03 listM03
@@ -105,12 +105,12 @@ hi j cterm=none ctermfg=White ctermbg=Cyan
   syn keyword listM06 listM06
   syn keyword listM07 listM07
   syn keyword listM08 listM08
-  syn keyword listM09 listM09 
-  syn keyword listM10 listM10 
-  syn keyword listM11 listM11 
-  syn keyword listM12 listM12 
-  syn keyword listM13 listM13 
-  syn keyword listM14 listM14 
+  syn keyword listM09 listM09
+  syn keyword listM10 listM10
+  syn keyword listM11 listM11
+  syn keyword listM12 listM12
+  syn keyword listM13 listM13
+  syn keyword listM14 listM14
 
 " Personalize Existing Highlight Groups
 hi LineNr cterm=none ctermfg=Red ctermbg=Black
@@ -170,6 +170,8 @@ au FileType markdown setlocal makeprg=markdown\ %
 au FileType javascript setlocal makeprg=node\ %
 au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
 
+  " equalprgs (for formatting)
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ %
 
 "1,$retab!
 
@@ -195,7 +197,7 @@ ab functinos functions
 
 " normal abbreviations
 ab stamp =strftime("%Y-%m-%d %H:%M:%S")
-ab timestamp =strftime("%c")
+ab timestamp =strftime("%s")
 
 ab YY =strftime("%y")
 ab yy =strftime("%y")
