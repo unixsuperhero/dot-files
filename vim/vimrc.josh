@@ -47,7 +47,11 @@ set enc=utf-8                                     " Use UTF-8 as the default buf
 "set shortmess=filnxtToO                          " this is the default value, changed it to avoid the hit-enter message
 set viminfo='200,\"100,/9000,:9000,n~/.viminfo    " Remember things between sessions
 set backupskip=/tmp/*,/private/tmp/*"
-set undodir=~/.vim/undo_files/  "~/.vim/tmp/      ",~/.vim/undo_files
+
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.vim/tmp//,~/.vim/undo_files//
+endif
 
 
 " have gf open file under cursor in vertical split
