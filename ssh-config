@@ -1,0 +1,17 @@
+Host *
+  ServerAliveCountMax 30
+  ServerAliveInterval 10
+  TCPKeepAlive yes
+
+Host wpprod wprod wpproduction
+  HostName 10.40.224.25
+  User jtoyota
+
+Host wpstage wpstaging
+  HostName 10.40.224.26
+  User jtoyota
+
+Host oodles-web
+  HostName ec2-54-221-144-255.compute-1.amazonaws.com
+  User ec2-user
+  IdentityFile ~/.ssh/oodles-web.pem

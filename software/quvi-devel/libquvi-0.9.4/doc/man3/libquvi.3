@@ -1,0 +1,147 @@
+'\" t
+.\"     Title: libquvi
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/10/2013
+.\"    Manual: libquvi Manual
+.\"    Source: libquvi 0.9.4
+.\"  Language: English
+.\"
+.TH "LIBQUVI" "3" "11/10/2013" "libquvi 0\&.9\&.4" "libquvi Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+libquvi \- Overview of the library
+.SH "DESCRIPTION"
+.sp
+libquvi is a cross\-platform library with C API for parsing adobe flash media properties\&. "quvi" is an acronym for "query video"\&.
+.SH "ENVIRONMENT"
+.PP
+LIBQUVI_EXCLUSIVE_SCRIPTS_DIR
+.RS 4
+When defined, the library will
+\fBonly\fR
+use those scripts found at the directories specified by the LIBQUVI_SCRIPTS_DIR\&.
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+Useful, for example, when the current set of the scripts at $top_srcdir/share/ (of libquvi\-scripts) are being tested by the testsuite of the libquvi\-scripts\&. The library would, otherwise, include the scripts from the libquvi\-scripts instance built with the library and likely interfere with the tests\&.
+.sp .5v
+.RE
+.RE
+.PP
+LIBQUVI_SCRIPTS_DIR
+.RS 4
+The library will additionally look in the colon\-separated list of directories specified by the LIBQUVI_SCRIPTS_DIR environment variable\&.
+.RE
+.PP
+LIBQUVI_SCRIPTS_VERBOSE
+.RS 4
+When defined, enables the output from any libquvi scripts using the debug facility (\fIquvi/debug\fR
+module)\&.
+.RE
+.PP
+LIBQUVI_SHOW_DIR
+.RS 4
+When defined, the library will output the paths of the searched directories to the stderr\&.
+.RE
+.PP
+LIBQUVI_SHOW_SCRIPT
+.RS 4
+When defined, the library will output the file names of the found scripts to stderr\&. The output will also indicate whether the script was accepted by the library\&.
+.RE
+.PP
+Proxy
+.RS 4
+libquvi uses
+\fBlibcurl\fR(3)\&. See the libcurl documentation (C API and/or
+\fBcurl\fR(1)) for a complete list of the supported proxy environment variables\&.
+.RE
+.SH "SEE ALSO"
+.sp
+\fBlibquvi-scripts\fR(7), \fBquvi\fR(1), \fBquvi-object\fR(7), \fBquvi-modules\fR(7), \fBquvi-modules-3rdparty\fR(7)
+.SH "FURTHER RESOURCES"
+.PP
+Home
+.RS 4
+
+http://quvi\&.sourceforge\&.net/
+.RE
+.PP
+Development code
+.RS 4
+
+git://repo\&.or\&.cz/libquvi\&.git
+.RE
+.PP
+gitweb
+.RS 4
+
+http://repo\&.or\&.cz/w/libquvi\&.git
+.RE
+.PP
+C API reference
+.RS 4
+The latest C API reference documentation may be viewed online at
+http://quvi\&.sourceforge\&.net/r/api/0\&.9/\&.
+.RE
+.PP
+GLib
+.RS 4
+
+http://developer\&.gnome\&.org/glib/stable/glib\-Base64\-Encoding\&.html
+.RE
+.PP
+libcurl
+.RS 4
+
+http://curl\&.haxx\&.se/libcurl/c/curl_easy_setopt\&.html#CURLOPTUSERAGENT
+http://curl\&.haxx\&.se/libcurl/c/curl_easy_setopt\&.html#CURLOPTCOOKIE
+.RE
+.PP
+libgcrypt reference manual
+.RS 4
+
+http://www\&.gnupg\&.org/documentation/manuals/gcrypt/
+.RE
+.SH "AUTHORS"
+.PP
+Toni Gundogdu <legatvs@gmail\&.com>
+.RS 4
+Author\&.
+.RE
+.SH "REPORTING BUGS"
+.sp
+Report bugs to the quvi\-devel mailing list <quvi\-devel@lists\&.sourceforge\&.net> where the development and the maintenance is primarily done\&. You do not have to be subscribed to the list to send a message there\&.
+.SH "LICENSE"
+.sp
+libquvi is Free Software licensed under the GNU Affero GPLv3+
+.SH "LIBQUVI"
+.sp
+Part of the \fBlibquvi\fR(3) suite

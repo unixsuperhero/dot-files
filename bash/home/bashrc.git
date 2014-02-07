@@ -7,6 +7,7 @@
 
   alias git_aliases="alias | grep git"
   alias gsf="gs"
+  alias gpa="gp --all"
   alias gprm="gpr origin master"
   alias gpremote="gp origin $(current_branch)"
   alias gpremotef="gp -f origin $(current_branch)"

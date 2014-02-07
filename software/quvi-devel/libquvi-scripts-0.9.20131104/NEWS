@@ -1,0 +1,385 @@
+v0.9.20131104
+
+Mohamed El Morabity:
+  - Fix support for arte.tv [485ce77]
+Toni Gundogdu:
+  - media: Add support for tube.majestyc.net [47a1639]
+  - media: Add support for vzaar.com [343db67]
+  - media/lego.lua: Update ID pattern [ab8c084]
+  - media/liveleak.lua: Ignore fac3book iframe src values [bf18023]
+  - media/metacafe.lua: Relicense under AGPLv3+ [0593317]
+    - Move website/metacafe.lua to media/ [47d3d3d]
+    - Remove query_formats function [e0731b8]
+    - Rewrite ident function [3231cbf]
+    - Rewrite parse function [b13ee5f]
+  - media/tagtele.lua: Relicense under AGPLv3+ [af8dcb3]
+    - Move website/tagtele.lua to media/ [118a92e]
+    - Remove query_formats function [6e73a9a]
+    - Rewrite ident function [60da497]
+    - Rewrite parse function [cc40857]
+  - media/tapuz.lua: Relicense under AGPLv3+ [22c0ba7]
+    - Move website/tapuz.lua to media/ [f80a844]
+    - Remove query_formats function [2f9cb5f]
+    - Rewrite ident function [b44e053]
+    - Rewrite parse function [5f5bb57]
+  - media/videobash.lua: Relicense under AGPLv3+ [5a1a49b]
+    - Move website/videobash.lua to media/ [6adcc15]
+    - Remove query_formats function [b1b1d5f]
+    - Rewrite ident function [fa6ef82]
+    - Rewrite parse function [b712d04]
+  - media/vimeo.lua: Mark as FIXME [c5e7cc8]
+  - scan: Add support for embedded vzaar.com media URLs [2d8bfc3]
+
+ 48 files changed, 1308 insertions(+), 451 deletions(-)
+
+
+v0.9.20131012
+
+Mohamed El Morabity:
+  - Add support for ina.fr [5cb76af]
+Toni Gundogdu:
+  - FIX: media/clipfish.lua: Raise "no match: media stream URL" [808494b]
+  - FIX: media/funnyordie.lua: Media stream URL pattern [364ad53]
+  - FIX: media/funnyordie.lua: Set "Accept-Encoding" HTTP header [53c0a44]
+  - FIX: media/liveleak.lua: Sanitize input for LuaJSON [0f692c7]
+  - FIX: media/sevenload.lua: JSON extraction pattern [4ac3938]
+  - FIX: media/youtube.lua: Unescape using quvi/util [aedecad]
+  - FIX: quvi/youtube: ident: query: "v=" may not be first param [ffaadfd]
+  - FIX: resolve_redirections.lua: Normalize YouTube input URL [cf39991]
+  - Install with share/README [e8ad881]
+  - media/1tvru.lua: Relicense under AGPLv3+ [970da57]
+    - Remove query_formats function [296a34e]
+    - Rewrite ident function [853993f]
+    - Rewrite parse function [193755f]
+  - media/lego.lua: Relicense under AGPLv3+ [5b3daf1]
+    - Add support for "/videos?video=ID" [8799938]
+    - Remove query_formats function [f617614]
+    - Rewrite ident function [5343385]
+    - Rewrite parse function [317de20]
+  - media/liveleak.lua:
+    - Add support for >1 streams [0a34094]
+    - Parse stream URLs from "config:" [18b6caf]
+    - Sanitize JSON [7c7dcb9]
+  - media/myspass.lua: Relicense under AGPLv3+ [38fd4bf]
+    - Remove query_formats function [2ebdb84]
+    - Rewrite ident function [6e580da]
+    - Rewrite parse function [4d5db98]
+  - playlist/youtube.lua: Use HTTPS if input URL uses it [18068fe]
+  - media/youtube.lua: Use HTTPS if input URL uses it [e6a6587]
+  - quvi/youtube:
+    - normalize: Revise, remove "nocookie" handling [3d1d706]
+    - normalize: Process YouTube URLs only [fe4d72b]
+    - normalize: Reimplement [3fa91eb]
+  - scan/youtube.lua: Return HTTPS media URLs if input URL uses it [33b172f]
+  - subtitle/youtube.lua: Use HTTPS if input URL uses it [c58c7b5]
+
+ 33 files changed, 1184 insertions(+), 424 deletions(-)
+
+
+v0.9.20130903
+
+Bastien Nocera:
+  - media/guardian.lua: Also support "old" domain name [07c0d41]
+Kerrick Staley:
+  - Use subdir-objects Automake option [3df38e0]
+Toni Gundogdu:
+  - AC_PREREQ: Bump to 2.69 [6b349f7]
+  - Do not bundle 'version' file, have install create it [f086380]
+  - FIX: Install cookie.lua to common/quvi/http/ [8c3be23]
+  - FIX: media/dailymotion.lua: sequence pattern (PORTpt4) [bd31628]
+  - FIX: media/funnyordie.lua: Stream URL pattern [41a7516]
+
+ 6 files changed, 35 insertions(+), 28 deletions(-)
+
+
+v0.9.20130805
+
+Toni Gundogdu:
+  - configure.ac: Require a2x when building from git [1f118a6]
+  - FIX: media/guardian.lua: Multiple patterns [9e18bf6]
+  - FIX: tests: Use quvi_errcode instead of qerr [8113266]
+  - Mark media/break.lua as FIXME [85f885e]
+  - Mark media/charlierose.lua as FIXME [d85d71e]
+
+ 18 files changed, 80 insertions(+), 91 deletions(-)
+
+
+v0.9.20130619
+
+Toni Gundogdu:
+  - FIX: media/break.lua: Break.can_parse_url: path pattern [63d560a]
+  - FIX: media/spiegel.lua: title pattern (BACKPORTpt4) [5e836ec]
+  - media/guardian.lua: Check for expired content (BACKPORTpt4) [a24b7aa]
+  - quvi/util: Add escape_magic function [751bf6d]
+  - Remove media/academicearth.lua [d04e115]
+
+ 12 files changed, 31 insertions(+), 146 deletions(-)
+
+
+v0.9.20130520
+
+This is the first official release of the 0.9 of libquvi-scripts. The
+typical list of the changes (commit-by-commit), since the 0.4, were
+omitted.
+
+For a detailed list of the changes, see the git commit log. For an
+overview of the changes made in the quvi project 0.9+ series, see:
+  http://quvi.sourceforge.net/doc/other/quvi-prj-ptnine.html (WIP)
+
+
+v0.4.14  (2013-03-19) / Toni Gundogdu
+
+Martin Herkt:
+  - Add website script for wimp.com [3639d67]
+  - website utils: add base64 decoder [0eff56e]
+
+ 5 files changed, 118 insertions(+), 6 deletions(-)
+
+
+v0.4.13  (2013-03-03) / Toni Gundogdu
+
+Toni Gundogdu:
+  - FIX: ard.lua: Assign self.script_dir to package.path [64cab0d]
+  - Rename ard.lua to ardmediathek.lua [7a9bdb1]
+
+ 4 files changed, 174 insertions(+), 173 deletions(-)
+
+
+v0.4.12  (2013-02-10) / Toni Gundogdu
+
+Thomas Weißschuh:
+  - Add ard.lua [c0add2d]
+Toni Gundogdu:
+  - FIX: tvlux.lua: Update patterns, parse thumb URL [85f1dea]
+  - FIX: wdrmaus.lua:101: invalid escape sequence [ef57874]
+  - Move fastjizz.lua under FIXME [e2d1f7f]
+  - Move mgnetwork.lua under FIXME [1912cd7]
+
+ 13 files changed, 242 insertions(+), 65 deletions(-)
+
+
+v0.4.11  (2013-02-01) / Toni Gundogdu
+
+Guido Leisker:
+  - Add support for myspass.de [2b79f18]
+  - Add support for wdrmaus.de [86d1c64]
+Toni Gundogdu:
+  - beeg.lua: Update title pattern [be81501]
+  - FIX: 1tvru.lua: title and media URL patterns [763338c]
+  - FIX: gaskrank.lua: media stream URL pattern [8c067a5]
+  - FIX: gen-news.sh: Find the closest tagname [89d31bc]
+  - FIX: lego.lua: All patterns [787be3d]
+  - FIX: metacafe.lua: Key parsing [4735455]
+  - FIX: theonion.lua: thumbnail URL pattern [8d6ee06]
+  - gaskrank.lua: Parse thumbnail URL [1e15082]
+
+ 71 files changed, 398 insertions(+), 821 deletions(-)
+
+
+v0.4.10  (2012-11-22) / Toni Gundogdu
+
+Toni Gundogdu:
+  - FIX: audioboo.lua: multiple patterns [b182505]
+  - FIX: break.lua: multiple patterns [6357cd1]
+  - FIX: dailymotion.lua: title pattern [bc35f74]
+
+ 10 files changed, 28 insertions(+), 127 deletions(-)
+
+
+v0.4.9  (2012-10-01) / Toni Gundogdu
+
+anon:
+  - Add website/beeg.lua (NSFW) [5d7233f]
+  - Add website/deviantclip.lua (NSFW) [1b12bc4]
+  - Add website/fastjizz.lua (NSFW) [9f1ce8b]
+  - Add website/jizzhut.lua (NSFW) [d509b1b]
+  - Add website/xnxx.lua (NSFW) [ac72d16]
+  - FIX: website/youjizz.lua [ebc42da]
+  - website/keezmovies.lua: Detect encrypted streams [9498be7]
+Martin Herkt:
+  - FIX: youtube.lua [5b1c002] (aka. server response code 403 (conncode=0))
+Toni Gundogdu:
+  - FIX: Add quvi/html.lua to DIST_lua [c681d03]
+  - website/arte.lua: Mark as FIXME [e815821]
+  - website/collegehumor.lua: Mark as FIXME [4f65343]
+  - website/xvideos.lua: Improve title parsing (#109) [e657f45]
+Tzafrir Cohen:
+  - website/tapuz.lua: Add tapuz flix support [bc24554]
+
+ 27 files changed, 622 insertions(+), 86 deletions(-)
+
+
+v0.4.8  (2012-08-21) / Toni Gundogdu
+
+anon:
+  - totallynsfw.lua: Handle embedded media hosted elsewhere [e5a0d97]
+Bastien Nocera:
+  - FIX: 101greatgoals.lua: article pattern [e4ae322]
+  - souncloud.lua: Never offer placeholder as thumbnail [2ffd344]
+  and Pierre Carrier:
+  - Add support for BBC iPlayer (#28) [282632e]
+Ross Burton:
+  - Add website/lego.lua (#107) [c38aa05]
+Toni Gundogdu:
+  - FIX: dailymotion.lua: sequence pattern (#108) [41e4bd9]
+  - FIX: media/gaskrank.lua: Media ID, stream URL patterns [186b41e]
+  - FIXME: website/bloomberg.lua [48ca011]
+
+ 13 files changed, 402 insertions(+), 37 deletions(-)
+
+
+v0.4.7  (2012-07-18) / Toni Gundogdu
+
+Adam Sampson:
+  - dailymotion.lua: Make urlback pattern more liberal [8eded85]
+brunorex:
+  - Add support for justin.tv and twitch.tv (#99) [86baf5d]
+Mikhail Gusarov:
+  - tvrain.lua: Adjust for new URL scheme on the site [7bf1682]
+Till Maas:
+  - Support spiegel.de with SEO URLs [6afe8e9]
+Toni Gundogdu:
+  - FIX: gaskrank.lua: stream URL, ID patterns [78817b8]
+  - FIX: gaskrank.lua: title pattern [52c6f6d]
+  - FIX: tvrain.lua: Change how media ID is parsed [7dfbc1e]
+  - FIX: vimeo.lua:115: no match: qualities (#106) [d7182ac]
+  - youtube.lua: Rewrite YouTube.choose_default [aec0afa]
+
+      Change how youtube.lua chooses the 'default' format for
+      YouTube media URLs:
+        - Either whichever is of 480p is found first
+        - Or whatever YouTube returns as the first format
+
+      The script previously defaulted to the lowest quality.
+
+ 15 files changed, 118 insertions(+), 44 deletions(-)
+
+
+v0.4.6 (2012-06-10) / Toni Gundogdu
+
+Mikhail Gusarov:
+  - 1tvru.lua: Add support for 1tv.ru [82e3151]
+  - tvrain.lua: Add support for tvrain.ru [730720d]
+Mort Gerald:
+  - pornhub.lua: Media ID can be hexadecimal [82b78df]
+Toni Gundogdu:
+  - FIX: collegehumor.lua: title pattern [3825171]
+  - FIX: ted.lua: Media stream URL pattern [2fc90bf]
+  - FIX: xhamster.lua: server response code 404 [6f3e8bd]
+Raphaël Droz:
+  - publicsenat.lua: Update support [f329cde]
+  - senat.lua: Add support for senat.fr [5cf4540]
+
+ 15 files changed, 317 insertions(+), 33 deletions(-)
+
+
+v0.4.5 (2012-05-30) / Toni Gundogdu
+
+Bastien Nocera:
+  - Added 101greatgoals.lua [efc2cdf]
+  - dailymotion: Fix overeager ID fetching [0223bd8]
+  - FIX: sapo.lua: ID, media stream URL and title [84cb67d]
+PaulK:
+  - Added canalplus.lua [ed6877d]
+  - Added support for empflix.com (NSFW website) [cb2de3c]
+Toni Gundogdu:
+  - Add website/redtube.lua [694ff91]
+  - FIX: pornhub.lua: media title, stream URL parsing [1867d4f]
+  - FIX: theonion.lua [70dfaab]
+  - FIX: videobash.lua: media URL parsing [471e73d]
+  - FIX: vimeo.lua (#97) [4f811dd]
+  - blip.lua: Mark as FIXME [888a3ed]
+  - keezmovies.lua: Mark as FIXME [4337407]
+  - pluzz.lua, francetelevisions.lua: Mark as FIXME [5b9cfc6]
+  - Lower AC_PREREQ to 2.67 [d1ac468]
+  - Remove funnyhub.lua: Videos no more [?] [3dae8bd]
+  - Remove google.lua: video.google.com is no more [8f38fe6]
+  - website/sapo.lua: Parse thumbnail_url [d8cfb16]
+
+ 46 files changed, 740 insertions(+), 411 deletions(-)
+
+
+v0.4.4 (2012-03-23) / Toni Gundogdu
+
+Toni Gundogdu:
+  - Rewrite scripts using "foo:match" instead of "foo:find"
+  - FIX: clipfish.lua: Use new config URL [bb8bf4c]
+  - FIX: dailymotion.lua: Issue with some videos (#92) [325b20e]
+      - Thanks to David Pugnasse for the fix
+  - FIX: Lua-5.2: Use gmatch instead of gfind (#89) [b5ae4e1]
+  - FIX: Lua-5.2: Use the # operator instead (#89) [04f0284]
+  - FIX: youtube.lua: Allow embed URLs w/ params (#90) [386aae2]
+  - FIXME: bikeradar.lua [6d64461]
+
+
+v0.4.3 (2012-03-01) / Toni Gundogdu
+
+Anonymous:
+  - Add tcmag.lua [5f8d188]
+  - FIX: xhamster.lua (HTTP/403) [2bd53fd]
+
+Bastien Nocera:
+  - Add special-case suffix for audio/mpeg [ca784e3]
+  - FIX: soundcloud.lua: Multi-byte char handling [82d1818]
+
+mutantmonkey:
+  - Add IMDb support (#88) [7198600]
+
+PaulK:
+  - Add support for pornhub.com (NSFW) [968143b]
+  - Add support for tnaflix.com (NSFW) [d34caf1]
+  - FIX: youjizz [b60401e]
+
+Toni Gundogdu:
+  - Add videa.hu support (#84, Bastien) [ab56c38]
+  - FIX: liveleak.lua: attempt to index field 'path' (nil) [4919605]
+  - FIX: mgnetwork.lua: return duration in msec [b34fef6]
+  - FIX: videobash.lua: media URL pattern [8072eac]
+  - guardian.lua: Parse from JSON instead (#83) [019f38e]
+  - liveleak.lua: Support embedded URLs [fdd223a]
+  - Mark globo.lua as FIXME [26f48f5]
+  - Mark tube8.lua as FIXME [de13a39]
+  - Remove buzzhumor.lua [a568afc]
+  - Remove megavideo.lua [dc08e00]
+  - soundcloud.lua: Rework title parsing [53204fd]
+  - tcmag.lua: Make query_formats work with external content [f5cbd0d]
+  - ted.lua: Support the "default" format only [2caf52b]
+
+
+0.4.2  Tue Nov 29 2011  Toni Gundogdu
+Changes:
+    - Add mgnetwork.lua, mutantmonkey <mutantmonkey@mutantmonkey.in> (#78)
+    - Remove foundrymusic.lua
+Fixes:
+    - tube8.lua: media URL parsing, Tomas Janousek <tomi@nomi.cz> (#80)
+    - Multiple: potential "attempt to index ... (a nil value)"
+    - dailymotion.lua: no match: video plugin params
+    - videobash.lua: media URL parsing (#81)
+
+
+0.4.1  Sun Nov 06 2011  Toni Gundogdu
+Changes:
+    - ted.lua: Handle off-site media
+Fixes:
+    - ted.lua: thumbnail URL pattern
+    - xhamster.lua: title pattern
+    - yfrog.lua: title pattern
+    - ted.lua: media URL check
+
+
+0.4.0  Wed Oct 05 2011  Toni Gundogdu
+
+Changes:
+  - Split from "quvi", new repo at <http://repo.or.cz/w/libquvi-scripts.git>
+  - videobash.lua (#71), thanks to Thomas Preud'homme <robotux@celest.fr>
+  - Add quvi/html.lua, thanks to Hans Elbers for the permission to use
+  - foundrymusic.lua (#69), thanks howeyc
+  - totallynsfw.lua, thanks anon
+
+Fixes:
+  - "attempt to call global parse_path (a nil value)" in quvi/url.lua
+  - youtube.lua: YouTube.normalize: handle youtu.be with '/watch?v='
+  - liveleak.lua: 'handles' pattern: accept word chars
+  - pluzz.lua: rewrite to use quvi/util.lua: handles
+
+For earlier notes, see <http://repo.or.cz/w/quvi.git/blob/HEAD:/NEWS>.

@@ -1,0 +1,558 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Toni Gundogdu
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: quvi 0.9.5\n"
+"Report-Msgid-Bugs-To: http://quvi.sf.net/bugs/\n"
+"POT-Creation-Date: 2013-11-10 10:01+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/builtin/dump.c:132
+#, c-format
+msgid "libquvi: while creating file extension: %s"
+msgstr ""
+
+#: src/builtin/dump.c:140
+#, c-format
+msgid "libquvi: while getting http metainfo property: %s"
+msgstr ""
+
+#: src/builtin/get.c:84
+#, c-format
+msgid "file: %s  [subtitle]\n"
+msgstr ""
+
+#: src/builtin/get.c:85
+msgid "  content length: %"
+msgstr ""
+
+#: src/builtin/get.c:86
+#, c-format
+msgid "  type/language: %s"
+msgstr ""
+
+#: src/builtin/get.c:87
+msgid "  mode: write\n"
+msgstr ""
+
+#: src/builtin/get.c:94
+#, c-format
+msgid "while writing: %s: %s"
+msgstr ""
+
+#: src/builtin/get.c:173
+#, c-format
+msgid ""
+"subtitles (found):\n"
+"  %s\n"
+msgstr ""
+
+#: src/builtin/get.c:173
+msgid "none"
+msgstr ""
+
+#: src/builtin/get.c:192
+#, c-format
+msgid "libquvi: while querying subtitles: %s"
+msgstr ""
+
+#: src/builtin/get.c:210
+#, c-format
+msgid "libquvi: while exporting subtitle: %s"
+msgstr ""
+
+#: src/builtin/get.c:215
+msgid "skip <transfer>: subtitle extraction\n"
+msgstr ""
+
+#: src/builtin/get.c:275 src/util/xchg.c:50
+msgid "default"
+msgstr ""
+
+#: src/builtin/get.c:288
+#, c-format
+msgid ""
+"streams (found):\n"
+"  %s\n"
+msgstr ""
+
+#: src/builtin/info.c:229
+msgid "# Script\n"
+msgstr ""
+
+#: src/builtin/info.c:260
+#, c-format
+msgid ""
+"# Type: %s (0x%x), Properties: %s\n"
+"#\n"
+msgstr ""
+
+#: src/builtin/info.c:307
+msgid ""
+"# Found media property scripts for the domains\n"
+"#\n"
+msgstr ""
+
+#: src/builtin/info.c:313
+msgid ""
+"# Found export scripts for the subtitle formats\n"
+"#\n"
+msgstr ""
+
+#: src/builtin/scan.c:95
+#, c-format
+msgid "libquvi: while scanning: %s"
+msgstr ""
+
+#: src/get/http.c:115
+#, c-format
+msgid "error: Server responded with code %ld, expected 200 or 206 (cc=%ld)\n"
+msgstr ""
+
+#: src/get/http.c:122
+#, c-format
+msgid "error: libcurl: %s (curl_code=%u, rc=%lu, cc=%lu)\n"
+msgstr ""
+
+#: src/get/http.c:131
+#, c-format
+msgid "error: while writing to file: %s\n"
+msgstr ""
+
+#: src/get/http.c:190
+#, c-format
+msgid "libquvi: while parsing file extension: %s"
+msgstr ""
+
+#: src/get/http.c:386
+msgid "error: failed to retrieve the current curl session handle from libquvi"
+msgstr ""
+
+#: src/get/lget.c:58
+#, c-format
+msgid "could not parse the URI scheme from `%s'"
+msgstr ""
+
+#: src/get/lget.c:60
+#, c-format
+msgid "protocol `%s' is not supported"
+msgstr ""
+
+#: src/input/linput.c:74
+#, c-format
+msgid "error: while reading file: %s\n"
+msgstr ""
+
+#: src/input/linput.c:106
+#, c-format
+msgid "error: while converting to URI: %s\n"
+msgstr ""
+
+#: src/input/linput.c:147
+#, c-format
+msgid "error: %s: an invalid URI\n"
+msgstr ""
+
+#: src/input/linput.c:174
+#, c-format
+msgid "error: %s: neither a valid URI or a local file\n"
+msgstr ""
+
+#: src/main.c:59
+#, c-format
+msgid "error: while executing: `%s': %s\n"
+msgstr ""
+
+#: src/main.c:82
+msgid "Query and print the property values"
+msgstr ""
+
+#: src/main.c:83
+msgid "Save media stream to a file"
+msgstr ""
+
+#: src/main.c:84
+msgid "Inspect the configuration and the script properties"
+msgstr ""
+
+#: src/main.c:85
+msgid "Scan and print the found embedded media URLs"
+msgstr ""
+
+#: src/main.c:121
+msgid ""
+"Usage: quvi [--version] [--help] COMMAND [ARGS]\n"
+"\n"
+msgstr ""
+
+#: src/main.c:122
+msgid "quvi commands are:\n"
+msgstr ""
+
+#: src/main.c:134
+msgid ""
+"\n"
+"See 'quvi help COMMAND' for more information on a specific command.\n"
+msgstr ""
+
+#: src/main.c:180
+#, c-format
+msgid "error: `%s' is not a quvi command. See 'quvi help'.\n"
+msgstr ""
+
+#: src/opts/config.c:57
+#, c-format
+msgid "error: %s: while reading config: %s (code=%d)\n"
+msgstr ""
+
+#: src/opts/config.c:64
+#, c-format
+msgid "rejected: %s: %s (code=%d)"
+msgstr ""
+
+#: src/opts/config.c:84
+#, c-format
+msgid "parse: %s"
+msgstr ""
+
+#: src/opts/err.c:32
+#, c-format
+msgid ""
+"error: %s:\n"
+"  ignoring the variable `%s' with an invalid value `%s'\n"
+msgstr ""
+
+#: src/opts/err.c:33
+#, c-format
+msgid "error: invalid value `%s' for the option `--%s'\n"
+msgstr ""
+
+#: src/opts/err.c:34
+msgid "Possible values for the option:\n"
+msgstr ""
+
+#: src/opts/lopts.c:47
+#, c-format
+msgid "error: while parsing options: %s\n"
+msgstr ""
+
+#: src/opts/print.c:34
+msgid "# Value of all configuration options\n"
+msgstr ""
+
+#: src/opts/print.c:55 src/opts/print.c:66 src/opts/print.c:85
+#, c-format
+msgid "%s is unset\n"
+msgstr ""
+
+#: src/opts/print.c:83
+#, c-format
+msgid "%s is set\n"
+msgstr ""
+
+#: src/opts/print.c:109
+msgid ""
+"# Search paths for the configuration file\n"
+"#\n"
+msgstr ""
+
+#: src/pbar/lpbar.c:115
+#, c-format
+msgid "%ld hours"
+msgstr ""
+
+#: src/pbar/lpbar.c:180
+#, c-format
+msgid "copy: %s  %3.0f%%  %6.1f%s/s  %4s%s"
+msgstr ""
+
+#: src/pbar/lpbar.c:199
+#, c-format
+msgid "file: %s  [media]\n"
+msgstr ""
+
+#: src/pbar/lpbar.c:200
+#, c-format
+msgid "  content length: %.1f%s"
+msgstr ""
+
+#: src/pbar/lpbar.c:203
+#, c-format
+msgid "  content type: %s"
+msgstr ""
+
+#: src/pbar/lpbar.c:205
+msgctxt "To indicate transfer mode (resumed, ...) "
+msgid "  mode: "
+msgstr ""
+
+#: src/pbar/lpbar.c:209
+msgctxt "Transfer mode with a reason"
+msgid "skip <retrieved already>"
+msgstr ""
+
+#: src/pbar/lpbar.c:212
+msgctxt "Transfer mode with a reason"
+msgid "skip <forced>"
+msgstr ""
+
+#: src/pbar/lpbar.c:218
+msgctxt "Transfer mode (begin at offset 0)"
+msgid "write"
+msgstr ""
+
+#: src/pbar/lpbar.c:219
+msgctxt "Transfer mode"
+msgid "resume"
+msgstr ""
+
+#: src/print/enum_print.c:87
+#, c-format
+msgid "error: %s\n"
+msgstr ""
+
+#: src/print/rfc2483_print.c:161
+msgid ""
+"# Media streams\n"
+"#\n"
+msgstr ""
+
+#: src/print/rfc2483_print.c:232
+msgid ""
+"# Playlist media URLs\n"
+"#\n"
+msgstr ""
+
+#: src/print/rfc2483_print.c:277
+msgid ""
+"# Embedded media URLs\n"
+"#\n"
+msgstr ""
+
+#: src/print/rfc2483_print.c:345
+msgid ""
+"# Subtitles\n"
+"#\n"
+msgstr ""
+
+#: src/print/xml_print.c:72
+msgid "while creating the XML writer"
+msgstr ""
+
+#: src/print/xml_print.c:80
+msgid "while starting the XML document"
+msgstr ""
+
+#: src/print/xml_print.c:114
+#, c-format
+msgid "while starting the XML document root element `%s'"
+msgstr ""
+
+#: src/print/xml_print.c:115
+#, c-format
+msgid "while ending the XML document root element `%s'"
+msgstr ""
+
+#: src/print/xml_print.c:116
+#, c-format
+msgid "while writing the XML attribute `%s'"
+msgstr ""
+
+#: src/print/xml_print.c:117
+#, c-format
+msgid "while starting the XML element `%s'"
+msgstr ""
+
+#: src/print/xml_print.c:118
+#, c-format
+msgid "while ending the XML element `%s'"
+msgstr ""
+
+#: src/print/xml_print.c:197
+msgid "while dumping the XML document"
+msgstr ""
+
+#: src/status.c:51
+#, c-format
+msgctxt "Status update with {curr_anim_frame, message}"
+msgid "status: %s %s"
+msgstr ""
+
+#: src/status.c:78
+msgid "fetch <url> ..."
+msgstr ""
+
+#: src/status.c:86
+msgid "resolve <url> ..."
+msgstr ""
+
+#: src/status.c:94
+msgid "metainfo <url> ..."
+msgstr ""
+
+#: src/util/chk.c:31
+msgid "Subtitle language"
+msgstr ""
+
+#: src/util/chk.c:32
+msgid "Subtitle type"
+msgstr ""
+
+#: src/util/chk.c:33
+msgid "HTTP metainfo"
+msgstr ""
+
+#: src/util/chk.c:34
+msgid "playlist"
+msgstr ""
+
+#: src/util/chk.c:35
+msgid "script"
+msgstr ""
+
+#: src/util/chk.c:36
+msgid "media"
+msgstr ""
+
+#: src/util/chk.c:53
+#, c-format
+msgid "libquvi: while trying to retrieve a %s property `%s': %s"
+msgstr ""
+
+#: src/util/choose.c:41
+#, c-format
+msgid "libquvi: while selecting stream: %s"
+msgstr ""
+
+#: src/util/choose.c:61
+#, c-format
+msgid "libquvi: while selecting subtitle: %s"
+msgstr ""
+
+#: src/util/choose.c:68
+msgid "libquvi: failed to find any subtitles"
+msgstr ""
+
+#: src/util/exec.c:60
+#, c-format
+msgid "while executing a command asynchronously: %s"
+msgstr ""
+
+#: src/util/exec.c:101
+#, c-format
+msgid "while spawning a new process: %s (code=0x%x)"
+msgstr ""
+
+#: src/util/file.c:34
+#, c-format
+msgid "%s: while opening file: %s: %s"
+msgstr ""
+
+#: src/util/input.c:38
+msgid "error: no input URL\n"
+msgstr ""
+
+#: src/util/metainfo.c:54
+#, c-format
+msgid "libquvi: while querying content meta-info: %s"
+msgstr ""
+
+#: src/util/query.c:43
+#, c-format
+msgid "libquvi: while parsing playlist properties: %s"
+msgstr ""
+
+#: src/util/query.c:65
+#, c-format
+msgid "libquvi: while parsing media properties: %s"
+msgstr ""
+
+#: src/util/query.c:87
+#, c-format
+msgid "libquvi: while querying subtitle properties: %s"
+msgstr ""
+
+#: src/util/quvi.c:35
+#, c-format
+msgid "error: while initializing libquvi: %s\n"
+msgstr ""
+
+#: src/util/quvi.c:45
+msgid ""
+"error: failed to retrieve the current curl session handle from libquvi\n"
+msgstr ""
+
+#: src/util/regex.c:57
+#, c-format
+msgid "error: %s: while creating the s/// operation mode regex: %s\n"
+msgstr ""
+
+#: src/util/regex.c:96
+#, c-format
+msgid "error: %s: while creating the m// operation mode regex: %s\n"
+msgstr ""
+
+#: src/util/regex.c:133
+#, c-format
+msgid "error: %s: invalid syntax: must be either m// or s/// operation\n"
+msgstr ""
+
+#: src/util/regex.c:158
+#, c-format
+msgid "error: %s: invalid s/// operation syntax\n"
+msgstr ""
+
+#: src/util/regex.c:219
+#, c-format
+msgid "error: %s: while creating m// operation mode regex: %s\n"
+msgstr ""
+
+#: src/util/regex.c:228
+#, c-format
+msgid "error: %s: while matching: %s\n"
+msgstr ""
+
+#: src/util/regex.c:242
+#, c-format
+msgid "error: while retrieving match info: %s\n"
+msgstr ""
+
+#: src/util/regex.c:270
+#, c-format
+msgid "error: %s: while creating s/// operation mode regex: %s\n"
+msgstr ""
+
+#: src/util/regex.c:279
+#, c-format
+msgid "error: %s: while substituting: %s\n"
+msgstr ""
+
+#: src/util/support.c:40
+#, c-format
+msgid "libquvi: while checking for support: %s"
+msgstr ""
+
+#: src/util/support.c:141
+#, c-format
+msgid "cannot find matching libquvi script for <%s>"
+msgstr ""
+
+#: src/util/xchg.c:192
+#, c-format
+msgid "while creating sequence regex: %s"
+msgstr ""
+
+#: src/util/xchg.c:280
+#, c-format
+msgid "while replacing sequences: %s"
+msgstr ""

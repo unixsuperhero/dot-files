@@ -1,0 +1,127 @@
+'\" t
+.\"     Title: libquvi-scripts
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/04/2013
+.\"    Manual: libquvi-scripts Manual
+.\"    Source: libquvi-scripts 0.9.20131104
+.\"  Language: English
+.\"
+.TH "LIBQUVI\-SCRIPTS" "7" "11/04/2013" "libquvi\-scripts 0\&.9\&.20131" "libquvi\-scripts Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+libquvi-scripts \- Overview of the library scripts
+.SH "DESCRIPTION"
+.sp
+libquvi\-scripts contains the Lua scripts for libquvi that it uses to parse the different properties, such as the media properties\&.
+.SH "TYPES"
+.SS "Common scripts"
+.sp
+The common scripts are modules that may be loaded from other scripts, e\&.g\&. the \fIquvi\-modules(7)\fR\&.
+.PP
+These scripts are typically installed at
+.RS 4
+$prefix/share/libquvi\-scripts/$major_ver\&.$minor_ver/common/
+.RE
+.SS "Media scripts"
+.sp
+The media scripts are responsible for parsing the media properties, e\&.g\&. the media stream URLs\&. There is usually a media script for each supported website\&.
+.PP
+These scripts are typically installed at
+.RS 4
+$prefix/share/libquvi\-scripts/$major_ver\&.$minor_ver/media/
+.RE
+.SS "Playlist scripts"
+.sp
+The playlist scripts are responsible for parsing the playlist properties\&. There is usually a playlist script for each supported website\&.
+.PP
+These scripts are typically installed at
+.RS 4
+$prefix/share/libquvi\-scripts/$major_ver\&.$minor_ver/playlist/
+.RE
+.SS "Scan scripts"
+.sp
+The scan scripts are used to scan an URL for embedded media URLs\&.
+.PP
+These scripts are typically installed at
+.RS 4
+$prefix/share/libquvi\-scripts/$major_ver\&.$minor_ver/scan/
+.RE
+.SS "Subtitlte scripts"
+.sp
+The subtitle scripts are responsible for retrieving subtitle data for the media as well as exporting the data to another format, e\&.g\&. SubRip\&.
+.PP
+These scripts are typically installed at
+.RS 4
+$prefix/share/libquvi\-scripts/$major_ver\&.$minor_ver/subtitle/ $prefix/share/libquvi\-scripts/$major_ver\&.$minor_ver/subtitle/export/
+.RE
+.SS "Utility scripts"
+.sp
+The utility scripts are used by libquvi to perform misc\&. tasks, such as parsing file extension from a content\-type, or converting HTML entities to UTF\-8 characters\&.
+.PP
+These scripts are typically installed at
+.RS 4
+$prefix/share/libquvi\-scripts/$major_ver\&.$minor_ver/util/
+.RE
+.SH "ENVIRONMENT"
+.PP
+LIBQUVI_SCRIPTS_VERBOSE
+.RS 4
+When defined, enables the output from any libquvi scripts using the debug facility (\fIquvi/debug\fR
+module)\&.
+.RE
+.SH "SEE ALSO"
+.sp
+\fBlibquvi\fR(3), \fBquvi\fR(1)
+.SH "FURTHER RESOURCES"
+.PP
+Home
+.RS 4
+
+http://quvi\&.sourceforge\&.net/
+.RE
+.PP
+Development code
+.RS 4
+
+git://repo\&.or\&.cz/libquvi\-scripts\&.git
+.RE
+.PP
+gitweb
+.RS 4
+
+http://repo\&.or\&.cz/w/libquvi\-scripts\&.git
+.RE
+.SH "AUTHORS"
+.PP
+Toni Gundogdu <legatvs@gmail\&.com>
+.RS 4
+Author\&.
+.RE
+.SH "REPORTING BUGS"
+.sp
+Report bugs to the quvi\-devel mailing list <quvi\-devel@lists\&.sourceforge\&.net> where the development and the maintenance is primarily done\&. You do not have to be subscribed to the list to send a message there\&.
+.SH "LICENSE"
+.sp
+libquvi\-scripts is Free Software licensed under the GNU Affero GPLv3+
+.SH "LIBQUVI-SCRIPTS"
+.sp
+Part of the \fIlibquvi\-scripts(7)\fR suite

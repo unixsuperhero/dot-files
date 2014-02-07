@@ -1,0 +1,630 @@
+'\" t
+.\"     Title: quvi-dump
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/10/2013
+.\"    Manual: quvi Manual
+.\"    Source: quvi 0.9.5
+.\"  Language: English
+.\"
+.TH "QUVI\-DUMP" "1" "11/10/2013" "quvi 0\&.9\&.5" "quvi Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+quvi-dump \- The dull\-witted property printer
+.SH "SYNOPSIS"
+.sp
+.nf
+\fIquvi dump\fR [OPTIONS] [ARGS]
+.fi
+.SH "DESCRIPTION"
+.sp
+This command queries the properties for an URL and prints them to the stdout\&.
+.SH "DEFAULT BEHAVIOUR"
+.sp
+The command will attempt to determine if any of the \fBlibquvi-scripts\fR(7) accept the input URL before exiting with an error\&. The script type {playlist,media,\&...} determines how the command will handle the input URL\&.
+.PP
+Playlist URLs
+.RS 4
+The playlist properties (media URLs) are printed in the "rfc2483" format\&.
+.RE
+.PP
+Media URLs
+.RS 4
+The media properties will be printed in the "enum" format\&.
+.RE
+.PP
+Available {subtitles,streams}
+.RS 4
+Printed in the "rfc2483" format\&.
+.RE
+.sp
+The \fI\-\-print\-format\fR may be used to change the default behaviour\&.
+.SH "SUPPORT"
+.sp
+The support for the media hosts is determined by the current selection of \fBlibquvi-scripts\fR(7)\&.
+.SH "CONFIGURATION"
+.sp
+See \fBquvirc\fR(5) for more information about the groups and the variables that quvi parses\&.
+.SH "INPUT"
+.sp
+The command will read stdin by default\&. The input is expected to \fIcontain\fR URLs\&. The command arguments are expected to be either URLs or file paths\&. If the input is read from either stdin or a file, the contents are read as RFC2483\&. The input may contain file URIs\&.
+.SH "OPTIONS"
+.SS "Core"
+.PP
+\-o, \-\-check\-mode\-offline
+.RS 4
+Do not resolve URL redirections before passing the URL to the
+\fBlibquvi-scripts\fR(7)
+to determine whether the URL is accepted by any of the scripts\&.
+
+config: core\&.check\-mode\-offline=<boolean>
+.RE
+.PP
+\-B, \-\-print\-subtitles
+.RS 4
+Query and print the available media subtitles\&. See also
+\fI\-\-print\-format\fR\&.
+.RE
+.PP
+\-S, \-\-print\-streams
+.RS 4
+Query and print the available media streams\&. See also
+\fI\-\-print\-format\fR\&.
+.RE
+.PP
+\-l, \-\-subtitle\-language PATTERN[,PATTERN,\&...]
+.RS 4
+Match a subtitle language using a regex PATTERN\&. The value may be a comma\-separated list of regex PATTERNs (left\-to\-right order) that are matched against the available selection\&.
+
+The value may also contain the reserved keyword
+\fIcroak\fR
+which will cause
+\fBlibquvi\fR(3)
+to exit with an error when reached\&.
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.sp
+The first available subtitle language will be chosen if nothing matched the PATTERN
+.sp .5v
+.RE
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+config: core\&.subtitle\-language=<PATTERN[,PATTERN,\&.\&.\&.]>
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+\-s, \-\-stream PATTERN[,PATTERN,\&...]
+.RS 4
+Match a stream using a regex PATTERN\&. The value may be a comma\-separated list of regex PATTERNs (left\-to\-right order) that are matched against the available selection\&.
+
+The value may contain the following reserved keywords:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIcroak\fR
+\- instructs
+\fBlibquvi\fR(3)
+to exit with an error when reached
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIbest\fR
+\- instructs
+\fBlibquvi\fR(3)
+to choose the best quality stream
+.RE
+.sp
+The
+\fIbest\fR
+quality is determined by the
+\fBlibquvi-scripts\fR(7)
+by comparing the media quality properties, e\&.g\&. the video height property, although the actual method may vary depending on the data provided by the media hosting service\&.
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.sp
+The first available stream is selected if nothing matched
+.sp .5v
+.RE
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+config: core\&.stream=<PATTERN[,PATTERN,\&.\&.\&.]>
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+\-p, \-\-print\-format FORMAT (default: varies)
+.RS 4
+Specify the format in which the properties should be printed\&. The command uses a different default value for this, depending on the input URL\&. FORMAT may be one of the following values:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIenum\fR
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIjson\fR
+\- available only if quvi was built with JsonGLib
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIrfc2483\fR
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIxml\fR
+\- available only if quvi was built with libxml
+.RE
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.sp
+The default value varies, see DEFAULT BEHAVIOUR\&.
+.sp .5v
+.RE
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+config: core\&.print\-format=<FORMAT>
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+\-b, \-\-verbosity LEVEL (default: verbose)
+.RS 4
+Specify the verbosity level of the command\&. LEVEL may be:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIdebug\fR
+\- verbose + enable verbose output for libcurl (CURLOPT_VERBOSE)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIverbose\fR
+\- default
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIquiet\fR
+\- errors only
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fImute\fR
+\- nothing at all
+.RE
+.sp
+config: core\&.verbosity=<LEVEL>
+.RE
+.SS "Dump"
+.PP
+\-q, \-\-query\-metainfo
+.RS 4
+Instruct the command to query the HTTP metainfo properties, namely Content\-{Length,Type}\&. This will cause
+\fBlibquvi\fR(3)
+to send an HTTP HEAD request for each HTTP media stream URL and parse the returned data\&. When used, the command will include these properties to the printed media properties\&.
+
+config: dump\&.query\-metainfo=<boolean>
+.RE
+.SS "Exec"
+.PP
+\-A, \-\-exec\-dump\-argv
+.RS 4
+Print the argument array used to execute the child program\&.
+
+config: exec\&.dump\-argv=<boolean>
+.RE
+.PP
+\-E, \-\-exec\-enable\-stderr
+.RS 4
+Do not discard child program\(cqs standard error\&.
+
+config: exec\&.enable\-stderr=<boolean>
+.RE
+.PP
+\-O, \-\-exec\-enable\-stdout
+.RS 4
+Do not discard child program\(cqs standard output\&.
+
+config: exec\&.enable\-stdout=<boolean>
+.RE
+.PP
+\-e, \-\-exec COMMAND
+.RS 4
+Execute a child program asynchoronously after parsing the media properties\&. COMMAND may contain any of the following property sequences\&. Each occurence will be replaced by the command before the COMMAND is executed:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+%s  Media property: start time (ms)
+%T  Media property: thumbnail URL
+%d  Media property: duration (ms)
+%u  Media stream property: URL
+%I  Media stream property: ID
+%t  Media property: title
+%i  Media property: ID
+%e  File extension[1]
+%f  Path to the saved media file[2]
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+[1]: The file extension is parsed from the HTTP content\-type header\&.
+     quvi\-get(1) replaces this sequence with HTTP media streams only\&.
+     quvi\-dump(2) replaces it only when \-\-query\-metainfo is used with
+     HTTP media streams\&.
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+[2]: This sequence is unique to quvi\-get(1)
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+This option may be specified multiple times\&. In the
+\fBquvirc\fR(5)
+file, specify the commands in a comma\-separated list\&.
+.sp
+config: exec\&.external=<COMMAND[,COMMAND,\&...]>
+.RE
+.SS "HTTP"
+.PP
+\-c, \-\-enable\-cookies
+.RS 4
+Have libcurl parse the received cookies and use them in the subsequent HTTP requests\&.
+
+config: http\&.enable\-cookies=<boolean>
+.RE
+.PP
+\-u, \-\-user\-agent USERAGENT (default: Mozilla/5\&.0)
+.RS 4
+Identify as USERAGENT to the HTTP server\&.
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.sp
+\fBlibquvi-scripts\fR(7) may override this value
+.sp .5v
+.RE
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+config: http\&.user\-agent=<USERAGENT>
+.fi
+.if n \{\
+.RE
+.\}
+.SH "EXAMPLES"
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Print media properties in XML:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi dump \-p xml MEDIA_URL
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Execute a child program:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi dump \-e "totem %u" MEDIA_URL
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Print playlist properties in JSON:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi dump \-p json PLAYLIST_URL
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Print available subtitles in JSON:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi dump \-p json \-B MEDIA_URL
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Print available media streams:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi dump \-S MEDIA_URL
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Query media properties for each playlist item:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi dump PLAYLIST_URL | quvi dump
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.SH "ENVIRONMENT"
+.sp
+See \fBquvi\fR(1)
+.SH "EXIT STATUS"
+.sp
+Either EXIT_SUCCESS or EXIT_FAILURE\&. The actual value depends on the platform, on POSIX systems they are 0 (success) and 1 (failure)\&.
+.SH "SEE ALSO"
+.sp
+\fBquvirc\fR(5), \fBlibquvi\fR(3)
+.SH "FURTHER RESOURCES"
+.PP
+Home
+.RS 4
+
+http://quvi\&.sourceforge\&.net/
+.RE
+.PP
+Development code
+.RS 4
+
+git://repo\&.or\&.cz/quvi\-tool\&.git
+.RE
+.PP
+gitweb
+.RS 4
+
+http://repo\&.or\&.cz/w/quvi\-tool\&.git
+.RE
+.SH "AUTHORS"
+.PP
+Toni Gundogdu <legatvs@gmail\&.com>
+.RS 4
+Author\&.
+.RE
+.SH "REPORTING BUGS"
+.sp
+Report bugs to the quvi\-devel mailing list <quvi\-devel@lists\&.sourceforge\&.net> where the development and the maintenance is primarily done\&. You do not have to be subscribed to the list to send a message there\&.
+.SH "LICENSE"
+.sp
+quvi is Free Software licensed under the GNU Affero GPLv3+
+.SH "QUVI"
+.sp
+Part of the \fIquvi(1)\fR suite

@@ -1,0 +1,317 @@
+'\" t
+.\"     Title: quvi-info
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/10/2013
+.\"    Manual: quvi Manual
+.\"    Source: quvi 0.9.5
+.\"  Language: English
+.\"
+.TH "QUVI\-INFO" "1" "11/10/2013" "quvi 0\&.9\&.5" "quvi Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+quvi-info \- The daft information tool
+.SH "SYNOPSIS"
+.sp
+.nf
+\fIquvi info\fR [OPTIONS]
+.fi
+.SH "DESCRIPTION"
+.sp
+This command shows information about the quvi suite\&.
+.SH "DEFAULT BEHAVIOUR"
+.sp
+The command will print information about the installed libquvi media scripts\&.
+.SH "OPTIONS"
+.PP
+\-E, \-\-print\-subtitle\-export\-formats
+.RS 4
+Print the available export formats for the media subtitles\&. The current selection is provided by
+\fBlibquvi-scripts\fR(7)\&.
+.RE
+.PP
+\-D, \-\-print\-media\-domains
+.RS 4
+Print the supported media domains\&. The current selection is provided by
+\fBlibquvi-scripts\fR(7)\&.
+.RE
+.PP
+\-V, \-\-print\-config\-values
+.RS 4
+Print the value of all configuration options\&.
+.RE
+.PP
+\-P, \-\-print\-config\-paths
+.RS 4
+Print the
+\fBquvirc\fR(5)
+search paths\&. See also
+\fBquvirc\fR(5)
+for notes\&.
+.RE
+.PP
+\-p, \-\-script\-property PROPERTY
+.RS 4
+Print the specified script property\&. PROPERTY may be one of the following values:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIexport\&.format\fR
+\- subtitle export scripts only
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIfilepath\fR
+\- all scripts
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIfilename\fR
+\- all scripts
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIdomains\fR
+\- {playlist,subtitle,media} scripts
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIsha1\fR
+\- all scripts
+.RE
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.sp
+This option may be specified multiple times
+.sp .5v
+.RE
+.PP
+\-t, \-\-script\-type TYPE
+.RS 4
+Select the script type\&. TYPE may be one of the following values:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIsubtitle\&.export\fR
+\- media subtitle export scripts
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIsubtitle\fR
+\- media subtitle extraction scripts
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIplaylist\fR
+\- media playlist scripts
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fImedia\fR
+\- media scripts
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIscan\fR
+\- embedded media URL scan scripts
+.RE
+.RE
+.SH "SUPPORT"
+.sp
+The support for the media hosts is determined by the current selection of \fBlibquvi-scripts\fR(7)\&.
+.SH "CONFIGURATION"
+.sp
+See \fBquvirc\fR(5) for more information about the groups and the variables that quvi parses\&.
+.SH "EXAMPLES"
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Print the supported media domains:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi info \-D
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Print information about playlist scripts:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi info \-t playlist \-p domains \-p sha1
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.SH "ENVIRONMENT"
+.sp
+See \fBquvi\fR(1)
+.SH "EXIT STATUS"
+.sp
+Either EXIT_SUCCESS or EXIT_FAILURE\&. The actual value depends on the platform, on POSIX systems they are 0 (success) and 1 (failure)\&.
+.SH "SEE ALSO"
+.sp
+\fBquvirc\fR(5), \fBlibquvi\fR(3)
+.SH "FURTHER RESOURCES"
+.PP
+Home
+.RS 4
+
+http://quvi\&.sourceforge\&.net/
+.RE
+.PP
+Development code
+.RS 4
+
+git://repo\&.or\&.cz/quvi\-tool\&.git
+.RE
+.PP
+gitweb
+.RS 4
+
+http://repo\&.or\&.cz/w/quvi\-tool\&.git
+.RE
+.SH "AUTHORS"
+.PP
+Toni Gundogdu <legatvs@gmail\&.com>
+.RS 4
+Author\&.
+.RE
+.SH "REPORTING BUGS"
+.sp
+Report bugs to the quvi\-devel mailing list <quvi\-devel@lists\&.sourceforge\&.net> where the development and the maintenance is primarily done\&. You do not have to be subscribed to the list to send a message there\&.
+.SH "LICENSE"
+.sp
+quvi is Free Software licensed under the GNU Affero GPLv3+
+.SH "QUVI"
+.sp
+Part of the \fIquvi(1)\fR suite

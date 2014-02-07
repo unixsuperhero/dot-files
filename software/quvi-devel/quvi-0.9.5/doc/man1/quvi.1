@@ -1,0 +1,120 @@
+'\" t
+.\"     Title: quvi
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/10/2013
+.\"    Manual: quvi Manual
+.\"    Source: quvi 0.9.5
+.\"  Language: English
+.\"
+.TH "QUVI" "1" "11/10/2013" "quvi 0\&.9\&.5" "quvi Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+quvi \- The silly suite to access the flash media stream properties
+.SH "SYNOPSIS"
+.sp
+.nf
+\fIquvi\fR [\-\-version|\-\-help] COMMAND [ARGS]
+.fi
+.SH "DESCRIPTION"
+.sp
+quvi is a Free Software suite to access the flash media stream properties\&. It can parse flash media streams from a variety of websites including YouTube, Vimeo and DailyMotion\&.
+.sp
+You can use the suite to parse media stream properties, copy media streams to local files, scan URLs for embedded media URLs and load entire playlists\&.
+.sp
+The functionality of quvi is typically utilized from the command line, or you can use the features from programs using the C API\&.
+.sp
+quvi includes a number of commands\&. In the paragraph below, you will find a brief description for each command line utility\&.
+.PP
+\fBquvi-dump\fR(1)
+.RS 4
+Print {media,playlist,subtitle} properties in different data\-interchangeable formats, e\&.g\&. json or xml\&.
+.RE
+.PP
+\fBquvi-get\fR(1)
+.RS 4
+Save a media stream to a file\&.
+.RE
+.PP
+\fBquvi-info\fR(1)
+.RS 4
+Inspect the configuration and the script properties\&.
+.RE
+.PP
+\fBquvi-scan\fR(1)
+.RS 4
+Scan an URL for embedded media URLs\&.
+.RE
+.SH "CONFIGURATION"
+.sp
+See \fBquvirc\fR(5) for more information about the groups and the variables that quvi parses\&.
+.SH "ENVIRONMENT"
+.PP
+QUVI_SHOW_CONFIG
+.RS 4
+If defined, the program will output information about the process of parsing the configuration files\&.
+.RE
+.PP
+QUVI_CONFIG
+.RS 4
+Full path of the
+\fBquvirc\fR(5)
+file to read\&. If defined, the program will parse only the specified file, skipping the search of other default paths for the configuration file\&.
+.RE
+.sp
+See also \fBlibquvi\fR(3) for the other supported environment variables\&.
+.SH "SEE ALSO"
+.sp
+\fBquvirc\fR(5), \fBlibquvi\fR(3)
+.SH "FURTHER RESOURCES"
+.PP
+Home
+.RS 4
+
+http://quvi\&.sourceforge\&.net/
+.RE
+.PP
+Development code
+.RS 4
+
+git://repo\&.or\&.cz/quvi\-tool\&.git
+.RE
+.PP
+gitweb
+.RS 4
+
+http://repo\&.or\&.cz/w/quvi\-tool\&.git
+.RE
+.SH "AUTHORS"
+.PP
+Toni Gundogdu <legatvs@gmail\&.com>
+.RS 4
+Author\&.
+.RE
+.SH "REPORTING BUGS"
+.sp
+Report bugs to the quvi\-devel mailing list <quvi\-devel@lists\&.sourceforge\&.net> where the development and the maintenance is primarily done\&. You do not have to be subscribed to the list to send a message there\&.
+.SH "LICENSE"
+.sp
+quvi is Free Software licensed under the GNU Affero GPLv3+
+.SH "QUVI"
+.sp
+Part of the \fIquvi(1)\fR suite

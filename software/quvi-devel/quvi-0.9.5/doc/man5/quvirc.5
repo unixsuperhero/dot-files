@@ -1,0 +1,174 @@
+'\" t
+.\"     Title: quvirc
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/10/2013
+.\"    Manual: quvi Manual
+.\"    Source: quvi 0.9.5
+.\"  Language: English
+.\"
+.TH "QUVIRC" "5" "11/10/2013" "quvi 0\&.9\&.5" "quvi Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+quvirc \- The simple configuration file for the quvi program
+.SH "DESCRIPTION"
+.sp
+A quvi configuration file consists of groups of key\-value pairs similar to the so called \&.ini\-like configuration files\&. quvi uses the GLib to parse the configuration\&. GLib refers to these files as \fIkey files\fR, for lack of a better name\&.
+.sp
+The lines beginning with a \fI#\fR are considered as comments\&. You can annotate your configuration file using this character\&. All text after the comment character to the end of the line is ignored\&.
+.sp
+GKeyFile has some limitations that should be considered when you use a configuration file to configure quvi\&.
+.PP
+Multiple keys
+.RS 4
+Each group in each configuration file may contain the same key multiple times, note however that the last key value replaces the previously defined value\&.
+.RE
+.PP
+Multiple groups
+.RS 4
+Configuration files may contain multiple groups with the same file, they are however, merged together\&.
+.RE
+.sp
+The syntax of the configuration file is described in detail in the Desktop Entry Specification at http://freedesktop\&.org/Standards/desktop\-entry\-spec
+.sp
+GKeyFile is described in detail in the GLib reference documentation at http://developer\&.gnome\&.org/glib/stable/glib\-Key\-value\-file\-parser\&.html
+.SH "PATHS"
+.sp
+The program will by default search the quvirc file from the typical configuration file paths\&. These paths (order and location) are determined by GLib, based on how it was configured\&.
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Print the search paths:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi info \-\-print\-config\-paths
+/usr/share/gnome/quvi/quvirc
+/usr/share/gdm/quvi/quvirc
+/usr/local/share/quvi/quvirc
+/usr/share/quvi/quvirc
+/home/legatvs/\&.local/share/quvi/quvirc
+/home/legatvs/\&.config/quvi/quvirc
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+Each of the same group variable value read from another quvirc replaces the current value\&. For example:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+~/\&.local/share/quvi/quvirc
+[core]
+stream = foo
+
+~/\&.config/quvi/quvirc
+[core]
+stream = bar
+.fi
+.if n \{\
+.RE
+.\}
+.sp
+The program would use "bar" as the core\&.stream value\&.
+.SH "EXAMPLES"
+.sp
+A given quvirc could look like:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+[core]
+check\-mode\-offline = true
+print\-format = json
+subtitle\-language = cc_en,tts_en
+stream = 480p,720p,best
+#verbosity = debug
+
+[dump]
+query\-metainfo = true
+
+[exec]
+enable\-stdout = true
+external = echo %t,mplayer %u
+
+[get]
+output\-regex = %t:/\e\ew|\e\es/,%t:s/\e\es\e\es+/ /
+output\-name = %t_%i\&.%e
+resume\-from = \-1
+throttle = 500
+
+[http]
+#user\-agent = foo/1\&.0
+enable\-cookies = true
+.fi
+.if n \{\
+.RE
+.\}
+.SH "SEE ALSO"
+.sp
+\fBquvi-info\fR(1), \fBquvi-dump\fR(1), \fBquvi-get\fR(1), \fBquvi-scan\fR(1)
+.SH "FURTHER RESOURCES"
+.PP
+Home
+.RS 4
+
+http://quvi\&.sourceforge\&.net/
+.RE
+.PP
+Development code
+.RS 4
+
+git://repo\&.or\&.cz/quvi\-tool\&.git
+.RE
+.PP
+gitweb
+.RS 4
+
+http://repo\&.or\&.cz/w/quvi\-tool\&.git
+.RE
+.SH "AUTHORS"
+.PP
+Toni Gundogdu <legatvs@gmail\&.com>
+.RS 4
+Author\&.
+.RE
+.SH "REPORTING BUGS"
+.sp
+Report bugs to the quvi\-devel mailing list <quvi\-devel@lists\&.sourceforge\&.net> where the development and the maintenance is primarily done\&. You do not have to be subscribed to the list to send a message there\&.
+.SH "LICENSE"
+.sp
+quvi is Free Software licensed under the GNU Affero GPLv3+
+.SH "QUVI"
+.sp
+Part of the \fIquvi(1)\fR suite

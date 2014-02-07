@@ -1,0 +1,320 @@
+'\" t
+.\"     Title: quvi-scan
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.76.1 <http://docbook.sf.net/>
+.\"      Date: 11/10/2013
+.\"    Manual: quvi Manual
+.\"    Source: quvi 0.9.5
+.\"  Language: English
+.\"
+.TH "QUVI\-SCAN" "1" "11/10/2013" "quvi 0\&.9\&.5" "quvi Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+quvi-scan \- The dumbed\-down embedded media URL scanner
+.SH "SYNOPSIS"
+.sp
+.nf
+\fIquvi scan\fR [OPTIONS] [ARGS]
+.fi
+.SH "DESCRIPTION"
+.sp
+This command scans the input URLs for embedded media URLs and prints them to the stdout\&. The support is determined by the current selection of \fBlibquvi-scripts\fR(7)\&.
+.SH "DEFAULT BEHAVIOUR"
+.sp
+The command passes the contents of the specified URLs to the \fIscan\fR scripts of the \fBlibquvi-scripts\fR(7) which will then search the contents for embedded media URLs\&.
+.sp
+By default, the command will print the found media URLs in the "rfc2483" format\&. The \fI\-\-print\-format\fR may be used to change this\&.
+.SH "SUPPORT"
+.sp
+The support for the media hosts is determined by the current selection of \fBlibquvi-scripts\fR(7)\&.
+.SH "CONFIGURATION"
+.sp
+See \fBquvirc\fR(5) for more information about the groups and the variables that quvi parses\&.
+.SH "INPUT"
+.sp
+The command will read stdin by default\&. The input is expected to \fIcontain\fR URLs\&. The command arguments are expected to be either URLs or file paths\&. If the input is read from either stdin or a file, the contents are read as RFC2483\&. The input may contain file URIs\&.
+.SH "OPTIONS"
+.SS "Core"
+.PP
+\-p, \-\-print\-format FORMAT (default: varies)
+.RS 4
+Specify the format in which the properties should be printed\&. The command uses a different default value for this, depending on the input URL\&. FORMAT may be one of the following values:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIenum\fR
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIjson\fR
+\- available only if quvi was built with JsonGLib
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIrfc2483\fR
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIxml\fR
+\- available only if quvi was built with libxml
+.RE
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.sp
+The default value varies, see DEFAULT BEHAVIOUR\&.
+.sp .5v
+.RE
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+config: core\&.print\-format=<FORMAT>
+.fi
+.if n \{\
+.RE
+.\}
+.PP
+\-b, \-\-verbosity LEVEL (default: verbose)
+.RS 4
+Specify the verbosity level of the command\&. LEVEL may be:
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIdebug\fR
+\- verbose + enable verbose output for libcurl (CURLOPT_VERBOSE)
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIverbose\fR
+\- default
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fIquiet\fR
+\- errors only
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+
+\fImute\fR
+\- nothing at all
+.RE
+.sp
+config: core\&.verbosity=<LEVEL>
+.RE
+.SS "HTTP"
+.PP
+\-c, \-\-enable\-cookies
+.RS 4
+Have libcurl parse the received cookies and use them in the subsequent HTTP requests\&.
+
+config: http\&.enable\-cookies=<boolean>
+.RE
+.PP
+\-u, \-\-user\-agent USERAGENT (default: Mozilla/5\&.0)
+.RS 4
+Identify as USERAGENT to the HTTP server\&.
+.RE
+.if n \{\
+.sp
+.\}
+.RS 4
+.it 1 an-trap
+.nr an-no-space-flag 1
+.nr an-break-flag 1
+.br
+.ps +1
+\fBNote\fR
+.ps -1
+.br
+.sp
+\fBlibquvi-scripts\fR(7) may override this value
+.sp .5v
+.RE
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+config: http\&.user\-agent=<USERAGENT>
+.fi
+.if n \{\
+.RE
+.\}
+.SH "EXAMPLES"
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Scan and print the media URLs in XML:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi \-p xml scan URL
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Scan URL and extract the media:
+.sp
+.if n \{\
+.RS 4
+.\}
+.nf
+$ quvi scan URL | quvi get
+.fi
+.if n \{\
+.RE
+.\}
+.RE
+.SH "ENVIRONMENT"
+.sp
+See \fBquvi\fR(1)
+.SH "EXIT STATUS"
+.sp
+Either EXIT_SUCCESS or EXIT_FAILURE\&. The actual value depends on the platform, on POSIX systems they are 0 (success) and 1 (failure)\&.
+.SH "SEE ALSO"
+.sp
+\fBquvirc\fR(5), \fBlibquvi\fR(3)
+.SH "FURTHER RESOURCES"
+.PP
+Home
+.RS 4
+
+http://quvi\&.sourceforge\&.net/
+.RE
+.PP
+Development code
+.RS 4
+
+git://repo\&.or\&.cz/quvi\-tool\&.git
+.RE
+.PP
+gitweb
+.RS 4
+
+http://repo\&.or\&.cz/w/quvi\-tool\&.git
+.RE
+.SH "AUTHORS"
+.PP
+Toni Gundogdu <legatvs@gmail\&.com>
+.RS 4
+Author\&.
+.RE
+.SH "REPORTING BUGS"
+.sp
+Report bugs to the quvi\-devel mailing list <quvi\-devel@lists\&.sourceforge\&.net> where the development and the maintenance is primarily done\&. You do not have to be subscribed to the list to send a message there\&.
+.SH "LICENSE"
+.sp
+quvi is Free Software licensed under the GNU Affero GPLv3+
+.SH "QUVI"
+.sp
+Part of the \fIquvi(1)\fR suite

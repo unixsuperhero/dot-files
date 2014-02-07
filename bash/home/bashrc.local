@@ -27,7 +27,7 @@ export REPO_DIR="$HASHROCKET_DIR"
 alias glog='git log --oneline --decorate --name-status'
 alias glogn='git log --oneline --decorate --name-only'
 
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:$HOME/software/clive/bin"
 export VIMBUNDLES="$HOME/.vimbundles"
 
 #alias vim="/usr/local/Cellar/vim/7.3.333/bin/vim"

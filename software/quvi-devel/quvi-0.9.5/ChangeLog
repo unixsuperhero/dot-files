@@ -1,0 +1,2379 @@
+commit ebc2cd0
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-11-10
+
+    Update NEWS for v0.9.5
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+NEWS
+
+commit 5e2675a
+Merge: d796a73 6b67bfb
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-20
+
+    Merge branch 'tg/next__redo_linput' into next
+
+commit 6b67bfb
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-20
+
+    DOC: input: Add file URI note
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/input.txt
+
+commit 8dfc090
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-17
+
+    lutil_parse_input: Check linput_new return value
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/util/input.c
+
+commit d92133c
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-17
+
+    linput: Rewrite input parsing completely
+    
+    * FIX (memory leak): Release the GIOChannel created for the stdin
+      by decrementing the reference count of the <stdin> GIOChannel
+    
+    * Do not unescape input URLs
+      - This was previously done because quvi-dump shamelessly escaped the
+        URLs completely (incl. the "reserved chars") and g_uri_parse_scheme,
+        which linput calls (to determine the action it should take with the
+        input URL), couldn't parse the escaped URI schemes otherwise
+    
+      - Any normal applications leave the "reserved chars" unescaped, e.g.
+        the web browsers
+    
+    * linput_new now returns an integer, indicating the success
+      - Program now exits if input parsing failed (e.g. invalid URI)
+    
+    * Follow file URIs
+      - Making it possible to pass "file://" URIs to the program
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/input/linput.c
+src/input/linput.h
+
+commit d796a73
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-10
+
+    quvi-dump: Do not escape reserved chars in URLs
+    
+    Other:
+    * Escape UTF8 chars in the URLs (lprint:{rfc2483,json})
+    
+    See also:
+    * https://tools.ietf.org/html/rfc3986#section-2.2
+    * https://en.wikipedia.org/wiki/Percent-encoding
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+src/print/json_print.c
+src/print/rfc2483_print.c
+src/print/xml_print.c
+
+commit 384a628
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-10
+
+    FIX: array initialized from parenthesized string constant (compilation)
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/util/xchg.c
+
+commit 0c23359
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-10
+
+    FIX: comma at end of enumerator list (compilation)
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/pbar/lpbar.c
+
+commit c862c5b
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-05
+
+    Update NEWS for v0.9.4
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+NEWS
+
+commit 9dd0250
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-10-03
+
+    g_type_init: no longer needs to be called
+    
+    g_type_init has been deprecated since glib 2.35, and no longer needs to
+    be called. Call it with the earlier versions of glib.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+
+commit 34d5220
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-31
+
+    DOC: manpage: footer: Revise "FURTHER RESOURCES"
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/footer.txt
+
+commit 6855f72
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-31
+
+    DOC: quvirc(5): Add HTTP section to the example
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man5/quvirc.5.txt
+
+commit 9b955b2
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-31
+
+    Add --enable-cookies
+    
+    This option binds libquvi QUVI_OPTION_ALLOW_COOKIES, allowing the users
+    to define the cookie parsing behaviour with libcurl. Cookie support is
+    disabled by default.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-http.txt
+src/opts.c
+src/opts.h
+src/setup.c
+
+commit 30d6483
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-29
+
+    --version: Add "configuration" to output
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+src/main.c
+
+commit b0831e0
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-29
+
+    --version: Add QUVI_VERSION_SCRIPTS_CONFIGURATION to output
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+
+commit b385738
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-28
+
+    Revise --version output
+    
+    * Use one g_print call instead of three
+    * Use VN instead of PACKAGE_VERSION
+    * Remove "version" from the output
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+
+commit 79106b7
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-28
+
+    Update NEWS for v0.9.3.1
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+NEWS
+
+commit 0d0234f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-26
+
+    AC_PREREQ: Bump to 2.69
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit bd56d12
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-08-11
+
+    DOC: Add chevs and (missing) ARGNAMEs to "config:" lines
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-core-print-format.txt
+doc/man1/opts-core-verbosity.txt
+doc/man1/opts-core.txt
+doc/man1/opts-exec.txt
+doc/man1/opts-http.txt
+doc/man1/quvi-get.1.txt
+
+commit 43c0308
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-26
+
+    status: Mark message output for translation
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/status.c
+
+commit ad7af01
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-17
+
+    status: Redo frames to look similar to progressbar frames
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/status.c
+
+commit 57cd091
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-16
+
+    Update NEWS for v0.9.3
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+NEWS
+
+commit ee348cb
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-15
+
+    status: Replace use of GDateTime with static frames
+    
+    Status update messages come now with fun new animation that everyone can
+    enjoy.  This replaces the use of GDateTime in the status update messages
+    which was introduced in quvi v0.9.2.
+    
+    GDateTime was added in GLib 2.26, Debian Squeeze packages 2.24. This
+    makes it it possible to compile quvi on Squeeze, once again.
+    
+    Other:
+    * Remove the "with_time" flag, check the string length instead
+    
+    See also:
+    * http://article.gmane.org/gmane.comp.web.flash.quvi/293
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/status.c
+
+commit b80231d
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-15
+
+    DOC: --exec: Add details to %e and %f sequences
+    
+    Describe the %e and %f sequences in more detail, explaining in which
+    cases the program (command) replaces them.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-exec.txt
+
+commit cb98d5d
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-15
+
+    DOC: Use linkman with quvirc where applicable and unused
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-exec.txt
+doc/man1/quvi-info.1.txt
+doc/man1/quvi.1.txt
+
+commit 03c6357
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-15
+
+    DOC: --exec: Add the missing %e sequence
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-exec.txt
+
+commit cfc2b97
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-15
+
+    DOC: quvi-get(1): Revise the output-regex description
+    
+    Other:
+    * Use the exec anchor throughout the document
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/quvi-get.1.txt
+
+commit 47951d5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-15
+
+    DOC: Add an anchor for the Exec section
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-exec.txt
+
+commit 6898a7c
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-14
+
+    FIX: regex pattern extraction (e.g. --output-regex)
+    
+    Change the op_s and op_m (of the lutil_regex_op) patterns used to
+    extract the regex pattern properties, making the following possible:
+      $ quvi get -g '%t:s/\//_/' URL
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/util/regex.c
+
+commit eef985d
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-04
+
+    --version: libquvi: Add QUVI_VERSION_BUILD_CC_FLAGS to output
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+
+commit 7d530fa
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-04
+
+    --version: Add CC and CFLAGS to output
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+src/main.c
+
+commit 7301c45
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-04
+
+    configure.ac: Require a2x when building from git
+    
+    Otherwise make in the doc/man{1,5} will fail as the manpages are
+    missing.
+    
+    Backported from libquvi (6cdebfd, 6612228).
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit 60aa65e
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-04
+
+    FIX: configure.ac: AS_IF for date(1)
+
+configure.ac
+
+commit 18bb708
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-07-02
+
+    FIX: DOC: Remove "linkman": cannot be used in this context
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-exec.txt
+
+commit 95bb9c6
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-25
+
+    configure.ac: Add a vim modeline
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit ed4d3bf
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-25
+
+    cb_status: Update for user_data
+    
+    Other:
+    * Rename parameters
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/setup.c
+src/status.c
+
+commit c47ba99
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-25
+
+    lutil: Use quvi_errcode instead of QUVI_INFO_ERROR_CODE
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/util/support.c
+
+commit c2199f3
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-19
+
+    Update NEWS for v0.9.2
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+NEWS
+
+commit 0d85b5f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-15
+
+    lprint: rfc2483: Escape sparingly
+    
+    Do not escape all of the printed properties. Escape only the properties
+    that have not been commented out in the output.
+    
+    For example, the playlist properties should not be escaped if they will
+    be commented out in the output. This is unnecessary and makes the
+    printed output less human-readable.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/print/rfc2483_print.c
+
+commit f4fac23
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-11
+
+    FIX: progressbar: Print correct "mode:"
+    
+    The progressbar would always print "mode: write", even when the transfer
+    was resumed. This commit fixes this and melds "skip <transfer>" messages
+    into the lpbar (lpbar_print) output.
+    
+    Notable changes:
+    * get/http.c: Do not print "skip <transfer>: <reason>" (see below)
+    * get/http.c: Relocate the lpbar_print call (+additional calls)
+    * pbar/lpbar.h: Add lpbar_mode={retrieved_already,forced_skip,...}
+    * pbar/lpbar.c: Reimplement lpbar_print
+      - Remove 'gboolean skip_transfer' parameter
+      - Print "skip <reason>" with "mode:"
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/get/http.c
+src/pbar/lpbar.c
+src/pbar/lpbar.h
+
+commit fb03b63
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-11
+
+    po/Makevars: Update XGETTEXT_OPTIONS
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+po/Makevars
+
+commit 4694f1a
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-11
+
+    _print_io_errmsg: Remove leading LF character
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/get/http.c
+
+commit d89e38c
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-10
+
+    DOC: quvi-scan(1): Revise DEFAULT BEHAVIOUR section
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/quvi-scan.1.txt
+
+commit 8887183
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-10
+
+    FIX: DOC: Move "core.print-format" to a file dedicated for it
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-core-print-format.txt
+doc/man1/quvi-dump.1.txt
+doc/man1/quvi-scan.1.txt
+
+commit 327de3c
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    lpbar_update: Do not prepend CR to the output
+    
+    Instead, append it (CR, '\r') to the output -- unless the transfer is
+    complete, in which case, the output should end to a newline (LF, '\n').
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/pbar/lpbar.c
+
+commit 9df5b45
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    lget: http: Do not prepend a newline to error messages
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/get/http.c
+
+commit f56056d
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    Change "skip:" messages
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/get.c
+src/get/http.c
+
+commit 89a04c5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    quvi-dump: Postpone print after querying metainfo
+    
+    With the (unbuffered) 'enum' of core.print-format, the program will:
+      1) print the media properties
+      2) query the metainfo properties for the media stream
+      3) print the media stream properties
+    
+    This causes a notable pause in the output when the program stops to
+    query the metadata (when applicable).
+    
+    This commit changes quvi-dump so that the (unbuffered) output is printed
+    *after* the metainfo has been retrieved. This changes nothing for the
+    buffering filters (rfc2483, json, xml).
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/dump.c
+
+commit ee840c1
+Merge: ad54b0d 6e905c4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-10
+
+    Merge branch 'tg/next__improve_status_updates' into next
+
+commit 6e905c4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    status: Reuse the status line, do not use newlines
+    
+    Print all status messages to the same (status) line. Overwrite the
+    previous messages.
+    
+    Other:
+    * Add a time prefix to the printed messages
+    * Tweak status messages
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/status.c
+
+commit 8f30984
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    quvi-get: Setup SIGWINCH handler
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/get.c
+
+commit 953a3ac
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    quvi-scan: Setup SIGWINCH handler
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/scan.c
+
+commit acda95f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    quvi-dump: Setup SIGWINCH handler
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/dump.c
+
+commit 9d25820
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-09
+
+    Add framework for handling SIGWINCH
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+src/sig.c
+src/sig.h
+
+commit ad54b0d
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-08
+
+    CoAT: cmd_get: Say it with a return statement
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/get.c
+
+commit 3dbd978
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-08
+
+    CoAT: cmd_dump: Say it with a return statement
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/dump.c
+
+commit 604d142
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-06
+
+    lget_http_get: Revise comments
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/get/http.c
+
+commit 7f70b96
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-06-05
+
+    FIX: lutil_quvi_init: Pass handle value to quvi_errmsg
+    
+    quvi_t handle is passed by its address to lutil_quvi_init. Pass the
+    handle value to quvi_errmsg, not the pointer to the handle.
+    
+    This fixes the issue described in
+      http://article.gmane.org/gmane.comp.web.flash.quvi/247
+    as
+      error: while initializing libquvi: Not an error
+    
+    Steps to reproduce:
+      * Build and install everything {libquvi-scripts,libquvi,quvi}
+      * Uninstall libquvi-scripts
+      * Run quvi
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/util/quvi.c
+
+commit e2e9f9c
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-26
+
+    pbar: Make progress animation advance from left-to-right
+    
+    Change the frame-order for the progressbar to traverse from
+    left-to-right, rather than from right-to-left.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/pbar/lpbar.c
+
+commit dabe369
+Merge: 83fa996 c45aa78
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-26
+
+    Merge branch 'tg/next__fix_input_order' into next
+
+commit c45aa78
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-26
+
+    FIX: Keep the input URL order
+    
+    This fixes what commit 4d6aac87dde312ae0a8ee1a329426e01f40f746a was
+    originally intended to fix.  Without this, the input URL order gets
+    mangled which can be frustrating when processing URLs in batches and
+    operating over an unreliable connection.
+    
+    Rather than reversing the order in the "check support" facility which is
+    called *foreach* input URL, reverse the lists only once *after* the
+    facility returns the results.
+    
+    See the comment in the committed code for the reason we reverse the
+    order.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/setup.c
+
+commit ba2266b
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-26
+
+    Revert "FIX: Retain the input URL order"
+    
+    This reverts commit 4d6aac87dde312ae0a8ee1a329426e01f40f746a.
+
+src/util/support.c
+
+commit 83fa996
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-20
+
+    Update NEWS for v0.9.1
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+NEWS
+
+commit dc731cf
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-20
+
+    README: Requirements: Add aptitude commands
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+README
+
+commit c732d98
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-19
+
+    gen-news.sh: Do not print release author
+    
+    Trivial information. Release date matters.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+gen-news.sh
+
+commit 295a623
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-05-18
+
+    Add a copyright notice to --version output
+    
+    * Make the output untranslatable: remove _() macros
+    * Print the notice to the stderr
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+
+commit bf88f30
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-04-23
+
+    FIX: quvi-get: Use "default" with --print-streams
+    
+    When there is only one media stream, and that is unnamed by the libquvi
+    media script, use "default" to identify this stream in the output.
+    
+    We use "default" to identify the stream for the clarity of the users,
+    technically the string could be anything, e.g. "--stream foo" would
+    still select the default stream if there is only one stream available,
+    or "foo" matched none of the stream IDs.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/get.c
+
+commit d88a32f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-04-20
+
+    lprint_rfc2483_playlist_properties: More properties
+    
+    Print (as commented out) additional playlist properties in the rfc2483
+    format:
+    * QUVI_PLAYLIST_MEDIA_PROPERTY_DURATION_MS
+    * QUVI_PLAYLIST_PROPERTY_THUMBNAIL_URL
+    * QUVI_PLAYLIST_PROPERTY_TITLE
+    * QUVI_PLAYLIST_PROPERTY_ID
+    
+    Add the `_print_pp_d' macro and the `_pp_d' function.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/print/rfc2483_print.c
+
+commit 722be67
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-04-16
+
+    gen-news.sh: Do not print commits with >1 one parent
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+gen-news.sh
+
+commit 86bd249
+Merge: f158f9e 15affa9
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-04-14
+
+    Merge branch 'tg/next/1.0' into next
+    
+    Conflicts:
+    	configure.ac
+
+commit 15affa9
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-04-07
+
+    FIX: Use QuviHTTPMetaInfoProperty
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/print/enum_print.c
+src/print/xml_print.c
+
+commit 4d6aac8
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-04-04
+
+    FIX: Retain the input URL order
+    
+    When the program queries support for the URL from libquvi, the accepted
+    URLs are prepended to the returned lists.  Reverse the order to retain
+    the original order.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/util/support.c
+
+commit 86971f5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-28
+
+    FIX: Use of invalid subtitle language pointer
+    
+    Fixes the use of invalid (NULL) subtitle language pointer when libquvi
+    failed to find any subtitles for the media.
+    
+    lutil_choose_subtitle: Check the returned language pointer
+      quvi_subtitle_select may return NULL if libquvi failed to find any
+      subtitle languages. If the 'fail_if_none' arg is TRUE, then croak.
+    
+    quvi-dump: _foreach_subtitle_url:
+      Pass 'fail_if_none' as TRUE to lutil_choose_subtitle.
+    
+    quvi-get:
+      * _dump_languages:
+        - Print either 'none' or the found subtitle language IDs
+      * _copy_subtitle:
+        - Pass 'fail_if_none' as FALSE to lutil_choose_subtitle
+        - Export only if language pointer != NULL
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/builtin/dump.c
+src/builtin/get.c
+src/util/choose.c
+src/util/lutil.h
+
+commit 7ea4827
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-27
+
+    FIX: resume: Set pbar initial bytes
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/get/http.c
+
+commit e000135
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-27
+
+    FIX: _open_stream: Skip pbar update if failed
+    
+    _setup_curl: may return anything but EXIT_SUCCESS in which case the
+    pbar->flags.failed must be set accordingly. Otherwise we will see the
+    progressbar print an 'update' line even when an error occurred.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/get/http.c
+
+commit bf71a33
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    AM_INIT_AUTOMAKE: Remove -Werror
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit 3fbf5d6
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    Workaround: AM_PROG_AR
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit 9b0546a
+Merge: cb2816f 5bbf9de
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    Merge branch 'tg/next/1.0__man' into tg/next/1.0
+
+commit 5bbf9de
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    .gitignore: Add doc/man5/Makefile.in
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+.gitignore
+
+commit 17fd8ce
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    AC_CONFIG_FILES: Add doc/man5/Makefile
+
+configure.ac
+
+commit a13b554
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add footer.txt
+    
+    Contains the sections that are shared between the man1 pages.
+    This file also includes $top_srcdir/doc/footer.txt file.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/footer.txt
+
+commit 1886321
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add opts-http.txt
+    
+    Contains the "HTTP" group options.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-http.txt
+
+commit 03d94d4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add opts-exec.txt
+    
+    Contains the "Exec" group options.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-exec.txt
+
+commit 5e02179
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add opts-core-verbosity.txt
+    
+    Contains the description for the --verbosity option. This option is
+    supported by quvi-dump, quvi-get and quvi-scan.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-core-verbosity.txt
+
+commit 49bc2f3
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add opts-core-print-format.txt
+    
+    Contains the --print-format description. This option is supported by
+    quvi-scan and quvi-dump.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-core-print-format.txt
+
+commit 575d7fe
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add opts-core.txt
+    
+    Contains the common descriptions for the "Core" options.
+    These options are supported by quvi-dump and quvi-get.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/opts-core.txt
+
+commit d3e36a3
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add input.txt
+    
+    Contains the "INPUT".
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/input.txt
+
+commit 8740ec5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add common.txt
+    
+    Contains the "SUPPORT" and "CONFIGURATION".
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/common.txt
+
+commit a75cdfb
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man5: Add quvirc.5.txt
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man5/Makefile.am
+doc/man5/quvirc.5.txt
+
+commit 1c0abc8
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man5: Add Makefile.am
+
+doc/man5/Makefile.am
+
+commit 8010c24
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add quvi-scan.1.txt
+
+doc/man1/Makefile.am
+doc/man1/quvi-scan.1.txt
+
+commit be5c235
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add quvi-info.1.txt
+
+doc/man1/Makefile.am
+doc/man1/quvi-info.1.txt
+
+commit 5effaeb
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add quvi-get.1.txt
+
+doc/man1/Makefile.am
+doc/man1/quvi-get.1.txt
+
+commit 88b954f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add quvi-dump.1.txt
+
+doc/man1/Makefile.am
+doc/man1/quvi-dump.1.txt
+
+commit 6ed7537
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Add quvi.1.txt
+
+doc/man1/Makefile.am
+doc/man1/quvi.1.txt
+
+commit b36f6b8
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    man1: Revise Makefile.am for a2x
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/Makefile.am
+
+commit e0c196a
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    doc: Add footer.txt
+    
+    The manpages include the contents of this file.
+
+doc/Makefile.am
+doc/footer.txt
+
+commit 1768e47
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    doc: Add asciidoc.conf
+    
+    This file adds the linkman macro. See the comment field for the
+    instructions. This is a modified version from the pacman (of Arch Linux)
+    source tree uses to produce the manpages: this macro does not insert
+    <date>.
+
+doc/Makefile.am
+doc/asciidoc.conf
+
+commit 4283aad
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    doc: Makefile.am: Revise SUBDIRS
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/Makefile.am
+
+commit f0c9496
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    Makefile.am: Add target "doc"
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+Makefile.am
+
+commit 4ae21dd
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    configure.ac: Check for a2x
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit d0e39a9
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-25
+
+    bootstrap.h: Remove gen_manual
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+bootstrap.sh
+
+commit cb2816f
+Merge: e077ebd 288b5ae
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-23
+
+    Merge branch 'tg/next/1.0__cmd' into tg/next/1.0
+
+commit 288b5ae
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-18
+
+    Update POTFILES.in
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+po/POTFILES.in
+
+commit 9a02a93
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-18
+
+    Update .gitignore
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+.gitignore
+
+commit a2f4316
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-22
+
+    configure.ac: Additional library function checks
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit a236ca4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-02-09
+
+    Add builtin/scan.c
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+src/builtin/scan.c
+
+commit 4c74fac
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-02-09
+
+    Add builtin/get.c
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+src/builtin/get.c
+
+commit 111fa20
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-02-09
+
+    Add builtin/dump.c
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+src/builtin/dump.c
+
+commit 9a4dede
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-02-09
+
+    Add builtin/info.c
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+src/builtin/info.c
+
+commit 9ba7dc4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-02-09
+
+    Add main.c and implement "quvi COMMAND"
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+
+commit c4bd465
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-30
+
+    Add setup.{c,h}
+    
+    Implements the reusable setup_* functions shared within
+    the quvi commands.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+src/setup.c
+src/setup.h
+
+commit e010ac3
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-18
+
+    Add cmd.h
+
+src/Makefile.am
+src/cmd.h
+
+commit 516fa44
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-22
+
+    Add status.c
+
+src/Makefile.am
+src/status.c
+
+commit 3f86d31
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-18
+
+    Add opts.{c,h}
+    
+    Implements the command line ARGS (of "quvi COMMAND [ARGS]") parsing and
+    integration with the configuration files, utilizing the lopts.
+    
+    This implementation uses the same config file for all quvi commands.
+    Some of the commands will use only some of the values read from the
+    config files, e.g. core.skip-transfer ("quvi save") or
+    output.dump-format ("quvi dump").
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+src/opts.c
+src/opts.h
+
+commit 41494c6
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-30
+
+    Add lget
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+src/Makefile.am
+src/get/Makefile.am
+src/get/http.c
+src/get/lget.c
+src/get/lget.h
+
+commit 64f2d58
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-22
+
+    Add lpbar
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+src/Makefile.am
+src/pbar/Makefile.am
+src/pbar/lpbar.c
+src/pbar/lpbar.h
+
+commit 3d95d19
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-22
+
+    Add lprint
+
+configure.ac
+src/Makefile.am
+src/print/Makefile.am
+src/print/enum_print.c
+src/print/json_print.c
+src/print/lprint.h
+src/print/rfc2483_print.c
+src/print/xml_print.c
+
+commit c086e65
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-18
+
+    Add linput
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+src/Makefile.am
+src/input/Makefile.am
+src/input/linput.c
+src/input/linput.h
+
+commit f02567b
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-18
+
+    Add lutil
+
+configure.ac
+src/Makefile.am
+src/util/Makefile.am
+src/util/chk.c
+src/util/choose.c
+src/util/curl.c
+src/util/exec.c
+src/util/file.c
+src/util/fpath.c
+src/util/input.c
+src/util/lutil.h
+src/util/metainfo.c
+src/util/query.c
+src/util/quvi.c
+src/util/regex.c
+src/util/slist.c
+src/util/strerr.c
+src/util/strv.c
+src/util/support.c
+src/util/verbosity.c
+src/util/xchg.c
+
+commit d3dcb62
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-18
+
+    Add lopts
+
+configure.ac
+src/Makefile.am
+src/opts/Makefile.am
+src/opts/chk.c
+src/opts/config.c
+src/opts/err.c
+src/opts/get.c
+src/opts/lopts.c
+src/opts/lopts.h
+src/opts/print.c
+
+commit f158f9e
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-03-08
+
+    .gitignore: Add config.aux/compile
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+.gitignore
+
+commit 2c45b92
+Author: Martin Herkt <lachs0r@srsfckn.biz>
+Date:   2013-03-08
+
+    configure.ac: add missing AM_PROG_CC_C_O
+    
+    This fixes generating configure on systems with recent autotools.
+    
+    Signed-off-by: Martin Herkt <lachs0r@srsfckn.biz>
+
+configure.ac
+
+commit e077ebd
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2013-02-04
+
+    Rename autogen.sh to bootstrap.sh
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+README
+autogen.sh
+bootstrap.sh
+
+commit add3a19
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    Add src/main.c
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/main.c
+
+commit 5adae69
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    src/Makefile.am: Add quvi program
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+
+commit 6b6c425
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    src/Makefile.am: Clear SUBDIRS
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+src/Makefile.am
+
+commit b7ad4da
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    doc/Makefile.am: Cleanup SUBDIRS
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/Makefile.am
+
+commit 44cddcf
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    doc/man1/Makefile.am: Clear EXTRA_DIST, dist_man_MANS
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/Makefile.am
+
+commit 2d33985
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    Remove quvi.1.pod
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+doc/man1/quvi.1.pod
+
+commit 41834c7
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-10-27
+
+    Update COPYING to AGPLv3+
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+COPYING
+
+commit 786f1cd
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    README: Fix contrib URL
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+README
+
+commit 450a059
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-10-27
+
+    README: Update descr, prereqs, license
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+README
+
+commit 0fe7cea
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-16
+
+    README: Add GNU gettext
+
+README
+
+commit 137c361
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-31
+
+    Revise README
+    
+    Rewrite README entirely, adding installation instructions (specific to
+    this package). This leaves the INSTALL  file for GNU Autotools to produce.
+
+README
+
+commit 16661c7
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    Update .gitignore
+
+.gitignore
+
+commit a787426
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    Add files from po/ subdir
+
+po/LINGUAS
+po/Makevars
+po/POTFILES.in
+
+commit f16a6b1
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    Makefile.am: Add po/ to SUBDIRS
+
+Makefile.am
+
+commit de38a7a
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-05
+
+    Remove src/quvi/ contents
+
+src/quvi/Makefile.am
+src/quvi/asprintf.c
+src/quvi/platform.h
+src/quvi/quvi.c
+src/quvi/strepl.c
+src/quvi/vasprintf.c
+
+commit 0dfd0c7
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-11-25
+
+    Shell scripts: Change license header
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+autogen.sh
+gen-news.sh
+gen-ver.sh
+
+commit 659e329
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-12
+
+    FIX: gen-news.sh: Find the closest tagname
+    
+    Replaces the buggy tagname extraction with a proper one.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+gen-news.sh
+
+commit b6b70d2
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    gen-news.sh: Use shortstat
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+gen-news.sh
+
+commit 40427a3
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    autogen.sh: Disable quvi.1 generation
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+autogen.sh
+
+commit 7f24a05
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-06-05
+
+    autogen.sh: Add podchecker
+
+autogen.sh
+
+commit 2d2df89
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-31
+
+    autogen.sh: Do not run gengetopt
+    
+    Do not generate the command line support from the cmdline.ggo file.
+    Remove the .ggo file from the dist.
+
+autogen.sh
+src/quvi/Makefile.am
+src/quvi/cmdline.ggo
+
+commit b3d7ca8
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-18
+
+    autogen.sh: -c option: Revise warning message
+
+autogen.sh
+
+commit fb0e194
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    gen-ver.sh: Rewrite completely
+    
+      * Use dirname(1) output
+      * Add support for -c option
+      * Do not extract version from m4/version.m4
+
+gen-ver.sh
+
+commit c4eea24
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    configure.ac: Update AC_CONFIG_SRCDIR
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit 3a9c5c9
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    configure.ac: Clear AC_CONFIG_FILES
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit 9a68b4e
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-06
+
+    configure.ac: Check for date program
+    
+    Check for the `date' program and define "BUILD_TIME".
+
+configure.ac
+
+commit 8b03a4e
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-06
+
+    configure.ac: Add LT_INIT, LT_PREREQ
+
+configure.ac
+
+commit 1eec46f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    configure.ac: Check for GNU gettext
+
+configure.ac
+
+commit 060f7ab
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    configure.ac: Cleanup AC_CHECK_HEADERS array
+
+configure.ac
+
+commit 0a559aa
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    configure.ac: Remove AC_CHECK_TYPES, AC_TYPE_SIZE_T
+
+configure.ac
+
+commit c4c2783
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    configure.ac: Cleanup AC_CHECK_FUNCS array
+
+configure.ac
+
+commit 0b92cfa
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    configure.ac: Remove AC_FUNC_REALLOC, AC_FUNC_MALLOC
+
+configure.ac
+
+commit 2483895
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    configure.ac: Do not check for asprintf
+
+configure.ac
+
+commit d4ef693
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    configure.ac: Check for libxml
+    
+    Enable XML output only if libxml 2.7.8+ is found.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit bd90576
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    configure.ac: Check for json-glib
+    
+    Enable JSON output only if json-glib 0.12+ is found.
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit 8ca015a
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-12-17
+
+    configure.ac: Check for gobject
+    
+    Signed-off-by: Toni Gundogdu <legatvs@gmail.com>
+
+configure.ac
+
+commit f677693
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-09-01
+
+    configure.ac: Check for glib2
+
+configure.ac
+
+commit 462669b
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    configure.ac: Check for libquvi 0.9
+
+configure.ac
+
+commit 46ef6d4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    configure.ac: Run gen-ver.sh to get the version value
+    
+    Use the gen-ver.sh returned value with AC_INIT. Remove the m4/version.m4
+    file.
+
+autogen.sh
+configure.ac
+m4/version.m4
+
+commit 7091114
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    configure.ac: AC_MSG_NOTICE: Revise output
+
+configure.ac
+
+commit f394d11
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    configure.ac: Replace depr. autoconf macros
+    
+      * AC_CANONICAL_SYSTEM -> AC_CANONICAL_TARGET
+      * AC_GNU_SOURCE -> AC_USE_SYSTEM_EXTENSIONS
+
+configure.ac
+
+commit 2fc5298
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    configure.ac: Add AM_PROG_CC_C_O
+
+configure.ac
+
+commit a06efd6
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    configure.ac: Add AM_PROG_AR (leave commented out)
+
+configure.ac
+
+commit a455361
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    configure.ac: Modernize AM_INIT_AUTOMAKE options
+
+configure.ac
+
+commit df1a605
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-08-30
+
+    Remove INSTALL file from repo
+    
+    Leave INSTALL file for GNU Autotools to produce.
+
+.gitignore
+INSTALL
+
+commit c89aafd
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-07-28
+
+    autogen.sh: exit with 1 if gengetopt fails
+
+autogen.sh
+
+commit bbf2ba5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-07-22
+
+    Comment out $opt__NULL lines
+    
+    These are not really required (?), and since only
+    GNU gengetopt 2.22.5 and later seem to produce these,
+    exclude them from the build.
+
+src/quvi/quvi.c
+
+commit 3e61e1f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-03-30
+
+    Lower AC_PREREQ to 2.67
+
+configure.ac
+
+commit 3642a57
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-03-27
+
+    gen-news.sh: Add stat
+
+gen-news.sh
+
+commit dfa468d
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-03-01
+
+    Update NEWS for v0.4.2
+
+NEWS
+
+commit 15bb2ae
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-03-01
+
+    Bump version to v0.4.2
+
+m4/version.m4
+
+commit 3b67a3f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-02-29
+
+    Add gen-news.sh (repo only)
+
+gen-news.sh
+
+commit c9a2d32
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-02-29
+
+    Add license to misc. scripts
+    
+     * autogen.sh
+     * gen-ver.sh
+
+autogen.sh
+gen-ver.sh
+
+commit d283fef
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2012-02-29
+
+    Do not pass quvi_t as an arg, use the global var instead
+
+src/quvi/quvi.c
+
+commit 9e463f0
+Author: Bastien Nocera <hadess@hadess.net>
+Date:   2011-12-06
+
+    Add "%h" to print the thumbnail URL for a link
+
+doc/man1/quvi.1.pod
+src/quvi/quvi.c
+
+commit 8c82966
+Author: Bastien Nocera <hadess@hadess.net>
+Date:   2011-12-06
+
+    Add "%e" to print the extension of the linked file
+    
+    useful to automatically save links to files.
+
+doc/man1/quvi.1.pod
+src/quvi/quvi.c
+
+commit baa28a1
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Bump version to 0.4.1
+
+m4/version.m4
+
+commit 3cb02f5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Update NEWS for 0.4.1
+
+NEWS
+
+commit 600c41f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Make use of the unused enum
+
+src/quvi/quvi.c
+
+commit cd4b602
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Add "command line parser" section
+
+doc/man1/quvi.1.pod
+
+commit e7dd5be
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Add libcurl note about http_proxy
+
+doc/man1/quvi.1.pod
+
+commit f5f0491
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Add --feature to manual
+
+doc/man1/quvi.1.pod
+
+commit 213e2ab
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Add --verbosity to manual
+
+doc/man1/quvi.1.pod
+
+commit efa12f0
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Add --export-level, --export-format to manual
+
+doc/man1/quvi.1.pod
+
+commit 1e56bf5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Revise --category in the manual
+
+doc/man1/quvi.1.pod
+
+commit bd2b886
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-26
+
+    Revise --query-formats, --format descriptions
+
+doc/man1/quvi.1.pod
+
+commit faf1569
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-25
+
+    Revise manual
+
+doc/man1/quvi.1.pod
+
+commit f8000db
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Use spew_qe instead
+
+src/quvi/quvi.c
+
+commit 11aff85
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Cleanup ggo
+
+src/quvi/cmdline.ggo
+
+commit e163479
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Do not use atexit(3)
+
+configure.ac
+src/quvi/quvi.c
+
+commit 15e373e
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    FIX: Do not show warning with "mute" level
+
+src/quvi/quvi.c
+
+commit 795ccbc
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-27
+
+    Accept multiple occurences of --exec
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit 84eaad4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-27
+
+    Add --feature, depr. --no-*
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit c7b8693
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-27
+
+    Add --verbosity, depr. --quiet, --verbose-libcurl
+    
+     * Add new verbosity level 'mute'
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit c3cfd91
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-27
+
+    Add --export-format, depr. --xml
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit 16ce16c
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-27
+
+    Replace --export-errors with --export-level
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit a4900eb
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-27
+
+    Re-implement --category using enums
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit 7621bd6
+Merge: 44b4847 3ac6c46
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-28
+
+    Merge branch 'tj/maint-properly-escape' into next
+
+commit 3ac6c46
+Author: Tomas Janousek <tomi@nomi.cz>
+Date:   2011-11-28
+
+    Properly escape strings passed to shell
+
+src/quvi/quvi.c
+
+commit 44b4847
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-24
+
+    Add process_queue
+
+src/quvi/quvi.c
+
+commit 0a56be5
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-24
+
+    Rewrite command line parsing
+
+src/quvi/quvi.c
+
+commit 43f684b
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-24
+
+    FIX Override config values from cmdline
+    
+    Check $opt_arg with strings, instead. gengetopt generated
+    code resets the $opt_given flags with config files.
+    
+     * parse_categories: Use "opts" global variable instead
+     * Rename "inputs" global variable
+
+src/quvi/quvi.c
+
+commit 5e2e006
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-24
+
+    Address warnings spewed by splint
+    
+    Noteworthy changes:
+    
+     * BUGFIX quvi.c:643:10: Variable quvi shadows outer declaration
+       An outer declaration is shadowed by the local declaration.
+       quvi.c:47:15: Previous definition of quvi: quvi_t
+    
+     * Rewrite open_file as read_file
+
+src/quvi/quvi.c
+
+commit faafc1f
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-23
+
+    Cleanup
+    
+     * check_category
+     * parse_categories
+
+src/quvi/quvi.c
+
+commit 743e435
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-23
+
+    Revise manual for --category
+
+doc/man1/quvi.1.pod
+
+commit 311e01a
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-23
+
+    Add --category, depr. --category-*
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit 11dd732
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-23
+
+    Add --export-errors to manual
+
+doc/man1/quvi.1.pod
+
+commit d878ad0
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-11-23
+
+    Add --export-errors (#61)
+    
+     * http://sourceforge.net/apps/trac/quvi/ticket/61
+
+src/quvi/cmdline.ggo
+src/quvi/quvi.c
+
+commit edc1de4
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-10-05
+
+    Update NEWS for 0.4.0
+
+NEWS
+
+commit cbe4194
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-09-23
+
+    Remove config.aux
+
+autogen.sh
+
+commit 1c8a801
+Author: Toni Gundogdu <legatvs@gmail.com>
+Date:   2011-09-15
+
+    Split from git://repo.or.cz/quvi.git
+
+.gitignore
+AUTHORS
+COPYING
+INSTALL
+Makefile.am
+README
+autogen.sh
+configure.ac
+doc/Makefile.am
+doc/man1/Makefile.am
+doc/man1/quvi.1.pod
+gen-ver.sh
+m4/version.m4
+src/Makefile.am
+src/quvi/Makefile.am
+src/quvi/asprintf.c
+src/quvi/cmdline.ggo
+src/quvi/platform.h
+src/quvi/quvi.c
+src/quvi/strepl.c
+src/quvi/vasprintf.c

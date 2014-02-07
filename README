@@ -1,7 +1,7 @@
-Authors Josh(CORE GURU), Paul(No Where), Dante(Mr Smooth), Jon(Turned upside down) 
-  These are my dot files.  I keep them all in one
-folder and have symlinks to them from the original
-locations.
+  These are my dot files.  I keep them all in one folder and have symlinks to
+them from the original locations.  The actual filenames don't include the
+leading dot.  This is for visibility and it's slightly more convenient managing
+the files with git that way.
 
 Example:
 
@@ -15,4 +15,13 @@ To install:
     ...or...
 
   sh setup
+
+
+# TO DO
+
+* __Compile Script__ - Write a script that will take all the organized config
+  files and inject them inline when they are sourced to create 1 all-inclusive
+  dotfile.
+    * For example, all of my .bashrc.* files will result in a single
+      ".bashrc.compiled" file.
 

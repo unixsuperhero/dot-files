@@ -194,6 +194,8 @@ hi popMatch8 cterm=none ctermfg=0 ctermbg=2
 hi popMatch9 cterm=reverse ctermfg=white ctermbg=0
 hi popMatch10 cterm=reverse ctermfg=lightblue ctermbg=white
 
+hi Visual term=reverse cterm=reverse guibg=LightGrey
+
 " spell check
 ab cls class
 ab fun function
@@ -227,6 +229,8 @@ ab yyyymmddHHMMSS =strftime("%Y%m%d%H%M%S")
 "" useful command abbreviations
 "----- used for % %:h %:r, etc.
 ca :: %
+ca sm y x\|'<,'>j\|s/\s*$/ 0/\|s/\s\s*/+/g
+ca sum y x\|'<,'>j\|s/\s*$/ 0/\|s/\s\s*/+/g\|norm V=I= :put! x<cr>
 
 
 
