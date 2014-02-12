@@ -4,7 +4,7 @@ stamp=$(date +%s)
 function dot_install()
 {
   bkup="backup/home/$stamp"
-  for dots in bash/home list/home vim; do
+  for dots in bash/home list/home vim pure-zsh/home; do
     for fil in $dots/*; do
       if [ -f "$HOME/.$(basename $fil)" ]; then
         mkdir -pv "$bkup" | sed 's/^/mkdir: /'
