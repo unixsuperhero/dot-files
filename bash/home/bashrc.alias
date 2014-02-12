@@ -220,3 +220,5 @@ alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`
 alias make_pdf="cupsfilter -o fit-to-page -o cpi=18 -o lpi=11"
 
 alias savedb="psql -U jturner saveology_development"
+
+alias vimp="vim +set\ bt=nofile -"
