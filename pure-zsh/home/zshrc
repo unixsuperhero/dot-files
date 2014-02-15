@@ -1,9 +1,39 @@
 
 ## Setup "pure" zsh prompt
 #
-fpath=( "$HOME/.zfunctions" $fpath )
+### fpath=( "$HOME/.zfunctions" $fpath )
+### 
+### autoload -U promptinit && promptinit
+### 
+### prompt pure
 
-autoload -U promptinit && promptinit
+source ~/.bashrc.local
 
-prompt pure
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="pure"
+plugins=(git rbenv)
 
+source $ZSH/oh-my-zsh.sh
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+
+
+## LOAD rbenv ENV
+
+export PATH="/Users/MacbookPro/.rbenv/shims:/Users/MacbookPro/repos/random-snippets/ruby:/Users/MacbookPro/repos/random-snippets/shell:${PATH}"
+#source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.bash"
+rbenv rehash 2>/dev/null
+rbenv() {
+  typeset command
+  command="$1"
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+
+  case "$command" in
+  rehash|shell)
+    eval `rbenv "sh-$command" "$@"`;;
+  *)
+    command rbenv "$command" "$@";;
+  esac
+}

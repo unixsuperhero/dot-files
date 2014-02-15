@@ -34,6 +34,7 @@ set scrolloff=0                                   " Scroll when cursor gets with
 set sidescrolloff=2                               " Scroll when cursor gets within 10 characters of left/right edge
 set showmatch                                     " When a bracket is inserted, briefly jump to a matching one
 set matchtime=2                                   " Jump to matching bracket for 2/10th of a second (works with showmatch)
+set modeline modelines=5                          " Turn on # vim: set ft=markdown: style modelines
 set wildmenu                                      " Use menu to show command-line completion (in 'full' case)
 set wildmode=list:longest,full                    " Set command-line completion mode:
 set history=1000                                  " Remember up to 1000 'colon' commmands and search patterns

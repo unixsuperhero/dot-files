@@ -10,9 +10,11 @@ source_file "$HOME/.bashrc.function"
 source_file "$HOME/.bashrc.alias"
 source_file "$HOME/.bashrc.battery"
 source_file "$HOME/.bashrc.export"
+
 if [[ $SHELL == "/bin/bash" ]]; then
   source_file "$HOME/.bashrc.ps1"
 fi
+
 source_file "$HOME/.bashrc.saveology"
 source_file "$HOME/.bashrc.heroku"
 
@@ -27,7 +29,7 @@ export REPO_DIR="$HASHROCKET_DIR"
 alias glog='git log --oneline --decorate --name-status'
 alias glogn='git log --oneline --decorate --name-only'
 
-export PATH="$PATH:$HOME/bin:$HOME/software/clive/bin"
+export PATH="$PATH:$HOME/bin"
 export VIMBUNDLES="$HOME/.vimbundles"
 
 #alias vim="/usr/local/Cellar/vim/7.3.333/bin/vim"
@@ -87,36 +89,5 @@ export EDITOR=vim
   function bcd() {
     cd $($(search_stubs $1))
   }
-  export HEROKU_BINSTUB_PATH="/Users/jearsh/bin/app-binstubs"
-  export PATH="$HEROKU_BINSTUB_PATH:$PATH"
-
-  function stub_search_string() {
-    echo ".*$(echo "$1" | sed 's/./&.*/g')"
-  }
-  function search_stubs() {
-    ls -1 "$HEROKU_BINSTUB_PATH" | grep -i "$(stub_search_string $1)" | head -1
-  }
-  function bcd() {
-    cd $($(search_stubs $1))
-  }
   
 
-## Setup rbenv
-
-  export PATH="/Users/MacbookPro/.rbenv/shims:${PATH}"
-  source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.bash"
-  rbenv rehash 2>/dev/null
-  rbenv() {
-    typeset command
-    command="$1"
-    if [ "$#" -gt 0 ]; then
-      shift
-    fi
-
-    case "$command" in
-    rehash|shell)
-      eval `rbenv "sh-$command" "$@"`;;
-    *)
-      command rbenv "$command" "$@";;
-    esac
-  }
