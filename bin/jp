@@ -1,0 +1,4 @@
+#!/bin/bash
+
+curl "http://nihongone.dev/define/$(ruby -r uri -e "puts URI.encode('$1')").yml"
+

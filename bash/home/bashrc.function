@@ -86,7 +86,7 @@ function login_to_heroku()
   ssh-add $(ls ~/.ssh/*.pub | sed 's/[.]pub$//')
 }
 
-function ytdl() { clive -f fmt18_360p "$1"; }
+function ytdl() { cclive -f fmt18_360p "$1"; }
 function extract_mp3() {
   if [[ -z "$1" || -z "$2" ]]; then
     echo '2 params required.  (1) Original Video File (2) The Destination'

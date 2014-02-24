@@ -60,18 +60,33 @@ class AnimeFreak
   end
 end
 
-link = ARGV[0]
-anime = AnimeFreak.new(link)
+def run
+  pp({
+    argv_zero: ARGV[0],
+    argv_one: ARGV[1],
+    argv: ARGV,
+  })
 
-puts anime.mirrors.map{|mirror|
-  if mirror =~ /\/[^\/]*[.](flv|mp4)([?]|$)/i
-    '( cd ~/Downloads; wget -cb "%s" )' % mirror
-  elsif (file = AnimeFreak.file(mirror)).any?
-    file.map{|m| '( cd ~/Downloads; wget -cb "%s" )' % m }
-  else
-    "# REQUIRES MORE PROCESSING '%s'" % mirror
-  end
-}.flatten.group_by{|l|
-  l =~ /REQUIRES MORE PROCESSING/
-}.values.map{|g| g.join("\n") }.join("\n\n")
+  return false
+
+  link = ARGV[0]
+  anime = AnimeFreak.new(link)
+
+  puts anime.mirrors.map{|mirror|
+    if mirror =~ /\/[^\/]*[.](flv|mp4)([?]|$)/i
+      '( cd ~/Downloads; wget -cb "%s" )' % mirror
+    elsif (file = AnimeFreak.file(mirror)).any?
+      file.map{|m| '( cd ~/Downloads; wget -cb "%s" )' % m }
+    else
+      "# REQUIRES MORE PROCESSING '%s'" % mirror
+    end
+  }.flatten.group_by{|l|
+    l =~ /REQUIRES MORE PROCESSING/
+  }.values.map{|g| g.join("\n") }.join("\n\n")
+end
+
+pp({
+  calling_run: 'calling it...',
+  run_returns: run,
+})
 
