@@ -86,7 +86,11 @@ function login_to_heroku()
   ssh-add $(ls ~/.ssh/*.pub | sed 's/[.]pub$//')
 }
 
-function ytdl() { cclive -f fmt18_360p "$1"; }
+function ytdl() {
+  [[ -z "$1" ]] && url="$(pbpaste)" || url="$1"
+  cclive -f fmt18_360p "$url";
+}
+
 function extract_mp3() {
   if [[ -z "$1" || -z "$2" ]]; then
     echo '2 params required.  (1) Original Video File (2) The Destination'
@@ -126,3 +130,9 @@ function itunes() {
   esac
   osascript -e "tell application \"iTunes\" to $opt"
 }
+
+function wget() {
+  echo "wget $@" >>$HOME/wget-downloads.log
+  command wget "$@"
+}
+
