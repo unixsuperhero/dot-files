@@ -139,16 +139,6 @@ Explanation
   alias ealias="vim ~/aliases.sh"
   alias salias="source ~/aliases.sh"
 
-##----------------- redgage aliases -----------------
-
-  alias     rgdb="mysql -h internal.titan1.redgage.com -u office -p redgage"
-
-  alias     zeus="ssh zeus"
-  alias morpheus="ssh morpheus"
-  alias      pro="ssh pro"
-  alias    titan="ssh titan"
-  alias   apollo="ssh apollo"
-
 
 
 # [ GIT ALIASES ]

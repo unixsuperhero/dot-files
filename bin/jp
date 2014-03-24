@@ -1,4 +1,5 @@
 #!/bin/bash
 
-curl -s "http://nihongone.dev/define/$(ruby -r uri -e "puts URI.encode('$1')").${2:-txt}" | less
+#curl -s "http://nihongone.dev/define/$(ruby -r uri -e "puts URI.encode('$1')").${2:-txt}" | less
+curl -s "http://nihongone.dev/define/${1}.${2:-txt}" | less
 

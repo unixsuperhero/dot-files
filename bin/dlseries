@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+dir="${1##*/}"
+dir="${dir%-episode*}"
+
+dir="${dir/hachione/hachi-one}"
+
+echo "dir: $dir"
+
+mkdir -pv "$dir"
+
+(
+  cd "$dir"
+
+  if [[ $(ls -1 wget-log* | wc -l) -gt 0 ]]; then
+    mwgg
+  fi
+
+  for a in $(seq ${3:-1} $2)
+  do
+    gooddrama-auto "${1/XX/$a}" ${4:-2}
+    sleep 1
+    mwgg
+  done
+)
+
+say 'downloads complete'
+

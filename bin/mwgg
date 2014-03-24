@@ -10,7 +10,8 @@ clear_line() {
 
 monitor_wget () {
   clear
-  while true
+  #while true
+  while [[ $(grep -li 'saved' wget-log* | wc -l) -lt $(ls -1 wget-log* | wc -l) ]]
   do
     x=0
     for a in wget-log*
@@ -23,21 +24,18 @@ monitor_wget () {
       echo "$line"
       x=$(( $x + 1 ))
     done
-
-    [[ $(ls -1 wget-log* 2>/dev/null | wc -l) -gt 0 ]] && if [[ $(grep -li 'saved' wget-log* | wc -l) -eq $(ls -1 wget-log* | wc -l) ]]
-    then
-      x=0
-      for a in wget-log* wipe out some extra lines
-      do
-        tput cup $x 0
-        clear_line
-        x=$(( $x + 1 ))
-      done
-      # say 'downloads complete'
-      rm wget-log*
-    fi
     sleep 3
   done
+
+  x=0
+  for a in wget-log* wipe out some extra lines
+  do
+    tput cup $x 0
+    clear_line
+    x=$(( $x + 1 ))
+  done
+  rm wget-log*
+  # say 'downloads complete'
 
 }
 
