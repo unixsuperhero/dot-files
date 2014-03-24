@@ -1,8 +1,0 @@
-#!/bin/bash
-
-#curl -s -o /tmp/contest-winners http://www.redgage.com/contest/winners
-#
-#curl -s -o - http://pro.redgage.com/admin/choose
-#r!curl -s -o - http://pro.redgage.com/admin/choose?session=curl
-
-
