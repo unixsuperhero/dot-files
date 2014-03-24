@@ -1,9 +1,0 @@
-#!/bin/bash
-
-function backupxsl ()
-{
-  tar cvzf /var/www/xsl/backup/converting.$(date +%Y%m%d.%H%M%S).tar.gz /var/www/xsl/converting
-}
-
-backupxsl
-

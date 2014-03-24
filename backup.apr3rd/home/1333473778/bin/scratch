@@ -1,8 +1,0 @@
-#!/bin/bash
-
-cd /Users/jearsh/lists
-
-fname=`date +%Y%m%d.%H%M%S`
-
-vim "scratch/$fname"
-

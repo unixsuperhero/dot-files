@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo -n "Firefox Memory Usage (in MB): "
-ps awwux | grep -i firefox | grep -v grep | awk '{print $6,"/1024"}' | bc
-
