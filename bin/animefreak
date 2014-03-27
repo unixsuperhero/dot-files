@@ -37,9 +37,9 @@ class AnimeFreak
   end
 
   def videoweed
-    vw_file = body.scan(/(?:filekey|fkz)="([^"]*)"/i).flatten.first
-    vw_key  = body.scan(/[.]file="([^"]*)"/i).flatten.first
-    "http://www.videoweed.es/api/player.api.php?key=%s&pass=undefined&cid2=1004&user=undefined&cid3=undefined&cid=1&numOfErrors=0&file=%s" % [vw_key, vw_file]
+    vw_key = body.scan(/(?:filekey|fkz)="([^"]*)"/i).flatten.first
+    vw_file  = body.scan(/[.](?:key|file)="([^"]*)"/i).flatten.first
+    "http://www.videoweed.es/api/player.api.php?key=%s&pass=undefined&cid2=1004&user=undefined&cid3=undefined&cid=undefined&numOfErrors=0&file=%s" % [vw_key, vw_file]
   end
 
   def self.file(link)
