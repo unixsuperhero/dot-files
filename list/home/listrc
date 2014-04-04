@@ -11,6 +11,6 @@ saveology_lists_dir="${HOME}/saveology_lists"
 dots_dir="/Volumes/Anshou/dot.jearsh"
 #dots_dir="${HOME}/Desktop/dot.jearsh"
 
-debug=0
+debug=${debug:-0}
 
 
