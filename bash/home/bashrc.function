@@ -136,3 +136,5 @@ function wget() {
   command wget "$@"
 }
 
+function video_clip() { ffmpeg -i "$1" -ss "$2" -t "$3" "$4"; }
+function video_concat() { echo >concat_files.txt; for a; do echo "file '$a'" >>concat_files.txt; done; ffmpeg -f concat -i concat_files.txt -c copy concat.mp4; }
