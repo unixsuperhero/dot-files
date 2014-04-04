@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#. "${HOME}/bin/trap_errors"
+[[ $debug -eq 1 ]] && echo '$debug = 1'
+[[ $debug -eq 1 ]] && set -e
+
 config="${HOME}/.listrc"
 source "$config"
 
@@ -7,88 +11,116 @@ source "$config"
 . $HOME/bin/list.library
 
 if [ $debug -eq 1 ]; then
-  cat <<TODO #&>/dev/null
-
-  TODO:
-    ()  Read config files in bash.  So the user can choose their own
+  echo '
+    TO DO:
+      ()  Read config files in bash.  So the user can choose their own
         "lists_dir", etc.
 
 
-  RESOURCES:
-    http://wiki.bash-hackers.org/howto/conffile
-    http://www.google.com/#sclient=psy&hl=en&q=reading+config+files+bash&aq=f&aqi=&aql=&oq=&gs_rfai=&pbx=1&fp=a20cfd04ba3c5cf9
-    http://www.linuxquestions.org/questions/linux-general-1/read-variables-from-a-text-file-in-bash-511760/
-    http://www.linuxquestions.org/questions/programming-9/bash-shell-program-read-a-configuration-file-276852/
-    http://www.linuxquestions.org/questions/programming-9/reading-a-conf-file-from-a-bash-script-348782/
-    http://www.linuxquestions.org/questions/programming-9/bash-read-lines-from-a-configuration-script-366296/
-    http://www.askdavetaylor.com/how_do_i_read_lines_of_data_in_a_shell_script.html
-    http://www.kadirsert.com/2011/bash-script-reading-config-file/
-
-    **** Worth traversing ****
-    * Bash Hackers Wiki
+    RESOURCES:
       http://wiki.bash-hackers.org/howto/conffile
+      http://www.google.com/#sclient=psy&hl=en&q=reading+config+files+bash&aq=f&aqi=&aql=&oq=&gs_rfai=&pbx=1&fp=a20cfd04ba3c5cf9
+      http://www.linuxquestions.org/questions/linux-general-1/read-variables-from-a-text-file-in-bash-511760/
+      http://www.linuxquestions.org/questions/programming-9/bash-shell-program-read-a-configuration-file-276852/
+      http://www.linuxquestions.org/questions/programming-9/reading-a-conf-file-from-a-bash-script-348782/
+      http://www.linuxquestions.org/questions/programming-9/bash-read-lines-from-a-configuration-script-366296/
+      http://www.askdavetaylor.com/how_do_i_read_lines_of_data_in_a_shell_script.html
+      http://www.kadirsert.com/2011/bash-script-reading-config-file/
 
-TODO
+      **** Worth traversing ****
+      * Bash Hackers Wiki
+        http://wiki.bash-hackers.org/howto/conffile
+  '
 fi
+
 if [ $debug -eq 1 ]; then exit; fi
+
+
+function list_print_help() {
+  echo "
+
+    The options for editing dot files is:
+      bash
+      vim
+      profile
+      alias | aliases
+      export
+      fun | functions
+      input | inputrc
+      ps1
+      list | lists
+      hashrocket
+      screen | screenrc
+
+  "
+}
 
 cd "${lists_dir}"
 case $1 in
 
-	'')
-		if [ -z $1 ]; then
-			echo "Enter note to view: "
-			read -e input
-			#clear
-		fi
-		#cat ~/lists/$input | grep -v "^[ 	]*[#]"
-		cat $0 | grep -v "^[ 	]*[#]"
-		echo ;;
+  ('')
+    if [ -z $1 ]; then
+      echo "Enter note to view: "
+      read -e input
+      #clear
+    fi
+    #cat ~/lists/$input | grep -v "^[  ]*[#]"
+
+    echo
+    echo "SOMEHOW IN THIS FIRST CASE CONDITION ('')"
+    echo
+    exit
+    #cat $0 | grep -v "^[  ]*[#]"
+    echo ;;
 
   (-dot)
     case $2 in
-      (bash) vim -O ~/.bashrc{,.local,.paul} ~/.hashrc ;;
-      (vim) vim -O ~/.vimrc{,.josh,.local} ;;
-      (profile) vim -O1 ~/.bash_profile ;;
-      (alias|aliases) vim -O1 ~/aliases.sh;;
-      (export) vim -O1 ~/exports.sh;;
-      (fun|functions) vim -O1 ~/functions.sh;;
-      (input|inputrc) vim -O1 ~/.inputrc;;
-      (ps1) vim -O1 ~/ps1rc.sh;;
-      (list|lists) 
+      (bash)
+        vim -O ~/.bashrc{,.local,.paul} ~/.hashrc ;;
+
+      (vim)
+        vim -O ~/.vimrc{,.josh,.local} ;;
+
+      (profile)
+        vim -O1 ~/.bash_profile ;;
+
+      (alias | aliases)
+        vim -O1 ~/aliases.sh ;;
+
+      (export)
+        vim -O1 ~/exports.sh;;
+
+      (fun | functions)
+        vim -O1 ~/functions.sh ;;
+
+      (input | inputrc)
+        vim -O1 ~/.inputrc ;;
+
+      (ps1)
+        vim -O1 ~/ps1rc.sh;;
+
+      (list | lists) 
         d="~/hashrocket/dotmatrix"
         vim -O ~/.listrc $d/.vim/{syntax,autoload}/lists.vim ;;
+
       (hashrocket)
         d="~/hashrocket/dotmatrix"
         $d/.{gitconfig,hashrc,screenrc,vim/plugin/hashrocket.vim,vimrc} ;;
-      (screen|screenrc) vim -O1 ~/.screenrc ;;
-      ''|*)
-        cat <<-CAT
 
-  The options for editing dot files is:
-    bash
-    vim
-    profile
-    alias | aliases
-    export
-    fun | functions
-    input | inputrc
-    ps1
-    list | lists
-    hashrocket
-    screen | screenrc
+      (screen | screenrc)
+        vim -O1 ~/.screenrc ;;
 
-CAT
-        ;;
+      ('' | *)
+        list_print_help ;;
     esac ;;
 
-	(-e)
-		remove_switch $@
+  (-e)
+    remove_switch $@
 
-		## if no file was specified, use readline for tab completion
-		if [ -z $2 ]; then
-			echo "Enter note to edit: "
-			read -e input
+    ## if no file was specified, use readline for tab completion
+    if [ -z $2 ]; then
+      echo "Enter note to edit: "
+      read -e input
     elif [ -d "$2" ]; then
       if [ -f "${2}/index" ]; then
         vim -O "${2}/index"
@@ -107,55 +139,54 @@ CAT
       fi
     else
       case $2 in
-        'sch')
+        ('sch')
           list -e calendar/list
           echo
           exit ;;
-        'sched')
+
+        ('sched')
           list -e calendar/list
           echo
           exit ;;
-        'schedule')
+
+        ('schedule')
           list -e calendar/list
           echo
           exit ;;
       esac
-		fi
+    fi
 
-		ensure_paths "$input"
-		vim -O $input ;;
+    ensure_paths "$input"
+    vim -O $input ;;
 
-  (-new | --new)
+  #(-new | --new)
+  ( -new | --new)
     newfilename="new/$(date +'%Y%m%d.%s')"
-    vim $newfilename
-    ;;
+    vim "$newfilename" ;;
 
-	(-g)
-		garg="${@/-g/}"
-		garg=${garg# }
+  (-g)
+    garg="${@/-g/}"
+    garg=${garg# }
     good_dirs="$(find . -type d -depth 1 | egrep -v 'nogrep|\.git|home|erlang')"
-    egrep -RiI "$garg" $good_dirs | egrep -E '^.{1,200}$'
-    ;;
+    egrep -RiI "$garg" $good_dirs | egrep -E '^.{1,200}$' ;;
 
-	(-gl | --gl)
-		garg="${@/-gl/}"
-		garg=${garg# }
+  (-gl | --gl)
+    garg="${@/-gl/}"
+    garg=${garg# }
     good_dirs="$(find . -type d -depth 1 | egrep -v 'nogrep|\.git|home|erlang')"
-    grep -RiIl "$garg" $good_dirs
-    ;;
+    grep -RiIl "$garg" $good_dirs ;;
 
   (-dir | --dir)
-  echo "${lists_dir}"
-  exit;;
+    echo "${lists_dir}"
+    exit ;;
 
   (-api | --api)
-		garg="${@/-api/}"
-		garg=${garg# }
+    garg="${@/-api/}"
+    garg=${garg# }
     grep -IRin --exclude="nogrep" "$garg" ~/lists/erlang/api ;;
 
-	(-map | --map)
-		find . | sed 's#^..##' | vim -
-		;;
+  (-map | --map)
+    find . | sed 's#^..##' | vim - ;;
 
   (-find | -f | --find)
     not='(erlang.api|home|.git|android-sdk-mac|DS_Store|nogrep)'
@@ -165,13 +196,13 @@ CAT
     done ;;
 
   #-f)
-	#	find "${lists_dir}" -type f | grep -vE '(erlang.api|nogrep)' | grep "$2" ;;
+  #  find "${lists_dir}" -type f | grep -vE '(erlang.api|nogrep)' | grep "$2" ;;
 
   (-ff | --ff | --findall | --find-all)
-		find "${lists_dir}" -type f | grep "$2" ;;
+    find "${lists_dir}" -type f | grep "$2" ;;
 
-	(-ls | --ls)
-		#clear
+  (-ls | --ls)
+    #clear
     if [ -z ${lists_dir}/$2 ]
     then
       echo
@@ -181,44 +212,43 @@ CAT
       echo
       ls -GRp ${lists_dir}/$2
       echo
-    fi
-    ;;
+    fi ;;
 
-	(-cat | --cat)
-		if [ -z $2 ]; then
+  (-cat | --cat)
+    if [ -z $2 ]; then
       find . -type d -not -path '*.git*' -not -path 'home' -not -path '*nogrep*' -not -path '*erlang*api*' | column
       echo
-		else
+    else
       shift
       ls -AFR $@   ### Used to be $2 then $* now $@
-		fi ;;
+    fi ;;
 
 # -cat)
 #   if [ -z $2 ]; then
 #     cnt=0
 #     for cat in $(find . -type d -not -path '*.git*' -and -not -path '*nogrep*' | sed 's/\.\/\{0,1\}//')
 #     do
-#       if [ $cnt -eq 6 ]; then cnt=0; echo; fi
-#       printf "%-20s" $cat
-#       cnt=$[ $cnt + 1 ]
+#  if [ $cnt -eq 6 ]; then cnt=0; echo; fi
+#  printf "%-20s" $cat
+#  cnt=$[ $cnt + 1 ]
 #     done
 #     echo
 #   else
 #     ls -FR $*
 #   fi ;;
 
-	(-edit | --edit)
-		vim $0 ;;
+  (-edit | --edit)
+    vim $0 ;;
 
-	(-all | --all)
-		#clear
-		ls -R ;;
+  (-all | --all)
+    #clear
+    ls -R ;;
 
-	(*)
-		#clear
-		cat $@ | grep -v "^[ 	]*[#]"
-		## cat ~/lists/$1 | grep -v "^[ 	]*[#]"
-		echo ;;
+  (*)
+    #clear
+    ##### cat $@ | grep -v "^[  ]*[#]"   #### JOSH 2014-04-03 22:32:39
+    ## cat ~/lists/$1 | grep -v "^[    ]*[#]"
+    echo ;;
 
 esac
 
@@ -227,8 +257,8 @@ esac
 
 #  Changelog
 #
-#	[ 2010-02-15 21:43:13 ]
-#		Removed all of the clear commands, because those commands are
-#	not very unix-like, and go against typical reusability conventions.
+#  [ 2010-02-15 21:43:13 ]
+#    Removed all of the clear commands, because those commands are
+#    not very unix-like, and go against typical reusability conventions.
 #
 
