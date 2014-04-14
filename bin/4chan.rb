@@ -1,4 +1,4 @@
-#!/Users/jtoyota/.rvm/rubies/ruby-1.9.2-p180/bin/ruby
+#!/Users/MacbookPro/.rbenv/versions/2.0.0-p247/bin/ruby
 
 require 'net/http'
 
@@ -17,7 +17,7 @@ class FourChan
       pics.each do |img|
         unless File.exists? img.split('/').last
           printf '-'
-          Save.file img.split('/').last, Interwebs.download(img).body
+          Save.file img.split('/').last, Interwebs.download('http:' + img.sub(/"/,'')).body
         end
         break if debug
       end
@@ -35,16 +35,17 @@ class FourChan
       system 'open .'
     end
   end
-  
+
   def self.gimme moar
     @thread = moar[:thread].match(/\d{5,20}/).to_s
-    Save.directories ["/Users/jtoyota/jearsh/pictures", "4chan", moar[:dirname] || @thread]
+    folder = moar[:dirname] && [moar[:dirname], @thread].join(?-) || @thread
+    Save.directories [Dir.pwd, "4chan", moar[:board], folder]
     until @code == '404'
       printf '.'
-      page = Interwebs.download(['http://boards.4chan.org', :b, :res, @thread].join('/'))
+      page = Interwebs.download(['http://boards.4chan.org', moar[:board], :res, @thread].join('/'))
       @code = page.code
       comments = page.body.scan(/a name="\d{5,20}"[^>]*/).uniq
-      pics = page.body.scan(/https?:..images.4chan.org[^"]*/).uniq
+      pics = page.body.scan(/"\/\/[^"]*\/src\/[^"]*/).uniq
       unless @count == comments.count
         Save.file [Time.now.to_i, '.html'].join, page.body
         printf '_'
@@ -57,5 +58,9 @@ class FourChan
   end
 end
 
-FourChan.gimme thread: ARGV[0], dirname: ARGV[1], debug: true
+url = ARGV[0]
+board = url[/\w\w*\/res/].sub(/\/res/, '')
+dirname = ARGV[1] || url[/\d\d\d*/]
+puts({ url: url, board: board, dirname: dirname })
+FourChan.gimme thread: url, dirname: dirname, board: board #, debug: true
 

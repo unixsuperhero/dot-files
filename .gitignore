@@ -2,4 +2,5 @@
 vim/vimbundles
 backup/
 hashrocket/dotmatrix
+hashrocket/*
 .DS_Store

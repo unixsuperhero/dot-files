@@ -1,0 +1,20 @@
+#!/bin/bash
+
+dir="new/${1##*/}"
+dir="${dir%-episode*}"
+echo "dir: $dir"
+mkdir -pv "$dir"
+
+(
+  cd "$dir"
+
+  for a in $(seq ${3:-1} $2)
+  do
+    gdrama-first-auto "${1/XX/$a}" ${4:-2}
+    sleep 1
+    mwgg
+  done
+)
+
+say 'downloads complete'
+

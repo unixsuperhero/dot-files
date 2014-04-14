@@ -243,6 +243,7 @@ ca w!! w ! sudo tee "%"
 ca Ls ls
 ca LS ls
 ca Make make
+ca ake make
 ca setpaste set paste!
 ca updatewww %s@^\.\(.*\)$@vim -d $beta\1 $www\1@c
 ca recent PutRecentFiles

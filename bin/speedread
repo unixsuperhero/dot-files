@@ -58,8 +58,8 @@ my $multitime = 1.2; # relative to wpm
 my $firsttime = 0.2; # [s]
 my $ORPloc = 0.35;
 my $ORPmax = 0.2;
-my $ORPvisualpos = 20;
-my $cursorpos = 64;
+my $ORPvisualpos = 90;
+my $cursorpos = 134;
 my $paused = 0;
 
 my @lastlines;
