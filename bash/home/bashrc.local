@@ -1,6 +1,25 @@
 
 ## function to source files
 source_file() { [ -r "$1" ] && source "$1"; }
+append_path() {
+  dir="$1"
+  case ":$PATH:" in
+    *:"$dir":*) ;;
+    *) [ ! -d "$dir" ] || PATH="$PATH:$dir" ;;
+  esac
+  export PATH
+}
+prepend_path() { 
+  dir="$1"
+  case "$PATH:" in
+    *:"$dir":*) PATH="`echo "$PATH"|sed -e "s#:$dir##"`" ;;
+  esac
+  case "$dir" in
+    /*) [ ! -d "$dir" ] || PATH="$dir:$PATH" ;;
+    *) PATH="$dir:$PATH" ;;
+  esac
+  export PATH
+}
 
 ## My custom bash environment
 source_file "$HOME/.osxrc"
@@ -29,7 +48,10 @@ export REPO_DIR="$HASHROCKET_DIR"
 alias glog='git log --oneline --decorate --name-status'
 alias glogn='git log --oneline --decorate --name-only'
 
-export PATH="$PATH:$HOME/bin"
+prepend_path /Users/MacbookPro/repos/random-snippets/ruby
+prepend_path /Users/MacbookPro/repos/random-snippets/shell
+prepend_path $HOME/bin
+
 export VIMBUNDLES="$HOME/.vimbundles"
 
 #alias vim="/usr/local/Cellar/vim/7.3.333/bin/vim"
@@ -76,9 +98,11 @@ alias :q="exit"
 # complete -o default -F _gco gco
 export EDITOR=vim
 
-  export HEROKU_BINSTUB_PATH="/Users/jearsh/bin/app-binstubs"
+  export HEROKU_BINSTUB_PATH="${HOME}/bin/app-binstubs"
   export REMOTE_BINSTUB_PATH="./stubs"
-  export PATH="$HEROKU_BINSTUB_PATH:$REMOTE_BINSTUB_PATH:$PATH"
+  prepend_path $HEROKU_BINSTUB_PATH
+  prepend_path $REMOTE_BINSTUB_PATH
+
 
   function stub_search_string() {
     echo ".*$(echo "$1" | sed 's/./&.*/g')"
@@ -89,25 +113,4 @@ export EDITOR=vim
   function bcd() {
     cd $($(search_stubs $1))
   }
-  
 
-
-## LOAD rbenv ENV
-
-export PATH="/Users/MacbookPro/.rbenv/shims:/Users/MacbookPro/repos/random-snippets/ruby:/Users/MacbookPro/repos/random-snippets/shell:$HOME/bin:${PATH}"
-#source "/usr/local/Cellar/rbenv/0.4.0/libexec/../completions/rbenv.bash"
-rbenv rehash 2>/dev/null
-rbenv() {
-  typeset command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
-
-  case "$command" in
-  rehash|shell)
-    eval `rbenv "sh-$command" "$@"`;;
-  *)
-    command rbenv "$command" "$@";;
-  esac
-}

@@ -1,11 +1,11 @@
 
 # deprecated
-alias staging_console="heroku console --app $(app_name staging)"
-alias admin_console="heroku console --app $(app_name admin)"
+# alias staging_console="heroku console --app $(app_name staging)"
+# alias admin_console="heroku console --app $(app_name admin)"
 
 # new way
-alias staging_console="heroku run script/rails console -a \$(app_name staging)"
-alias admin_console="heroku run script/rails console -a \$(app_name admin)"
+alias staging_console="heroku run rails console -a \$(app_name staging)"
+alias admin_console="heroku run rails console -a \$(app_name admin)"
 
 function console () {
   case $1 in

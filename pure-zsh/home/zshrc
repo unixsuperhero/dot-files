@@ -16,7 +16,6 @@ plugins=(git rbenv rails)
 source $ZSH/oh-my-zsh.sh
 #export PATH="/usr/local/bin:$PATH"
 
-
-
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+prepend_path '/usr/local/heroku/bin'
+

@@ -54,5 +54,5 @@ export v m c t
 export BC_ENV_ARGS="-l"
 
 # [[ -d /usr/local/lib/node_modules ]] && export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
-export PATH=$PATH:/Users/jearsh/Sites/node_speed_rps/node_modules/js2coffee/node_modules/.bin:/Users/jearsh/Sites/node_speed_rps/node_modules/js2coffee/bin
-export PATH=$PATH:/Developer/usr/bin
+#export PATH=$PATH:/Users/jearsh/Sites/node_speed_rps/node_modules/js2coffee/node_modules/.bin:/Users/jearsh/Sites/node_speed_rps/node_modules/js2coffee/bin
+#export PATH=$PATH:/Developer/usr/bin

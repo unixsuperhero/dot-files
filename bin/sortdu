@@ -34,7 +34,7 @@ fi
   #echo "$SORTDU" | grep [0-9]B | sort -rn
 
 
-cat <<FUCK >/dev/null
+cat <<SAVEDLOG >/dev/null
 
 du -hs * | tee >(grep [0-9]G | sort -rn) >(grep [0-9]M | sort -rn) >(grep [0-9]K | sort -rn) >(grep [0-9]B | sort -rn) >/dev/null
 
@@ -67,4 +67,4 @@ du -hs $HOME/work/* | tee >(grep [0-9]M | sort -rn) 1>/dev/null
 ------------------------------------------------------
 
 du -hs $HOME/work/* | tee >(grep [0-9]K | sort -rn) 1>/dev/null
-FUCK
+SAVEDLOG
