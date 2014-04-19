@@ -1,109 +1,88 @@
 #!/bin/bash
 
 stamp=$(date +%s)
+
+function undo_script() {
+  backup_dir="backup/$stamp"
+  cat <<UNDO >> $backup_dir/undo.sh
+rm "$HOME/$1"
+mv -v "$backup_dir/$1" "$HOME/$1"
+UNDO
+}
+
+function backup_file()
+{
+  backup_dir="${3:-backup/$stamp}"
+  if [ -a "$HOME/$1" -o -h "$HOME/$1" ]; then
+    [ ! -d "$backup_dir" ] && mkdir -pv "$backup_dir"
+    ${2:-mv} -v "$HOME/$1" "$backup_dir"/
+    undo_script "$1" "$backup_dir"
+  fi
+}
+
 function dot_install()
 {
-  bkup="backup/home/$stamp"
+  bkup="backup/$stamp"
   for dots in bash/home list/home vim pure-zsh/home; do
     for fil in $dots/*; do
-      if [ -f "$HOME/.$(basename $fil)" ]; then
-        mkdir -pv "$bkup" | sed 's/^/mkdir: /'
-        mv -v "$HOME/.$(basename $fil)" "${bkup}/"
-        echo rm "$HOME/.$(basename $fil)" >> uninstall.$stamp.sh
-        echo mv -v "${bkup}/.$(basename $fil)" "$HOME/.$(basename $fil)" >> uninstall.$stamp.sh
-      fi
+      backup_file ".$(basename $fil)"
       ln -s "$(pwd)/$fil" "$HOME/.$(basename $fil)"
     done
   done
 
-  if [ -e "$HOME/hashrocket" ]; then
-    mv $HOME/hashrocket $bkup/
-    echo rm "$HOME/hashrocket" >> uninstall.$stamp.sh
-    echo mv -v $bkup/hashrocket "$HOME/" >> uninstall.$stamp.sh
-  fi
-
-
-  echo "Symlinking dotmatrix dotfiles"
-  rm -rf hashrocket/dotmatrix
-  git clone git@github.com:hashrocket/dotmatrix.git hashrocket/dotmatrix
-  ln -s "$(pwd)/hashrocket" $HOME/
-
-  test -f $HOME/.bashrc && mv -v $HOME/.bashrc $bkup/
-  test -d $HOME/.vim && mv -v $HOME/.vim $bkup/
-  test -f $HOME/.vimrc && mv -v $HOME/.vimrc $bkup/
-  ln -nfs $HOME/hashrocket/dotmatrix/.bashrc $HOME/
-  ln -nfs $HOME/hashrocket/dotmatrix/.hashrc $HOME/
-  ln -nfs $HOME/hashrocket/dotmatrix/.vim $HOME/
-  ln -nfs $HOME/hashrocket/dotmatrix/.vimrc $HOME/
-  sh $HOME/hashrocket/dotmatrix/bin/vimbundles.sh
-
-  for bins in bin bin/empties bin/resources bin/tests; do
-    mkdir -pv "${HOME}/$bins"
-    for fil in $bins/*; do
-      if [ -f "$fil" ]; then
-        if [ -f "$HOME/$fil" ]; then
-          mkdir -pv "$bkup/$bins" | sed 's/^/mkdir: /'
-          mv -v "$HOME/$fil" "${bkup}/$fil"
-          echo rm "$HOME/$fil" >> uninstall.$stamp.sh
-          echo mv -v "${bkup}/$fil" "$HOME/$fil" >> uninstall.$stamp.sh
-        fi
-        ln -s "$(pwd)/$fil" "${HOME}/$fil"
-      fi
-    done
+  for dir in hashrocket bin logs
+  do
+    backup_file "$dir"
+    ln -s "$(pwd)/$dir" $HOME/
   done
 
-  ## [ Setup syntax coloring for bin/list in vim ]
-  #ln -s "$(pwd)/vim/vimbundles/vim-lists" "${HOME}/.vimbundles/"
+  if [ ! -e hashrocket/dotmatrix/.hashrc ]; then
+    echo "Symlinking dotmatrix dotfiles"
+    #rm -rf hashrocket/dotmatrix
+    git clone git@github.com:hashrocket/dotmatrix.git hashrocket/dotmatrix
+  fi
+
+  for hr_file in .{bashrc,hashrc,vim,vimrc}
+  do
+    backup_file "$hr_file"
+    ln -nfs "$HOME/hashrocket/dotmatrix/$hr_file" $HOME/
+  done
+
+  sh $HOME/hashrocket/dotmatrix/bin/vimbundles.sh
 }
 
 function dot_uninstall()
 {
-  bkup="backup/home/$(date +%s)"
-  for dots in bash/home list/home vim; do
+  bkup="backup/$stamp"
+  mkdir -pv "$bkup" | sed 's/^/mkdir: /'
+
+  for dots in bash/home list/home vim pure-zsh/home; do
     for fil in $dots/*; do
-      if [ -f "$HOME/.$(basename $fil)" ]; then
-        mkdir -pv "$bkup" | sed 's/^/mkdir: /'
-        mv -v "$HOME/.$(basename $fil)" "${bkup}/"
-      fi
+      backup_file ".$(basename $fil)"
     done
   done
 
-  for bins in hashrocket bin bin/empties bin/resources bin/tests; do
-    mkdir -pv "${HOME}/$bins"
-    for fil in $bins/*; do
-      if [ -f "$fil" ]; then
-        if [ -f "$HOME/$fil" ]; then
-          mkdir -pv "$bkup/$bins" | sed 's/^/mkdir: /'
-          mv -v "$HOME/$fil" "${bkup}/$fil"
-        fi
-      fi
-    done
+  for bins in hashrocket bin logs .{bashrc,hashrc,vim,vimrc}; do
+    backup_file "$bins"
   done
 }
 
 function dot_backup()
 {
-  bkup="backup/home/$stamp"
-  for dots in bash/home list/home vim; do
+  bkup="backup/$stamp"
+
+  for dots in bash/home list/home vim pure-zsh/home; do
     for fil in $dots/*; do
-      if [ -f "$HOME/.$(basename $fil)" ]; then
-        mkdir -pv "$bkup" | sed 's/^/mkdir: /'
-        cp -v "$HOME/.$(basename $fil)" "${bkup}/"
-      fi
+      backup_file ".$(basename $fil)" "cp -R"
     done
   done
 
-  if [ -e "$HOME/hashrocket" ]; then cp $HOME/hashrocket $bkup/; fi
+  for dir in hashrocket/dotmatrix; do
+    backup_file "$dir" "rsync -az" "$bkup/dotmatrix"
+  done
 
-  for bins in bin bin/empties bin/resources bin/tests; do
-    for fil in $bins/*; do
-      if [ -f "$fil" ]; then
-        if [ -f "$HOME/$fil" ]; then
-          mkdir -pv "$bkup/$bins" | sed 's/^/mkdir: /'
-          cp -v "$HOME/$fil" "${bkup}/$fil"
-        fi
-      fi
-    done
+  for bins in hashrocket bin logs .{bashrc,hashrc,vim,vimrc}; do
+    backup_file "$bins" "cp -R"
   done
 }
 

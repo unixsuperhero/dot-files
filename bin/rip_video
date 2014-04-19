@@ -1,7 +1,10 @@
 #!/bin/bash
 
 function download_video_from_url() {
-  youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --all-subs "${1:-$(pbpaste)}"
+  url="${1:-$(pbpaste)}"
+  echo "$url" >>$HOME/logs/rip_video-links.log
+  echo "youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp '$url'" >>$HOME/logs/rip_video-commands.log
+  youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp "$url"
 }
 
 download_video_from_url "$@"
