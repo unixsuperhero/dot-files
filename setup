@@ -89,11 +89,3 @@ function dot_backup()
 #dot_backup
 dot_install
 
-## # /etc/bashrc
-## sudo mv /etc/bashrc $dot_dir/bash/etc/
-## sudo ln -s $dot_dir/bash/etc/bashrc /etc/bashrc
-##
-## # /etc/profile
-## sudo mv /etc/profile $dot_dir/bash/etc/
-## sudo ln -s $dot_dir/bash/etc/profile /etc/profile
-
