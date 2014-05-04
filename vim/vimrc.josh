@@ -49,6 +49,8 @@ set enc=utf-8                                     " Use UTF-8 as the default buf
 set viminfo='200,\"100,/9000,:9000,n~/.viminfo    " Remember things between sessions
 set backupskip=/tmp/*,/private/tmp/*"
 
+set spellfile=~/.vim/words.utf8.add
+
 if has('persistent_undo')
   set undofile
   set undodir=~/.vim/tmp//,~/.vim/undo_files//

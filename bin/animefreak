@@ -50,12 +50,12 @@ class AnimeFreak
   end
 
   def mirror_regex
-    /(https?:..[^'"<>]*?(?:flv|mp4|embed)[^'"<>]*)/i
+    /(https?:..[^"<>]*?(?:flv|mp4|embed)[^"<>]*)/i
   end
 
   def mirrors
     URI.decode(body).scan(mirror_regex).flatten.map do |m|
-      m.gsub(/[+]/, ' ')
+      m.gsub(/[+]/, ' ').gsub(/',.*/, '')
     end
   end
 
@@ -63,7 +63,7 @@ class AnimeFreak
     mirrors = body.scan(/coz\("(http[^"]*)"/i) + body.scan(/javascript.loadparts..([^']*)'/i)
 
     mirrors.flatten.map{|m|
-      URI.decode(m).scan(/https?:..[^'"<>]*/i)
+      URI.decode(m).scan(/https?:..[^"<>]*/i)
     }.flatten.map{|m|
       m.gsub(/[+]/, ' ')
     }

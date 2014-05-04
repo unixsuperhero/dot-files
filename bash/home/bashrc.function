@@ -138,4 +138,9 @@ function wget() {
 
 function video_clip() { ffmpeg -i "$1" -ss "$2" -t "$3" "$4"; }
 function video_concat() { echo >concat_files.txt; for a; do echo "file '$a'" >>concat_files.txt; done; ffmpeg -f concat -i concat_files.txt -c copy concat.mp4; }
+function video_nosubs() {
+  ffmpeg -i "$1" -vf "crop=iw:ih-80:0:0" temp_nosub.mp4;
+  ffmpeg -i temp_nosub.mp4 -vf "pad=640:368:0:0" "$2"
+  rm temp_nosub.mp4
+}
 function wifi_fix(){ for a in off on; do networksetup -setairportpower en1 "$a"; done; }
