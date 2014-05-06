@@ -86,6 +86,24 @@ function dot_backup()
   done
 }
 
-#dot_backup
-dot_install
+case ${1:-install} in
+  (backup) dot_backup ;;
+  (install) dot_install ;;
+  (uninstall) dot_uninstall ;;
+  (*)
+    cat <<MSG
+
+    ######################
+    ## OPTION NOT FOUND ##
+    ######################
+
+    Option: "$1"
+
+    ######################
+    ## OPTION NOT FOUND ##
+    ######################
+
+MSG
+  ;;
+esac
 
