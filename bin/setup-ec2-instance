@@ -1,0 +1,20 @@
+#!/bin/bash
+
+function setup_instance() {
+  cd
+  sudo apt-get update
+  sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev
+  mkdir -pv repos
+  cd repos/
+  git clone git@github.com:unixsuperhero/dot-files.git
+}
+
+exit 1
+
+cat <<MSG &>/dev/null
+###################################################################
+####                NOTHING BELOW THIS WILL RUN                ####
+###################################################################
+MSG
+
+

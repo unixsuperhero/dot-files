@@ -1,6 +1,17 @@
-*.un~
-vim/vimbundles
-backup/
-hashrocket/dotmatrix
-hashrocket/*
 .DS_Store
+backup/
+vim/vimbundles
+hashrocket/dotmatrix
+#hashrocket/*
+
+# Vim persistent undo files
+*.un~
+
+# Only include specific logs
+logs/*
+!logs/rip_video-commands.log
+!logs/rip_video-links.log
+
+# Include story files
+stories/*
+!stories/index
