@@ -73,7 +73,7 @@ function dot_backup()
 
   for dots in bash/home list/home vim pure-zsh/home; do
     for fil in $dots/*; do
-      backup_file ".$(basename $fil)" "cp -R"
+      backup_file ".$(basename $fil)" "rsync -avz"
     done
   done
 
@@ -82,7 +82,7 @@ function dot_backup()
   done
 
   for bins in hashrocket bin logs .{bashrc,hashrc,vim,vimrc}; do
-    backup_file "$bins" "cp -R"
+    backup_file "$bins" "rsync -avz"
   done
 }
 
