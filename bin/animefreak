@@ -29,7 +29,7 @@ class AnimeFreak
   end
 
   def body
-    @body ||= response.body
+    @body ||= response.body.tap{|x| puts x }
   end
 
   def upload2
@@ -43,8 +43,12 @@ class AnimeFreak
   end
 
   def self.file(link)
-    response = Net::HTTP.get_response(URI(link.gsub(/\s/, '%20')))
-    body = response.body
+    begin
+      response = Net::HTTP.get_response(URI(link.gsub(/\s/, '%20')))
+      body = response.body
+    rescue => e
+      body = ''
+    end
     files = body.scan(/file=(http[^'"<>]*)/i).flatten
     files.map{|m| URI.decode(m).gsub(/[+]/, ' ') }.uniq
   end

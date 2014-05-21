@@ -1,0 +1,7 @@
+toggle_wifi_switch () {
+	for a in off on
+	do
+		networksetup -setairportpower en1 "$a"
+	done
+}
+toggle_wifi_switch

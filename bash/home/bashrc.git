@@ -8,6 +8,7 @@
   alias git_aliases="alias | grep git"
   alias gsf="gs"
   alias gpa="gp --all"
+  alias gpr="git pull --rebase"
   alias gprm="gpr origin master"
   alias gpremote="gp origin head"
   alias gpremotef="gp -f origin head"

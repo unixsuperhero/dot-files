@@ -171,6 +171,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal 
 
   " makeprgs ---------------------------------------------------------
 au FileType ruby     setlocal makeprg=ruby\ -c\ %
+au FileType eruby    setlocal makeprg=rails-erb-check\ %
 au FileType haml     setlocal makeprg=haml\ -c\ %
 au FileType sh       setlocal makeprg=bash\ -n\ %
 au FileType cucumber setlocal makeprg=bundle\ exec\ cucumber\ %
