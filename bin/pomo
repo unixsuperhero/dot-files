@@ -3,6 +3,7 @@
 pomodoro () {
   for a in $(seq ${1:-25} 1)
   do
+    [[ $(( $a % 5 )) -eq 0 ]] && say "$a minutes left"
     [[ $a -lt 4 ]] && say "$a minutes left"
 
     echo -n "$(printf "%02d" $a) => "
