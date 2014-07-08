@@ -32,32 +32,23 @@ NOTES
 
   git) goto_repo; cat .git/config ;;
 
+  rake)
+    goto_repo
+
+    shift
+    heroku run rake $@ -a $APP_NAME && exit
+  ;;
+
   console | con | c)
     goto_repo
 
-    [[ $2 == 's' ]] && heroku run rails console -a $(app_name staging) && exit
-    [[ $2 == 'a' ]] && heroku run rails console -a $(app_name admin) && exit
-    [[ $2 == 'p' ]] && heroku run rails console -a $(app_name production) && exit
-    script/rails console && exit
+    heroku run rails console -a $APP_NAME && exit
   ;;
 
   psql | pg | p)
     goto_repo
 
-    [[ $2 == 's' ]] && heroku pg:psql -a $(app_name staging) && exit
-    [[ $2 == 'a' ]] && heroku pg:psql -a $(app_name admin) && exit
-    [[ $2 == 'p' ]] && heroku pg:psql -a $(app_name production) && exit
-    psql ${APP_NAME}_development && exit
-  ;;
-
-  -e)
-    cd ~/lists
-    args=()
-    for i ({2..$#@}) args[$(( $i - 1 ))]="apps/${APP_NAME}/$@[$i]"
-
-    echo "Make any missing directories"
-    for f ($args) mkdir -pv $(dirname $f)
-    vim -O $args
+    heroku pg:psql -a $APP_NAME && exit
   ;;
 
   *)
@@ -69,6 +60,10 @@ NOTES
 
       What should the default behavior be?
         cd to ${APP_DIR}?
+
+    staging (c | con | console)
+    staging (p | pg | psql)
+    staging (rake) \$@
 
     ERROR: UNKNOWN COMMAND
     ERROR: UNKNOWN COMMAND

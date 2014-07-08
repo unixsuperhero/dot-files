@@ -1,0 +1,20 @@
+#!/bin/bash
+
+case $1 in
+  (n | nxt | next | fwd | forward)
+    shift
+    mocp -f "$@";;
+
+  (p | prev | previous | back)
+    shift
+    mocp -r "$@";;
+
+  (pause|unpause|hold|stop|play)
+    shift
+    mocp -G "$@";;
+
+  (*)
+    mocp "$@";;
+
+esac
+

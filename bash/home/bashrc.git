@@ -20,8 +20,37 @@
   alias gcon="cat .git/config"
   alias glodd="glod -9"
   alias glogg="glog -9"
+  alias glr="glod --left-right"
+
+  function glmerge() {
+    glr head...$1 | grep '^>'
+    glr head...$1 | grep '^<'
+  }
+
+  function glrebase() {
+    glr head...$1 | grep '^<'
+    glr head...$1 | grep '^>'
+  }
 
 # functions
+
+function dev_and_stage () {
+  ref=$(git symbolic-ref HEAD 2> /dev/null)  || ref=$(git rev-parse --short HEAD 2> /dev/null)  || return
+  current_branch=${ref#refs/heads/}
+  dev_branch="${current_branch/feature/dev}"
+  git branch -D "$dev_branch"
+  git checkout -b "$dev_branch"
+  git checkout development
+  git pull --rebase origin development
+  git checkout "$dev_branch"
+  git rebase development
+  git checkout development
+  git merge "$dev_branch"
+  git push origin development
+  git push staging head:master
+  heroku run rake db:migrate -a beautified-staging
+  git checkout "${current_branch}"
+}
 
   gcd () {
     cd $(list_repos | grep -i "$1")
@@ -144,6 +173,12 @@
     git push staging "HEAD:master"
     heroku rake db:migrate --app ${app}
     git checkout "${branch}"
-    git branch -D "${branch}-staging"
+    echo -n 'Delete the staging branch? (DEFAULT: no): '
+    read skip_delete
+    if [ -z $skip_delete ]; then
+      echo 'Skipping branch delete...'
+    else
+      git branch -D "${branch}-staging"
+    fi
   }
 

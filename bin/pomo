@@ -1,0 +1,61 @@
+#!/bin/bash
+
+pomodoro () {
+  for a in $(seq ${1:-25} 1)
+  do
+    [[ $a -lt 4 ]] && say "$a minutes left"
+
+    echo -n "$(printf "%02d" $a) => "
+
+    for b in $(seq 1 20)
+    do
+      sleep 3
+      echo -n '.'
+    done
+
+    echo
+  done
+
+  tmux detach-client
+}
+
+case $1 in
+  ('')
+    pomodoro
+  ;;
+
+  (sb|short-break|short|break)
+    pomodoro 5
+  ;;
+
+  (lb|long-break|long)
+    pomodoro 15
+  ;;
+
+  ([0-9]*)
+    pomodoro $1
+  ;;
+
+  (*)
+    cat <<OPTIONS
+  USAGE:
+
+    pomo                # => 25m timer
+
+    pomo [0-9]+         # => timer for specified minutes
+
+    pomo sb             # => 5m timer
+    pomo short          # => 5m timer
+    pomo short-break    # => 5m timer
+    pomo break          # => 5m timer
+
+    pomo lb             # => 15m timer
+    pomo long           # => 15m timer
+    pomo long-break     # => 15m timer
+
+    pomo help           # => This help message
+
+OPTIONS
+  ;;
+
+esac

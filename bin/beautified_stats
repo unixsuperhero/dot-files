@@ -1,0 +1,10 @@
+#!/bin/bash
+
+log=tmp/$(date +"%Y-%m-%d").git-stats.log
+
+git stat-summary 755a00b~1.. | tee $log
+
+echo
+echo "Log: $log"
+echo
+

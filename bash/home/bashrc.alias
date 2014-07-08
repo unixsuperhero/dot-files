@@ -112,6 +112,11 @@
     alias grepn="egrep -IRin"
     alias grepl="egrep -IRil"
 
+  ##------ pgrep & pkill ------
+
+    alias pgrep="pgrep -ilf"
+    alias pkill="pkill -ilf"
+
   ##------ mail ------
 
   #  alias mbox="mail -f ~/mbox"

@@ -45,8 +45,8 @@ source_file "$HOME/.bashrc.heroku"
 export HASHROCKET_DIR="$HOME/hashrocket"
 export REPO_DIR="$HASHROCKET_DIR"
 
-alias glog='git log --oneline --decorate --name-status'
-alias glogn='git log --oneline --decorate --name-only'
+alias glog='glod --name-status'
+alias glogn='glod --name-only'
 
 prepend_path /Users/MacbookPro/repos/random-snippets/ruby
 prepend_path /Users/MacbookPro/repos/random-snippets/shell

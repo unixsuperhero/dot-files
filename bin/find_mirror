@@ -1,0 +1,44 @@
+#!/bin/bash
+
+function find_gooddrama_mirror()
+{
+  last=0
+  start=1
+  prev=1
+
+  for b in $(seq ${3:-1} ${2:-1}); do
+    found=0
+
+    [[ $start -eq 0 ]] && start=$b
+    [[ $prev -eq 0 ]] && prev=$b
+
+    for a in $(seq 1 4); do
+      if gooddrama -n ${1/XX/$b} $a | egrep -i 'https?:..[0-9]{1,3}([.][0-9]{1,3}){3}' | egrep -i 'mirror|http:..[0-9]{1,3}([.][0-9]{1,3}){3}' &>/dev/null ; then
+        found=1
+
+        if [[ $last -ne $a ]]; then
+          [[ $last -ne 0 ]] && echo "dlseries '$1' ${prev} ${start} $last"
+          last=$a
+          start=$b
+        fi
+
+        prev=$b
+        [[ $b -eq ${2:-1} ]] && echo "dlseries '$1' ${b} ${start} $last"
+        break
+      fi
+    done
+
+    if [[ $found -eq 0 ]]; then
+      echo "# NO MIRROR FOUND FOR: $b"
+      echo "dlseries '$1' ${prev} ${start} $last"
+      start=0
+      prev=0
+      last=0
+    fi
+
+    prev=$b
+  done
+}
+
+find_gooddrama_mirror "$@"
+

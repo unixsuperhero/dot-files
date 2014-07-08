@@ -6,9 +6,14 @@ source_file "$HOME/.bashrc.functions.temporary"
 
 def ()
 {
-    which -a "$1" 2>/dev/null
+  if [[ $SHELL =~ 'zsh' ]]; then
+    whence -vaf "$1" 2>/dev/null
+  else
+    # changed to match shell precendence
     alias "$1" 2>/dev/null
     declare -f "$1" 2>/dev/null
+    which -a "$1" 2>/dev/null
+  fi
 }
 
 ff() {
@@ -21,7 +26,7 @@ ff() {
 
 # Updated: 2013-01-24 09:38:19
 
-  git grep -l '' -- "*$(echo "$1" | sed 's/./&*/g')"
+  git ls-files "*$(echo "$1" | sed 's/./&*/g')"
 }
 
 vff() {

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo -n 'Are you going to send in blank?: '
+read skip
+if [ -z $skip ]; then
+  echo "read is blank"
+else
+  echo "read is not blank"
+fi

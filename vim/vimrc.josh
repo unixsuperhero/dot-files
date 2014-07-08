@@ -7,6 +7,8 @@ syntax on                                         " Turn syntax highlighting on
 filetype plugin on                                " Enable loading filetype plugins
 filetype indent on                                " Enable loading indentation plugins
 
+hi SignColumn  term=standout ctermfg=4 ctermbg=black guifg=DarkBlue guibg=black
+
 "set textwidth=80                                 " The # of chars on a line before [set wrap] adds a newline
 "set autowrite                                    " Write contents of the file, if it has been modified, on buffer exit
 set nolist                                        " (Show/Don't Show) special characters represententing whitespace
@@ -179,8 +181,16 @@ au FileType markdown setlocal makeprg=markdown\ %
 au FileType javascript setlocal makeprg=node\ %
 au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
 
+au FileType ruby     nmap ,R :exe "nmap ,r :!rspec " . expand("%") . "\<cr\>"<cr>
+au FileType ruby     nmap ,T :silent exe "nmap ,t :w\\\|silent !echo 'rspec " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w\\\|silent !echo 'rspec \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
+
   " equalprgs (for formatting)
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ %
+
+" FORMAT JSON:
+" :%s/":\([[{\]},]\+\)/": \1\r/g|%s/,\(["[{]\+\)/,\r\1/g|%s/[\]}]\+,/\r&/g
+" set ep=
+" norm ggVG=
 
 "1,$retab!
 

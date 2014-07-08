@@ -45,3 +45,5 @@
 	default = tracking
 [core]
 	quotepath = false
+[mergetool]
+	keepBackup = true

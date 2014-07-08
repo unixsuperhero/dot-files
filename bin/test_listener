@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ ! -p tmp/test_commands ]; then
+  mkdir -pv tmp
+  mkfifo tmp/test_commands
+fi
+
+echo
+echo "Listening for test commands..."
+echo
+
+while true
+do
+  cmd="$(cat tmp/test_commands)"
+  echo
+  echo "Running: $cmd" | sed 's/./-/g'
+  echo "Running: $cmd"
+  echo "Running: $cmd" | sed 's/./-/g'
+  echo
+  bash -c "$cmd"
+done
+
