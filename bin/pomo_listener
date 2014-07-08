@@ -1,20 +1,38 @@
 #!/bin/bash
 
-if [ ! -p ~/.pomos/pomo_commands ]; then
-  mkdir -pv ~/.pomos
-  mkfifo ~/.pomos/pomo_commands
-fi
+function start_listener() {
+  if [ ! -p ~/.pomos/pomo_commands ]; then
+    mkdir -pv ~/.pomos
+    mkfifo ~/.pomos/pomo_commands
+  fi
 
-echo
-echo "Pomodoro Listener Started..."
-echo
+  echo
+  echo "Pomodoro Listener Started..."
+  echo
 
-tmux ls || echo 'echo "tmux a || tmux" >~/.pomos/pomo_runner' >~/.pomos/pomo_commands
+  tmux ls
+  if [[ $? -eq 0 ]]; then
+    echo "$? == 0"
+    echo 'echo tmux a >~/.pomos/pomo_runner' >~/.pomos/pomo_commands &
+  else
+    echo "$? > 0"
+    echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd;cd beautified' \; split-window \; send-keys 'cd;cd beautified;test_listener' \; split-window \; select-layout 'ac70,204x44,0,0[204x32,0,0,0,204x11,0,33{177x11,0,33,1,26x11,178,33,5}]' \; send-keys 'pomo run'" >~/.pomos/pomo_commands &
+  fi
 
-while true
-do
-  cmd="$(cat ~/.pomos/pomo_commands)"
-  echo "$cmd"
-  bash -c "$cmd"
-done
+  while true
+  do
+    cmd="$(cat ~/.pomos/pomo_commands)"
+    echo "$cmd"
+    bash -c "$cmd"
+  done
+}
+
+case $1 in
+  (-e|--edit|-edit)
+    vim "$0"
+    ;;
+  (*)
+    start_listener
+    ;;
+esac
 

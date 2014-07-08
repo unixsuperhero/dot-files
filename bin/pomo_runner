@@ -1,18 +1,30 @@
 #!/bin/bash
 
-if [ ! -p ~/.pomos/pomo_runner ]; then
-  mkdir -pv ~/.pomos
-  mkfifo ~/.pomos/pomo_runner
-fi
+function start_listener() {
+  if [ ! -p ~/.pomos/pomo_runner ]; then
+    mkdir -pv ~/.pomos
+    mkfifo ~/.pomos/pomo_runner
+  fi
 
-echo
-echo "Pomodoro Runner Started..."
-echo
+  echo
+  echo "Pomodoro Runner Started..."
+  echo
 
-while true
-do
-  cmd="$(cat ~/.pomos/pomo_runner)"
-  #echo "$cmd"
-  bash -c "$cmd"
-done
+  while true
+  do
+    cmd="$(cat ~/.pomos/pomo_runner)"
+    #echo "$cmd"
+    bash -c "$cmd"
+  done
+}
+
+case $1 in
+  (-e|--edit|-edit)
+    vim "$0"
+    ;;
+  (*)
+    start_listener
+    ;;
+esac
+
 
