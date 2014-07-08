@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ ! -p ~/.pomos/pomo_commands ]; then
+  mkdir -pv ~/.pomos
+  mkfifo ~/.pomos/pomo_commands
+fi
+
+echo
+echo "Listening for pomo commands..."
+echo
+
+while true
+do
+  cmd="$(cat ~/.pomos/pomo_commands)"
+  echo
+  echo "Running: $cmd" | sed 's/./-/g'
+  echo "Running: $cmd"
+  echo "Running: $cmd" | sed 's/./-/g'
+  echo
+  bash -c "$cmd"
+done
+

@@ -6,6 +6,8 @@ pomodoro () {
     [[ $(( $a % 5 )) -eq 0 ]] && say "$a minutes left"
     [[ $a -lt 4 ]] && say "$a minutes left"
 
+    [[ -z $2 ]] && echo "echo '$a minutes left'" >~/.pomos/pomo_commands
+
     echo -n "$(printf "%02d" $a) => "
 
     for b in $(seq 1 20)
@@ -17,13 +19,27 @@ pomodoro () {
     echo
   done
 
-  tmux detach-client
+  [[ -z $2 ]] && say "break is over"
+  [[ -z $2 ]] && echo 'echo tmux a >~/.pomos/pomo_runner' >~/.pomos/pomo_commands
+  [[ -z $2 ]] || echo "tmux ${2}" >~/.pomos/pomo_commands
 }
 
 case $1 in
   ('')
-    pomodoro
+    pomodoro 25 detach-client
   ;;
+
+  (run)
+    while true
+    do
+      for a in $(seq 1 4)
+      do
+        pomodoro 25 detach
+        [[ $a -lt 4 ]] && pomo sb || pomo lb
+      done
+    done
+  ;;
+
 
   (sb|short-break|short|break)
     pomodoro 5
@@ -34,7 +50,7 @@ case $1 in
   ;;
 
   ([0-9]*)
-    pomodoro $1
+    pomodoro $1 detach-client
   ;;
 
   (*)
