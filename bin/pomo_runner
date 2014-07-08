@@ -6,17 +6,13 @@ if [ ! -p ~/.pomos/pomo_runner ]; then
 fi
 
 echo
-echo "Listening for pomo commands..."
+echo "Pomodoro Runner Started..."
 echo
 
 while true
 do
   cmd="$(cat ~/.pomos/pomo_runner)"
-  echo
-  echo "Running: $cmd" | sed 's/./-/g'
-  echo "Running: $cmd"
-  echo "Running: $cmd" | sed 's/./-/g'
-  echo
+  #echo "$cmd"
   bash -c "$cmd"
 done
 

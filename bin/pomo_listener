@@ -6,17 +6,15 @@ if [ ! -p ~/.pomos/pomo_commands ]; then
 fi
 
 echo
-echo "Listening for pomo commands..."
+echo "Pomodoro Listener Started..."
 echo
+
+tmux ls || echo 'echo "tmux a || tmux" >~/.pomos/pomo_runner' >~/.pomos/pomo_commands
 
 while true
 do
   cmd="$(cat ~/.pomos/pomo_commands)"
-  echo
-  echo "Running: $cmd" | sed 's/./-/g'
-  echo "Running: $cmd"
-  echo "Running: $cmd" | sed 's/./-/g'
-  echo
+  echo "$cmd"
   bash -c "$cmd"
 done
 
