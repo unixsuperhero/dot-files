@@ -1,0 +1,59 @@
+#!/bin/bash
+
+cat <<"METADATA" >/dev/null
+  NAME: next_episode
+  DESCRIPTION:
+    Uses a grep file to keep track of what videos in the
+  current directory have been watched.
+    Then, it finds the next episode in line and opens it
+  with VLC Media Player.
+
+  AUTHOR: Joshua Toyota
+  DATE: 2013-09-07 00:00:00
+
+METADATA
+
+watched_file="watched.grep"
+global_watched_file="$HOME/logs/global.watched.grep"
+recent_file="/Users/jearsh/logs/recently_watched"
+
+function vlc_next_episode()
+{
+  [[ ! -a "$watched_file" ]] && echo "Watched Grep File (${watched_file}) Not Found!!!" && touch $watched_file
+  [[ ! -a "$global_watched_file" ]] && echo "Global Watched Grep File (${global_watched_file}) Not Found!!!" && touch $global_watched_file
+
+  next="$(ls -1 | egrep -vf "$watched_file" -f "$global_watched_file" | head -1)"
+
+  if [[ -n "$next" ]]; then
+    next_episode_display_message ">" "next file = $next"
+
+    ## Passing any args results in a dry-run
+    if [[ -z "$1" ]]; then
+      echo "$(pwd)/$next" >>$recent_file
+      echo "$next" | sed 's/[.]/\\./g;s/[^a-zA-Z0-9.\\-][^a-zA-Z0-9.\\-]*/.*/g' >>$watched_file
+      echo "$next" | sed 's/[.]/\\./g;s/[^a-zA-Z0-9.\\-][^a-zA-Z0-9.\\-]*/.*/g' >>$global_watched_file
+      open -a vlc "$next"
+    else
+      echo "$next" | sed 's/[.]/\\./g;s/[^a-zA-Z0-9.\\-][^a-zA-Z0-9.\\-]*/.*/g'
+    fi
+
+  else
+    next_episode_display_message "!" "No Pending Episodes"
+  fi
+}
+
+function next_episode_display_message()
+{
+    echo
+    echo "$1$1$(echo "$2" | sed 's/./-/g')$1$1"
+    echo "  $2"
+    echo "$1$1$(echo "$2" | sed 's/./-/g')$1$1"
+    echo
+}
+
+if [[ "$1" == "--edit" ]]; then
+  vim "$0"
+else
+  vlc_next_episode "$@"
+fi
+

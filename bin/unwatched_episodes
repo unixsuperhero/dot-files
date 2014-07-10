@@ -1,0 +1,44 @@
+#!/bin/bash
+
+cat <<"METADATA" >/dev/null
+  NAME: unwatched_episodes
+  DESCRIPTION:
+    Go through all anime folders and list episodes that haven't been watched
+  according to watched.grep.
+
+  AUTHOR: Joshua Toyota
+  DATE: 2013-09-08 19:32:19
+
+METADATA
+
+list_episodes() {
+
+  [[ "$1" == '--edit' ]] && vim "$0" && return 0
+
+  watched_file="watched.grep"
+  global_watched_file="$HOME/logs/global.watched.grep"
+
+  start_dir="$(pwd)"
+  unwatched_dir="$HOME/logs"
+
+  [[ -n "$1" ]] && unwatched_dir="$1"
+
+  cd "$unwatched_dir"
+
+  echo
+  find "$PWD" -iname $watched_file | grep -v "$HOME/logs/watched.grep" | while read wf
+  do
+    d="$(dirname "$wf")"
+    lines="$(find "$d" -type f | grep -vf <(cat "$wf" "$global_watched_file") 2>/dev/null)"
+
+    if [[ -n "$lines" ]]; then
+      echo "$lines"
+      echo
+    fi
+  done | sed "s@$HOME/logs/@@" | less
+
+  cd "$start_dir"
+}
+
+list_episodes "$@"
+

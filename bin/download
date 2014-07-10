@@ -1,0 +1,69 @@
+#!/bin/bash
+
+cat <<"METADATA" >/dev/null
+  NAME: download
+  DESCRIPTION:
+    Use wget to download the url/file in the OS X
+  clipboard or first argument passed.
+    It uses another script to strip any junk characters
+  from the url, producing a clean filename.
+
+  AUTHOR: Joshua Toyota
+  DATE: 2013-09-06 00:00:00
+
+METADATA
+
+mkdir -pv ~/Desktop/Anime/this-season
+mkdir -pv ~/logs
+
+function dl-link  () {
+
+  echo "# => $#"
+  echo "0 => $0"
+  echo "1 => $1"
+  echo "2 => $2"
+  echo "3 => $3"
+
+  [[ "$1" == '-n' ]] && dry='true' && shift
+
+  [[ -z "$1" ]] && link="$(pbpaste)" || link="$1"
+  [[ -z "$2" ]] && name="$(url_filename "$link")" || name="$2"
+
+  echo "link => $link"
+  echo "name => $name"
+  echo "download \"$link\" \"$name\""
+
+  if [[ $dry == "true" ]]; then
+    echo "$link"
+    echo "$(pwd)/$name"
+    echo "cd \"$(pwd)\" && wget -bcO \"$name\" \"$link\""
+    echo "wget -bcO \"$name\" \"$link\""
+  else
+    echo "$link" | tee -a ~/logs/download_links
+    echo "$(pwd)/$name" | tee -a ~/logs/download_files
+    echo "cd \"$(pwd)\" && wget -bcO \"$name\" \"$link\"" | tee -a ~/logs/download_cmds
+
+    wget -bcO "$name" "$link"
+  fi
+}
+
+
+[[ "$1" == '--edit' ]] && vim "$0" || dl-link "$@"
+
+
+cat <<TODOLIST >/dev/null
+
+* Manage my personal lists better, like this list
+* Join flashcards/studying sites:
+  * Inventory each reference's features
+* Start Jap Study/Flashcard App
+  * Prioritize kanji, compounds, and vocab to study
+    * (KCB = Kanji Compounds vocaB )
+    * Use a list of particles to parse japanese subtitles and:
+      * Create uniq chart of KCB found in source material
+      * Create a frequency chart
+* Write Blog:
+  * How to use 'rails new' without running gem install rails globally.  (mkdir,mkrvmfiles,cd-out/in,gem-install-rails)
+
+TODOLIST
+
