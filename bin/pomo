@@ -1,14 +1,42 @@
 #!/bin/bash
 
+function is_attached() {
+  tmux ls | grep attached &>/dev/null
+  return $?
+}
+
+function pomo_runner() {
+  is_attached && return 1
+  echo "$@" >~/.pomos/pomo_runner
+}
+
+function pomo_listener() {
+  echo "$@" >~/.pomos/pomo_commands
+}
+
+function attach_runner() {
+  echo tmux a >~/.pomos/pomo_runner
+}
+
+function clear_fifo() {
+  [ -p $1 ] && echo "removing $1" && rm -v "$1"
+  if [ ! -p $1 ]; then
+    mkdir -pv "$(dirname "$1")"
+    mkfifo "$1"
+  fi
+}
+
 pomodoro () {
-  for a in $(seq ${1:-25} 1)
+  for min in $(seq ${1:-25} 1)
   do
-    [[ $(( $a % 5 )) -eq 0 ]] && say "$a minutes left"
-    [[ $a -lt 4 ]] && say "$a minutes left"
 
-    [[ -z $2 ]] && echo "echo echo '$a minutes left' >~/.pomos/pomo_runner" >~/.pomos/pomo_commands
+    [[ $(( $min % 5 )) -eq 0 ]] && say "$min minutes left" &
+    [[ $min -lt 4 && $min -ne 1 ]] && say "$min minutes left" &
+    [[ $min -eq 1 ]] && say "$min minute left" &
 
-    echo -n "$(printf "%02d" $a) => "
+    pomo_runner echo "$min minutes left"
+
+    echo -n "$(printf "%02d" $min) => "
 
     for b in $(seq 1 20)
     do
@@ -18,28 +46,46 @@ pomodoro () {
 
     echo
   done
-
-  [[ -z $2 ]] && say "break is over"
-  [[ -z $2 ]] && echo 'echo tmux a >~/.pomos/pomo_runner' >~/.pomos/pomo_commands
-  [[ -z $2 ]] || echo "tmux ${2}" >~/.pomos/pomo_commands
 }
 
 case $1 in
-  ('')
-    pomodoro 25 detach-client
+  (''|start)
+    pomodoro 25
   ;;
 
+  (clear)
+    clear_fifo ~/.pomos/pomo_commands
+    clear_fifo ~/.pomos/pomo_runner
+    ;;
+
   (run)
+    total=0
     while true
     do
-      for a in $(seq 1 4)
+      for session in $(seq 1 4)
       do
-        pomodoro 25 detach
-        [[ $a -lt 4 ]] && pomo sb || pomo lb
+        total=$(( $total + 1 ))
+        echo
+        echo "Session #$total"
+
+        pomo 25
+        pomo d
+
+        echo
+        [[ $session -lt 4 ]] && pomo sb || pomo lb
+        pomo a
+        say "break is over" &
       done
     done
   ;;
 
+  (a|attach)
+    attach_runner
+    ;;
+
+  (d|detach)
+    pomo_listener tmux detach
+    ;;
 
   (sb|short-break|short|break)
     pomodoro 5
@@ -50,7 +96,7 @@ case $1 in
   ;;
 
   ([0-9]*)
-    pomodoro $1 detach-client
+    pomodoro $1
   ;;
 
   (*)

@@ -20,6 +20,8 @@
   alias gcon="cat .git/config"
   alias glodd="glod -9"
   alias glogg="glog -9"
+  alias glodc="glod -9 | cat"
+  alias glogc="glog -9 | cat"
   alias glr="glod --left-right"
 
   function glmerge() {
