@@ -48,8 +48,8 @@ export REPO_DIR="$HASHROCKET_DIR"
 alias glog='glod --name-status'
 alias glogn='glod --name-only'
 
-prepend_path /Users/MacbookPro/repos/random-snippets/ruby
-prepend_path /Users/MacbookPro/repos/random-snippets/shell
+# prepend_path /Users/MacbookPro/repos/random-snippets/ruby
+# prepend_path /Users/MacbookPro/repos/random-snippets/shell
 prepend_path $HOME/bin
 
 export VIMBUNDLES="$HOME/.vimbundles"

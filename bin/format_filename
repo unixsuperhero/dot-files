@@ -1,0 +1,108 @@
+#!/Users/MacbookPro/.rbenv/versions/2.0.0-p247/bin/ruby
+
+# 2.0.0-p247 :002 > files = Dir.glob('*')
+#  => ["Watamote - 03.mp4", "watamote 4.mp4", "Watamote Episode 5.mp4", "Watashi ga Motenai no Episode 6.mp4", "Watashi ga Motenai no wa Dou Kangaetemo Episode 1.mp4", "Watashi ga Motenai no wa Dou Kangaetemo Omaera ga Warui! Episode 2.mp4", "watched.grep"]
+# 2.0.0-p247 :003 > files.each do |f|
+# 2.0.0-p247 :004 >     puts "^C
+# 2.0.0-p247 :004 > file.each_with_index do |f,i|
+# 2.0.0-p247 :005 >     puts "#{i}  #{f}"
+# 2.0.0-p247 :006?>   end
+# NameError: undefined local variable or method `file' for main:Object
+#         from (irb):4
+#         from /Users/jearsh/.rvm/rubies/ruby-2.0.0-p247/bin/irb:13:in `<main>'
+# 2.0.0-p247 :007 > files.each_with_index do |f,i|
+# 2.0.0-p247 :008 >     puts "#{i}   #{f}"
+# 2.0.0-p247 :009?>   end
+# 0   Watamote - 03.mp4
+# 1   watamote 4.mp4
+# 2   Watamote Episode 5.mp4
+# 3   Watashi ga Motenai no Episode 6.mp4
+# 4   Watashi ga Motenai no wa Dou Kangaetemo Episode 1.mp4
+# 5   Watashi ga Motenai no wa Dou Kangaetemo Omaera ga Warui! Episode 2.mp4
+# 6   watched.grep
+#  => ["Watamote - 03.mp4", "watamote 4.mp4", "Watamote Episode 5.mp4", "Watashi ga Motenai no Episode 6.mp4", "Watashi ga Motenai no wa Dou Kangaetemo Episode 1.mp4", "Watashi ga Motenai no wa Dou Kangaetemo Omaera ga Warui! Episode 2.mp4", "watched.grep"]
+
+class FileNamer
+  def initialize dir
+    @files = Dir.glob("#{dir}/*")
+    @format = pick_format
+    @episode = pick_episode_number
+    @template = pick_template
+    rename_files
+  end
+
+  def pick_template
+    splits = @format.split(@episode)
+    return splits if splits.count <= 2
+    left = []
+    templates = 1.upto(splits.count - 1).map{
+      left << splits.shift
+      [left.join(@episode), splits.join(@episode)]
+    }
+    list_with_numbers templates.map{|t| t.join('(x)')}
+    print "Which (x) is where the episode # goes: "
+    ep = gets
+    templates[ep.to_i]
+  end
+
+  def confirmed(prompt="Continue...")
+    puts ''
+    print "#{prompt} (1) yes (*) no ? "
+    gets.to_i == 1
+  end
+
+  def rename_files
+    @files.map do |file|
+      next if (nums = file.scan(/\d+/)).count == 0
+      templates = nums.map{|ep| new_filename ep }
+      puts "Rename: \n '#{file}'\nAs:\n"
+      list_with_numbers templates
+      puts '(*) ...skip...'
+      print "Which filename uses the right episode number: "
+      ep = gets
+      next if ep.strip == ""
+      rename_file file, templates[ep.to_i]
+    end
+  end
+
+  def new_filename ep
+    rename_template.join sprintf('%02d', ep.to_i)
+  end
+
+  def rename_file(from, to)
+    cmd = sprintf('mv "%s" "%s"', from, to)
+    system(cmd)
+  end
+
+  def list_files
+    list_with_numbers @files
+  end
+
+  def pick_format
+    list_files
+    print "What number is the desired format: "
+    format_index = gets
+    @files[format_index.to_i]
+  end
+
+  def pick_episode_number(filename=@format)
+    numbers = filename.split(/\D+/)
+    puts "FILENAME => \"#{filename}\""
+    list_with_numbers numbers
+    print "Which choice lists the episode number: "
+    ep = gets
+    numbers[ep.to_i]
+  end
+
+  def rename_template(format=@format, pattern=@episode)
+    @template ||= format.split(pattern, 2)
+  end
+
+  def list_with_numbers(arr)
+    arr.each_with_index do |e,i|
+      puts "(#{i})  #{e}"
+    end
+  end
+end
+
+FileNamer.new(Dir.pwd)
