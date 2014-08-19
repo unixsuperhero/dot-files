@@ -40,6 +40,7 @@ class AnimeFreak
     vw_key = body.scan(/(?:filekey|fkz)="([^"]*)"/i).flatten.first
     vw_file  = body.scan(/[.](?:key|file)="([^"]*)"/i).flatten.first
     "http://www.videoweed.es/api/player.api.php?key=%s&pass=undefined&cid2=1004&user=undefined&cid3=undefined&cid=undefined&numOfErrors=0&file=%s" % [vw_key, vw_file]
+    "http://www.videoweed.es/api/player.api.php?key=%s&cid=undefined&numOfErrors=0&user=undefined&file=%s&cid3=animefreak%stv&pass=undefined&cid2=undefined" % [vw_key, vw_file, '%2E']
   end
 
   def self.file(link)
@@ -108,6 +109,11 @@ def run
       }
     elsif mirror =~ /videoweed/i
       m = AnimeFreak.new(mirror).videoweed
+      nm = AnimeFreak.new(m).body
+      puts "------#{nm.gsub(/./, ?-)}"
+      puts "nm => #{nm}"
+      puts "------#{nm.gsub(/./, ?-)}"
+      m = nm.scan(/^url=(http[^&]*)/).flatten.first
       extension = m.scan(/[.](mp4|flv)/i).flatten.first
       'download "%s" "%s.%s"' % [m,outfile,extension]
     else
