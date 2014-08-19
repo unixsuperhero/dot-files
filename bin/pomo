@@ -15,6 +15,7 @@ function pomo_listener() {
 }
 
 function attach_runner() {
+  is_attached && echo 'tmux is already attached' && return 1
   echo tmux a >~/.pomos/pomo_runner
 }
 
@@ -53,29 +54,40 @@ case $1 in
     pomodoro 25
   ;;
 
+  (-e|-edit|--edit)
+    vim "$0"
+  ;;
+
   (clear)
     clear_fifo ~/.pomos/pomo_commands
     clear_fifo ~/.pomos/pomo_runner
     ;;
 
   (run)
-    total=0
+    total=${2:-1}
+    sum=$(( ${2:-1} + 3 ))
+    mod=$(( $sum % 4 ))
+    start_at=$(( $mod + 1 ))
+    echo "prepping: \$1 => $1; sum(+3) => $sum; mod(%4) => $mod; start_at(+1) => $start_at"
     while true
     do
-      for session in $(seq 1 4)
+      for session in $(seq ${start_at} 4)
       do
-        total=$(( $total + 1 ))
         echo
-        echo "Session #$total"
+        echo "Session #$total ($session)"
 
         pomo 25
         pomo d
 
         echo
         [[ $session -lt 4 ]] && pomo sb || pomo lb
+
         pomo a
         say "break is over" &
+
+        total=$(( $total + 1 ))
       done
+      start_at=1
     done
   ;;
 

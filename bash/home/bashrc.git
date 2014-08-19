@@ -3,6 +3,22 @@
 
   current_branch() { basename $(git symbolic-ref HEAD); }
 
+  not_in_master() {
+    mast="$(git log --oneline --decorate master)"
+    git log --oneline --decorate --left-right head...${1:-master} | grep '^<' | sed 's/^..[^[:space:]]*[[:space:]]*\(([^)]*) \)\{0,1\}//' | while read msg
+    do
+      echo "$mast" | egrep -i "$msg" &>/dev/null || echo "NOT FOUND: $msg"
+    done
+    # sed regex ... escaped parens are groups, the escaped curlies are repeat ranges.  basically my (or sed's) version of an optional atom
+
+    cat <<ZERO >/dev/null
+❯ glmerge master
+< 6ee92f0 (HEAD, origin/feature/preferences, feature/preferences) add/sort by position on preference groups/options
+< a956d8a populate images and preference options for Makeup and Workout services
+< e9e37cf update Hard Wax PrefOpt logo; use I18n when asserting not_authed error
+ZERO
+  }
+
 # aliases
 
   alias git_aliases="alias | grep git"
@@ -20,9 +36,31 @@
   alias gcon="cat .git/config"
   alias glodd="glod -9"
   alias glogg="glog -9"
-  alias glodc="glod -9 | cat"
-  alias glogc="glog -9 | cat"
   alias glr="glod --left-right"
+  alias gra="git rebase --abort"
+  alias grs="git rebase --skip"
+
+  function grc() {
+    git --no-pager grep -Ein '^[<>=]{7}([^<>=]|$)' && return -1
+    git aa
+    git rebase --continue
+  }
+
+  function glodc() {
+    if [[ $# -gt 0 ]]; then
+      glod -9 "$@" | cat
+    else
+      glod -9 | cat
+    fi
+  }
+
+  function glogc() {
+    if [[ $# -gt 0 ]]; then
+      glog -9 "$@" | cat
+    else
+      glog -9 | cat
+    fi
+  }
 
   function glmerge() {
     glr head...$1 | grep '^>'

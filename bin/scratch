@@ -1,8 +1,23 @@
 #!/bin/bash
 
-cd /Users/jearsh/lists
+if [[ -z $lists_dir ]]; then
+  lists_dir="${HOME}/lists/scratch"
+  mkdir -pv $lists_dir
+fi
+
+[[ -d $lists_dir ]] && cd $lists_dir
 
 fname=`date +%Y%m%d.%H%M%S`
 
-vim "scratch/$fname"
+vim "scratch/$fname" +set\ buftype=nofile
 
+
+cat <<SCRATCH &>/dev/null
+
+tmpvar="not empty"
+
+[[ -n $tmpvar ]] && echo '-n tmpvar (length of string is != zero)' || echo '! -n tmpvar'
+[[ -z $tmpvar ]] && echo '-z tmpvar (length of string is zero)' || echo '! -z tmpvar'
+[[ -s $tmpvar ]] && echo '-s tmpvar (file exists && size > 0)' || echo '! -s tmpvar'
+
+SCRATCH

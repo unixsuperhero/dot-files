@@ -110,5 +110,6 @@ deprecated_customer(){
 alias deprecated_production=customer
 
 # annotate models, using the same methodology we already use, yield only necessary changes:
-alias annotate="bundle exec annotate -p after -e tests,fixtures"
+# MOVED TO ~/.bashrc.alias
+# alias annotate="bundle exec annotate -p after -e tests,fixtures"
 

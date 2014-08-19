@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function vim_gs() {
+  vim -O3 $(git status -s | sed "s/...//;s/.* -> //" | grep "$1" | sort -u)
+}
+
+case $1 in
+  (-e|-edit|--edit)
+    vim $0
+    ;;
+  ('')
+    vim_gs
+    ;;
+  (*)
+    vim_gs "$@"
+    ;;
+esac
+

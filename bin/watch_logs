@@ -1,0 +1,6 @@
+#!/bin/bash
+
+log=${1:-log/development.log}
+
+tail -f "$log" | sed -n '/DEV DEBUG:/p;/DEV DEBUG START/,/DEV DEBUG END/p'
+

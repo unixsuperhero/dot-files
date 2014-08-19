@@ -6,6 +6,8 @@ function start_listener() {
     mkfifo ~/.pomos/pomo_commands
   fi
 
+  dir="${1:-beautified}"
+
   echo
   echo "Pomodoro Listener Started..."
   echo
@@ -16,7 +18,7 @@ function start_listener() {
     echo 'echo tmux a >~/.pomos/pomo_runner' >~/.pomos/pomo_commands &
   else
     echo "$? > 0"
-    echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd;cd beautified;clear' \; split-window \; send-keys 'cd;cd beautified;clear;test_listener' \; split-window \; send-keys 'cd;cd beautified;clear;vim tmp/todo' \; split-window \; send-keys 'pomo run' \; select-layout 'a521,204x44,0,0[204x32,0,0,0,204x11,0,33{148x11,0,33,1,27x11,149,33,4,27x11,177,33,2}]' " >~/.pomos/pomo_commands &
+    echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd;cd $dir;clear' \; split-window \; send-keys 'cd;cd $dir;clear;test_listener' \; split-window \; send-keys 'cd;cd $dir;clear' \; split-window \; send-keys 'pomo run' \; select-layout '9d01,204x44,0,0[204x32,0,0,0,204x11,0,33{88x11,0,33,1,87x11,89,33,2,27x11,177,33,3}]' " >~/.pomos/pomo_commands &
   fi
 
   while true
@@ -32,7 +34,7 @@ case $1 in
     vim "$0"
     ;;
   (*)
-    start_listener
+    start_listener "$@"
     ;;
 esac
 

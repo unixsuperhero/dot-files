@@ -214,6 +214,21 @@ alias unhitch='hitch -u'
 alias make_tags='ctags --extra=+f --exclude=.git --exclude=log -R * `rvm gemdir`/gems/*'
 alias make_pdf="cupsfilter -o fit-to-page -o cpi=18 -o lpi=11"
 
+alias annotate="annotate -p before -e tests,fixtures"
+
 alias savedb="psql -U jturner saveology_development"
 
+alias vim="vim -O"
 alias vimp="vim +set\ bt=nofile -"
+
+# --------------------
+# Tmux Pomodoro Stuff 
+# --------------------
+
+alias pomor="pomo_runner"
+alias pomol="pomo_listener"
+alias prun="pomo_runner"
+alias prunner="pomo_runner"
+alias plisten="pomo_listener"
+alias plistener="pomo_listener"
+
