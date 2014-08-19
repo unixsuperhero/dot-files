@@ -181,8 +181,9 @@ au FileType markdown setlocal makeprg=markdown\ %
 au FileType javascript setlocal makeprg=node\ %
 au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
 
-au FileType ruby     nmap ,R :exe "nmap ,r :!rspec " . expand("%") . "\<cr\>"<cr>
-au FileType ruby     nmap ,T :silent exe "nmap ,t :w\\\|silent !echo 'rspec " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w\\\|silent !echo 'rspec \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
+"au FileType ruby     nmap ,R :exe "nmap ,r :!rspec " . expand("%") . "\<cr\>"<cr>
+au FileType ruby     nmap ,T :silent exe "nmap ,t :w \\\|silent !echo 'rspec " . expand("%") . " \\\| sed -n \"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\"' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w \\\|silent !echo 'rspec \" . expand(\"%\") . \":\" . line(\".\") . \" \\\| sed -n \\\"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\\\"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
+au FileType ruby     nmap ,R :silent exe "nmap ,t :w\\\|silent !echo 'ruby " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w\\\|silent !echo 'ruby \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
 au FileType ruby     nmap ,d :silent !echo 'rake docs:v2:build' >tmp/test_commands<cr><C-l>
 au FileType ruby     nmap ,g :silent !echo 'rake docs:v2:generate' >tmp/test_commands<cr><C-l>
 
