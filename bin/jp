@@ -1,5 +1,100 @@
 #!/bin/bash
 
-#curl -s "http://nihongone.dev/define/$(ruby -r uri -e "puts URI.encode('$1')").${2:-txt}" | less
-curl -s "http://nihongone.dev/define/${1}.${2:-txt}" | less
+function parts_of_speech() {
+  cat <<"PARTSOFSPEECH"
+    abbr            | abbreviation
+    adj             | adjective (keiyoushi)
+    adv             | adverb (fukushi)
+    adv-n           | adverbial noun
+    adj-na          | adjectival nouns or quasi-adjectives (keiyoudoushi)
+    adj-no          | nouns which may take the genitive case particle "no"
+    adj-pn          | pre-noun adjectival (rentaishi)
+    adj-s           | special adjective (e.g. ookii)
+    adj-the         | "taru" adjective
+    arch            | archaism
+    ateji           | ateji reading of the kanji
+    aux             | auxiliary word or phrase
+    aux-v           | auxiliary verb
+    conj            | conjunction
+    col             | colloquialism 
+    exp             | Expressions (phrases, clauses, etc.)
+    ek              | exclusively kanji, rarely just in kana
+    fam             | familiar language 
+    fem             | female term or language
+    gikun           | gikun (meaning) reading
+    gram            | grammatical term
+    hon             | honorific or respectful (sonkeigo) language 
+    hum             | humble (kenjougo) language 
+    id              | idiomatic expression 
+    int             | interjection (kandoushi)
+    iK              | word containing irregular kanji usage
+    ik              | word containing irregular kana usage
+    io              | irregular okurigana usage
+    MA              | martial arts term
+    male            | male term or language
+    m-sl            | manga slang
+    noun            | noun (common) (futsuumeishi)
+    n-adverbial     | adverbial noun (fukushitekimeishi)
+    n-term          | noun (temporal) (jisoumeishi)
+    n-suf           | noun, used as a suffix
+    n-pref          | noun, used as a prefix
+    neg             | negative (in a negative sentence, or with negative verb)
+    neg-v           | negative verb (when used with)
+    num             | number, numeric
+    obs             | obsolete term
+    obsc            | obscure term
+    oK              | word containing out-dated kanji 
+    ok              | out-dated or obsolete kana usage
+    pol             | polite (teineigo) language 
+    pref            | prefix 
+    prt             | particle
+    qv              | quod vide (see another entry)
+    sl              | slang
+    suf             | suffix 
+    uK              | word usually written using kanji alone 
+    uk              | word usually written using kana alone 
+    v1              | Ichidan verb
+    v5              | Godan verb (not completely classified)
+    v5u             | Godan verb with `u' ending
+    v5u-suffix      | Godan verb with `u' ending - special class
+    v5k             | Godan verb with `ku' ending
+    v5g             | Godan verb with `gu' ending
+    v5s             | Godan verb with `su' ending
+    v5t             | Godan verb with `tsu' ending
+    v5n             | Godan verb with `nu' ending
+    v5b             | Godan verb with `bu' ending
+    v5m             | Godan verb with `mu' ending
+    v5r             | Godan verb with `ru' ending
+    v5k-su          | Godan verb - Iku/Yuku special class
+    v5aru           | Godan verb - -aru special class
+    v5uru           | Godan verb - Uru old class verb (old form of Eru)
+    vi              | intransitive verb 
+    vs              | noun or participle which takes the aux. verb suru
+    vs-intransitive | suru verb - irregular
+    vs-suru         | suru verb - special class
+    vz              | zuru verb - (alternative form of -jiru verbs)
+    vk              | Kuru verb - special class
+    vt              | transitive verb
+    vulg            | vulgar expression or word 
+    X               | rude or X-rated term (not displayed in educational software)
+PARTSOFSPEECH
+}
+
+case $1 in
+  ('')
+    echo 'You have to pass a search term to actually get results.'
+    ;;
+  (-p|-k|-l|pos)
+    if [[ -z $2 ]]; then
+      parts_of_speech
+    else
+      parts_of_speech | egrep -i "^[^|]*$2"
+      [[ $? -ne 0 ]] && parts_of_speech | egrep -i "$2"
+    fi
+    ;;
+  (*)
+    #curl -s "http://nihongone.dev/define/$(ruby -r uri -e "puts URI.encode('$1')").${2:-txt}" | less
+    curl -s "http://nihongone.dev/define/${1}.${2:-txt}" | less
+    ;;
+esac
 
