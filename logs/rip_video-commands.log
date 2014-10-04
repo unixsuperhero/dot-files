@@ -61,3 +61,5 @@ youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,j
 youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp  'https://www.youtube.com/watch?v=Cfich8LWlm4'
 youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp  'https://www.youtube.com/watch?v=iqxzXesDHu0'
 youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp  'https://www.youtube.com/watch?v=Fqho9N0ov2I'
+youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp  'https://www.youtube.com/watch?v=6WLh9VzrtsI'
+youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp  'https://www.youtube.com/watch?v=CSBUUF-m86o'

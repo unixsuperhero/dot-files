@@ -77,7 +77,7 @@ ZERO
 function dev_and_stage () {
   ref=$(git symbolic-ref HEAD 2> /dev/null)  || ref=$(git rev-parse --short HEAD 2> /dev/null)  || return
   current_branch=${ref#refs/heads/}
-  dev_branch="${current_branch/feature/dev}"
+  dev_branch="dev/${current_branch#*/}"
   git branch -D "$dev_branch"
   git checkout -b "$dev_branch"
   git checkout development

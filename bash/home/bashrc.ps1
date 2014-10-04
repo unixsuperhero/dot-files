@@ -31,3 +31,7 @@ fi
 
 export PS1="$PS1 \$(git_prompt_info '(%s)')\n\[\e[0;31m\]\$(list_changes)\n\[\e[0;33m\]$> \[\e[0;0m\]"
 
+if [[ -r ps1.sh ]]; then
+	source ps1.sh
+fi
+

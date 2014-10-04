@@ -11,6 +11,7 @@ hashrocket/dotmatrix
 logs/*
 !logs/rip_video-commands.log
 !logs/rip_video-links.log
+!logs/japanese-search-history.log
 
 # Include story files
 stories/*

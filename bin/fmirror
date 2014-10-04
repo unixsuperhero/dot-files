@@ -1,0 +1,16 @@
+#!/Users/MacbookPro/.rbenv/versions/2.0.0-p247/bin/ruby
+
+class FindMirror
+  class << self
+    def find(url)
+      url ||= `pbpaste`
+      ep = url.scan(/(?:episode-)(\d+)/).flatten.first || 1
+      base = url.sub(/episode-#{ep}/, 'episode-XX')
+      `find_mirror '#{base}' #{ep}`
+    end
+  end
+end
+
+puts FindMirror.find(ARGV[0])
+
+__END__

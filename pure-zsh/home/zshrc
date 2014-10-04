@@ -19,3 +19,5 @@ source $ZSH/oh-my-zsh.sh
 ### Added by the Heroku Toolbelt
 prepend_path '/usr/local/heroku/bin'
 
+export HOMEBREW_GITHUB_API_TOKEN='1ded2a99f810f6dc2968805612da3986bc8b412c'
+
