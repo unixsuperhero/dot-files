@@ -93,7 +93,7 @@ case $1 in
     fi
     ;;
   (*)
-    printf "%-22s %-7s %-s" "$(date +"%Y-%m-%d %H:%M:%S")" "jp" "$1" >>/Users/MacbookPro/logs/japanese-search-history.log
+    printf "%-22s %-7s %-s\n" "$(date +"%Y-%m-%d %H:%M:%S")" "jp" "$1" >>/Users/MacbookPro/logs/japanese-search-history.log
     #curl -s "http://nihongone.dev/define/$(ruby -r uri -e "puts URI.encode('$1')").${2:-txt}" | less
     curl -s "http://nihongone.dev/define/${1}.${2:-txt}" | less
     ;;
