@@ -1,4 +1,7 @@
 #!/bin/bash
 
-curl -s "http://nihongone.dev/english/$(ruby -r uri -e "puts URI.encode('$1')").${2:-txt}" | less
+printf "%-22s %-7s %-s" "$(date +"%Y-%m-%d %H:%M:%S")" "eng" "$1" >> $HOME/logs/japanese-search-history.log
+curl -s "http://nihongone.dev/english/$(
+  ruby -r uri -e "puts URI.encode('$1')"
+).${2:-txt}" | less
 
