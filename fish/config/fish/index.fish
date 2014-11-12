@@ -19,4 +19,5 @@ source $FISH_HOME/rails.fish
 source $FISH_HOME/functions.fish
 source $FISH_HOME/aliases.fish
 source $FISH_HOME/exports.fish
+source $FISH_HOME/hashrc.fish
 
