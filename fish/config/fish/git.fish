@@ -265,7 +265,11 @@ end
 
   function gs
 
-    gss | sed "s/...//;s/.* -> //" | grep "$argv[1]" | sort -u
+    if test -z $argv[1]
+      git status -s | sed "s/...//;s/.* -> //" | sort -u
+    else
+      git status -s | sed "s/...//;s/.* -> //" | grep "$argv[1]" | sort -u
+    end
 
     #re='/Untracked/,$s/#[[:space:]]*([^ ]*$)/\1/p;s/.*: *//p'
     #case $1 in

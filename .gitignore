@@ -16,9 +16,8 @@ logs/*
 # Include story files
 stories/*
 !stories/index
-<<<<<<< HEAD
 fish_history
 fishd.*
-=======
 fish/config/fish/fish_history
->>>>>>> 47e161c... added oh-my-fish
+tmp/
+fish/config/fish/fishd.*
