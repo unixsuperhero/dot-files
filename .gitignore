@@ -16,3 +16,5 @@ logs/*
 # Include story files
 stories/*
 !stories/index
+fish_history
+fishd.*
