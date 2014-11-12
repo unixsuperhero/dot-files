@@ -265,7 +265,7 @@ end
 
   function gs
 
-    gss | sed "s/...//;s/.* -> //" | grep "$1" | sort -u
+    gss | sed "s/...//;s/.* -> //" | grep "$argv[1]" | sort -u
 
     #re='/Untracked/,$s/#[[:space:]]*([^ ]*$)/\1/p;s/.*: *//p'
     #case $1 in

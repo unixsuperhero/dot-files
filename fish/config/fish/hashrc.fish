@@ -4,7 +4,7 @@ alias sdbc='rails dbconsole -p'
 
 alias ll='ls -l'
 alias gap='git add -p'
-alias gnap='git add -N . && git add -p'
+alias gnap='git add -N .; and git add -p'
 alias glp='git log -p'
 alias glg='git log --graph --oneline --decorate --color --all'
 alias gb='git branch'
