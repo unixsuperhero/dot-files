@@ -1,0 +1,33 @@
+#!/Users/MacbookPro/.rbenv/shims/ruby
+
+class BatteryLogger
+  def self.check
+    log = `pmset -g log`
+    last_type = nil
+    log.lines.last(300).map{|l|
+      time = l[0,24]
+      domain = l[26,23]
+      info = l[48,999]
+      dt = Date.strptime(time.sub(/\s*E[SD]T?\s*/, ''), '%m/%d/%y, %H:%M:%S %p')
+      charge = info[/Charge:\d+%/]
+      power_type = info[/Using (AC|Batt)/]
+      if power_type != last_type
+        last_type = power_type
+        next [
+          dt,
+          power_type,
+          domain
+        ]
+      end
+      next nil unless domain.strip[/Start$|Wake$|Sleep$/]
+      [
+        dt,
+        last_type,
+        domain
+      ]
+    }.compact
+  end
+end
+
+puts BatteryLogger.check
+# vim: ft=ruby

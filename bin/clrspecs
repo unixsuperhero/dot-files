@@ -1,0 +1,4 @@
+	while read x
+	do
+		echo "$x" | sed -n '/^rspec /p' | sed 's/^rspec //;s/ #.*//'
+	done

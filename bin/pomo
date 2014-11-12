@@ -76,13 +76,15 @@ case $1 in
         echo
         echo "Session #$total ($session)"
 
+        #pomo 2
         pomo 25
-        pomo d
+
+        #pomo d
 
         echo
         [[ $session -lt 4 ]] && pomo sb || pomo lb
 
-        pomo a
+        #pomo a
         say "break is over" &
 
         total=$(( $total + 1 ))
@@ -100,10 +102,12 @@ case $1 in
     ;;
 
   (sb|short-break|short|break)
+    say "Starting a short 5 minute break"
     pomodoro 5
   ;;
 
   (lb|long-break|long)
+    say "Starting a long 15 minute break"
     pomodoro 15
   ;;
 

@@ -27,18 +27,18 @@ META
 # ^_~
 
 
-for a in $@
+for a in "$@"
 do
   cat << ----YAYO----
   YAYO Doing something fun here: $a
 ----YAYO----
 done
 
-CAT <<CODE
-running declare
-$(declare)
-end running declare
-CODE
+#CAT <<CODE
+#running declare
+#$(declare)
+#end running declare
+#CODE
 
 
 cat <<TODO &>/dev/null

@@ -172,17 +172,21 @@ au Filetype */lists/* runtime! ~/.vim/syntax/lists.vim
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal `\"")|endif
 
   " makeprgs ---------------------------------------------------------
-au FileType ruby     setlocal makeprg=ruby\ -c\ %
-au FileType eruby    setlocal makeprg=rails-erb-check\ %
-au FileType haml     setlocal makeprg=haml\ -c\ %
-au FileType sh       setlocal makeprg=bash\ -n\ %
-au FileType cucumber setlocal makeprg=bundle\ exec\ cucumber\ %
-au FileType markdown setlocal makeprg=markdown\ %
-au FileType javascript setlocal makeprg=node\ %
+au FileType ruby       setlocal makeprg=ruby\ -c\ %
+au FileType eruby      setlocal makeprg=rails-erb-check\ %
+au FileType haml       setlocal makeprg=haml\ -c\ %
+au FileType sh         setlocal makeprg=bash\ -n\ %
+au FileType cucumber   setlocal makeprg=bundle\ exec\ cucumber\ %
+au FileType markdown   setlocal makeprg=markdown\ %
+au FileType json       setlocal makeprg=jshint\ %
+au FileType javascript setlocal makeprg=jshint\ %
+au FileType fish       compiler fish
 au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
 
 "au FileType ruby     nmap ,R :exe "nmap ,r :!rspec " . expand("%") . "\<cr\>"<cr>
-au FileType ruby     nmap ,T :silent exe "nmap ,t :w \\\|silent !echo 'rspec " . expand("%") . " \\\| sed -n \"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\"' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w \\\|silent !echo 'rspec \" . expand(\"%\") . \":\" . line(\".\") . \" \\\| sed -n \\\"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\\\"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
+"au FileType ruby     nmap ,T :silent exe "nmap ,t :!echo 'bundle exec rrails rspec " . expand("%") . " \\\| sed -n \"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\"' \\\| pbcopy \<cr\>\<C-L\> \| nmap ,l :exe \"silent !echo 'bundle exec rrails rspec \" . expand(\"%\") . \":\" . line(\".\") . \" \\\| sed -n \\\"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\\\"' \\\| pbcopy\"\<cr\>\<C-L\>"<CR>
+au FileType ruby     nmap ,T :silent exe "nmap ,t :w \\\|silent !echo 'bundle exec rrails rspec " . expand("%") . " \\\| sed -n \"1,3p;/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\"' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w \\\|silent !echo 'bundle exec rrails rspec \" . expand(\"%\") . \":\" . line(\".\") . \" \\\| sed -n \\\"1,3p;/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\\\"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
+au FileType ruby     nmap ,C :silent exe "nmap ,t :w \\\|silent !echo 'bundle exec rrails rspec " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w \\\|silent !echo 'bundle exec rrails rspec \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
 au FileType ruby     nmap ,R :silent exe "nmap ,t :w\\\|silent !echo 'ruby " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w\\\|silent !echo 'ruby \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
 au FileType ruby     nmap ,d :silent !echo 'rake docs:v2:build' >tmp/test_commands<cr><C-l>
 au FileType ruby     nmap ,g :silent !echo 'rake docs:v2:generate' >tmp/test_commands<cr><C-l>

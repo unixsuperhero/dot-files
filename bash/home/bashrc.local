@@ -51,6 +51,7 @@ alias glogn='glod --name-only'
 # prepend_path /Users/MacbookPro/repos/random-snippets/ruby
 # prepend_path /Users/MacbookPro/repos/random-snippets/shell
 prepend_path $HOME/bin
+prepend_path $HOME/bin/jshint/bin
 
 export VIMBUNDLES="$HOME/.vimbundles"
 

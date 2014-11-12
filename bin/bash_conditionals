@@ -1,0 +1,44 @@
+#!/bin/bash
+
+cat <<CONDITIONALS
+  -a file               # exists
+  -b file               # is a block special file.
+  -c file               # is a character special file.
+  -d file               # is a directory.
+  -e file               # exists
+  -f file               # is a regular file.
+  -g file               # is set-group-id.
+  -h file               # is a symbolic link.
+  -k file               # its ``sticky'' bit is set.
+  -p file               # is a named pipe (FIFO).
+  -r file               # is readable.
+  -s file               # has a size greater than zero.
+  -t fd                 # fd is open and refers to a terminal.
+  -u file               # its set-user-id bit is set.
+  -w file               # is writable.
+  -x file               # is executable.
+  -O file               # is owned by the effective user id.
+  -G file               # is owned by the effective group id.
+  -L file               # is a symbolic link.
+  -S file               # is a socket.
+  -N file               # has been modified since it was last read.
+  file1 -nt file2       # True if file1 is newer (according  to  modification  date)  than file2, or if file1 exists and file2 does not.
+  file1 -ot file2       # True  if file1 is older than file2, or if file2 exists and file1 does not.
+  file1 -ef file2       # True if file1 and file2 refer to the same device and inode  numbers.
+  -o optname            # True  if	shell  option  optname	is  enabled.   See the list of options under the description  of  the  -o  option  to  the  set builtin below.
+  -z string             # True if the length of string is zero.  string
+  -n string             # True if the length of string is non-zero.
+  string1 == string2    # True if the strings are equal.  = may be used in place of == for strict POSIX compliance.
+  string1 != string2    # True if the strings are not equal.
+  string1 < string2     # True if string1 sorts before string2  lexicographically  in  the current locale.
+  string1 > string2     # True  if	string1  sorts	after string2 lexicographically in the current locale.
+  arg1 -eq arg2         # True if both integers are equivalent
+  arg1 -ne arg2         # True if both integers are NOT equivalent
+  arg1 -lt arg2         # True if arg1 is less than arg2
+  arg1 -le arg2         # True if arg1 is less than or equivalent to arg2
+  arg1 -gt arg2         # True if arg1 is greater than arg2
+  arg1 -ge arg2         # True if arg1 is greater than or equivalent to arg2
+
+
+CONDITIONALS
+
