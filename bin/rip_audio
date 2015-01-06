@@ -1,14 +1,14 @@
 #!/bin/bash
 
-function download_video_from_url() {
+function download_audio_from_url() {
   url="${1:-$(pbpaste)}"
   shift
-  echo "$url" >>$HOME/logs/rip_video-links.log
-  echo "youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -x --audio-format mp3 -k $@ '$url'" >>$HOME/logs/rip_video-commands.log
-  youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -x --audio-format mp3 -k $@ "$url"
+  echo "$url" >>$HOME/logs/rip_audio-links.log
+  echo "youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -f bestaudio -x --audio-format mp3 -k $@ '$url'" >>$HOME/logs/rip_audio-commands.log
+  youtube-dl -A --title --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -f bestaudio -x --audio-format mp3 -k $@ "$url"
 }
 
-download_video_from_url "$@"
+download_audio_from_url "$@"
 
 #
 # Usage: youtube-dl [options] url [url...]

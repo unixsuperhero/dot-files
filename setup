@@ -23,7 +23,7 @@ function backup_file()
 function dot_install()
 {
   bkup="backup/$stamp"
-  for dots in bash/home list/home vim pure-zsh/home; do
+  for dots in bash/home list/home vim pure-zsh/home fish; do
     for fil in $dots/*; do
       backup_file ".$(basename $fil)"
       ln -s "$(pwd)/$fil" "$HOME/.$(basename $fil)"
@@ -42,7 +42,7 @@ function dot_install()
     git clone git@github.com:hashrocket/dotmatrix.git hashrocket/dotmatrix
   fi
 
-  for hr_file in .{bashrc,hashrc,vim,vimrc}
+  for hr_file in .{bashrc,hashrc,vim,vimrc,vimbundle}
   do
     backup_file "$hr_file"
     ln -nfs "$HOME/hashrocket/dotmatrix/$hr_file" $HOME/

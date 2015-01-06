@@ -9,13 +9,13 @@ function _rails_command
   end
 end
 
-function _rake_command
-  if test -e "bin/rake"
-    bin/rake $argv
-  else
-    rake $argv
-  end
-end
+#function _rake_command
+#  if test -e "bin/rake"
+#    bin/rake $argv
+#  else
+#    rake $argv
+#  end
+#end
 
 alias rails='_rails_command'
 

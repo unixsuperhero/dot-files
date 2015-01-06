@@ -85,7 +85,7 @@ end
 
 function myips
   echo
-  for a in (ifconfig -l)
+  for a in (ifconfig -l | grep -o '[^[:space:]]+')
     set ips (ifconfig "$a" | egrep -o '[0-9]{1,3}(\.[0-9]{1,3}){3}')
     if test (count $ips) -gt 0
     then

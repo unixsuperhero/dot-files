@@ -1,4 +1,4 @@
-#!/Users/MacbookPro/.rbenv/versions/2.0.0-p247/bin/ruby
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
 
 class FindMirror
   class << self
