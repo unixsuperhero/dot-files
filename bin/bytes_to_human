@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cat <<CODE | ruby
+  %w{b kb mb gb}.map.with_index{|u,i|
+    [
+      "%#{"${1}".length + 8}.3f" % [${1} / (1024 ** i).to_f],
+      u
+    ]
+  }.tap{|results|
+    puts results.map{|r| r.join(' ') }
+    puts
+    puts results.find{|a,b| a.to_f < 1024 }.join(' ')
+  }
+CODE
+
