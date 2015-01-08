@@ -232,3 +232,4 @@ alias prunner="pomo_runner"
 alias plisten="pomo_listener"
 alias plistener="pomo_listener"
 
+alias bc="bc -l"
