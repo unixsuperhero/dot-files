@@ -1,0 +1,67 @@
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+require 'pp'
+
+class LineLengths
+  def self.run(path=ARGV[0])
+    #LineLengths.new(path).length_with_line_counts
+    #LineLengths.new(path).longest_line
+    #Hash[LineLengths.new(path).lengths.sort]
+    LineLengths.new(path).threshold 60
+  end
+
+  attr_accessor :file
+
+  def initialize(file=ARGV[0])
+    @file = file
+  end
+
+  def data
+    @data ||= IO.read(file)
+  end
+
+  def lines
+    @lines ||= data.lines.map(&:chomp)
+  end
+
+  def by_length
+    @lengths ||= lines.inject({}) do |h,line|
+      h.merge(line.length => h.fetch(line.length, []) << line)
+    end
+  end
+
+  def threshold thresh
+    Hash[
+      by_length.keys.group_by{|k|
+        k <= thresh &&
+          'within_threshold' ||
+          'beyond_threshold'
+      }.map{|k,v|
+        [k, v.count]
+      }
+    ]
+  end
+
+  def length_with_line_counts
+    @length_with_line_counts ||= lengths.inject({}) do |h,(k,v)|
+      h.merge(k => v.count)
+    end
+  end
+
+  def longest_line
+    @longest_line ||= lines.max{|l| l.length }.length
+  end
+end
+
+pp LineLengths.run('doc/josh/connect.md')
+
+__END__
+{:path=>"doc/josh/connect.md",
+ :one=>nil,
+ :zero=>"doc/josh/connect.md",
+ :args=>["doc/josh/connect.md"]}
+{}
+{:path=>"doc/josh/connect.md", :one=>nil, :zero=>nil, :args=>[]}
+{:path=>"doc/josh/connect.md", :zero=>nil, :args=>[]}
+
+

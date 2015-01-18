@@ -1,0 +1,51 @@
+#!/bin/bash
+
+debug=${2:-0}
+
+m=$(( 60 ))
+m5=$(( 5 * $m ))
+m15=$(( $m5 * 3 ))
+
+msg=${1:-text dad about borrowing money}
+
+echo "MESSAGE: $msg"
+say "$msg"
+
+sleep=$m15
+test $debug -eq 1 && sleep=15
+
+echo; echo "$msg"; echo "sleep => $sleep"
+
+for a in 1 2 3 4
+do
+  echo "#${a} @ 15 min."
+  sleep $sleep
+  say "$msg"
+done
+
+sleep=$m5
+test $debug -eq 1 && sleep=5
+
+echo; echo "$msg"; echo "sleep => $sleep"
+
+for a in 1 2 3 4 5 6 7 8 9 10
+do
+  echo "#${a} @ 5 min."
+  sleep $sleep
+  say "$msg"
+done
+
+sleep=$m
+test $debug -eq 1 && sleep=1
+
+echo; echo "$msg"; echo "sleep => $sleep"
+
+a=0
+while true
+do
+  a=$(( $a + 1 ))
+  echo "#${a} @ 1 min."
+  sleep $sleep
+  say "$msg"
+done
+

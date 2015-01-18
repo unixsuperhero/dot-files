@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir -pv $HOME/logs
+
+(
+  echo -n "$(date): "
+  echo "$@"
+) | tee -a /Users/macbookpro/logs/event_timeline.log
+

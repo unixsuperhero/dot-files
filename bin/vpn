@@ -1,0 +1,42 @@
+#!/bin/bash
+
+function log_vpn() {
+  cd $HOME/lists/vpn
+
+  case $1 in
+    (k|ko|kor|kore|korea)
+      local c="korea";;
+    (j|ja|jp|jap|japa|japan)
+      local c="japan";;
+    (u|us|usa|a|am|ame|amer|ameri|america)
+      local c="usa";;
+    ('')
+      local c="all";;
+    (*)
+      local c="${1}";;
+  esac
+
+  echo
+  echo "------${c//?/-}-"
+  echo " c => ${c} "
+  echo "------${c//?/-}-"
+  echo
+
+  if grep "$(pbpaste)" all &>/dev/null
+  then
+    echo "FOUND INSIDE vpn/all"
+    ping -c 3 "$(pbpaste)" && echo "good ping ^_^" || echo "bad ping -_-'"
+    echo "$(pbpaste)" | tee -a $c all
+    cat $c | sort -nuo $c
+    cat all | sort -nuo all
+  else
+    echo "_NOT_ FOUND INSIDE vpn/all"
+    ping -c 3 "$(pbpaste)" && echo "good ping ^_^" || echo "bad ping -_-'"
+    echo "$(pbpaste)" | tee -a $c all
+    cat $c | sort -nuo $c
+    cat all | sort -nuo all
+  fi
+}
+
+log_vpn $@
+

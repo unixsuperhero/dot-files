@@ -165,6 +165,9 @@ au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
 au BufNewFile,BufRead,BufReadPost */lists/hon set wrap
 au Filetype */lists/* runtime! ~/.vim/syntax/lists.vim
 
+  " run firefox sandbox in the bg ------------------------------------
+au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/* nmap ,f :!test_listener 'bin/testff'<cr><cr>
+
   " Go back to the position the cursor
   " was on the last time this file was
   " edited
