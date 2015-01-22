@@ -40,6 +40,8 @@
     pullff = pull --ff-only
     r = !git l -20
     ra = !git r --all
+    root = rev-parse --show-toplevel
+    cdup = rev-parse --show-cdup
     st = status
 [push]
 	default = tracking

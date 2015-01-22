@@ -1,0 +1,14 @@
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+ored,ogreen,oblue = ARGV.map(&:to_i)
+
+r = ored << 16
+g = ogreen << 8
+b = oblue
+rgb = r + g + b
+
+pad = ''
+pad = '0' if ored < 16
+
+puts "##{pad}#{rgb.to_s(16)}"
+

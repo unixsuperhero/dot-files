@@ -1,4 +1,12 @@
 
+function cdup
+  cd (git rev-parse --show-cdup)
+end
+
+function gitroot
+  cd (git rev-parse --show-toplevel)
+end
+
 function wifi_fix
   for a in "off" "on"
     networksetup -setairportpower en1 "$a"
