@@ -2,10 +2,14 @@ function __fish_list_current_token --description 'List contents of token under t
 	set val (eval echo (commandline -t))
 	printf "\n"
 	if test -d $val
+    echo "Listing '$val'..."
+    echo
 		ls $val
 	else
 		set dir (dirname $val)
 		if test $dir != . -a -d $dir
+      echo "Listing '$dir'..."
+      echo
 			ls $dir
 		else
 			ls
