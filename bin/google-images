@@ -1,0 +1,30 @@
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+require 'uri'
+
+q = ARGV.join(' ')
+encoded_q = URI.encode(q)
+
+`open "http://google.com/search?tbm=isch&q=#{encoded_q}"`
+
+__END__
+
+Google Image Search URL:
+https://www.google.com/search
+?  q      = utorrent+settings+window
+&  es_sm  = 119
+&  source = lnms
+&  tbm    = isch
+&  sa     = X
+&  ei     = zQvDVLj1BoinggSF_oDoAw
+&  ved    = 0CAkQ_AUoAg
+&  biw    = 720
+&  bih    = 694
+
+This is stuff i wrote/tested in vim while i was planning this:
+
+ruby -e 'puts URI.encode ARGV.join(" ")'
+ruby -e 'require "uri"; puts URI.encode ARGV.join(" ")'
+ruby -e 'require "uri"; puts URI.encode(ARGV.join(" "))' unobtrusive js
+unobtrusive%20js
+

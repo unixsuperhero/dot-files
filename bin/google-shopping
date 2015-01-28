@@ -1,0 +1,54 @@
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+require 'uri'
+
+q = ARGV.join(' ')
+encoded_q = URI.encode(q)
+
+`open "http://google.com/search?tbm=shop&q=#{encoded_q}"`
+
+__END__
+
+:w|!chmod +x %; % babymetal music video
+:w|!chmod +x %; % umaibo snacks
+:s/\([?&]\)\([^=]*\)\(=\)\([^?&]*\)/\r\1  \2        \3 \4/g|.,/SHOPPING_URL/s/\%11v\s*//|.,/SHOPPING_URL/g/\<tbm\>/norm 0f=wve"sy:2,/__END__/s/tbm=\zs[^&]*/s/
+:s/\([?&]\)\([^=]*\)\(=\)\([^?&]*\)/\r\1  \2        \3 \4/g|.,/SHOPPING_URL/s/\%11v\s*//|.,/SHOPPING_URL/g/\<tbm\>/norm 0f=w"sye:2,/__END__/s/tbm=\zs\w\w*/s/
+:s/\([?&]\)\([^=]*\)\(=\)\([^?&]*\)/\r\1  \2        \3 \4/g|.,/SHOPPING_URL/s/\%11v\s*//|.,/SHOPPING_URL/g/\<tbm\>/norm 0f=w"sye8G0f=lve"sp
+
+SHOPPING_URL
+  https://www.google.com/search
+?  q      = babymetal+music+video
+&  tbm    = shop
+&  source = lnms
+&  sa     = X
+&  ei     = _xDDVO-dM4HnsASOgIGYDw
+&  ved    = 0CAsQ_AUoBA
+
+Google Video Search URL:
+  https://www.google.com/search
+?  q      = utorrent+image+test
+&  tbm    = vid
+&  source = lnms
+&  sa     = X
+&  ei     = DQ7DVNJGy7yCBJzYg8AL
+&  ved    = 0CAkQ_AUoAg
+
+Google Image Search URL:
+https://www.google.com/search
+?  q      = utorrent+settings+window
+&  es_sm  = 119
+&  source = lnms
+&  tbm    = isch
+&  sa     = X
+&  ei     = zQvDVLj1BoinggSF_oDoAw
+&  ved    = 0CAkQ_AUoAg
+&  biw    = 720
+&  bih    = 694
+
+This is stuff i wrote/tested in vim while i was planning this:
+
+ruby -e 'puts URI.encode ARGV.join(" ")'
+ruby -e 'require "uri"; puts URI.encode ARGV.join(" ")'
+ruby -e 'require "uri"; puts URI.encode(ARGV.join(" "))' unobtrusive js
+unobtrusive%20js
+
