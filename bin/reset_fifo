@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function reset_fifo() {
+  [ -a $1 ] && echo "removing $1" && rm -v "$1"
+  if [ ! -a $1 ]; then
+    mkdir -pv "$(dirname "$1")"
+    mkfifo "$1"
+  fi
+}
+
+reset_fifo $1
+

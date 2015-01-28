@@ -1,10 +1,30 @@
 #!/bin/bash
 
+#function clear_fifo() {
+#  [ -p $1 ] && echo "removing $1" && rm -v "$1"
+#  if [ ! -p $1 ]; then
+#    mkdir -pv "$(dirname "$1")"
+#    mkfifo "$1"
+#  fi
+#}
+
+function watch_for_commands() {
+  while true
+  do
+    cmd="$(cat ~/.pomos/pomo_commands)"
+    echo "$cmd"
+    bash -c "$cmd"
+  done
+}
+
 function start_listener() {
-  if [ ! -p ~/.pomos/pomo_commands ]; then
-    mkdir -pv ~/.pomos
-    mkfifo ~/.pomos/pomo_commands
-  fi
+  #if [ ! -p ~/.pomos/pomo_commands ]; then
+  #  mkdir -pv ~/.pomos
+  #  mkfifo ~/.pomos/pomo_commands
+  #fi
+
+  #clear_fifo ~/.pomos/pomo_commands
+  reset_fifo ~/.pomos/pomo_commands
 
   dir="${1:-beautified}"
 
@@ -13,20 +33,28 @@ function start_listener() {
   echo
 
   tmux ls
-  if [[ $? -eq 0 ]]; then
+  tmux_running=$?
+
+  if [[ $tmux_running -eq 0 ]]; then
     echo "$? == 0"
     echo 'echo tmux a >~/.pomos/pomo_runner' >~/.pomos/pomo_commands &
+
+    watch_for_commands
   else
     echo "$? > 0"
-    echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd;cd $dir;clear' \; split-window \; send-keys 'cd;cd $dir;clear;test_listener' \; split-window \; send-keys 'cd;cd $dir;clear' \; split-window \; send-keys 'pomo run' \; select-layout '9d01,204x44,0,0[204x32,0,0,0,204x11,0,33{88x11,0,33,1,87x11,89,33,2,27x11,177,33,3}]' " >~/.pomos/pomo_commands &
-  fi
+    case "$1" in
+      (firefox|ff)
+        dir=$HOME/beautified/../browser-extensions/firefox
+        echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd; cd $dir; clear' \; split-window \; send-keys 'cd; cd $dir; clear; test_listener' \; split-window \; send-keys 'cd; cd $HOME/beautified; clearss' \; select-layout '82d7,204x45,0,0[204x34,0,0,0,204x10,0,35{101x10,0,35,1,102x10,102,35,2}]' " >~/.pomos/pomo_commands &
+        ;;
+      (beautified|bea)
+        dir=$HOME/beautified
+        echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd; cd $dir; clear' \; split-window \; send-keys 'cd; cd $dir; clear; test_listener' \; split-window \; send-keys 'cd; cd $dir; clear' \; select-layout '82d7,204x45,0,0[204x34,0,0,0,204x10,0,35{101x10,0,35,1,102x10,102,35,2}]' " >~/.pomos/pomo_commands &
+        ;;
+    esac
 
-  while true
-  do
-    cmd="$(cat ~/.pomos/pomo_commands)"
-    echo "$cmd"
-    bash -c "$cmd"
-  done
+    watch_for_commands
+  fi
 }
 
 case $1 in

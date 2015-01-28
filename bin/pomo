@@ -18,14 +18,14 @@ function attach_runner() {
   is_attached && echo 'tmux is already attached' && return 1
   echo tmux a >~/.pomos/pomo_runner
 }
-
-function clear_fifo() {
-  [ -p $1 ] && echo "removing $1" && rm -v "$1"
-  if [ ! -p $1 ]; then
-    mkdir -pv "$(dirname "$1")"
-    mkfifo "$1"
-  fi
-}
+#
+#function reset_fifo() {
+#  [ -p $1 ] && echo "removing $1" && rm -v "$1"
+#  if [ ! -p $1 ]; then
+#    mkdir -pv "$(dirname "$1")"
+#    mkfifo "$1"
+#  fi
+#}
 
 pomodoro () {
   for min in $(seq ${1:-25} 1)
@@ -59,8 +59,8 @@ case $1 in
   ;;
 
   (clear)
-    clear_fifo ~/.pomos/pomo_commands
-    clear_fifo ~/.pomos/pomo_runner
+    reset_fifo ~/.pomos/pomo_commands
+    reset_fifo ~/.pomos/pomo_runner
     ;;
 
   (run)

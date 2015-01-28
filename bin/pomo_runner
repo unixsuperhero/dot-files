@@ -1,10 +1,21 @@
 #!/bin/bash
 
+#function clear_fifo() {
+#  [ -p $1 ] && echo "removing $1" && rm -v "$1"
+#  if [ ! -p $1 ]; then
+#    mkdir -pv "$(dirname "$1")"
+#    mkfifo "$1"
+#  fi
+#}
+
 function start_listener() {
-  if [ ! -p ~/.pomos/pomo_runner ]; then
-    mkdir -pv ~/.pomos
-    mkfifo ~/.pomos/pomo_runner
-  fi
+  #if [ ! -p ~/.pomos/pomo_runner ]; then
+  #  mkdir -pv ~/.pomos
+  #  mkfifo ~/.pomos/pomo_runner
+  #fi
+
+  #clear_fifo ~/.pomos/pomo_runner
+  reset_fifo ~/.pomos/pomo_runner
 
   echo
   echo "Pomodoro Runner Started..."
