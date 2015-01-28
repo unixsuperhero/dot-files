@@ -113,14 +113,14 @@ alias gsd='git svn dcommit'
 # Will return the current branch name
 # Usage example: git pull origin (current_branch)
 #
-function current_branch
-  set ref (git symbolic-ref HEAD 2> /dev/null); or set ref (git rev-parse --short HEAD 2> /dev/null); or return
+function current_branch --description="in: git.fish"
+  set -x ref (git symbolic-ref HEAD 2> /dev/null); or set ref (git rev-parse --short HEAD 2> /dev/null); or return
   echo $ref | sed 's/^refs\/heads\///'
 end
 
 
-function current_repository
-  set ref (git symbolic-ref HEAD 2> /dev/null); or set ref (git rev-parse --short HEAD 2> /dev/null); or echo (git remote -v | cut -d':' -f 2)
+function current_repository --description="in: git.fish"
+  set -x ref (git symbolic-ref HEAD 2> /dev/null); or set ref (git rev-parse --short HEAD 2> /dev/null); or echo (git remote -v | cut -d':'f 2)
 end
 
 # these aliases take advantage of the previous function
@@ -134,7 +134,7 @@ alias ggpnp='git pull origin (current_branch); and git push origin (current_bran
 #compdef ggpnp=git
 
 # Pretty log messages
-function _git_log_prettily
+function _git_log_prettily --description="in: git.fish"
   if test -n $1
     git log --pretty=$1
   end
@@ -148,7 +148,7 @@ alias glp="_git_log_prettily"
 # When you want to go back to work, just unwip it
 #
 # This function return a warning if the current branch is a wip
-function work_in_progress
+function work_in_progress --description="in: git.fish"
   git log -n 1 2>/dev/null | grep -q -c "\-\-wip\-\-"
   if $status == 0 then
     echo "WIP!!"
@@ -192,13 +192,27 @@ alias gignored='git ls-files -v | grep "^[[:lower:]]"'
   alias gra="git rebase --abort"
   alias grs="git rebase --skip"
 
-  function grc
-    git --no-pager grep -Ein '^[<>=]{7}([^<>=]|$)'; and return -1
+  function testgrc --description="in: git.fish"
+    echo
+    echo before git grep call
+    echo
+
+    git --no-pager grep -Eil -e '^[<]{7}([^<]|$)' --and -e '^[=]{7}([^=]|$)' --and -e '^[>]{7}([^>]|$)'; and return -1
+    echo git did not find any matches, which is a GOOD thing
+    echo
+    echo the following commands will be ran if no conflict lines were found
+    echo ------------------------------------------------------------------
+    echo git aa
+    echo git rebase --continue
+  end
+
+  function grc --description="in: git.fish"
+    git --no-pager grep -Eil -e '^[<]{7}([^<]|$)' --and -e '^[=]{7}([^=]|$)' --and -e '^[>]{7}([^>]|$)' --all-match; and return -1
     git aa
     git rebase --continue
   end
 
-  function glodc
+  function glodc --description="in: git.fish"
     if test (count $argv) -gt 0
       glod -9 $argv | cat
     else
@@ -206,7 +220,7 @@ alias gignored='git ls-files -v | grep "^[[:lower:]]"'
     end
   end
 
-  function glogc
+  function glogc --description="in: git.fish"
     if test (count $argv) -gt 0
       glog -9 $argv | cat
     else
@@ -214,37 +228,88 @@ alias gignored='git ls-files -v | grep "^[[:lower:]]"'
     end
   end
 
-  function glmerge
+  function glmerge --description="in: git.fish"
     glr head...$1 | grep '^>'
     glr head...$1 | grep '^<'
   end
 
-  function glrebase
+  function glrebase --description="in: git.fish"
     glr head...$1 | grep '^<'
     glr head...$1 | grep '^>'
   end
 
 # functions
 
-function dev_and_stage
-  set ref (git symbolic-ref HEAD 2> /dev/null); or set ref (git rev-parse --short HEAD 2> /dev/null); or return
-  set branch_root (echo $ref | sed 's/.*\///')
-  set dev_branch "dev/$branch_root"
+function qa1 --description="in: git.fish"
+  set -x ref (git symbolic-ref HEAD 2> /dev/null); or set ref (git rev-parse --short HEAD 2> /dev/null); or return
+  set -x current_branch (echo $ref | sed 's/refs.heads.//')
+  set -x branch_root (echo $ref | sed 's/.*\///')
+  set -x dev_branch "dev/$branch_root"
   git branch -D "$dev_branch"
   git checkout -b "$dev_branch"
   git checkout development
   git pull --rebase origin development
   git checkout "$dev_branch"
-  git rebase development
+  if git rebase development
+    echo "SUCCESSFUL: run `qa2`"
+    echo "SUCCESSFUL: run `qa2`"
+    echo "SUCCESSFUL: run `qa2`"
+  else
+    echo "set ref '$ref'" >dev_and_stage
+    echo "set current_branch '$current_branch'" >>dev_and_stage
+    echo "set branch_root '$branch_root'" >>dev_and_stage
+    echo "set dev_branch '$dev_branch'" >>dev_and_stage
+  end
+end
+
+function qa2 --description="in: git.fish"
+  test -f dev_and_stage; and source dev_and_stage
   git checkout development
   git merge "$dev_branch"
   git push origin development
   git push staging head:master
   heroku run rake db:migrate -a beautified-staging
   git checkout "$current_branch"
+  test -f dev_and_stage; and rm dev_and_stage
 end
 
-  function cleanup_branches
+function dev_and_stage --description="in: git.fish"
+  set -x skip 1
+  if test -f dev_and_stage
+    source dev_and_stage
+    set -x skip 0
+  else
+    set -x ref (git symbolic-ref HEAD 2> /dev/null); or set ref (git rev-parse --short HEAD 2> /dev/null); or return
+    set -x current_branch (echo $ref | sed 's/refs.heads.//')
+    set -x branch_root (echo $ref | sed 's/.*\///')
+    set -x dev_branch "dev/$branch_root"
+    git branch -D "$dev_branch"
+    git checkout -b "$dev_branch"
+    git checkout development
+    git pull --rebase origin development
+    git checkout "$dev_branch"
+    if git rebase development
+      set -x skip 0
+    else
+      echo "set ref '$ref'" >dev_and_stage
+      echo "set current_branch '$current_branch'" >>dev_and_stage
+      echo "set branch_root '$branch_root'" >>dev_and_stage
+      echo "set dev_branch '$dev_branch'" >>dev_and_stage
+    end
+  end
+
+  if test $skip -eq 0
+    git checkout development
+    git merge "$dev_branch"
+    git push origin development
+    git push staging head:master
+    heroku run rake db:migrate -a beautified-staging
+    git checkout "$current_branch"
+    test -f dev_and_stage; and rm -v dev_and_stage
+  end
+end
+
+  function cleanup_branches --description="in: git.fish"
     gco master
     gpr
     git branch | sed 's/..//' | grep -v master | while read branch
@@ -263,7 +328,7 @@ end
 
   ## Have a searchable/parsable list of the files that have changed
 
-  function gs
+  function gs --description="in: git.fish"
 
     if test -z $argv[1]
       git status -s | sed "s/...//;s/.* -> //" | sort -u

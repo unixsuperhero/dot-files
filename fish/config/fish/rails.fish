@@ -1,5 +1,5 @@
 
-function _rails_command
+function _rails_command --description="in: rails.fish"
   if test -e "script/rails"
     ruby script/rails $argv
   else if test -e "bin/rails"
@@ -9,7 +9,7 @@ function _rails_command
   end
 end
 
-#function _rake_command
+#function _rake_command --description="in: rails.fish"
 #  if test -e "bin/rake"
 #    bin/rake $argv
 #  else

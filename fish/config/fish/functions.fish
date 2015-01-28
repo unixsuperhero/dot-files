@@ -1,19 +1,19 @@
 
-function cdup
+function cdup --description="in: functions.fish"
   cd (git rev-parse --show-cdup)
 end
 
-function gitroot
+function gitroot --description="in: functions.fish"
   cd (git rev-parse --show-toplevel)
 end
 
-function wifi_fix
+function wifi_fix --description="in: functions.fish"
   for a in "off" "on"
     networksetup -setairportpower en1 "$a"
   end
 end
 
-function extract_mp3
+function extract_mp3 --description="in: functions.fish"
   if test -z $argv[1] -o test -z $argv[2]
     echo '2 params required.  (1) Original Video File (2) The Destination'
     return 1
@@ -21,21 +21,21 @@ function extract_mp3
   ffmpeg -i $argv[1] -vn -ar 44100 -ac 2 -ab 192k -f mp3 $argv[2]
 end
 
-function wget
+function wget --description="in: functions.fish"
   echo "wget $argv" >>$HOME/wget-downloads.log
   command wget "$argv"
 end
 
-function itunes
-  set opt $argv[1]
+function itunes --description="in: functions.fish"
+  set -x opt $argv[1]
   switch $argv[1]
     case launch play pause stop rewind resume quit
     case mute
-      set opt "set mute to true"
+      set -x opt "set mute to true"
     case unmute
-      set opt "set mute to false"
+      set -x opt "set mute to false"
     case next previous
-      set opt "$opt track"
+      set -x opt "$opt track"
     case '' -h --help
       echo "Usage: itunes <option>"
       echo "option:"
@@ -51,13 +51,13 @@ function itunes
   osascript -e "tell application \"iTunes\" to $opt"
 end
 
-function add_ssh_keys
+function add_ssh_keys --description="in: functions.fish"
   for a in $HOME/.ssh/*.pub
     ssh-add (echo $a | sed 's/.pub$//')
   end
 end
 
-function def
+function def --description="in: functions.fish"
   # in fish, alias creates functions
   #   alias gd="git diff"
   #
@@ -70,7 +70,7 @@ function def
   which -a $argv[1] 2>/dev/null
 end
 
-function ff
+function ff --description="in: functions.fish"
 # Name: Fuzzy Finder for Bash
 # Author: Joshua Toyota
 # Created At: 2012-06-14 11:25:00
@@ -83,18 +83,18 @@ function ff
   git ls-files "*"(echo $argv[1] | sed 's/./&*/g')
 end
 
-function vff
+function vff --description="in: functions.fish"
   vim (ff $argv[1])
 end
 
-function eman
+function eman --description="in: functions.fish"
   man $argv[1] | col -b | vim -
 end
 
-function myips
+function myips --description="in: functions.fish"
   echo
   for a in (ifconfig -l | grep -o '[^[:space:]]+')
-    set ips (ifconfig "$a" | egrep -o '[0-9]{1,3}(\.[0-9]{1,3}){3}')
+    set -x ips (ifconfig "$a" | egrep -o '[0-9]{1,3}(\.[0-9]{1,3}){3}')
     if test (count $ips) -gt 0
     then
       echo "$a"
@@ -110,11 +110,11 @@ function myips
   echo
 end
 
-function video_clip
+function video_clip --description="in: functions.fish"
   ffmpeg -i $argv[1] -ss $argv[2] -t $argv[3] $argv[4]
 end
 
-function video_concat
+function video_concat --description="in: functions.fish"
   echo >concat_files.txt
   for a in $argv
     echo "file '$a'" >>concat_files.txt
@@ -122,7 +122,7 @@ function video_concat
   ffmpeg -f concat -i concat_files.txt -c copy concat.mp4
 end
 
-function video_nosubs
+function video_nosubs --description="in: functions.fish"
   ffmpeg -i $argv[1] -vf "crop=iw:ih-80:0:0" temp_nosub.mp4;
   ffmpeg -i temp_nosub.mp4 -vf "pad=640:368:0:0" $argv[2]
   rm temp_nosub.mp4

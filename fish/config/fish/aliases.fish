@@ -1,4 +1,11 @@
 
+## -----------
+## NEW ALIASES
+## -----------
+
+alias efish="vim $HOME/.config/fish/{config,index}.fish"
+alias sfish="source $HOME/.config/fish/config.fish"
+
 # <<"NOTES" >/dev/null
 #   HOWTO: {Ignore,Skip,Bypass} an alias
 #   <<-"bash script"
