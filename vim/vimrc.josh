@@ -170,7 +170,7 @@ au BufNewFile,BufRead,BufReadPost */notes/**/*.md set tw=80
 
   " run firefox sandbox in the bg ------------------------------------
 " au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/* nmap ,f :!test_listener 'bin/testff'<cr><cr>
-au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/ff/* nmap ,f :!cd "$(git rev-parse --show-toplevel)"; test_listener 'bin/testff'<cr><cr>
+au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/ff/* nmap <buffer> ,f :!cd "$(git rev-parse --show-toplevel)"; test_listener 'bin/testff'<cr><cr>
 
   " Go back to the position the cursor
   " was on the last time this file was
