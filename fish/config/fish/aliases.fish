@@ -1,10 +1,15 @@
 
-## -----------
-## NEW ALIASES
-## -----------
+## -------------------------
+## NEW ALIASES: fish-related
+## -------------------------
 
 alias efish="vim $HOME/.config/fish/{config,index}.fish"
 alias sfish="source $HOME/.config/fish/config.fish"
+
+## Traversing the directory history (dirh)
+
+alias pd=prevd
+alias nd=nextd
 
 # <<"NOTES" >/dev/null
 #   HOWTO: {Ignore,Skip,Bypass} an alias
