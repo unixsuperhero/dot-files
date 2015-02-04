@@ -41,7 +41,14 @@ function nextd --description 'Move forward in the directory history'
                 # We consider it a success if we were able to do at least 1 step
                 # (low expectations are the key to happiness ;)
                 set code 0
+
+                if not count $dirnext >/dev/null
+                  # Set direction for 'cd -'
+                  set -g __fish_cd_direction prev
+                end
             else
+                # Set direction for 'cd -'
+                set -g __fish_cd_direction prev
                 break
             end
         end
@@ -50,11 +57,6 @@ function nextd --description 'Move forward in the directory history'
 	# Show history if needed
 	if test $show_hist = 1
 		dirh
-	end
-
-	# Set direction for 'cd -'
-	if test $code = 0 ^/dev/null
-		set -g __fish_cd_direction prev
 	end
 
 	# All done

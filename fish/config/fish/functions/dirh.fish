@@ -10,12 +10,7 @@ function dirh --description 'Print the current directory history (the back- and 
 
 	# Avoid set comment
 	set -l current (command pwd)
-	set -l separator "  "
-	set -l line_len (math (count $dirprev) + (echo $dirprev $current $dirnext | wc -m) )
-	if test $line_len -gt $COLUMNS
-		# Print one entry per line if history is long
-		set separator "\n"
-	end
+	set -l separator "\n"
 
 	for i in $dirprev
 		echo -n -e $i$separator

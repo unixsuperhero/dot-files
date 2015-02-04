@@ -30,7 +30,7 @@ function prevd --description 'Move back in the directory history'
                     continue
             end
         end
-	end
+    end
 
 	# Traverse history
 	set -l code 1
@@ -41,7 +41,14 @@ function prevd --description 'Move back in the directory history'
                 # We consider it a success if we were able to do at least 1 step
                 # (low expectations are the key to happiness ;)
                 set code 0
+
+                if not count $dirprev >/dev/null
+                  # Set direction for 'cd -'
+                  set -g __fish_cd_direction next
+                end
             else
+                # Set direction for 'cd -'
+                set -g __fish_cd_direction next
                 break
             end
         end
@@ -50,11 +57,6 @@ function prevd --description 'Move back in the directory history'
 	# Show history if needed
 	if test $show_hist = 1
 		dirh
-	end
-
-	# Set direction for 'cd -'
-	if test $code = 0 ^/dev/null
-		set -g __fish_cd_direction next
 	end
 
 	# All done
