@@ -23,6 +23,8 @@ alias sexports="source $HOME/.config/fish/exports.fish"
 
 ## Traversing the directory history (dirh)
 
+
+alias dh=dirh
 alias pd=prevd
 alias nd=nextd
 
