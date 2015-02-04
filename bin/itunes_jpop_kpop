@@ -1,0 +1,21 @@
+#!/bin/bash
+
+function add_to_playlists() {
+  cat <<OSASCRIPT | osascript
+    tell application "iTunes"
+      set asong to POSIX file "$1" as alias
+      add asong to playlist "all"
+      add asong to playlist "bone thugs"
+      add asong to playlist "jpop/kpop"
+    end tell
+OSASCRIPT
+
+  mkdir -pv added
+  mv -v "$1" added/
+  printf "move everything else? (default: n)> "
+  read x
+  echo "$x" | grep "y" && mv -v "${1%mp?}"* added/
+  return 0
+}
+
+add_to_playlists "$@"
