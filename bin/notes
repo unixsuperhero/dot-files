@@ -1,4 +1,82 @@
-#!/bin/bash
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+require 'pp'
+require 'shellwords'
+require 'fileutils'
+
+class Notes
+  def self.run(args)
+    Notes.new(args).execute
+  end
+
+  attr_accessor :args, :previous_dir, :notes_dir
+
+  def initialize(args)
+    @args = args
+    @previous_dir = Dir.pwd
+    @notes_dir = ENV['NOTES_DIR'] || [ ENV['HOME'], 'notes' ].join(?/)
+  end
+
+  def execute
+    cd_notes_dir
+    system vim_command
+    # ignore *.ignore.md files?
+    # encrypt any files that need encrypting
+    # auto-commit to the repo
+    cd_previous_dir
+  end
+
+  def cd_notes_dir
+    Dir.chdir @notes_dir
+  end
+
+  def expanded_args
+    @expanded_args ||= args.map do |arg|
+      next "%s.secure.md" % arg if File.file?('%s.secure.md' % arg)
+      next "%s.md" % arg if File.file?('%s.md' % arg)
+      next arg if File.directory?(arg)
+      #Fileutils.mkdir_p File.dirname(arg)
+      "%s.md" % arg
+    end
+  end
+
+  def vim_command
+    pp expanded_args: expanded_args,
+        escaped_args: expanded_args.dup.map(&Shellwords.method(:escape)),
+          shell_join: Shellwords.join(expanded_args.dup),
+        escaped_join: Shellwords.join(expanded_args.dup.map(&Shellwords.method(:escape)))
+
+    "vim %s" % Shellwords.join(expanded_args)
+  end
+
+  def cd_previous_dir
+    Dir.chdir @previous_dir
+  end
+
+  def cat?(file)
+    File.directory?(file)
+  end
+
+  def note?(file)
+    File.file?(sprintf('%s.md', file))
+  end
+end
+
+Notes.run(ARGV)
+
+__END__
+
+    # pp shellwords: Shellwords.shellwords(args),
+    #    shellsplit: Shellwords.shellsplit(args),
+    #         split: Shellwords.split(args),
+    #     shelljoin: Shellwords.shelljoin(args),
+    #          join: Shellwords.join(args),
+    #   shellescape: Shellwords.shellescape(args),
+    #        escape: Shellwords.escape(args)
+
+# ----------------------------------------------------------------------
+# BELOW HERE WAS THE ORIGINAL (stripped down, slightly modified) VERSION
+# ----------------------------------------------------------------------
 
 . $HOME/bin/bash.library
 . $HOME/bin/list.library
