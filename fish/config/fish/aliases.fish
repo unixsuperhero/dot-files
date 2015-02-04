@@ -6,6 +6,21 @@
 alias efish="vim $HOME/.config/fish/{config,index}.fish"
 alias sfish="source $HOME/.config/fish/config.fish"
 
+function gfish
+  egrep -rin $argv $HOME/.config/fish
+end
+
+function glfish
+  egrep -ril $argv $HOME/.config/fish
+end
+
+alias ealiases="vim $HOME/.config/fish/aliases.fish"
+alias saliases="source $HOME/.config/fish/aliases.fish"
+alias efunctions="vim $HOME/.config/fish/functions.fish"
+alias sfunctions="source $HOME/.config/fish/functions.fish"
+alias eexports="vim $HOME/.config/fish/exports.fish"
+alias sexports="source $HOME/.config/fish/exports.fish"
+
 ## Traversing the directory history (dirh)
 
 alias pd=prevd
@@ -127,7 +142,7 @@ alias nd=nextd
   ##------ pgrep & pkill ------
 
     alias pgrep="pgrep -ilf"
-    alias pkill="pkill -ilf"
+    #alias pkill="pkill -ilf"
 
   ##------ mail ------
 
