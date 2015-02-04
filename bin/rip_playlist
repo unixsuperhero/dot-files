@@ -1,14 +1,14 @@
 #!/bin/bash
 
-function download_video_from_url() {
+function download_playlist_from_url() {
   url="${1:-$(pbpaste)}"
   shift
-  echo "$url" >>$HOME/logs/rip_video-links.log
-  echo "youtube-dl --download-archive $HOME/downloaded.archive -A -i --title --write-thumbnail --write-description --write-info-json --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -f 18/22/37/38/mp4/worstvideo -x --audio-format mp3 -k --add-metadata --no-playlist $@ '$url'" >>$HOME/logs/rip_video-commands.log
-        youtube-dl --download-archive $HOME/downloaded.archive -A -i --title --write-thumbnail --write-description --write-info-json --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -f 18/22/37/38/mp4/worstvideo -x --audio-format mp3 -k --add-metadata --no-playlist $@ "$url"
+  echo "$url" >>$HOME/logs/rip_playlist-links.log
+  echo "youtube-dl --download-archive $HOME/downloaded.archive -A -i --title --write-thumbnail --write-description --write-info-json --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -f 18/22/37/38/mp4/worstvideo -x --audio-format mp3 -k --add-metadata $@ '$url'" >>$HOME/logs/rip_playlist-commands.log
+        youtube-dl --download-archive $HOME/downloaded.archive -A -i --title --write-thumbnail --write-description --write-info-json --no-mtime --write-sub --write-auto-sub --sub-lang en,ja,jp -f 18/22/37/38/mp4/worstvideo -x --audio-format mp3 -k --add-metadata $@ "$url"
 }
 
-download_video_from_url "$@"
+download_playlist_from_url "$@"
 
 # Usage: youtube-dl [OPTIONS] URL [URL...]
 # 
