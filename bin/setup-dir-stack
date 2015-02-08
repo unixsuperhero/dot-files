@@ -1,0 +1,24 @@
+#!/usr/local/bin/fish
+set -Ue dirprev
+set -Ue dirnext
+
+set -U stack dprev
+
+for b in ~/.config/fish ~/.config/fish/functions ~/dl/ripped_video ~/dl/anime ~/dl/wallpapers $HOME ~/repos ~/beautified ~/beautified/../browser-extensions/firefox
+  if test (pwd) = $b
+    set -U stack dnext
+    continue
+  end
+
+  if contains $b $$stack
+    continue
+  end
+
+  set -xU $stack $$stack $b
+end
+
+echo "set -x dirprev"
+echo "set -x dirprev $dprev"
+echo "set -x dirnext"
+echo "set -x dirnext $dnext"
+

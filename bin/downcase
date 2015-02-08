@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "$@" | tr 'A-Z' 'a-z'
+

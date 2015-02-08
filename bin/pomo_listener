@@ -45,11 +45,11 @@ function start_listener() {
     case "$1" in
       (firefox|ff)
         dir=$HOME/beautified/../browser-extensions/firefox
-        echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd; cd $dir; clear' \; split-window \; send-keys 'cd; cd $dir; clear; test_listener' \; split-window \; send-keys 'cd; cd $HOME/beautified; clearss' \; select-layout '82d7,204x45,0,0[204x34,0,0,0,204x10,0,35{101x10,0,35,1,102x10,102,35,2}]' " >~/.pomos/pomo_commands &
+        echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd; cd $dir; for a in (setup-dir-stack); eval \"\$a\"; end; clear' \; split-window \; send-keys 'cd; cd $dir; for a in (setup-dir-stack); eval \"\$a\"; end; clear; test_listener' \; split-window \; send-keys 'cd; cd $HOME/beautified; for a in (setup-dir-stack); eval \"\$a\"; end; clearss' \; select-layout '82d7,204x45,0,0[204x34,0,0,0,204x10,0,35{101x10,0,35,1,102x10,102,35,2}]' " >~/.pomos/pomo_commands &
         ;;
       (beautified|bea)
         dir=$HOME/beautified
-        echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd; cd $dir; clear' \; split-window \; send-keys 'cd; cd $dir; clear; test_listener' \; split-window \; send-keys 'cd; cd $dir; clear' \; select-layout '82d7,204x45,0,0[204x34,0,0,0,204x10,0,35{101x10,0,35,1,102x10,102,35,2}]' " >~/.pomos/pomo_commands &
+        echo "echo tmux >~/.pomos/pomo_runner; sleep 2; tmux send-keys 'cd; cd $dir; for a in (setup-dir-stack); eval \"\$a\"; end; clear' \; split-window \; send-keys 'cd; cd $dir; for a in (setup-dir-stack); eval \"\$a\"; end; clear; test_listener' \; split-window \; send-keys 'cd; cd $dir; for a in (setup-dir-stack); eval \"\$a\"; end; clear' \; select-layout '82d7,204x45,0,0[204x34,0,0,0,204x10,0,35{101x10,0,35,1,102x10,102,35,2}]' " >~/.pomos/pomo_commands &
         ;;
     esac
 
