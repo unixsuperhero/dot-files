@@ -7,17 +7,19 @@ set -x VIMRUNTIME /usr/share/vim/vim73
 
 ## -----------
 
-set -xU my_home "/Users/jearsh"
+set -xU home "$HOME"
 
 ## Paths: ~/lists and ~/.listrc
-# set -U -x l "$my_home/lists"  # export l="$HOME/lists"
-set -xU list_dir "$my_home/lists"  # export list_dir="$HOME/lists"
-set -xU lists_dir "$my_home/lists"  # export lists_dir="$HOME/lists"
-set -xU mylistrc "$my_home/.listrc"  # export mylistrc="$HOME/.listrc"
+# set -U -x l "$home/lists"  # export l="$HOME/lists"
+set -xU list_dir "$home/lists"  # export list_dir="$HOME/lists"
+set -xU lists_dir "$home/lists"  # export lists_dir="$HOME/lists"
+set -xU mylistrc "$home/.listrc"  # export mylistrc="$HOME/.listrc"
+
+set -xU notes_dir "$home/notes"  # export lists_dir="$HOME/lists"
 
 ## Paths: ~/bin
-set -xU bin "$my_home/bin"  # export bin="$HOME/bin"
-# set -U -x mybin "$my_home/bin"  # export mybin="$HOME/bin"
+set -xU bin "$home/bin"  # export bin="$HOME/bin"
+# set -U -x mybin "$home/bin"  # export mybin="$HOME/bin"
 
 ## s3 / s3sync env(s)
 # set -U -x AWS_ACCESS_KEY_ID "1JGCQN7DF0SFABE4DBG2"

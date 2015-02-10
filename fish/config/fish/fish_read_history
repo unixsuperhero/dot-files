@@ -2,3 +2,7 @@
    when: 1423085463
 - cmd: prev
    when: 1423085483
+- cmd: ./bin
+   when: 1423266834
+   paths:
+    - ./bin
