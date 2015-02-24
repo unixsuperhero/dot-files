@@ -352,3 +352,117 @@ end
     #git status | sed -n 's/.*: *//p' | grep "$1" | sort -u
   end
 
+## COMPLETIONS
+
+function __fish_git_branches
+  command git branch --no-color -a ^/dev/null | sgrep -v ' -> ' | sed -e 's/^..//' -e 's/^remotes\///'
+end
+
+function __fish_git_tags
+  command git tag
+end
+
+function __fish_git_heads
+  __fish_git_branches
+  __fish_git_tags
+end
+
+function __fish_git_remotes
+  command git remote
+end
+
+function __fish_git_modified_files
+    command git status -s | grep -e "^ M" | sed "s/^ M //"
+end
+
+function __fish_git_ranges
+  set -l from (commandline -ot | perl -ne 'if (index($_, "..") > 0) { my @parts = split(/\.\./); print $parts[0]; }')
+  if test -z "$from"
+    __fish_git_branches
+    return 0
+  end
+
+  set -l to (commandline -ot | perl -ne 'if (index($_, "..") > 0) { my @parts = split(/\.\./); print $parts[1]; }')
+  for from_ref in (__fish_git_heads | sgrep -e "$from")
+    for to_ref in (__fish_git_heads | sgrep -e "$to")
+      printf "%s..%s\n" $from_ref $to_ref
+    end
+  end
+end
+
+function __fish_git_needs_command
+  set cmd (commandline -opc)
+  if [ (count $cmd) -eq 1 -a $cmd[1] = 'git' ]
+    return 0
+  end
+  return 1
+end
+
+function __fish_git_using_command
+  set cmd (commandline -opc)
+  if [ (count $cmd) -gt 1 ]
+    if [ $argv[1] = $cmd[2] ]
+      return 0
+    end
+
+    # aliased command
+    set -l aliased (command git config --get "alias.$cmd[2]" ^ /dev/null | sed 's/ .*$//')
+    if [ $argv[1] = "$aliased" ]
+      return 0
+    end
+  end
+  return 1
+end
+
+
+### status
+for a in gst gs gsf gss
+  complete -f -c $a -a '(gs)' -d 'Show the working tree status'
+  complete -f -c $a -s s -l short -d 'Give the output in the short-format'
+  complete -f -c $a -s b -l branch -d 'Show the branch and tracking info even in short-format'
+  complete -f -c $a -l porcelain -d 'Give the output in a stable, easy-to-parse format'
+  complete -f -c $a -s z -d 'Terminate entries with null character'
+  complete -f -c $a -s u -l untracked-files -x -a 'no normal all' -d 'The untracked files handling mode'
+  complete -f -c $a -l ignore-submodules -x -a 'none untracked dirty all' -d 'Ignore changes to submodules'
+end
+
+### diff
+for a in gd gdc
+  complete -c $a -a '(__fish_git_ranges)' -d 'Branches'
+  complete -c $a -a '(gs)' -d 'Modified files'
+  complete -c $a -l cached -d 'Show diff of changes in the index'
+end
+
+### checkout
+for a in gco
+  complete -f -c $a -n '__fish_git_using_command checkout'  -a '(__fish_git_branches)' --description 'Branch'
+  complete -f -c $a -n '__fish_git_using_command checkout'  -a '(__fish_git_tags)' --description 'Tag'
+  complete -f -c $a -n '__fish_git_using_command checkout' -s b -d 'Create a new branch'
+  complete -f -c $a -n '__fish_git_using_command checkout' -s t -l track -d 'Track a new branch'
+end
+
+for a in gpr
+  complete -f -c $a -a '(git remote)' -d 'Remote alias'
+  complete -f -c $a -a '(__fish_git_branches)' -d 'Branch'
+end
+
+for a in glod glodd glog glogg glodc glogc
+  complete -c $a -a '(__fish_git_heads) (__fish_git_ranges)' -d 'Branch'
+end
+
+for a in gp
+  complete -f -c $a -a '(git remote)' -d 'Remote alias'
+  complete -f -c $a -a '(__fish_git_branches)' -d 'Branch'
+  complete -f -c $a -l all -d 'Push all refs under refs/heads/'
+  complete -f -c $a -l prune -d "Remove remote branches that don't have a local counterpart"
+  complete -f -c $a -l mirror -d 'Push all refs under refs/'
+  complete -f -c $a -l delete -d 'Delete all listed refs from the remote repository'
+  complete -f -c $a -l tags -d 'Push all refs under refs/tags'
+  complete -f -c $a -s n -l dry-run -d 'Do everything except actually send the updates'
+  complete -f -c $a -l porcelain -d 'Produce machine-readable output'
+  complete -f -c $a -s f -l force -d 'Force update of remote refs'
+  complete -f -c $a -s u -l set-upstream -d 'Add upstream (tracking) reference'
+  complete -f -c $a -s q -l quiet -d 'Be quiet'
+  complete -f -c $a -s v -l verbose -d 'Be verbose'
+  complete -f -c $a -l progress -d 'Force progress status'
+end

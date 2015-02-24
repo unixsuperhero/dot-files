@@ -1,0 +1,90 @@
+*.md
+*.min.js
+*.min.scss
+*.svg
+
+###---------------------------------------------###
+### Specific files with lines >= 204 characters ###
+###---------------------------------------------###
+
+# app/assets/fonts/slick.svg
+# app/assets/images/icons/social-facebook-white.svg
+# app/assets/images/icons/social-google-plus-white.svg
+# app/assets/images/icons/social-linkedin-white.svg
+# app/assets/images/icons/social-twitter-white.svg
+# app/assets/javascripts/bootstrap-select.min.js
+# app/assets/javascripts/css-browser-selector.min.js
+# app/assets/javascripts/jquery-ui-1.10.0.custom.min.js
+# app/assets/javascripts/jquery.color-2.1.1.min.js
+# app/assets/javascripts/jquery.placeholder.min.js
+# app/assets/javascripts/jquery.scrollTo.min.js
+# app/assets/javascripts/modernizr-2.6.2-respond-1.1.0.min.js
+# app/assets/javascripts/slick.min.js
+# app/assets/stylesheets/_bootstrap-select.min.scss
+# app/assets/stylesheets/_bootstrap.min.scss
+# app/assets/stylesheets/fonts.css.scss
+# app/assets/stylesheets/main.css.scss.erb
+# app/assets/stylesheets/partner_style.css
+# app/controllers/api/v1/appointments_controller.rb
+# app/controllers/api/v2/appointments_controller.rb
+# app/controllers/twilio_controller.rb
+# app/controllers/vendor/v1/appointments_controller.rb
+# app/controllers/vendor/v1/bookings_controller.rb
+# app/mailers/booking_mailer.rb
+# app/views/api/v1/docs/index.html.md
+# app/views/api/v2/docs/index.html.md
+# app/views/api/v2/locations/_location.json.jbuilder
+# app/views/booking_mailer/auto_decline_notification.html.erb
+# app/views/booking_mailer/auto_decline_notification.txt.erb
+# app/views/booking_mailer/awaiting_confirmation.html.erb
+# app/views/booking_mailer/customer_confirmation.html.erb
+# app/views/booking_mailer/customer_confirmation.text.erb
+# app/views/booking_mailer/first_booking.html.erb
+# app/views/booking_mailer/first_booking.text.erb
+# app/views/booking_mailer/location_confirmation.html.erb
+# app/views/booking_mailer/location_confirmation.text.erb
+# app/views/gift_card_mailer/recipient_email.html.erb
+# app/views/gift_card_mailer/recipient_email.text.erb
+# app/views/devise/sessions/new.html.erb
+# app/views/home/about.html.erb
+# app/views/home/faq.html.erb
+# app/views/home/join.html.erb
+# app/views/home/index.html.erb
+# app/views/home/privacy.html.erb
+# app/views/invite_request_mailer/confirmation.html.erb
+# app/views/layouts/appointments.html.erb
+# app/views/home/terms.html.erb
+# app/views/layouts/mailer.html.erb
+# app/views/partners/terms.html.haml
+# app/views/user_mailer/sign_up.html.erb
+# app/views/user_mailer/sign_up.text.erb
+# app/views/user_mailer/sign_up_with_user_invite_code.html.erb
+# app/views/user_mailer/sign_up_with_user_invite_code.text.erb
+# app/views/vendor/v1/appointments/details.html.erb
+# app/views/vendor/v1/appointments/new.html.erb
+# app/views/vendor/v1/appointments/pending.html.erb
+# app/views/vendor/v1/invoices/index.html.erb
+# app/views/vendor/v1/merchants/edit.html.erb
+# app/views/vendor/v1/settings/index.html.erb
+# config/application.rb
+# config/locales/devise.en.yml
+# db/editors_scratchpad.csv
+# db/locations.csv
+# doc/auto_api_doc.md
+# db/seeds.rb
+# doc/cURL.md
+# lib/autosync_analyzer.rb
+# lib/booking_service.rb
+# lib/push_notification.rb
+# lib/snippet.rb
+# lib/tasks/database.rake
+# lib/tasks/maintenance.rake
+# public/assets/stylesheets/errors.css
+# spec/controllers/api/v1/transactions_controller_spec.rb
+# public/v2-updates.html
+# spec/controllers/api/v2/transactions_controller_spec.rb
+# spec/controllers/api/v2/offers_controller_spec.rb
+# spec/controllers/autosync/update_controller_spec.rb
+# spec/factories/balanced_debits.rb
+# spec/fixtures/coin_csv/coin_template.csv
+# spec/lib/push_notification_spec.rb

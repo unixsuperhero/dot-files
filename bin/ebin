@@ -1,0 +1,40 @@
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+require 'pp'
+
+class EditBin
+  def self.edit(bin=ARGV[0])
+    which = `which '#{bin}'`.chomp
+
+    if File.exists?(which)
+      system("vim '#{which}'")
+    else
+      pp env: ENV
+
+      puts "\n\n---------\n\n"
+
+      which_a = `echo "source #{ENV['HOME']}/.config/fish/config.fish; functions '#{bin}'" | fish`
+      fn_in = which_a[/in: [^']*/].sub(/in:\s*/, '')
+      fn_in &&= ENV['HOME'] + '/.config/fish/' + fn_in
+
+      if fn_in
+        system("vim '#{fn_in}'")
+      end
+
+      puts "`#{bin}` not found"
+      puts
+      puts <<-"MSG"
+        Might want to put a bash or fish script in between the shell and this
+        ruby script.
+
+        I say this, because if `#{bin}` is a function or alias, i want to find
+        out which one, and which dotfile defines it.
+      MSG
+    end
+  end
+end
+
+pp ARGV: ARGV, dollar_ARGV: $ARGV, argv: $argv, args: $args
+
+pp editing: EditBin.edit
+

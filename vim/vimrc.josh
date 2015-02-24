@@ -9,6 +9,9 @@ filetype indent on                                " Enable loading indentation p
 
 hi SignColumn  term=standout ctermfg=4 ctermbg=black guifg=DarkBlue guibg=black
 
+set winwidth=80    " min width of the current window
+set winminwidth=40    " min width of the current window
+
 "set textwidth=80                                 " The # of chars on a line before [set wrap] adds a newline
 "set autowrite                                    " Write contents of the file, if it has been modified, on buffer exit
 set nolist                                        " (Show/Don't Show) special characters represententing whitespace
@@ -73,6 +76,28 @@ nnoremap ,c :vert wincmd <C-]><CR>
 nnoremap ,f :CommandT<cr>
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
+
+" inspired by vim-unimpaired
+nmap cop :set paste!<cr>       " works great in insert mode <C-o>cop
+
+
+" ---------------------------------------
+" ---------------------------------------
+" ---------------------------------------
+"  CUSTOMIZATIONS FOR NOTES FILES
+" ---------------------------------------
+" ---------------------------------------
+" ---------------------------------------
+"
+hi def link markdownCode           Statement
+hi def link markdownCodeDelimiter  Statement
+
+
+
+
+"""""" OTHER STUFF
+
+
 
 hi! link fsize Directory      "cterm=none ctermfg=4 ctermbg=Black
 hi flink cterm=none ctermfg=3 ctermbg=0
@@ -166,11 +191,12 @@ au BufNewFile,BufRead,BufReadPost */lists/hon set wrap
 au Filetype */lists/* runtime! ~/.vim/syntax/lists.vim
 
   " bin/notes ---------------------------------------------------------
-au BufNewFile,BufRead,BufReadPost */notes/**/*.md set tw=80
+au BufNewFile,BufRead,BufReadPost */notes/* set tw=80
+au! BufNewFile,BufRead,BufReadPost */notes/* call LcdToNotesDir()
 
   " run firefox sandbox in the bg ------------------------------------
 " au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/* nmap ,f :!test_listener 'bin/testff'<cr><cr>
-au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/ff/* nmap <buffer> ,f :!cd "$(git rev-parse --show-toplevel)"; test_listener 'bin/testff'<cr><cr>
+au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/ff/* nmap <buffer> ,f :!cd %:h; cd "$(git rev-parse --show-toplevel)"; test_listener 'bin/testff'<cr><cr>
 
   " Go back to the position the cursor
   " was on the last time this file was
@@ -185,16 +211,18 @@ au FileType haml       setlocal makeprg=haml\ -c\ %
 au FileType sh         setlocal makeprg=bash\ -n\ %
 au FileType cucumber   setlocal makeprg=bundle\ exec\ cucumber\ %
 au FileType markdown   setlocal makeprg=markdown\ %
+au FileType markdown   setlocal tw=80
 au FileType json       setlocal makeprg=jshint\ %
 au FileType javascript setlocal makeprg=jshint\ %
 au FileType fish       compiler fish
+au FileType help       exe "au BufEnter <buffer> exe(\"80wincmd |\")"
 au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
 
 "au FileType ruby     nmap ,R :exe "nmap ,r :!rspec " . expand("%") . "\<cr\>"<cr>
 "au FileType ruby     nmap ,T :silent exe "nmap ,t :!echo 'bundle exec rspec " . expand("%") . " \\\| sed -n \"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\"' \\\| pbcopy \<cr\>\<C-L\> \| nmap ,l :exe \"silent !echo 'bundle exec rspec \" . expand(\"%\") . \":\" . line(\".\") . \" \\\| sed -n \\\"/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\\\"' \\\| pbcopy\"\<cr\>\<C-L\>"<CR>
 au FileType ruby     nmap ,T :silent exe "nmap ,t :w \\\|silent !echo 'bundle exec rspec " . expand("%") . " \\\| sed -n \"1,3p;/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\"' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w \\\|silent !echo 'bundle exec rspec \" . expand(\"%\") . \":\" . line(\".\") . \" \\\| sed -n \\\"1,3p;/FAILED/p;/ contained:/p;/ were:/p;/[0-9] example/p;/^[[:space:]]*[0-9][0-9]*)/,/:[0-9][0-9]*:/p;/debug_start/,/debug_end/p\\\"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
 au FileType ruby     nmap ,C :silent exe "nmap ,t :w \\\|silent !echo 'bundle exec rspec " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w \\\|silent !echo 'bundle exec rspec \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
-au FileType ruby     nmap ,R :silent exe "nmap ,t :w\\\|silent !echo 'ruby " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w\\\|silent !echo 'ruby \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
+au FileType ruby     nmap ,R :silent exe "nmap ,t :w\\\|silent !echo 'rspec " . expand("%") . "' \>tmp/test_commands\<cr\>\<C-L\> \| nmap ,l :exe \"w\\\|silent !echo 'rspec \" . expand(\"%\") . \":\" . line(\".\") . \"' \>tmp/test_commands\"\<cr\>\<C-L\>"<CR>
 au FileType ruby     nmap ,d :silent !echo 'rake docs:v2:build' >tmp/test_commands<cr><C-l>
 au FileType ruby     nmap ,g :silent !echo 'rake docs:v2:generate' >tmp/test_commands<cr><C-l>
 
@@ -231,37 +259,76 @@ ab functino function
 ab functinos functions
 
 " normal abbreviations
-ab stamp =strftime("%Y-%m-%d %H:%M:%S")
-ab timestamp =strftime("%s")
+iab ToC Table of Contents
 
-ab YY =strftime("%y")
-ab yy =strftime("%y")
-ab YYYY =strftime("%Y")
-ab yyyy =strftime("%Y")
-ab mm =strftime("%m")
-ab dd =strftime("%d")
-ab YYYYmmdd =strftime("%Y%m%d")
-ab yyyymmdd =strftime("%Y%m%d")
+ab fmtYmd %Y%m%d
+ab fmtHMS %H%M%S
+ab fmtYmdHMS %Y%m%d%H%M%S
 
-ab hh =strftime("%H")
-ab HH =strftime("%H")
-ab MM =strftime("%M")
-ab ss =strftime("%S")
-ab SS =strftime("%S")
-ab hhmmss =strftime("%H%M%S")
-ab HHMMSS =strftime("%H%M%S")
+ab fmt_Ymd %Y-%m-%d
+ab fmt_HMS %H:%M:%S
+ab fmt_YmdHMS %Y-%m-%d %H:%M:%S
 
-ab YYYYmmddHHMMSS =strftime("%Y%m%d%H%M%S")
-ab yyyymmddHHMMSS =strftime("%Y%m%d%H%M%S")
+ab cur_time =strftime("%Y-%m-%d %H:%M:%S")
+ab cur_timestamp =strftime("%s")
+ab cur_epoch =strftime("%s")
+
+ab cur_Y =strftime("%Y")
+ab cur_y =strftime("%y")
+ab cur_m =strftime("%m")
+ab cur_d =strftime("%d")
+ab cur_Ymd =strftime("%Y%m%d")
+
+ab cur_H =strftime("%H")
+ab cur_M =strftime("%M")
+ab cur_S =strftime("%S")
+ab cur_HMS =strftime("%H%M%S")
+
+ab cur_YmdHMS =strftime("%Y%m%d%H%M%S")
+
+func! Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunc
 
 "" useful command abbreviations
 "----- used for % %:h %:r, etc.
 ca :: %
-ca sm y x\|'<,'>j\|s/\s*$/ 0/\|s/\s\s*/+/g
-ca sum y x\|'<,'>j\|s/\s*$/ 0/\|s/\s\s*/+/g\|norm V=I= :put! x<cr>
+ca sm y x\|'<,'>j\|s/\s*$//\|s/\(\d\+\s\+\d*\)\@<!\d\+$/& 0/e\|s/\s\s*/+/g
+ca sum y x\|'<,'>j\|s/\(\d\+\s\+\d*\)\@<!\d\+$/& 0/e\|s/\s\s*/+/g\|norm V=I= :put! x<cr>
 
+ca vvs wincmd \\\| \| 1wincmd w \| V resize 60 \| 99wincmd w
 
+ca vimso so %
 
+ca makeexe !chmod +x %<cr>:!ls -l %
+ca plusx !chmod +x %<cr>:!ls -l %
+ca chmod !chmod +x %
+ca +x !chmod +x %
+
+ca ll !ls -l
+
+ca V vert
+ca vh vert h
+
+ca rubyc set mp=ruby\ -c\ %
+ca mkrb set mp=ruby\ -c\ %
+ca mprb set mp=ruby\ -c\ %
+ca rbmake set mp=ruby\ -c\ %
+ca setmp set mp
+ca @m set mp
+
+ca ?m set mp?
+ca ?s set?<Left>
+
+ca mpka set mp?
+ca setka set?<Left>
+
+ca aa argadd
+ca aany argadd **/**/**<Left><Left><Left><Left><C-r>=Eatchar('\s')<CR>
+ca vall vert sall
+ca vnext vert snext
+ca vprev vert sprevious
 
 ca note setl buftype=nofile
 ca nonote setl buftype<
@@ -274,6 +341,63 @@ ca ake make
 ca setpaste set paste!
 ca updatewww %s@^\.\(.*\)$@vim -d $beta\1 $www\1@c
 ca recent PutRecentFiles
+
+" edit dotfiles
+"
+ca enote vs ~/notes/**/<C-r>=Eatchar('\s')<cr>
+
+
+func! Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunc
+ca erepo vs ~/repos/**/<C-r>=Eatchar('\s')<cr>
+ca editrepo vs ~/repos/**/<C-r>=Eatchar('\s')<cr>
+
+ca eview vs app/views/**/<C-r>=Eatchar('\s')<cr>
+ca editview vs app/views/**/<C-r>=Eatchar('\s')<cr>
+
+ca erepo vs ~/repos/**/<C-r>=Eatchar('\s')<cr>
+ca editrepo vs ~/repos/**/<C-r>=Eatchar('\s')<cr>
+
+ca ebin vs ~/bin/*<C-r>=Eatchar('\s')<cr>
+ca editbin vs ~/bin/*<C-r>=Eatchar('\s')<cr>
+
+ca fishfun vs ~/.config/fish/functions/*<C-r>=Eatchar('\s')<cr>
+ca fishfunc vs ~/.config/fish/functions/*<C-r>=Eatchar('\s')<cr>
+ca fishfunct vs ~/.config/fish/functions/*<C-r>=Eatchar('\s')<cr>
+ca fishfunction vs ~/.config/fish/functions/*<C-r>=Eatchar('\s')<cr>
+
+ca editeditrc vs ~/.editrc
+ca editinput vs ~/.inputrc
+ca editinputrc vs ~/.inputrc
+ca editvim vs ~/.vimrc.josh
+ca evim vs ~/.vimrc.josh
+
+ca ebundle vs ~/.vimbundles/**/<C-r>=Eatchar('\s')<cr>
+ca vimbundle vs ~/.vimbundles/**/<C-r>=Eatchar('\s')<cr>
+
+ca configbundles vs ~/repos/dot-files/bash/home/vimbundle
+ca ebundleconf vs ~/repos/dot-files/bash/home/vimbundle
+ca ebundleconfig vs ~/repos/dot-files/bash/home/vimbundle
+
+ca efish vs ~/.config/fish/**/<C-r>=Eatchar('\s')<cr>
+ca editfish vs ~/.config/fish/**/<C-r>=Eatchar('\s')<cr>
+ca editaliases vs ~/.config/fish/aliases.fish
+ca editfunctions vs ~/.config/fish/functions.fish
+
+ca edot vs ~/.*<C-r>=Eatchar('\s')<cr>
+ca editdot vs ~/.*<C-r>=Eatchar('\s')<cr>
+
+ca agf AgFile .<Left><Left>
+
+" shell commands
+
+ca goog !google
+ca ggrep !git grep -Ein
+ca grep !egrep -rin
+ca agg !ag
+ca man vnew \| r!man  \| col -b<Left><Left><Left><Left><Left><Left><Left><Left><Left><C-R>=Eatchar('\s')<CR>
 
 "ca mkupdatesh /* --- have this reflect how i make my update.sh for zeus/morpheus */
 
@@ -348,8 +472,7 @@ function! Bufferlist() range
   "silent exe a:firstline . "," . a:lastline . 's/^[^"]*"//'
   "silent exe a:firstline . "," . a:lastline . "!sort -u"
 
-  silent exe a:firstline . "," . a:lastline . 's/^[^"]*"//'
-  silent exe a:firstline . "," . a:lastline . 's/"[^"]*$//'
+  silent exe a:firstline . "," . a:lastline . 's/^[^"]*"\|"[^"]*$//ge'
   silent exe a:firstline . "," . a:lastline . "!sort -u"
   silent exe "norm gv"
 endfunction
@@ -370,16 +493,11 @@ endfunction
 
 function! LcdToNotesDir()
   if matchstr(expand('%:p'), '/notes/') == ''
-    echomsg '%:p "' . expand('%:p') . '" does not match /notes/ => "' . matchstr(expand('%:p'), '/notes/') . '"'
     return
-    echomsg 'THIS SHOULD NOT RUN, IT SHOULD HAVE RETURNED EARLY'
-  else
-    echomsg '%:p "' . expand('%:p') . '" MATCHES /notes/ => "' . matchstr(expand('%:p'), '/notes/') . '"'
   endif
   let xpand = '%:p:h'
   while expand(xpand . ':t') != 'notes'
     let next_xpand = xpand . ':h'
-    echomsg 'xpand: ' . expand(xpand) . '; next_xpand: ' . next_xpand . '; cwd: ' . getcwd()
     if expand(xpand) == expand(next_xpand)
       let xpand = '%:p:h'
       break
@@ -391,7 +509,7 @@ function! LcdToNotesDir()
     let xpand = next_xpand
   endwhile
 
-  execute "buffer" 'lcd ' . expand(xpand)
+  execute 'lcd ' . expand(xpand)
 endfunction
 
 function! Match(mregex)

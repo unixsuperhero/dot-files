@@ -1,0 +1,19 @@
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+require 'awesome_print'
+
+splits = []
+
+si = 0
+ARGV.each do |arg|
+  splits[si] ||= []
+  next si += 1 if arg.strip == ?:
+  splits[si] << arg
+end
+
+path = splits.last.first
+
+puts "path => #{path}"
+
+`printf "#{path}" | pbcopy`
+

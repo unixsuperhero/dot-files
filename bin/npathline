@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function notes_pathline() {
+  if [[ -d "$1" ]]; then
+    printf 'npath d : %-30s : "%s"\n' z "$1"
+  else
+    printf 'npath f : %-30s : "%s"\n' z "$1"
+  fi
+}
+
+notes_pathline "$1"
+

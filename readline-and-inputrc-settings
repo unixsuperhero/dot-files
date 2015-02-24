@@ -1,0 +1,222 @@
+
+# Functions and Key Bindings
+
+##  "\C-g":       abort
+##  "\C-x\C-g":   abort
+##  "\e\C-g":     abort
+##  "\C-j":       accept-line
+##  "\C-m":       accept-line
+##  "\C-b":       backward-char
+##  "\eOD":       backward-char
+##  "\e[D":       backward-char
+##  "\C-h":       backward-delete-char
+##  "\C-?":       backward-delete-char
+##  "\C-x\C-?":   backward-kill-line
+##  "\e\C-h":     backward-kill-word
+##  "\e\C-?":     backward-kill-word
+##  "\eb":        backward-word
+##  "\e<":        beginning-of-history
+##  "\C-a":       beginning-of-line
+##  "\eOH":       beginning-of-line
+##  "\e[1~":      beginning-of-line
+##  "\e[H":       beginning-of-line
+##  "\C-xe":      call-last-kbd-macro
+##  "\ec":        capitalize-word
+##  "\C-]":       character-search
+##  "\e\C-]":     character-search-backward
+##  "\C-l":       clear-screen
+##  "\e\e":       complete
+##  "\e!":        complete-command
+##  "\e/":        complete-filename
+##  "\e@":        complete-hostname
+##  "\e{":        complete-into-braces
+##  "\e~":        complete-username
+##  "\e$":        complete-variable
+##  "\C-d":       delete-char
+##  "\e[3~":      delete-char
+##  "\e\\":       delete-horizontal-space
+##  "\e-":        digit-argument
+##  "\e0":        digit-argument
+##  "\e1":        digit-argument
+##  "\e2":        digit-argument
+##  "\e3":        digit-argument
+##  "\C-x\C-v":   display-shell-version
+##  "\C-xA":      do-lowercase-version
+##  "\C-xB":      do-lowercase-version
+##  "\C-xC":      do-lowercase-version
+##  "\C-xD":      do-lowercase-version
+##  "\C-xE":      do-lowercase-version
+##  "\el":        downcase-word
+##  "\C-x\C-i":   dynamic-complete-history
+##  "\e\C-i":     dynamic-complete-history
+##  "\C-x\C-e":   edit-and-execute-command
+##  "\C-x)":      end-kbd-macro
+##  "\e>":        end-of-history
+##  "\C-e":       end-of-line
+##  "\eOF":       end-of-line
+##  "\e[4~":      end-of-line
+##  "\e[F":       end-of-line
+##  "\C-x\C-x":   exchange-point-and-mark
+##  "\C-f":       forward-char
+##  "\eOC":       forward-char
+##  "\e[C":       forward-char
+##  "\C-s":       forward-search-history
+##  "\ef":        forward-word
+##  "\eg":        glob-complete-word
+##  "\C-x*":      glob-expand-word
+##  "\C-xg":      glob-list-expansions
+##  "\e^":        history-expand-line
+##  "\e#":        insert-comment
+##  "\e*":        insert-completions
+##  "\e.":        insert-last-argument
+##  "\e_":        insert-last-argument
+##  "\C-k":       kill-line
+##  "\ed":        kill-word
+##  "\C-i":       menu-complete
+##  "\C-n":       next-history
+##  "\eOB":       next-history
+##  "\e[B":       next-history
+##  "\en":        non-incremental-forward-search-history
+##  "\ep":        non-incremental-reverse-search-history
+##  "\C-o":       operate-and-get-next
+##  "\C-x!":      possible-command-completions
+##  "\e=":        possible-completions
+##  "\e?":        possible-completions
+##  "\C-x/":      possible-filename-completions
+##  "\C-x@":      possible-hostname-completions
+##  "\C-x~":      possible-username-completions
+##  "\C-x$":      possible-variable-completions
+##  "\C-p":       previous-history
+##  "\eOA":       previous-history
+##  "\e[A":       previous-history
+##  "\C-q":       quoted-insert
+##  "\C-v":       quoted-insert
+##  "\C-x\C-r":   re-read-init-file
+##  "\C-r":       reverse-search-history
+##  "\e\C-r":     revert-line
+##  "\er":        revert-line
+##  "\C-@":       set-mark
+##  "\e ":        set-mark
+##  "\e\C-e":     shell-expand-line
+##  "\C-x(":      start-kbd-macro
+##  "\e&":        tilde-expand
+##  "\C-t":       transpose-chars
+##  "\et":        transpose-words
+##  "\C-x\C-u":   undo
+##  "\C-_":       undo
+##  "\C-u":       unix-line-discard
+##  "\C-w":       unix-word-rubout
+##  "\eu":        upcase-word
+##  "\C-y":       yank
+##  "\e.":        yank-last-arg
+##  "\e_":        yank-last-arg
+##  "\e\C-y":     yank-nth-arg
+##  "\ey":        yank-pop
+
+##  "$":          self-insert
+##  "#":          self-insert
+##  "\"":         self-insert
+##  "!":          self-insert
+##  " ":          self-insert
+
+##  alias-expand-line is not bound to any keys
+##  arrow-key-prefix is not bound to any keys
+##  backward-byte is not bound to any keys
+##  copy-backward-word is not bound to any keys
+##  copy-forward-word is not bound to any keys
+##  copy-region-as-kill is not bound to any keys
+##  delete-char-or-list is not bound to any keys
+##  dump-functions is not bound to any keys
+##  dump-macros is not bound to any keys
+##  dump-variables is not bound to any keys
+##  emacs-editing-mode is not bound to any keys
+##  forward-backward-delete-char is not bound to any keys
+##  forward-byte is not bound to any keys
+##  history-and-alias-expand-line is not bound to any keys
+##  history-search-backward is not bound to any keys
+##  history-search-forward is not bound to any keys
+##  kill-region is not bound to any keys
+##  kill-whole-line is not bound to any keys
+##  magic-space is not bound to any keys
+##  non-incremental-forward-search-history-again is not bound to any keys
+##  non-incremental-reverse-search-history-again is not bound to any keys
+##  overwrite-mode is not bound to any keys
+##  redraw-current-line is not bound to any keys
+##  tab-insert is not bound to any keys
+##  tty-status is not bound to any keys
+##  universal-argument is not bound to any keys
+##  unix-filename-rubout is not bound to any keys
+##  vi-append-eol is not bound to any keys
+##  vi-append-mode is not bound to any keys
+##  vi-arg-digit is not bound to any keys
+##  vi-bWord is not bound to any keys
+##  vi-back-to-indent is not bound to any keys
+##  vi-bword is not bound to any keys
+##  vi-change-case is not bound to any keys
+##  vi-change-char is not bound to any keys
+##  vi-change-to is not bound to any keys
+##  vi-char-search is not bound to any keys
+##  vi-column is not bound to any keys
+##  vi-complete is not bound to any keys
+##  vi-delete is not bound to any keys
+##  vi-delete-to is not bound to any keys
+##  vi-eWord is not bound to any keys
+##  vi-editing-mode is not bound to any keys
+##  vi-end-word is not bound to any keys
+##  vi-eof-maybe is not bound to any keys
+##  vi-eword is not bound to any keys
+##  vi-fWord is not bound to any keys
+##  vi-fetch-history is not bound to any keys
+##  vi-first-print is not bound to any keys
+##  vi-fword is not bound to any keys
+##  vi-goto-mark is not bound to any keys
+##  vi-insert-beg is not bound to any keys
+##  vi-insertion-mode is not bound to any keys
+##  vi-match is not bound to any keys
+##  vi-movement-mode is not bound to any keys
+##  vi-next-word is not bound to any keys
+##  vi-overstrike is not bound to any keys
+##  vi-overstrike-delete is not bound to any keys
+##  vi-prev-word is not bound to any keys
+##  vi-put is not bound to any keys
+##  vi-redo is not bound to any keys
+##  vi-replace is not bound to any keys
+##  vi-rubout is not bound to any keys
+##  vi-search is not bound to any keys
+##  vi-search-again is not bound to any keys
+##  vi-set-mark is not bound to any keys
+##  vi-subst is not bound to any keys
+##  vi-tilde-expand is not bound to any keys
+##  vi-yank-arg is not bound to any keys
+##  vi-yank-to is not bound to any keys
+
+# Variables
+
+## set bind-tty-special-chars         on
+## set prefer-visible-bell            on
+## set page-completions               on
+## set output-meta                    on
+## set meta-flag                      on
+## set match-hidden-files             on
+## set mark-directories               on
+## set input-meta                     on
+## set completion-ignore-case         on
+## set blink-matching-paren           on
+## set byte-oriented                  off
+## set convert-meta                   off
+## set disable-completion             off
+## set enable-keypad                  off
+## set expand-tilde                   off
+## set history-preserve-point         off
+## set horizontal-scroll-mode         off
+## set mark-modified-lines            off
+## set mark-symlinked-directories     off
+## set print-completions-horizontally off
+## set show-all-if-ambiguous          off
+## set show-all-if-unmodified         off
+## set visible-stats                  off
+## set bell-style                     audible
+## set comment-begin                  #
+## set completion-query-items         100
+## set editing-mode                   emacs
+## set keymap                         emacs

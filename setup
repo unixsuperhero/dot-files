@@ -42,11 +42,25 @@ function dot_install()
     git clone git@github.com:hashrocket/dotmatrix.git hashrocket/dotmatrix
   fi
 
-  for hr_file in .{bashrc,hashrc,vim,vimrc,vimbundle}
+  for hr_file in .{bashrc,hashrc,vim,vimrc}
   do
     backup_file "$hr_file"
     ln -nfs "$HOME/hashrocket/dotmatrix/$hr_file" $HOME/
   done
+
+  bdir=$HOME/.vimbundles
+  repos="$(cat ~/.vimbundle)"
+  owd=$(pwd)
+  mkdir -pv $bdir
+  cd $bdir
+  for repo in $repos; do
+    if [ ! -d $(basename $repo) ]; then
+      git clone git@github.com:"$repo".git
+    else
+      echo "$(basename $repo) EXISTS"
+    fi
+  done
+  cd $owd
 
   sh $HOME/hashrocket/dotmatrix/bin/vimbundles.sh
 }

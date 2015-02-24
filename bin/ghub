@@ -1,0 +1,27 @@
+#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+
+args = ARGV
+
+if args.count > 0
+  if args[0].strip =~ /clone/i
+    system("git clone git@github.com:%s %s" % [args[1], args[2] || ''])
+  else
+    puts <<-MSG
+
+    #{args[0]} is an unknown commands
+
+    MSG
+  end
+else
+
+puts <<-MSG
+
+please specify a command:
+
+  clone [username/reponame] [alternative_folder_name]
+
+MSG
+
+end
+
+

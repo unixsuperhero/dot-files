@@ -1,10 +1,6 @@
 
 set -x FISH_HOME "$HOME/.config/fish"
 
-alias glod="git log --oneline --decorate"
-alias glog='glod --name-status'
-alias glogn='glod --name-only'
-
 set -xU VIMBUNDLES "$HOME/.vimbundles"
 
 alias :e="vim"
@@ -21,3 +17,7 @@ source $HOME/.config/fish/functions.fish
 source $HOME/.config/fish/aliases.fish
 source $HOME/.config/fish/exports.fish
 
+alias glod="git log --oneline --decorate"
+alias glodg="glod --graph"
+alias glog='glod --name-status'
+alias glogn='glod --name-only'

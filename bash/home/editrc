@@ -1,0 +1,17 @@
+bind "^R" em-inc-search-prev
+bind "^S" em-inc-search-next
+
+### Testing for Pry
+#
+## read by pry but not zsh
+#bind -e
+#bind \\eh vi-prev-word
+#bind \\es vi-next-word
+#bind ^h ed-prev-char
+#bind ^s ed-next-char
+#bind ^n ed-prev-history
+#bind ^t ed-next-history
+#bind ^p vi-paste-next
+## bind \\ep yank-pop
+#bind ^r em-inc-search-prev
+

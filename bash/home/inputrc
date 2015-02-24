@@ -1,3 +1,4 @@
 set completion-ignore-case On
 TAB: menu-complete
 "\C-x\C-i": dynamic-complete-history
+"\C-w": backward-kill-word
