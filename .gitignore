@@ -3,6 +3,7 @@
 **/.DS_Store
 backup/
 vim/vimbundles
+!vim/vimbundles/vim-notes
 hashrocket/dotmatrix
 #hashrocket/*
 
