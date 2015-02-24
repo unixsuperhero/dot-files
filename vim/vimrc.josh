@@ -190,10 +190,6 @@ au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
 au BufNewFile,BufRead,BufReadPost */lists/hon set wrap
 au Filetype */lists/* runtime! ~/.vim/syntax/lists.vim
 
-  " bin/notes ---------------------------------------------------------
-au BufNewFile,BufRead,BufReadPost */notes/* set tw=80
-au! BufNewFile,BufRead,BufReadPost */notes/* call LcdToNotesDir()
-
   " run firefox sandbox in the bg ------------------------------------
 " au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/* nmap ,f :!test_listener 'bin/testff'<cr><cr>
 au BufNewFile,BufRead,BufReadPost */browser-extensions/firefox/ff/* nmap <buffer> ,f :!cd %:h; cd "$(git rev-parse --show-toplevel)"; test_listener 'bin/testff'<cr><cr>
@@ -210,8 +206,6 @@ au FileType eruby      setlocal makeprg=rails-erb-check\ %
 au FileType haml       setlocal makeprg=haml\ -c\ %
 au FileType sh         setlocal makeprg=bash\ -n\ %
 au FileType cucumber   setlocal makeprg=bundle\ exec\ cucumber\ %
-au FileType markdown   setlocal makeprg=markdown\ %
-au FileType markdown   setlocal tw=80
 au FileType json       setlocal makeprg=jshint\ %
 au FileType javascript setlocal makeprg=jshint\ %
 au FileType fish       compiler fish
@@ -228,6 +222,20 @@ au FileType ruby     nmap ,g :silent !echo 'rake docs:v2:generate' >tmp/test_com
 
   " equalprgs (for formatting)
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ %
+
+au FileType markdown   setlocal makeprg=markdown\ %
+au FileType markdown   setlocal tw=80
+
+  " bin/notes ---------------------------------------------------------
+autocmd BufNewFile,BufRead */notes/*
+      \ if &ft =~# '^\%(markdown\)$' |
+      \   set ft=notes |
+      \ else |
+      \   setf notes |
+      \ endif
+au FileType notes   setlocal makeprg=markdown\ %
+au FileType notes   setlocal tw=80
+au! BufNewFile,BufRead,BufReadPost */notes/* call LcdToNotesDir()
 
 " FORMAT JSON:
 " :%s/":\([[{\]},]\+\)/": \1\r/g|%s/,\(["[{]\+\)/,\r\1/g|%s/[\]}]\+,/\r&/g

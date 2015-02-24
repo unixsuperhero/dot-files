@@ -46,7 +46,7 @@ class Notes
           shell_join: Shellwords.join(expanded_args.dup),
         escaped_join: Shellwords.join(expanded_args.dup.map(&Shellwords.method(:escape)))
 
-    "vim %s" % Shellwords.join(expanded_args)
+    "vim -O %s" % Shellwords.join(expanded_args)
   end
 
   def cd_previous_dir
