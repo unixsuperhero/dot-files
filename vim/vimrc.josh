@@ -9,8 +9,8 @@ filetype indent on                                " Enable loading indentation p
 
 hi SignColumn  term=standout ctermfg=4 ctermbg=black guifg=DarkBlue guibg=black
 
-set winwidth=80    " min width of the current window
-set winminwidth=40    " min width of the current window
+"set winwidth=80    " min width of the current window
+set winminwidth=20    " min width of the current window
 
 "set textwidth=80                                 " The # of chars on a line before [set wrap] adds a newline
 "set autowrite                                    " Write contents of the file, if it has been modified, on buffer exit

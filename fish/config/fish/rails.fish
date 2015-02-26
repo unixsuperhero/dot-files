@@ -17,7 +17,6 @@ end
 #  end
 #end
 
-alias rails='_rails_command'
-
-alias rake='_rake_command'
+# alias rails='_rails_command'
+# alias rake='_rake_command'
 
