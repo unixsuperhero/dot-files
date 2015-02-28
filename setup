@@ -48,8 +48,10 @@ function dot_install()
     ln -nfs "$HOME/hashrocket/dotmatrix/$hr_file" $HOME/
   done
 
+  [[ -d ~/.vim ]] && mkdir -pv ~/.vim/tmp
+
   bdir=$HOME/.vimbundles
-  repos="$(cat ~/.vimbundle)"
+  repos="$(cat ~/.vimbundle{,.local})"
   owd=$(pwd)
   mkdir -pv $bdir
   cd $bdir

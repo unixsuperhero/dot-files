@@ -58,7 +58,7 @@ set spellfile=~/.vim/words.utf8.add
 
 if has('persistent_undo')
   set undofile
-  set undodir=~/.vim/tmp//,~/.vim/undo_files//
+  set undodir=~/.vim/tmp//,~/.vim/undo_files//,~/.vim//,/tmp//
 endif
 
 
@@ -209,7 +209,7 @@ au FileType cucumber   setlocal makeprg=bundle\ exec\ cucumber\ %
 au FileType json       setlocal makeprg=jshint\ %
 au FileType javascript setlocal makeprg=jshint\ %
 au FileType fish       compiler fish
-au FileType help       exe "au BufEnter <buffer> exe(\"80wincmd |\")"
+"au FileType help       exe "au BufEnter <buffer> set winminwidth=80 | set winwidth= | set winminwidth=20"
 au BufNewFile,BufRead,BufReadPost */Gemfile setlocal makeprg=bundle
 
 "au FileType ruby     nmap ,R :exe "nmap ,r :!rspec " . expand("%") . "\<cr\>"<cr>
@@ -300,39 +300,38 @@ func! Eatchar(pat)
 endfunc
 
 "" useful command abbreviations
-"----- used for % %:h %:r, etc.
+
+" => *this
+ca sothis so %
+ca modthis !chmod +x %
+ca xthis !chmod +x %
+ca llthis !ls -l %
+ca rbthis set mp=ruby\ -c\ %
+ca tset set?<left>
+
+" => *me
 ca :: %
-ca sm y x\|'<,'>j\|s/\s*$//\|s/\(\d\+\s\+\d*\)\@<!\d\+$/& 0/e\|s/\s\s*/+/g
-ca sum y x\|'<,'>j\|s/\(\d\+\s\+\d*\)\@<!\d\+$/& 0/e\|s/\s\s*/+/g\|norm V=I= :put! x<cr>
+ca modme !chmod +x %
+ca rbme set mp=ruby\ -c\ %
+ca rbmake set mp=ruby\ -c\ %
+ca makerb set mp=ruby\ -c\ %
+ca mset set?<left>
 
-ca vvs wincmd \\\| \| 1wincmd w \| V resize 60 \| 99wincmd w
+" => pagers (capture a cmd's stdout in a new vs)
+ca man vnew \| set buftype=nofile \| r!man  \| col -b<M-b><M-b><M-b><left><C-R>=Eatchar('\s')<CR>
+ca pager vnew \| set buftype=nofile \| r! \| col -b<M-b><M-b><M-b><left><C-R>=Eatchar('\s')<CR>
 
-ca vimso so %
+" => source this file
+ca vimso so ~/.vimrc.josh
+ca sovim so ~/.vimrc.josh
 
-ca makeexe !chmod +x %<cr>:!ls -l %
-ca plusx !chmod +x %<cr>:!ls -l %
-ca chmod !chmod +x %
-ca +x !chmod +x %
 
 ca ll !ls -l
 
 ca V vert
 ca vh vert h
 
-ca rubyc set mp=ruby\ -c\ %
-ca mkrb set mp=ruby\ -c\ %
-ca mprb set mp=ruby\ -c\ %
-ca rbmake set mp=ruby\ -c\ %
-ca setmp set mp
-ca @m set mp
-
-ca ?m set mp?
-ca ?s set?<Left>
-
-ca mpka set mp?
-ca setka set?<Left>
-
-ca aa argadd
+ca aar argadd
 ca aany argadd **/**/**<Left><Left><Left><Left><C-r>=Eatchar('\s')<CR>
 ca vall vert sall
 ca vnext vert snext
@@ -344,7 +343,7 @@ ca w!! w ! sudo tee "%"
 "ca man !man
 ca Ls ls
 ca LS ls
-ca Make make
+"ca Make make
 ca ake make
 ca setpaste set paste!
 ca updatewww %s@^\.\(.*\)$@vim -d $beta\1 $www\1@c
@@ -405,7 +404,6 @@ ca goog !google
 ca ggrep !git grep -Ein
 ca grep !egrep -rin
 ca agg !ag
-ca man vnew \| r!man  \| col -b<Left><Left><Left><Left><Left><Left><Left><Left><Left><C-R>=Eatchar('\s')<CR>
 
 "ca mkupdatesh /* --- have this reflect how i make my update.sh for zeus/morpheus */
 

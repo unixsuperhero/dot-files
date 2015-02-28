@@ -24,3 +24,5 @@ fishd.*
 fish/config/fish/fish_history
 tmp/
 fish/config/fish/fishd.*
+!.keep
+bash/home/vimrc.josh.undo_history-2015-02-28

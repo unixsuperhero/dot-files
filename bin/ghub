@@ -5,6 +5,10 @@ args = ARGV
 if args.count > 0
   if args[0].strip =~ /clone/i
     system("git clone git@github.com:%s %s" % [args[1], args[2] || ''])
+  elsif args[0].scan(?/).count == 1
+    system 'open http://github.com/%s' % args[0]
+  elsif args[0][/open/]
+    system 'open http://github.com/%s' % args[1]
   else
     puts <<-MSG
 
