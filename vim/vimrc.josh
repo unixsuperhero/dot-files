@@ -402,7 +402,7 @@ ca agf AgFile .<Left><Left>
 
 ca goog !google
 ca ggrep !git grep -Ein
-ca grep !egrep -rin
+"ca grep !egrep -rin
 ca agg !ag
 
 "ca mkupdatesh /* --- have this reflect how i make my update.sh for zeus/morpheus */

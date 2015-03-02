@@ -1,31 +1,45 @@
 #!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
 
-args = ARGV
+require 'json'
+require 'awesome_print'
+require 'pry'
 
-if args.count > 0
-  if args[0].strip =~ /clone/i
-    system("git clone git@github.com:%s %s" % [args[1], args[2] || ''])
-  elsif args[0].scan(?/).count == 1
-    system 'open http://github.com/%s' % args[0]
-  elsif args[0][/open/]
-    system 'open http://github.com/%s' % args[1]
-  else
-    puts <<-MSG
+class GitHub
+  class << self
+    def run
+      ao = {raw: true, index: false}
 
-    #{args[0]} is an unknown commands
+      args = ARGV
 
-    MSG
+      cmd = args[0].to_s
+
+      case
+      when cmd[/clone/i]
+        system("git clone git@github.com:%s %s" % [args[1], args[2] || ''])
+      when cmd[/list/i]
+        json = `curl -i https://api.github.com/users/#{args[1].to_s}/repos`
+        file = json.split(/\r\n\r\n/).last
+        hash = JSON.parse(file)
+        ap hash.count
+        binding.pry
+      when cmd.scan(?/).count == 1
+        system 'open http://github.com/%s' % cmd
+      when cmd[/open/]
+        system 'open http://github.com/%s' % args[1]
+      else
+
+        puts <<-MSG
+
+        please specify a command:
+
+          clone [username/reponame] [alternative_folder_name]
+
+        MSG
+
+      end
+    end
   end
-else
-
-puts <<-MSG
-
-please specify a command:
-
-  clone [username/reponame] [alternative_folder_name]
-
-MSG
-
 end
 
+GitHub.run
 

@@ -1,0 +1,38 @@
+#!/bin/bash
+
+cd $HOME
+
+function start_listener() {
+  if [[ ! -p .hqueue ]]; then
+    mkfifo .hqueue
+  fi
+
+  echo
+  echo "Listening for commands..."
+  echo
+
+  while true
+  do
+    cmd="$(cat .hqueue)"
+    echo
+    echo "$(date +"%Y%m%d%H%M%S"): Running: $cmd" | sed 's/./-/g'
+    echo "CURRENT_BRANCH: $(git symbolic-ref HEAD | sed 's/refs.heads.//')"
+    echo "$(date +"%Y%m%d%H%M%S"): Running: $cmd"
+    echo "$(date +"%Y%m%d%H%M%S"): Running: $cmd" | sed 's/./-/g'
+    echo
+    bash -c "$cmd"
+    echo
+    echo "$(date +"%Y%m%d%H%M%S"): done."
+    echo
+  done
+}
+
+case $1 in
+  (''|run|start)
+    start_listener
+    ;;
+  (*)
+    echo "$@" >.hqueue
+    ;;
+esac
+
