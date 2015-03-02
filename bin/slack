@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'uri'
+
+channel = URI.encode('#general')
+channel = URI.encode('@josh')
+
+ARGV.options do |opts|
+  opts.on('-c', '--channel NAME') do |chan|
+    channel = URI.encode(chan)
+  end
+end.parse!
+
+puts channel: channel, argv: ARGV
+cmd = format(%{curl --data "%{msg}" 'https://beautified.slack.com/services/hooks/slackbot?token=zKuLV8GzB0Xvw8Ur2wEHdT8E&channel=%{channel}'}, channel: channel, msg: ARGV.join(' '))
+
+puts cmd
+puts `#{cmd}`
+

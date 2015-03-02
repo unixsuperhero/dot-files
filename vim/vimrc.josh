@@ -303,6 +303,11 @@ endfunc
 
 " => *this
 ca sothis so %
+ca qthis !hque %:p
+ca quethis !hque %:p
+ca queuethis !hque %:p
+ca runthis !%:p
+ca shthis !%:p
 ca modthis !chmod +x %
 ca xthis !chmod +x %
 ca llthis !ls -l %

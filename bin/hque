@@ -1,10 +1,19 @@
 #!/bin/bash
 
-cd $HOME
+function run_command() {
+  pdir="$(pwd)"
+  cd_to="$1"
+
+  shift
+
+  cd $cd_to
+  bash -c "$@"
+  cd $pdir
+}
 
 function start_listener() {
-  if [[ ! -p .hqueue ]]; then
-    mkfifo .hqueue
+  if [[ ! -p $HOME/.hqueue ]]; then
+    mkfifo $HOME/.hqueue
   fi
 
   echo
@@ -13,14 +22,15 @@ function start_listener() {
 
   while true
   do
-    cmd="$(cat .hqueue)"
+    cmd="$(cat $HOME/.hqueue)"
     echo
     echo "$(date +"%Y%m%d%H%M%S"): Running: $cmd" | sed 's/./-/g'
+    echo "CURRENT_DIRECTORY: $(pwd)"
     echo "CURRENT_BRANCH: $(git symbolic-ref HEAD | sed 's/refs.heads.//')"
     echo "$(date +"%Y%m%d%H%M%S"): Running: $cmd"
     echo "$(date +"%Y%m%d%H%M%S"): Running: $cmd" | sed 's/./-/g'
     echo
-    bash -c "$cmd"
+    run_command $cmd
     echo
     echo "$(date +"%Y%m%d%H%M%S"): done."
     echo
@@ -31,8 +41,11 @@ case $1 in
   (''|run|start)
     start_listener
     ;;
+  (edit)
+    vim "$0"
+    ;;
   (*)
-    echo "$@" >.hqueue
+    echo "$(pwd) $@" >$HOME/.hqueue
     ;;
 esac
 
