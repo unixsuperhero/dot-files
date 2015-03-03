@@ -1,4 +1,10 @@
 #!/bin/bash
 
-cat <&0 | sed -E 's/.(\[[0-9][0-9]*m|\[m.)//g' | col -b
+# older version:
+# cat <&0 | sed -E 's/.(\[[0-9][0-9]*m|\[m.)//g' | col -b
+
+# last version:
+# cat <&0 | sed -E 's/.\[([0-9][0-9]*){0,1}m(;[0-9]*m){0,1}//g' | col -b
+
+cat <&0 | sed -E 's/.\[([0-9][0-9]*(;[0-9]*){0,1}){0,1}m//g' | col -b
 
