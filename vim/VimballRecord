@@ -1,0 +1,1 @@
+twitvim-0.8.2.vmb: call delete('/Users/macbookpro/repos/dot-files/vim/twitvim-0.8.2.vmb/plugin/twitvim.vim')|call delete('/Users/macbookpro/repos/dot-files/vim/twitvim-0.8.2.vmb/doc/twitvim.txt')

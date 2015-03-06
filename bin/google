@@ -1,18 +1,94 @@
-#!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
+#!/usr/bin/env ruby
 
+
+require 'fileutils'
 require 'uri'
+require 'google-search'
+require 'awesome_print'
+require 'json'
+require 'erb'
+
+log_dir = format('%s/logs/google/web', ENV['HOME'])
+FileUtils.mkdir_p log_dir
 
 q = ARGV.join(' ')
-encoded_q = URI.encode(q)
+log = q.gsub(/\s+/, ?_)
+abs_log = format('%s/%s.json', log_dir, log)
 
-`open "http://google.com/search?q=#{encoded_q}"`
+if File.file? abs_log
+  json = JSON.parse(IO.read(abs_log))
+else
+  results =  Google::Search::Web.new query: q
+  links = results.map do |r|
+    {
+      "title" => r.title,
+      "url" => r.uri,
+    }
+  end
 
+  json = { "query" => q, "when" => Time.now.to_s, "epoch" => Time.now.to_i, "links" => links }
+
+  IO.write abs_log, JSON.pretty_generate(json)
+end
+
+queries = Dir['%s/*.json' % log_dir].map{|qf|
+  f = IO.read(qf)
+  j = JSON.parse(f)
+  format '<a href="http://localhost:3000/google/%s" onclick="javascript:void(0);">%s</a><br/>', URI.encode(j['query']), j['query']
+}
+
+IO.write('/tmp/queries.html', queries.join("\n"))
+
+template = DATA.read
+
+IO.write '/tmp/file.html', ERB.new(template).result(binding)
+`open /tmp/file.html`
+# render markdown file
+# output it to /tmp wrapped in my split page templte
+
+# ERB OUTPUT STARTS HERE
 __END__
 
-This is stuff i wrote/tested in vim while i was planning this:
+<html>
+<head>
+<style type="text/css">
+  #lframe {
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    float: left;
+  }
+  #lframe #qframe {
+    height: 100px;
+    width: 100%;
+    border: none;
+    margin: 10px;
+  }
+  #rframe {
+    width: 69%;
+    height: 90%;
+    border: solid black 1px;
+    margin: 0;
+    padding: 0;
+    float: left;
+  }
+</style>
+</head>
+<body>
+  <div id="lframe">
+    <form action="http://localhost:3000/google" method="get" target="rframe">
+      <input type="text" name="q" />
+    </form>
+    <p><strong>query: </strong><%= json['query'] %></p>
+    <p><strong>when: </strong><%= json['when'] %></p>
+    <p><strong>epoch: </strong><%= json['epoch'] %></p>
+    <iframe id="qframe" name="qframe" src="/tmp/queries.html"></iframe>
+    <% [*json['links']].each do |r| %>
+      <a target="rframe" href="<%= r['url'] %>"><%= r['title'] %></a><br/>
+      <br/>
+    <% end %>
+  </div>
+  <iframe id="rframe" name="rframe" src="<%= json['links'].first['url'] %>"></iframe>
 
-ruby -e 'puts URI.encode ARGV.join(" ")'
-ruby -e 'require "uri"; puts URI.encode ARGV.join(" ")'
-ruby -e 'require "uri"; puts URI.encode(ARGV.join(" "))' unobtrusive js
-unobtrusive%20js
-
+</body>
+</html>

@@ -20,3 +20,5 @@ set -x fish_plugins rails git rbenv
 
 # Load oh-my-fish configuration.
 . $fish_path/oh-my-fish.fish
+
+set -x RUBYLIB $HOME/repos/hnotes/lib $RUBYLIB

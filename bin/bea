@@ -1,0 +1,18 @@
+#!/usr/local/bin/fish
+
+cd /Users/macbookpro/htags/repos
+
+switch ( echo $argv[1] )
+  case ''
+    cd work/beautified
+    tmux new -d -s bea; and begin
+      tmux split-window -t bea:0 test_listener
+      tmux resize-pane -D -t bea:0.1 10
+      tmux split-window -h -t bea:0
+      tmux a -t bea
+    end
+    or tmux a -t bea
+    ;;
+  case '*'
+    tmux $argv -t bea
+end

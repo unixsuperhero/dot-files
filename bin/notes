@@ -1,6 +1,7 @@
 #!/Users/macbookpro/.rbenv/versions/2.1.0/bin/ruby
 
 require 'pp'
+require 'awesome_print'
 require 'shellwords'
 require 'fileutils'
 
@@ -30,12 +31,46 @@ class Notes
     Dir.chdir @notes_dir
   end
 
+  def secure_dirs(dir)
+    dirs = dir.split('/')
+    fname = dirs.pop
+    dirs.map.with_index do |d,i|
+      dirs.dup.tap do |t|
+        t[i] += '.secure'
+        t << fname
+      end.join ?/
+    end
+  end
+
+  def possible_notes(arg)
+    names = []
+    names << '%s.secure.textile' % arg
+    names << '%s.secure.md' % arg
+    names += secure_dirs(arg).map{|d| '%s.secure.textile' % d }
+    names += secure_dirs(arg).map{|d| '%s.secure.md' % d }
+    names += secure_dirs(arg).map{|d| '%s.textile' % d }
+    names += secure_dirs(arg).map{|d| '%s.md' % d }
+    names << '%s.textile' % arg
+    names << '%s.md' % arg
+  end
+
   def expanded_args
     @expanded_args ||= args.map do |arg|
-      next "%s.secure.md" % arg if File.file?('%s.secure.md' % arg)
-      next "%s.md" % arg if File.file?('%s.md' % arg)
-      next arg if File.directory?(arg)
-      #Fileutils.mkdir_p File.dirname(arg)
+      notes = possible_notes(arg)
+      files = possible_notes(arg).map(&File.method(:file?))
+      existing_note = possible_notes(arg).find(&File.method(:file?))
+      ap arg: arg, existing_possibles: notes.zip(files).map{|n| format('%-50s => %s', *n) }, found: existing_note
+      next existing_note if existing_note != nil
+      #next "%s.secure.textile" % arg if File.file?('%s.secure.textile' % arg)
+      #ap orig_dir: arg, secure_dirs: secure_dirs(arg)
+      #secure_md = secure_dirs(arg).find{|sd| File.file?('%s.md' % sd) }
+      #next '%s.md' % secure_md if secure_md
+      #secure_textile = secure_dirs(arg).find{|sd| File.file?('%s.textile' % sd) }
+      #next '%s.textile' % secure_textile if secure_textile
+      #next "%s.secure.md" % arg if File.file?('%s.secure.md' % arg)
+      #next "%s.md" % arg if File.file?('%s.md' % arg)
+      #next arg if File.directory?(arg)
+      ##Fileutils.mkdir_p File.dirname(arg)
       "%s.md" % arg
     end
   end
@@ -62,7 +97,11 @@ class Notes
   end
 end
 
-Notes.run(ARGV)
+if ARGV[0][/--?e(d(i(t)?)?)?/]
+  system("vim %s" % __FILE__)
+else
+  Notes.run(ARGV)
+end
 
 __END__
 
