@@ -65,6 +65,9 @@ function dot_install()
   cd $owd
 
   sh $HOME/hashrocket/dotmatrix/bin/vimbundles.sh
+
+  # process Brewfile
+  # install pow
 }
 
 function dot_uninstall()
