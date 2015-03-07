@@ -23,6 +23,7 @@ else
     {
       "title" => r.title,
       "url" => r.uri,
+      "iurl" => r.uri.sub(/\Ahttps/,'http'),
     }
   end
 
@@ -82,13 +83,15 @@ __END__
     <p><strong>query: </strong><%= json['query'] %></p>
     <p><strong>when: </strong><%= json['when'] %></p>
     <p><strong>epoch: </strong><%= json['epoch'] %></p>
+    <p><a href="<%= abs_log %>" target="_blank"><%= abs_log %></a></p>
     <iframe id="qframe" name="qframe" src="/tmp/queries.html"></iframe>
     <% [*json['links']].each do |r| %>
-      <a target="rframe" href="<%= r['url'] %>"><%= r['title'] %></a><br/>
+      <a target="rframe" href="<%= r['iurl'] %>"><%= r['title'] %></a><br/>
+      <%= r['title'] %><br/>
       <br/>
     <% end %>
   </div>
-  <iframe id="rframe" name="rframe" src="<%= json['links'].first['url'] %>"></iframe>
+  <iframe id="rframe" name="rframe" src="<%= json['links'].first['iurl'] %>"></iframe>
 
 </body>
 </html>
