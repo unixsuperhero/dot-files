@@ -5,3 +5,5 @@ SirVer/ultisnips
 Shougo/unite.vim
 vim-scripts/taglist.vim
 timcharper/textile.vim
+tpope/vim-rbenv
+t9md/vim-ruby-xmpfilter
