@@ -1,0 +1,167 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'optparse'
+require 'awesome_print'
+
+debug = false
+file_opts = {}
+
+shell = File.basename ENV['SHELL']
+
+args = ARGV.clone
+args.options do |opts|
+  opts.on('-d', '--debug', 'see: dry-run') do
+    debug = true
+    file_opts.merge! noop: true
+  end
+
+  opts.on('-n', '--dry-run', 'do not perform any file operations') do
+    debug = true
+    file_opts.merge! noop: true
+  end
+
+  opts.on('-v', '--verbose') do
+    file_opts.merge! verbose: true
+  end
+
+  opts.on('-s', '--shell SHELL') do |sh|
+    shell = sh
+  end
+
+  opts.on('-b', '--bash') do |sh|
+    shell = 'bash'
+  end
+
+  opts.on('-z', '--zsh') do |sh|
+    shell = 'zsh'
+  end
+
+  opts.on('-f', '--fish') do |sh|
+    shell = 'fish'
+  end
+end.parse!
+
+# accepted cli args
+# -----------------
+shells = %w{ bash zsh fish }
+
+# choose the shell the configure
+shell = args.shift if shells.include? args.first
+shell ||= File.basename ENV['SHELL']
+
+ignored_shells = shells.dup.reject{|sh| sh == shell }
+
+# Timestamp
+# ---------
+now = Time.now.to_i
+
+# directories
+# -----------
+pwd = Dir.pwd
+home = ENV['HOME']
+base = format('%s/.config', home)
+base_backup = format('%s/config.%s', home, now)
+dots_backup = format('%s/dots.%s', home, now)
+
+<<-"OLD_v1"
+plain_srcs = %w{ vim }
+dot_srcs = %w{ vim/dot }
+
+case shell
+when /fish/i
+  plain_srcs << 'fish'
+  dot_srcs << 'fish/dot'
+when /bash/i
+  plain_srcs << 'bash'
+  dot_srcs << 'bash/dot'
+when /zsh/i
+  plain_srcs << 'zsh'
+  dot_srcs << 'zsh/dot'
+end
+OLD_v1
+
+puts <<"THE_PLAN"
+
+  So I think there should be 3 sections for each subsection:
+
+  1. files that automatically loaded by the app, boilerplate
+  if you will, (.vimrc/.vim, .bashrc, .zshrc, etc.)
+
+  1. then, maybe just a folder that goes in `~/.config/`
+
+  The boilerplate stuff can even got in a `dot/` folder
+  inside the `~/.config/` folder, but is then symlinked out.
+
+  So maybe it would look like this:
+
+  vim/
+  vim/dot/
+  vim/dot/vim/
+  vim/dot/vimrc
+  vim/hashrocket
+  vim/local
+  vim/bundles/
+
+  bash/
+  bash/dot/
+  bash/dot/bashrc
+  bash/dot/bash_profile
+  bash/local
+  bash/paths
+  bash/git
+  bash/ruby
+
+  if `dot/` has a `no_dot` file, anything listed in there
+  will be linked w/out being renamed
+
+  brew/dot/
+  brew/dot/no_dot
+  brew/dot/Brewfile
+
+THE_PLAN
+
+if Dir.pwd != base
+  FileUtils.mv(base, base_backup, file_opts) if File.exist? base
+  FileUtils.ln_s pwd, base, file_opts
+end
+
+Dir.chdir base if debug == false
+
+def link(src,dest)
+  printf "linking '%s' to '%s' ...\n", src, dest
+
+  if File.directory? src
+    FileUtils.ln_s(src, dest, file_opts)
+  else
+    FileUtils.ln(src, dest, file_opts)
+  end
+end
+
+# loop thru each `*/dot/` that is not in shells
+#
+# check for the existence of setup.yml
+#
+# load the files either renaming them all, or using the
+# custom naming defined in setup.yml
+dirs = Dir['*/'].reject{|dir| ignored_shells.include? File.basename(dir) }
+dirs.each do |dir|
+  dotdir = File.join(dir, 'dot')
+
+  no_dot = format '%s/no_dot', dotdir
+
+  no_dots = File.exist?(no_dot)
+  no_dots &&= IO.read(no_dot).split(/\s*\n+\s*/)
+  no_dots ||= []
+
+  Dir[format '%s/*', dotdir].each do |dot|
+    dest = File.basename dot
+    dest = ?. + dest unless no_dots.include? dest
+    dest = format '%s/%s', home, dest
+
+    FileUtils.mv [dest], dots_backup, file_opts if File.exist? dest
+
+    link dot, dest
+  end
+end
+
