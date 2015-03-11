@@ -30,7 +30,7 @@ function dot_install()
     done
   done
 
-  for dir in hashrocket bin logs
+  for dir in hashrocket bin logs Brewfile
   do
     backup_file "$dir"
     ln -s "$(pwd)/$dir" $HOME/
