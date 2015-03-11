@@ -323,6 +323,7 @@ endfunc
 "" useful command abbreviations
 
 " => *this
+ca rmthis bd \| !rm -i %
 ca sothis so %
 ca qthis !hque %:p
 ca quethis !hque %:p
