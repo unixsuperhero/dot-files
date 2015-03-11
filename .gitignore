@@ -26,3 +26,5 @@ tmp/
 fish/config/fish/fishd.*
 !.keep
 bash/home/vimrc.josh.undo_history-2015-02-28
+fish/config/direnv/
+fish/config/gh-update

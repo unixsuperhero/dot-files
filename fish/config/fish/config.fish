@@ -22,3 +22,7 @@ set -x fish_plugins rails git rbenv
 . $fish_path/oh-my-fish.fish
 
 set -x RUBYLIB $HOME/repos/hnotes/lib $RUBYLIB
+
+eval (direnv hook fish)
+
+direnv allow $HOME/repos/hnotes

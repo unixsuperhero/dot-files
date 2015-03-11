@@ -55,11 +55,14 @@ set viminfo='200,\"100,/9000,:9000,n~/.viminfo    " Remember things between sess
 set backupskip=/tmp/*,/private/tmp/*"
 
 set spellfile=~/.vim/words.utf8.add
+set formatprg=par\ -w60re
+
 
 if has('persistent_undo')
   set undofile
   set undodir=~/.vim/tmp//,~/.vim/undo_files//,~/.vim//,/tmp//
 endif
+
 
 " regex stuff
 nnoremap / /\v
@@ -211,6 +214,8 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")|execute("normal 
 
   " makeprgs ---------------------------------------------------------
 au FileType ruby       setlocal makeprg=ruby\ -c\ %
+au FileType ruby       nmap ,x <plug>(xmpfilter-run)
+au FileType ruby       nmap ,m <plug>(xmpfilter-mark)
 au FileType eruby      setlocal makeprg=rails-erb-check\ %
 au FileType haml       setlocal makeprg=haml\ -c\ %
 au FileType sh         setlocal makeprg=bash\ -n\ %
