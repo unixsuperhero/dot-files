@@ -63,6 +63,14 @@ class FileSystem
     FileUtils.ln_sf(src, dest, opts)
   end
 
+  def link(src, dest, opts=@file_opts)
+    if fs.directory? src
+      fs.ln_s(src, dest, opts)
+    else
+      fs.ln(src, dest, opts)
+    end
+  end
+
   def mkdir_p(list, opts=@file_opts)
     FileUtils.mkdir_p(list, opts)
   end
@@ -101,6 +109,11 @@ class Dotfiles
     @fs ||= FileSystem.new(file_opts)
   end
 
+  def src
+    @src = pwd
+    @src = fs.join(@src, 'src') if fs.exist?(fs.join(@src, 'src'))
+  end
+
   def base
     @base ||= format '%s/.config', fs.home
   end
@@ -131,30 +144,20 @@ class Dotfiles
     ignored_shells + ['builds']
   end
 
-  def link(src,dest)
-    printf "linking '%s' to '%s' ...\n", src, dest
-
-    if fs.directory? src
-      fs.ln_s(src, dest, file_opts)
-    else
-      fs.ln(src, dest, file_opts)
-    end
-  end
-
   def file_opts
     parse_options
     @file_opts
   end
 
   def build_dir
-    @build_dir ||= format('%s/builds/%s/', pwd, Time.now.to_i).tap do |bdir|
+    @build_dir ||= format('%s/builds/%s/', src, Time.now.to_i).tap do |bdir|
       fs.mkdir_p bdir
-      fs.ln_sf(bdir, format('%s/builds/latest', pwd))
+      fs.ln_sf(bdir, format('%s/builds/latest', src))
     end
   end
 
   def build
-    dirs = Dir['*/'].reject{|dir| ignored_dirs.include? fs.basename(dir) }
+    dirs = Dir[format '%s/*/', src].reject{|dir| ignored_dirs.include? fs.basename(dir) }
     dirs.each do |dir|
       dotdir = fs.join(dir, 'dot')
 
@@ -169,7 +172,7 @@ class Dotfiles
         dest = ?. + dest unless no_dots.include? dest
         dest = format '%s/%s', build_dir, dest
 
-        link dot, dest
+        fs.link dot, dest
       end
     end
   end
@@ -183,9 +186,9 @@ class Dotfiles
   end
 
   def backup_dir
-    @backup_dir ||= format('%s/builds/backups/%s/', pwd, Time.now.to_i).tap do |bdir|
-      fs.mkdir_p bdir, file_opts
-      fs.ln_sf(pwd, format('%s/builds/backups/latest', pwd), file_opts)
+    @backup_dir ||= format('%s/builds/backups/%s/', src, Time.now.to_i).tap do |bdir|
+      fs.mkdir_p bdir
+      fs.ln_sf(pwd, format('%s/builds/backups/latest', src))
     end
   end
 
@@ -194,12 +197,12 @@ class Dotfiles
   end
 
   def real_pwd
-    fs.realpath(fs.pwd)
+    fs.realpath(pwd)
   end
 
   def ensure_base_dir_is_pwd
     if real_base_dir != real_pwd
-      fs.mv [real_base_dir], backup_dir, file_opts
+      fs.mv [real_base_dir], backup_dir
     end
   end
 
@@ -216,11 +219,11 @@ class Dotfiles
 
     ## EVERYTHING BELOW HERE IS FOR REFERENCE
 
-    if fs.pwd != base
-      fs.rm(base, file_opts) if fs.symlink? base
-      fs.mv(base, base_backup, file_opts) if fs.exist? base
-      fs.mkdir_p(dots_backup, file_opts)
-      fs.ln_s pwd, base, file_opts
+    if pwd != base
+      fs.rm(base) if fs.symlink? base
+      fs.mv(base, base_backup) if fs.exist? base
+      fs.mkdir_p(dots_backup)
+      fs.ln_s pwd, base
     end
 
     fs.chdir base if debug == false
@@ -248,9 +251,9 @@ class Dotfiles
         dest = ?. + dest unless no_dots.include? dest
         dest = format '%s/%s', home, dest
 
-        fs.mv [dest], dots_backup, file_opts if fs.exist? dest
+        fs.mv [dest], dots_backup if fs.exist? dest
 
-        link dot, dest
+        fs.link dot, dest
       end
     end
   end
