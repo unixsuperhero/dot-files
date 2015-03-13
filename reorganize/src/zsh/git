@@ -1,0 +1,224 @@
+
+# needs to be at the top
+
+  current_branch() { basename $(git symbolic-ref HEAD); }
+
+  not_in_master() {
+    mast="$(git log --oneline --decorate master)"
+    git log --oneline --decorate --left-right head...${1:-master} | grep '^<' | sed 's/^..[^[:space:]]*[[:space:]]*\(([^)]*) \)\{0,1\}//' | while read msg
+    do
+      echo "$mast" | egrep -i "$msg" &>/dev/null || echo "NOT FOUND: $msg"
+    done
+    # sed regex ... escaped parens are groups, the escaped curlies are repeat ranges.  basically my (or sed's) version of an optional atom
+
+    cat <<ZERO >/dev/null
+❯ glmerge master
+< 6ee92f0 (HEAD, origin/feature/preferences, feature/preferences) add/sort by position on preference groups/options
+< a956d8a populate images and preference options for Makeup and Workout services
+< e9e37cf update Hard Wax PrefOpt logo; use I18n when asserting not_authed error
+ZERO
+  }
+
+# aliases
+
+  alias git_aliases="alias | grep git"
+  alias gsf="gs"
+  alias gpa="gp --all"
+  alias gpr="git pull --rebase"
+  alias gprm="gpr origin master"
+  alias gpremote="gp origin head"
+  alias gpremotef="gp -f origin head"
+  alias gst="git status"
+  alias gss="gst -s"
+  alias gcm="gc -m"
+  alias gc-m="gcm"
+  alias egcon="vim .git/config"
+  alias gcon="cat .git/config"
+  alias glodd="glod -9"
+  alias glogg="glog -9"
+  alias glr="glod --left-right"
+  alias gra="git rebase --abort"
+  alias grs="git rebase --skip"
+
+  function grc() {
+    git --no-pager grep -Ein '^[<>=]{7}([^<>=]|$)' && return -1
+    git aa
+    git rebase --continue
+  }
+
+  function glodc() {
+    if [[ $# -gt 0 ]]; then
+      glod -9 "$@" | cat
+    else
+      glod -9 | cat
+    fi
+  }
+
+  function glogc() {
+    if [[ $# -gt 0 ]]; then
+      glog -9 "$@" | cat
+    else
+      glog -9 | cat
+    fi
+  }
+
+  function glmerge() {
+    glr head...$1 | grep '^>'
+    glr head...$1 | grep '^<'
+  }
+
+  function glrebase() {
+    glr head...$1 | grep '^<'
+    glr head...$1 | grep '^>'
+  }
+
+# functions
+
+function dev_and_stage () {
+  ref=$(git symbolic-ref HEAD 2> /dev/null)  || ref=$(git rev-parse --short HEAD 2> /dev/null)  || return
+  current_branch=${ref#refs/heads/}
+  dev_branch="dev/${current_branch#*/}"
+  git branch -D "$dev_branch"
+  git checkout -b "$dev_branch"
+  git checkout development
+  git pull --rebase origin development
+  git checkout "$dev_branch"
+  git rebase development
+  git checkout development
+  git merge "$dev_branch"
+  git push origin development
+  git push staging head:master
+  heroku run rake db:migrate -a beautified-staging
+  git checkout "${current_branch}"
+}
+
+  gcd () {
+    cd $(list_repos | grep -i "$1")
+  }
+  alias hcd="gcd"
+
+  function cleanup_branches ()
+  {
+    gco master
+    gpr
+    git branch | sed 's/..//' | grep -v master |
+    while read branch
+    do
+      read -u 1 -p "$branch (y/n): " yn
+      if [[ $yn == "y" ]]
+      then
+        gco "$branch"
+        gpr origin master
+        gco master
+        gb -d "$branch"
+      else
+        echo "Skipping $branch ..."
+      fi
+    done
+  }
+
+  ## Have a searchable/parsable list of the files that have changed
+
+  function gs() {
+
+    gss | sed "s/...//;s/.* -> //" | grep "$1" | sort -u
+
+    #re='/Untracked/,$s/#[[:space:]]*([^ ]*$)/\1/p;s/.*: *//p'
+    #case $1 in
+    #  -h)
+    #    cont='s/app.controllers.(.*)_controller.rb/Controller: \1/'
+    #    view='s/app.views.(.*)[.]html.*/View: \1/'
+    #    feat='s/features.(.*).feature/Test: \1/'
+    #    git status | sed -En "$re" | grep "$2" | sed -E "/^$/d;$cont;$view;$feat" | sort -u ;;
+    #  '' | *)
+    #    git status | sed -En "$re" | grep "$1" | sed '/^$/d' | sort -u ;;
+    #esac
+
+    #git status | sed -n 's/.*:[^a-z]*//'
+    #git status | grep -o ': .*' | sed 's/[^a-z]*//' | grep "$1" | sort -u
+    #git status | sed -n 's/.*: *//p' | grep "$1" | sort -u
+  }
+
+
+  _setup_git () {
+    [[ -d .git ]] || git init .
+    git add .
+    git commit -m 'initialize git'
+  }
+
+  repo_changed () {
+    if [[ ! -d tmp ]]; then
+      echo "making ./tmp in $(pwd)"
+      mkdir tmp
+    fi
+    [[ $(git status --porcelain | wc -l | grep -o '[0-9]+') -gt 0 ]] && pwd >tmp/ps1 || cat /dev/null >tmp/ps1
+    #cd $1 ### my change 2011-12-06 11:11:17
+    #local g="$(git rev-parse --git-dir 2>/dev/null)"
+    #if [ -n "$g" ]; then
+    #  ### my change 2011-12-06 11:11:02 
+    #  [[ $(git status --porcelain | wc -l | grep -o '[0-9]+') -gt 0 ]] &&
+    #    echo -n "| ${1/$HOME/~} "
+    #fi
+  }
+
+  list_repos() {
+    for repo in $(echo $repos | column -s: -t)
+    do
+      echo $repo
+    done
+  }
+
+  tracking_repo() {
+    if ! list_repos | grep "$(pwd)$" >/dev/null
+    then
+      return 1
+    fi
+  }
+
+  list_changes() {
+    if tracking_repo; then
+      repo_changed
+    fi
+
+    for repo in ${repos//:/ }; do
+      ps1="${repo}/tmp/ps1"
+      if [[ -e $ps1 ]]; then
+        if [[ $(cat $ps1 | wc -c) -gt 0 ]]; then
+          echo -n "| ${repo/$HOME/~} "
+        fi
+      fi
+    done
+    echo "|"
+  }
+
+  rebase () {
+    # this defaults to rebasing off of master, because
+    # it is very uncommon that 2+ of us collab. on a
+    # remote repo (so our branch doesn't have an upstream
+    # set, to gpr off of)
+    cb="$(current_branch)"
+    gco master; git pull --rebase
+    gco "$cb"; git rebase master
+  }
+
+  app_name() {
+    git remote -v | grep "^[^[:space:]]*${1}[^[:space:]]*[[:space:]]" | sed 's/.*://;s/\.git.*//' | head -1
+  }
+
+  stage () {
+    app="$(app_name staging)"
+    branch=$(current_branch)
+    git checkout -b "${branch}-staging"
+    git pull --rebase staging master
+    git push staging "HEAD:master"
+    heroku rake db:migrate --app ${app}
+    git checkout "${branch}"
+    echo -n 'Delete the staging branch? (DEFAULT: no): '
+    read skip_delete
+    if [ -z $skip_delete ]; then
+      echo 'Skipping branch delete...'
+    else
+      git branch -D "${branch}-staging"
+    fi
+  }
+

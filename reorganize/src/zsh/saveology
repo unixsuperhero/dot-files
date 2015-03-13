@@ -1,0 +1,115 @@
+
+# deprecated
+# alias staging_console="heroku console --app $(app_name staging)"
+# alias admin_console="heroku console --app $(app_name admin)"
+
+# new way
+alias staging_console="heroku run rails console -a \$(app_name staging)"
+alias admin_console="heroku run rails console -a \$(app_name admin)"
+
+function console () {
+  case $1 in
+    '') sc;;
+    'admin') heroku run script/rails console -a $(app_name admin);;
+    'staging') heroku run script/rails console -a $(app_name staging);;
+    'stage') heroku run script/rails console -a $(app_name stage);;
+    'production') heroku run script/rails console -a $(app_name production);;
+  esac
+}
+
+at_vs_star () {
+  for a in $*; do
+    echo "*arg='$a'"
+  done
+  as_args $*
+  for a in $@; do
+    echo "@arg='$a'"
+  done
+  as_args $@
+  for a in "$*"; do
+    echo "q*arg='$a'"
+  done
+  as_args "$*"
+  for a in "$@"; do
+    echo "q@arg='$a'"
+  done
+  as_args "$@"
+}
+
+as_args () {
+  echo '[ as args ]'
+  cnt=$#
+  for (( a=1; a<=$cnt; a++ )) ; do
+    echo "$a='$1'"
+    shift
+  done
+}
+
+# run commands on our redis server
+hra ()
+{
+  #redis-cli -h panga.redistogo.com -p 9181 -a 28300424cd348fbe651953474e39613e $@
+  read -ra REDIS <<< "$(heroku config -a $admin | grep -o 'redistogo:.*' | sed 's/\(redistogo\)\{0,1\}[:@]/ /g;s/ //' | awk '{printf "%s %s %s", $2, $3, $1}')"
+  redis-cli -h ${REDIS[0]} -p ${REDIS[1]} -a ${REDIS[2]} "$@"
+}
+
+alias gp="git push"
+deprecated_staging() {
+  gp -f staging master
+  heroku run rake db:migrate --app $(app_name staging)
+  heroku restart --app $(app_name staging)
+  open http://stage.saveology.com
+}
+
+deprecated_admin(){
+  heroku pgbackups:capture --expire --app saveology-deals-production
+  _admin
+}
+
+admin_nobackup(){
+  _admin
+}
+
+_api () {
+  gp api master
+  heroku run rake db:migrate --app $(app_name api)
+  heroku restart --app $(app_name api)
+  open http://api.saveology.com
+}
+
+_admin () {
+  gp admin master
+  heroku run rake db:migrate --app $(app_name admin)
+  heroku restart --app $(app_name admin)
+  open http://admins.saveology.com
+}
+
+last_heroku_version_for() {
+  heroku releases --app "$1" | egrep -o '^v[0-9]+' | head -1 | sed 's/v//'
+}
+next_heroku_version_for() {
+  last=$(last_heroku_version_for "$1")
+  echo $[ $last + 1 ]
+}
+remote_repo_for() {
+  git remote -v | grep "$1" | head -1 | awk '{print $1}'
+}
+
+deprecated_customer(){
+  local app="$(app_name production)"
+  local remote="$(remote_repo_for $app)"
+
+  # create the tag
+  #git tag -a "$next_version" -m "$message"
+
+  gp production master
+  heroku restart --app $(app_name production)
+  open http://www.saveology.com
+}
+
+alias deprecated_production=customer
+
+# annotate models, using the same methodology we already use, yield only necessary changes:
+# MOVED TO ~/.bashrc.alias
+# alias annotate="bundle exec annotate -p after -e tests,fixtures"
+

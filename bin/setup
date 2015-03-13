@@ -11,17 +11,6 @@ class FileSystem
     @file_opts = file_opts
   end
 
-  def home
-    ENV['HOME']
-  end
-
-  def pwd
-    Dir.pwd
-  end
-
-  def chdir(dest)
-    Dir.chdir(dest)
-  end
 
   def glob(pattern)
     Dir.glob(pattern)
@@ -51,41 +40,39 @@ class FileSystem
     File.symlink?(f)
   end
 
-  def ln(src, dest, opts=@file_opts)
+  def ln(src, dest, opts=file_opts)
     FileUtils.ln(src, dest, opts)
   end
 
-  def ln_s(src, dest, opts=@file_opts)
+  def ln_s(src, dest, opts=file_opts)
     FileUtils.ln_s(src, dest, opts)
   end
 
-  def ln_sf(src, dest, opts=@file_opts)
+  def ln_sf(src, dest, opts=file_opts)
     FileUtils.ln_sf(src, dest, opts)
   end
 
-  def link(src, dest, opts=@file_opts)
-    if directory? src
-      ln_s(src, dest, opts)
-    else
-      ln(src, dest, opts)
-    end
-  end
-
-  def mkdir_p(list, opts=@file_opts)
+  def mkdir_p(list, opts=file_opts)
     FileUtils.mkdir_p(list, opts)
   end
 
-  def mv(src, dest, opts=@file_opts)
+  def mv(src, dest, opts=file_opts)
     FileUtils.mv(src, dest, opts)
   end
 
-  def rm(list, opts=@file_opts)
+  def rm(list, opts=file_opts)
     FileUtils.rm(list, opts)
   end
 end
 
 class Dotfiles
-  attr_accessor :args, :now, :debug
+  attr_accessor :args, :shell, :shells,
+  :home, :base, :base_backup, :dots_backup, :now,
+  :debug
+
+  HOME = ENV['HOME']
+  OWD = Dir.pwd
+  PWD = Dir.pwd
 
   def self.build(args=ARGV.clone)
     Dotfiles.new(args).tap(&:build)
@@ -102,46 +89,47 @@ class Dotfiles
   def initialize(args=ARGV.clone)
     @args = args
     @debug = false
+    @file_opts = {}
+
+    @shells = %w{ bash zsh fish }
+
+    @shell = File.basename ENV['SHELL']
+
     @now = Time.now.to_i
+
+    @pwd = Dir.pwd
+    @home = ENV['HOME']
+    @base = format('%s/.config', home)
+    @base_backup = format('%s/config.%s', home, now)
+    @dots_backup = format('%s/dots.%s', home, now)
   end
 
   def fs
     @fs ||= FileSystem.new(file_opts)
   end
 
-  def src
-    @src = pwd
-    @src = fs.join(@src, 'src') if fs.exist?(fs.join(@src, 'src'))
-  end
-
-  def base
-    @base ||= format '%s/.config', fs.home
-  end
-
-  def base_backup
-    format('%s/config.%s', fs.home, now)
-  end
-
-  def dots_backup
-    format('%s/dots.%s', fs.home, now)
-  end
-
-  def shells
-    %w{ bash zsh fish }
-  end
-
   def shell
     parse_options
     @shell = args.first if shells.include? args.first
-    @shell ||= fs.basename ENV['SHELL']
+    @shell
   end
 
   def ignored_shells
-    shells.select{|sh| sh != shell }
+    @shells.select{|sh| sh != shell }
   end
 
   def ignored_dirs
     ignored_shells + ['builds']
+  end
+
+  def link(src,dest)
+    printf "linking '%s' to '%s' ...\n", src, dest
+
+    if File.directory? src
+      FileUtils.ln_s(src, dest, file_opts)
+    else
+      FileUtils.ln(src, dest, file_opts)
+    end
   end
 
   def file_opts
@@ -149,73 +137,66 @@ class Dotfiles
     @file_opts
   end
 
-  def build_dir(latest=false)
-    @build_dir ||= format('%s/builds/latest/', pwd) if latest == true
+  def build_dir
     @build_dir ||= format('%s/builds/%s/', pwd, Time.now.to_i).tap do |bdir|
-      fs.mkdir_p bdir
-      fs.ln_sf(bdir, format('%s/builds/latest', pwd))
+      FileUtils.mkdir_p bdir
+      FileUtils.ln_sf(bdir, format('%s/builds/latest', pwd))
     end
   end
 
   def build
-    dirs = Dir[format '%s/*/', src].reject{|dir| ignored_dirs.include? fs.basename(dir) }
+    dirs = Dir['*/'].reject{|dir| ignored_dirs.include? File.basename(dir) }
     dirs.each do |dir|
-      dotdir = fs.join(dir, 'dot')
+      dotdir = File.join(dir, 'dot')
 
       no_dot = format '%s/no_dot', dotdir
 
-      no_dots = fs.exist?(no_dot)
+      no_dots = File.exist?(no_dot)
       no_dots &&= IO.read(no_dot).split(/\s*\n+\s*/)
       no_dots ||= []
 
-      Dir[format '%s/*', dotdir].select{|df| fs.basename(df) != 'no_dot' }.each do |dot|
-        dest = fs.basename dot
+      Dir[format '%s/*', dotdir].select{|df| File.basename(df) != 'no_dot' }.each do |dot|
+        dest = File.basename dot
         dest = ?. + dest unless no_dots.include? dest
         dest = format '%s/%s', build_dir, dest
 
-        fs.link dot, dest
+        link dot, dest
       end
     end
   end
 
   def owd
-    @owd ||= fs.pwd
+    @owd ||= pwd
   end
 
   def pwd
-    owd
-    @pwd ||= fs.pwd
+    Dir.pwd.tap{ owd }
   end
 
-  def backup_dir(latest=false)
-    @backup_dir ||= format('%s/builds/backups/latest/', pwd) if latest == true
+  def backup_dir
     @backup_dir ||= format('%s/builds/backups/%s/', pwd, Time.now.to_i).tap do |bdir|
-      fs.mkdir_p bdir
-      fs.ln_sf(pwd, format('%s/builds/backups/latest', pwd))
+      FileUtils.mkdir_p bdir, file_opts
+      FileUtils.ln_sf(pwd, format('%s/builds/backups/latest', pwd), file_opts)
     end
   end
 
   def real_base_dir
-    fs.realpath(base)
+    File.realpath(base)
   end
 
-  def real_src
-    fs.realpath(src)
+  def real_pwd
+    File.realpath(Dir.pwd)
   end
 
-  def ensure_base_dir_is_src
-    if real_base_dir != real_src
-      dest = fs.join(backup_dir(true), format("config.%s", now))
-      fs.mv [real_base_dir], dest
-      fs.ln_s src, base
+  def ensure_base_dir_is_pwd
+    if real_base_dir != real_pwd
+      FileUtils.mv [real_base_dir], backup_dir, file_opts
     end
   end
 
   def install
-    ensure_base_dir_is_src
-    output = `rsync -avzn --exclude "#{backup_dir(true)}" --delete --backup --backup-dir="#{backup_dir(true)}" #{build_dir(true)}/ #{fs.home}/`
-    puts "OUTPUT:"
-    puts output
+    ensure_base_dir_is_pwd
+    system %{rsync -avz --delete --backup --backup-dir="#{backup_dir}" iphone:/ iPhone/ 2>&1}
   end
 
   def setup
@@ -226,14 +207,14 @@ class Dotfiles
 
     ## EVERYTHING BELOW HERE IS FOR REFERENCE
 
-    if pwd != base
-      fs.rm(base) if fs.symlink? base
-      fs.mv(base, base_backup) if fs.exist? base
-      fs.mkdir_p(dots_backup)
-      fs.ln_s pwd, base
+    if Dir.pwd != base
+      FileUtils.rm(base, file_opts) if File.symlink? base
+      FileUtils.mv(base, base_backup, file_opts) if File.exist? base
+      FileUtils.mkdir_p(dots_backup, file_opts)
+      FileUtils.ln_s pwd, base, file_opts
     end
 
-    fs.chdir base if debug == false
+    Dir.chdir base if debug == false
 
     # loop thru each `*/dot/` that is not in shells
     #
@@ -242,25 +223,25 @@ class Dotfiles
     # load the files either renaming them all, or using the
     # custom naming defined in setup.yml
     ap ignored_shells: ignored_shells
-    dirs = Dir['*/'].reject{|dir| ignored_shells.include? fs.basename(dir) }
+    dirs = Dir['*/'].reject{|dir| ignored_shells.include? File.basename(dir) }
     ap dirs: dirs
     dirs.each do |dir|
-      dotdir = fs.join(dir, 'dot')
+      dotdir = File.join(dir, 'dot')
 
       no_dot = format '%s/no_dot', dotdir
 
-      no_dots = fs.exist?(no_dot)
+      no_dots = File.exist?(no_dot)
       no_dots &&= IO.read(no_dot).split(/\s*\n+\s*/)
       no_dots ||= []
 
-      Dir[format '%s/*', dotdir].select{|df| fs.basename(df) != 'no_dot' }.each do |dot|
-        dest = fs.basename dot
+      Dir[format '%s/*', dotdir].select{|df| File.basename(df) != 'no_dot' }.each do |dot|
+        dest = File.basename dot
         dest = ?. + dest unless no_dots.include? dest
         dest = format '%s/%s', home, dest
 
-        fs.mv [dest], dots_backup if fs.exist? dest
+        FileUtils.mv [dest], dots_backup, file_opts if File.exist? dest
 
-        fs.link dot, dest
+        link dot, dest
       end
     end
   end
@@ -268,7 +249,6 @@ class Dotfiles
   def parse_options
     return args if @options_parsed == true
     @options_parsed = true
-    @file_opts ||= {}
     args.options do |opts|
       opts.on('-d', '--debug', 'see: dry-run') do
         @debug = true
@@ -303,9 +283,9 @@ class Dotfiles
   end
 end
 
-#Dotfiles.build ARGV
+Dotfiles.build ARGV
 #Dotfiles.install ARGV
-Dotfiles.setup ARGV
+#Dotfiles.setup ARGV
 
 ## OLD NOTES
 

@@ -9,9 +9,6 @@ filetype indent on                                " Enable loading indentation p
 
 hi SignColumn  term=standout ctermfg=4 ctermbg=black guifg=DarkBlue guibg=black
 
-"set winwidth=80    " min width of the current window
-set winminwidth=20    " min width of the current window
-
 "set textwidth=80                                 " The # of chars on a line before [set wrap] adds a newline
 "set autowrite                                    " Write contents of the file, if it has been modified, on buffer exit
 set nolist                                        " (Show/Don't Show) special characters represententing whitespace
@@ -53,6 +50,8 @@ set enc=utf-8                                     " Use UTF-8 as the default buf
 "set shortmess=filnxtToO                          " this is the default value, changed it to avoid the hit-enter message
 set viminfo='200,\"100,/9000,:9000,n~/.viminfo    " Remember things between sessions
 set backupskip=/tmp/*,/private/tmp/*"
+set diffopt=filler,iwhite,vertical
+set switchbuf=useopen,split
 
 set spellfile=~/.vim/words.utf8.add
 set formatprg=par\ -w60re
@@ -63,14 +62,14 @@ if has('persistent_undo')
   set undodir=~/.vim/tmp//,~/.vim/undo_files//,~/.vim//,/tmp//
 endif
 
-
-" regex stuff
-nnoremap / /\v
-vnoremap / /\v
-cnoremap %s/ %smagic/
-cnoremap \>s/ \>smagic/
-nnoremap :g/ :g/\v
-nnoremap :g// :g//
+"" " I THINK THIS IS MAKING MY : (key to enter ex mode) SLOW
+"" " regex stuff
+"" nnoremap / /\v
+"" vnoremap / /\v
+"" cnoremap %s/ %smagic/
+"" cnoremap \>s/ \>smagic/
+"" nnoremap :g/ :g/\v
+"" nnoremap :g// :g//
 
 " have gf open file under cursor in vertical split
 nnoremap gf :vs <cfile><CR>
@@ -196,6 +195,9 @@ hi link d DiffChange
 let g:listFiles="{*/lists/*,/Volumes/jearsh/*/readme}"
 
 " --------------------------- AUTOCOMMANDS ---------------------------
+
+  " AUTO-RELOAD ANY .vimrc* FILE
+au BufWrite,BufWritePost .vimrc* nested source %
 
   " bin/list ---------------------------------------------------------
 au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
@@ -323,7 +325,7 @@ endfunc
 "" useful command abbreviations
 
 " => *this
-ca rmthis bd \| !rm -i %
+ca rmthis exe('bun \| !rm -i ' . expand('%'))
 ca sothis so %
 ca qthis !hque %:p
 ca quethis !hque %:p
@@ -355,8 +357,15 @@ ca sovim so ~/.vimrc.josh
 
 ca ll !ls -l
 
+" use a vertical split with commands that normally make a horizontal split
 ca V vert
 ca vh vert h
+
+" use the range defined by the current (or last) visual selection
+ca VI '<,'><c-r>=Eatchar('\s')<cr>
+ca Vi '<,'><c-r>=Eatchar('\s')<cr>
+ca VR '<,'><c-r>=Eatchar('\s')<cr>
+ca Vr '<,'><c-r>=Eatchar('\s')<cr>
 
 ca aar argadd
 ca aany argadd **/**/**<Left><Left><Left><Left><C-r>=Eatchar('\s')<CR>

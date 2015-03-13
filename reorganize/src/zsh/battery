@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# battery status script
+#
+
+function colorize
+{
+  case $1 in
+    '') echo -e "\033[0;0m" ;;
+    red) echo -e "\033[0;31m" ;;
+    yel) echo -e "\033[0;33m" ;;
+    grn) echo -e "\033[0;36m" ;;
+    clear) echo -e "\033[0;0m" ;;
+    green) echo -e "\033[0;36m" ;;
+    yellow) echo -e "\033[0;33m" ;;
+    *) echo -e "\033[0;0m" ;;
+  esac
+}
+
+function ascii_battery
+{
+  battery=$(pmset -g batt | egrep -o '[0-9]+%')
+  charge=${battery//%/}
+
+  color="green"
+  [ "$charge" -lt "60" ] && color="yellow" # yellow
+  [ "$charge" -lt "30" ] && color="red" # green
+
+  echo -e "$(colorize)[$(colorize $color)${charge}$(colorize)}"
+}
+
+function tmux_battery
+{
+  battery=$(pmset -g batt | egrep -o '[0-9]+%')
+  charge=${battery//%/}
+  clear="#[bg=black fg=white]"
+  attr_prefix="tmux set-option -g status-right-attr"
+  attr_setting="default"
+
+  color="green"
+  [ "$charge" -lt "60" ] && color="yellow"
+  [ "$charge" -lt "30" ] && color="red" && attr_setting="blink"
+
+  $($attr_prefix $attr_setting)
+  echo "${clear}[#[bg=${color}]${clear}#[fg=${color}]${charge}${clear}}"
+}
+

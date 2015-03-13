@@ -1,0 +1,151 @@
+
+source_file "$HOME/.bashrc.functions.ssh"
+source_file "$HOME/.bashrc.functions.rails"
+source_file "$HOME/.bashrc.functions.test_suite"
+source_file "$HOME/.bashrc.functions.temporary"
+
+def ()
+{
+  if [[ $SHELL =~ 'zsh' ]]; then
+    whence -vaf "$1" 2>/dev/null
+  else
+    # changed to match shell precendence
+    alias "$1" 2>/dev/null
+    declare -f "$1" 2>/dev/null
+    which -a "$1" 2>/dev/null
+  fi
+}
+
+ff() {
+# Name: Fuzzy Finder for Bash
+# Author: Joshua Toyota
+# Created At: 2012-06-14 11:25:00
+# Description:
+#    Find files with a series of letters in the given order, but not necessarily next to each other.
+# find . -type f | grep -i "$(echo "$1" | sed 's/./&.*/g')"
+
+# Updated: 2013-01-24 09:38:19
+
+  git ls-files "*$(echo "$1" | sed 's/./&*/g')"
+}
+
+vff() {
+  vim $(ff $1)
+}
+
+eman() {
+  man "$1" | col -b | vim -
+}
+
+
+myips () {
+  echo
+  for a in $(ifconfig -l)
+  do
+    ips=$(ifconfig "$a" | egrep -o '[0-9]{1,3}(\.[0-9]{1,3}){3}')
+    if [[ "${#ips}" -gt 0 ]]
+    then
+      echo "$a"
+      echo "$ips" | sed 's/^/  /'
+      echo
+    fi
+  done
+
+  echo
+  echo "Remote IP:"
+  echo "----------"
+  whatismyip
+  echo
+}
+
+backupiphone-now () {
+  ls -al
+  bkupdir=iPhone.`date +"%Y.%m%d-%H:%M:%S"`
+  echo
+  echo "$bkupdir"
+  mkdir "$bkupdir"
+  echo
+  echo "mv 2010.0603-03:44:39 to iPhone...2010-02-13-18:09pm"
+  rsync -avz --exclude "/private/var" --delete --backup --backup-dir="$bkupdir" iphone:/ iPhone/ 2>&1
+}
+
+who2 () {
+  who -ma
+  echo
+  who -ma 2>&1 | sed 's/	/    /g;s/./-/g'
+  echo
+  who -a
+}
+
+## other stuff
+
+function seconds_to_ymd() { date -jr $1 +'%Y-%m-%d %H:%M:%S'; }
+
+
+cucumber () { bundle exec cucumber $@; }
+rake () { bundle exec rake $@; }
+
+function login_to_heroku()
+{
+  heroku login
+  ssh-add $(ls ~/.ssh/*.pub | sed 's/[.]pub$//')
+}
+
+function ytdl() {
+  [[ -z "$1" ]] && url="$(pbpaste)" || url="$1"
+  cclive -f fmt18_360p "$url";
+}
+
+function extract_mp3() {
+  if [[ -z "$1" || -z "$2" ]]; then
+    echo '2 params required.  (1) Original Video File (2) The Destination'
+    return 1
+  fi
+  ffmpeg -i "$1" -vn -ar 44100 -ac 2 -ab 192k -f mp3 "$2"
+}
+
+function itunes() {
+  local opt=$1
+  shift
+  case "$opt" in
+    launch|play|pause|stop|rewind|resume|quit)
+      ;;
+    mute)
+      opt="set mute to true"
+      ;;
+    unmute)
+      opt="set mute to false"
+      ;;
+    next|previous)
+      opt="$opt track"
+      ;;
+    ""|-h|--help)
+      echo "Usage: itunes <option>"
+      echo "option:"
+      echo "\tlaunch|play|pause|stop|rewind|resume|quit"
+      echo "\tmute|unmute\tcontrol volume set"
+      echo "\tnext|previous\tplay next or previous track"
+      echo "\thelp\tshow this message and exit"
+      return 0
+      ;;
+    *)
+      print "Unkonwn option: $opt"
+      return 1
+      ;;
+  esac
+  osascript -e "tell application \"iTunes\" to $opt"
+}
+
+function wget() {
+  echo "wget $@" >>$HOME/wget-downloads.log
+  command wget "$@"
+}
+
+function video_clip() { ffmpeg -i "$1" -ss "$2" -t "$3" "$4"; }
+function video_concat() { echo >concat_files.txt; for a; do echo "file '$a'" >>concat_files.txt; done; ffmpeg -f concat -i concat_files.txt -c copy concat.mp4; }
+function video_nosubs() {
+  ffmpeg -i "$1" -vf "crop=iw:ih-80:0:0" temp_nosub.mp4;
+  ffmpeg -i temp_nosub.mp4 -vf "pad=640:368:0:0" "$2"
+  rm temp_nosub.mp4
+}
+function wifi_fix(){ for a in off on; do networksetup -setairportpower en1 "$a"; done; }

@@ -1,0 +1,129 @@
+
+## function to source files
+source_file() { [ -r "$1" ] && source "$1"; }
+append_path() {
+  dir="$1"
+  case ":$PATH:" in
+    *:"$dir":*) ;;
+    *) [ ! -d "$dir" ] || PATH="$PATH:$dir" ;;
+  esac
+  export PATH
+}
+prepend_path() { 
+  dir="$1"
+  case "$PATH:" in
+    *:"$dir":*) PATH="`echo "$PATH"|sed -e "s#:$dir##"`" ;;
+  esac
+  case "$dir" in
+    /*) [ ! -d "$dir" ] || PATH="$dir:$PATH" ;;
+    *) PATH="$dir:$PATH" ;;
+  esac
+  export PATH
+}
+
+for sfile in ~/.config/zsh/* ~/.config/*/zsh
+do
+  if test -d $sfile; then
+    continue
+  fi
+  if test $sfile -eq ~/.config/zsh/local; then
+    continue
+  fi
+
+  source_file $sfile
+done
+
+## ## My custom bash environment
+## source_file "$HOME/.osxrc"
+## source_file "$HOME/.bashrc.git"
+## source_file "$HOME/.bashrc.vim"
+## source_file "$HOME/.bashrc.function"
+## source_file "$HOME/.bashrc.alias"
+## source_file "$HOME/.bashrc.battery"
+## source_file "$HOME/.bashrc.export"
+## 
+## if [[ $SHELL == "/bin/bash" ]]; then
+##   source_file "$HOME/.bashrc.ps1"
+## fi
+## 
+## source_file "$HOME/.bashrc.saveology"
+## source_file "$HOME/.bashrc.heroku"
+## 
+## # source_file "$HOME/.bashrc.autocomplete.git"
+## 
+## # source_file "$HOME/.rvm/scripts/rvm"
+## # source_file "$rvm_path/scripts/completion"
+
+export HASHROCKET_DIR="$HOME/hashrocket"
+export REPO_DIR="$HASHROCKET_DIR"
+
+alias glog='glod --name-status'
+alias glogn='glod --name-only'
+
+# prepend_path /Users/MacbookPro/repos/random-snippets/ruby
+# prepend_path /Users/MacbookPro/repos/random-snippets/shell
+prepend_path $HOME/bin
+prepend_path $HOME/bin/jshint/bin
+
+export VIMBUNDLES="$HOME/.vimbundles"
+
+#alias vim="/usr/local/Cellar/vim/7.3.333/bin/vim"
+#alias vim="/usr/local/Cellar/macvim/7.3-61/MacVim.app/Contents/MacOS/Vim"
+alias :e="vim"
+alias :q="exit"
+
+## export gems="$GEM_HOME/gems"
+
+## ## hcd command setup
+## get_repos_in_repo_dir() {
+##   cd $REPO_DIR
+##   find $(pwd -L)/ -type d -depth 1 | sed 's@//*@/@g'
+## }
+## add_repo_to_env() {
+##   [ -d "$1" ] && repos+="${1}" &&
+##   [ -z "$2" ] && repos+=":"
+## }
+## 
+## repos=""
+## for repo in $(get_repos_in_repo_dir) "$HOME/dot.jearsh"
+## do add_repo_to_env "$repo"; done
+## add_repo_to_env "$HOME/lists" 1
+## export repos
+## 
+## ## bash completions
+## function _gcd() {
+##   cur=${COMP_WORDS[COMP_CWORD]}
+##   for a in ${repos//:/ }; do wordlist+="$(basename $a) "; done
+##   COMPREPLY=($(compgen -W "$wordlist" $cur))
+## }
+## complete -F _gcd gcd
+
+# function _gs() {
+#   cur=${COMP_WORDS[COMP_CWORD]}
+#   COMPREPLY=($(compgen -W "$(gs)" $cur))
+# }
+# complete -F _gs gs
+# 
+# function _gco() {
+#   cur=${COMP_WORDS[COMP_CWORD]}
+#   COMPREPLY=($(compgen -W "$(gb)" $cur))
+# }
+# complete -o default -F _gco gco
+export EDITOR=vim
+
+  export HEROKU_BINSTUB_PATH="${HOME}/bin/app-binstubs"
+  export REMOTE_BINSTUB_PATH="./stubs"
+  prepend_path $HEROKU_BINSTUB_PATH
+  prepend_path $REMOTE_BINSTUB_PATH
+
+
+  function stub_search_string() {
+    echo ".*$(echo "$1" | sed 's/./&.*/g')"
+  }
+  function search_stubs() {
+    ls -1 "$HEROKU_BINSTUB_PATH" | grep -i "$(stub_search_string $1)" | head -1
+  }
+  function bcd() {
+    cd $($(search_stubs $1))
+  }
+
