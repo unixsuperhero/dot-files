@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+if [ ! -d "$HOME/.vimbundles" ]; then
+  BASE="$HOME/.vim/bundle"
+else
+  BASE="$HOME/.vimbundles"
+fi
+
+BASE="$HOME/.vim/bundle"
+
+mkdir -p $BASE
+
+action_from() {
+  if [ -r $1 ]; then
+    repos="$(cat $1)"
+    for repo in $repos; do
+      cd $BASE
+      dir="$(basename $repo)"
+      if [ -d "$BASE/$dir" ]; then
+        cd "$BASE/$dir"
+        echo "Updating $repo"
+        git pull --rebase
+      else
+        git clone https://github.com/"$repo".git
+      fi
+    done
+  fi
+}
+
+action_from "$HOME/.vimbundle"
+action_from "$HOME/.vimbundle.local"
+

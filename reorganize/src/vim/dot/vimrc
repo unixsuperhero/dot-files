@@ -1,0 +1,18 @@
+
+function! SourceFile(file)
+  if filereadable(expand(a:file))
+    exe('source ' . a:file)
+  endif
+endfunction
+
+call SourceFile(expand('~/dotfiles/vim/plugins.vim'))
+
+call SourceFile(expand('~/dotfiles/vim/init.vim'))
+
+call SourceFile(expand('~/dotfiles/vim/options.vim'))
+call SourceFile(expand('~/dotfiles/vim/mappings.vim'))
+call SourceFile(expand('~/dotfiles/vim/abbreviations.vim'))
+call SourceFile(expand('~/dotfiles/vim/colors.vim'))
+call SourceFile(expand('~/dotfiles/vim/functions.vim'))
+call SourceFile(expand('~/dotfiles/vim/autocmds.vim'))
+

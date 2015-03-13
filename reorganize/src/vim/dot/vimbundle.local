@@ -1,0 +1,14 @@
+tpope/vim-dispatch
+dag/vim-fish
+rking/ag.vim
+SirVer/ultisnips
+Shougo/unite.vim
+vim-scripts/taglist.vim
+timcharper/textile.vim
+tpope/vim-rbenv
+t9md/vim-ruby-xmpfilter
+vim-scripts/YankRing.vim
+itchyny/lightline.vim
+szw/vim-ctrlspace
+airblade/vim-gitgutter
+edkolev/tmuxline.vim
