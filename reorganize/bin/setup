@@ -1,0 +1,358 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'optparse'
+require 'awesome_print'
+
+class FileSystem
+  attr_accessor :file_opts
+
+  def initialize(file_opts)
+    @file_opts = file_opts
+  end
+
+  def home
+    ENV['HOME']
+  end
+
+  def pwd
+    Dir.pwd
+  end
+
+  def chdir(dest)
+    Dir.chdir(dest)
+  end
+
+  def glob(pattern)
+    Dir.glob(pattern)
+  end
+
+  def basename(f)
+    File.basename(f)
+  end
+
+  def directory?(f)
+    File.directory?(f)
+  end
+
+  def exist?(f)
+    File.exist?(f)
+  end
+
+  def join(*args)
+    File.join(*args)
+  end
+
+  def realpath(f, relative_to=nil)
+    relative_to == nil ? File.realpath(f) : File.realpath(f, relative_to)
+  end
+
+  def symlink?(f)
+    File.symlink?(f)
+  end
+
+  def ln(src, dest, opts=@file_opts)
+    FileUtils.ln(src, dest, opts)
+  end
+
+  def ln_s(src, dest, opts=@file_opts)
+    FileUtils.ln_s(src, dest, opts)
+  end
+
+  def ln_sf(src, dest, opts=@file_opts)
+    FileUtils.ln_sf(src, dest, opts)
+  end
+
+  def mkdir_p(list, opts=@file_opts)
+    FileUtils.mkdir_p(list, opts)
+  end
+
+  def mv(src, dest, opts=@file_opts)
+    FileUtils.mv(src, dest, opts)
+  end
+
+  def rm(list, opts=@file_opts)
+    FileUtils.rm(list, opts)
+  end
+end
+
+class Dotfiles
+  attr_accessor :args, :now, :debug
+
+  def self.build(args=ARGV.clone)
+    Dotfiles.new(args).tap(&:build)
+  end
+
+  def self.install(args=ARGV.clone)
+    Dotfiles.new(args).tap(&:install)
+  end
+
+  def self.setup(args=ARGV.clone)
+    Dotfiles.new(args).tap(&:setup)
+  end
+
+  def initialize(args=ARGV.clone)
+    @args = args
+    @debug = false
+    @now = Time.now.to_i
+  end
+
+  def fs
+    @fs ||= FileSystem.new(file_opts)
+  end
+
+  def base
+    @base ||= format '%s/.config', fs.home
+  end
+
+  def base_backup
+    format('%s/config.%s', fs.home, now)
+  end
+
+  def dots_backup
+    format('%s/dots.%s', fs.home, now)
+  end
+
+  def shells
+    %w{ bash zsh fish }
+  end
+
+  def shell
+    parse_options
+    @shell = args.first if shells.include? args.first
+    @shell ||= fs.basename ENV['SHELL']
+  end
+
+  def ignored_shells
+    @shells.select{|sh| sh != shell }
+  end
+
+  def ignored_dirs
+    ignored_shells + ['builds']
+  end
+
+  def link(src,dest)
+    printf "linking '%s' to '%s' ...\n", src, dest
+
+    if fs.directory? src
+      fs.ln_s(src, dest, file_opts)
+    else
+      fs.ln(src, dest, file_opts)
+    end
+  end
+
+  def file_opts
+    parse_options
+    @file_opts
+  end
+
+  def build_dir
+    @build_dir ||= format('%s/builds/%s/', pwd, Time.now.to_i).tap do |bdir|
+      fs.mkdir_p bdir
+      fs.ln_sf(bdir, format('%s/builds/latest', pwd))
+    end
+  end
+
+  def build
+    dirs = Dir['*/'].reject{|dir| ignored_dirs.include? fs.basename(dir) }
+    dirs.each do |dir|
+      dotdir = fs.join(dir, 'dot')
+
+      no_dot = format '%s/no_dot', dotdir
+
+      no_dots = fs.exist?(no_dot)
+      no_dots &&= IO.read(no_dot).split(/\s*\n+\s*/)
+      no_dots ||= []
+
+      Dir[format '%s/*', dotdir].select{|df| fs.basename(df) != 'no_dot' }.each do |dot|
+        dest = fs.basename dot
+        dest = ?. + dest unless no_dots.include? dest
+        dest = format '%s/%s', build_dir, dest
+
+        link dot, dest
+      end
+    end
+  end
+
+  def owd
+    @owd ||= pwd
+  end
+
+  def pwd
+    fs.pwd.tap{ owd }
+  end
+
+  def backup_dir
+    @backup_dir ||= format('%s/builds/backups/%s/', pwd, Time.now.to_i).tap do |bdir|
+      fs.mkdir_p bdir, file_opts
+      fs.ln_sf(pwd, format('%s/builds/backups/latest', pwd), file_opts)
+    end
+  end
+
+  def real_base_dir
+    fs.realpath(base)
+  end
+
+  def real_pwd
+    fs.realpath(fs.pwd)
+  end
+
+  def ensure_base_dir_is_pwd
+    if real_base_dir != real_pwd
+      fs.mv [real_base_dir], backup_dir, file_opts
+    end
+  end
+
+  def install
+    ensure_base_dir_is_pwd
+    system %{rsync -avz --delete --backup --backup-dir="#{backup_dir}" iphone:/ iPhone/ 2>&1}
+  end
+
+  def setup
+    build
+    install
+
+    return true
+
+    ## EVERYTHING BELOW HERE IS FOR REFERENCE
+
+    if fs.pwd != base
+      fs.rm(base, file_opts) if fs.symlink? base
+      fs.mv(base, base_backup, file_opts) if fs.exist? base
+      fs.mkdir_p(dots_backup, file_opts)
+      fs.ln_s pwd, base, file_opts
+    end
+
+    fs.chdir base if debug == false
+
+    # loop thru each `*/dot/` that is not in shells
+    #
+    # check for the existence of setup.yml
+    #
+    # load the files either renaming them all, or using the
+    # custom naming defined in setup.yml
+    ap ignored_shells: ignored_shells
+    dirs = Dir['*/'].reject{|dir| ignored_shells.include? fs.basename(dir) }
+    ap dirs: dirs
+    dirs.each do |dir|
+      dotdir = fs.join(dir, 'dot')
+
+      no_dot = format '%s/no_dot', dotdir
+
+      no_dots = fs.exist?(no_dot)
+      no_dots &&= IO.read(no_dot).split(/\s*\n+\s*/)
+      no_dots ||= []
+
+      Dir[format '%s/*', dotdir].select{|df| fs.basename(df) != 'no_dot' }.each do |dot|
+        dest = fs.basename dot
+        dest = ?. + dest unless no_dots.include? dest
+        dest = format '%s/%s', home, dest
+
+        fs.mv [dest], dots_backup, file_opts if fs.exist? dest
+
+        link dot, dest
+      end
+    end
+  end
+
+  def parse_options
+    return args if @options_parsed == true
+    @options_parsed = true
+    @file_opts ||= {}
+    args.options do |opts|
+      opts.on('-d', '--debug', 'see: dry-run') do
+        @debug = true
+        @file_opts.merge! noop: true
+      end
+
+      opts.on('-n', '--dry-run', 'do not perform any file operations') do
+        @debug = true
+        @file_opts.merge! noop: true
+      end
+
+      opts.on('-v', '--verbose') do
+        @file_opts.merge! verbose: true
+      end
+
+      opts.on('-s', '--shell SHELL') do |sh|
+        @shell = sh
+      end
+
+      opts.on('-b', '--bash') do
+        @shell = 'bash'
+      end
+
+      opts.on('-z', '--zsh') do
+        @shell = 'zsh'
+      end
+
+      opts.on('-f', '--fish') do
+        @shell = 'fish'
+      end
+    end.parse!
+  end
+end
+
+Dotfiles.build ARGV
+#Dotfiles.install ARGV
+#Dotfiles.setup ARGV
+
+## OLD NOTES
+
+# <<-"OLD_v1"
+# plain_srcs = %w{ vim }
+# dot_srcs = %w{ vim/dot }
+#
+# case shell
+# when /fish/i
+#   plain_srcs << 'fish'
+#   dot_srcs << 'fish/dot'
+# when /bash/i
+#   plain_srcs << 'bash'
+#   dot_srcs << 'bash/dot'
+# when /zsh/i
+#   plain_srcs << 'zsh'
+#   dot_srcs << 'zsh/dot'
+# end
+# OLD_v1
+#
+# puts <<"THE_PLAN"
+#
+#   So I think there should be 3 sections for each subsection:
+#
+#   1. files that automatically loaded by the app, boilerplate
+#   if you will, (.vimrc/.vim, .bashrc, .zshrc, etc.)
+#
+#   1. then, maybe just a folder that goes in `~/.config/`
+#
+#   The boilerplate stuff can even got in a `dot/` folder
+#   inside the `~/.config/` folder, but is then symlinked out.
+#
+#   So maybe it would look like this:
+#
+#   vim/
+#   vim/dot/
+#   vim/dot/vim/
+#   vim/dot/vimrc
+#   vim/hashrocket
+#   vim/local
+#   vim/bundles/
+#
+#   bash/
+#   bash/dot/
+#   bash/dot/bashrc
+#   bash/dot/bash_profile
+#   bash/local
+#   bash/paths
+#   bash/git
+#   bash/ruby
+#
+#   if `dot/` has a `no_dot` file, anything listed in there
+#   will be linked w/out being renamed
+#
+#   brew/dot/
+#   brew/dot/no_dot
+#   brew/dot/Brewfile
+#
+# THE_PLAN
+
