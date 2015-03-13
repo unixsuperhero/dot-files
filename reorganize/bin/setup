@@ -178,11 +178,12 @@ class Dotfiles
   end
 
   def owd
-    @owd ||= pwd
+    @owd ||= fs.pwd
   end
 
   def pwd
-    fs.pwd.tap{ owd }
+    owd
+    @pwd ||= fs.pwd
   end
 
   def backup_dir
