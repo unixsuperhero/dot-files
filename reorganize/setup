@@ -63,14 +63,6 @@ class FileSystem
     FileUtils.ln_sf(src, dest, opts)
   end
 
-  def link(src, dest, opts=@file_opts)
-    if directory? src
-      ln_s(src, dest, opts)
-    else
-      ln(src, dest, opts)
-    end
-  end
-
   def mkdir_p(list, opts=@file_opts)
     FileUtils.mkdir_p(list, opts)
   end
@@ -109,11 +101,6 @@ class Dotfiles
     @fs ||= FileSystem.new(file_opts)
   end
 
-  def src
-    @src = pwd
-    @src = fs.join(@src, 'src') if fs.exist?(fs.join(@src, 'src'))
-  end
-
   def base
     @base ||= format '%s/.config', fs.home
   end
@@ -137,11 +124,21 @@ class Dotfiles
   end
 
   def ignored_shells
-    shells.select{|sh| sh != shell }
+    @shells.select{|sh| sh != shell }
   end
 
   def ignored_dirs
     ignored_shells + ['builds']
+  end
+
+  def link(src,dest)
+    printf "linking '%s' to '%s' ...\n", src, dest
+
+    if fs.directory? src
+      fs.ln_s(src, dest, file_opts)
+    else
+      fs.ln(src, dest, file_opts)
+    end
   end
 
   def file_opts
@@ -149,16 +146,15 @@ class Dotfiles
     @file_opts
   end
 
-  def build_dir(latest=false)
-    @build_dir ||= format('%s/tmp/builds/latest/', pwd) if latest == true && fs.exist?(format('%s/tmp/builds/latest/', pwd))
-    @build_dir ||= format('%s/tmp/builds/%s/', pwd, Time.now.to_i).tap do |bdir|
+  def build_dir
+    @build_dir ||= format('%s/builds/%s/', pwd, Time.now.to_i).tap do |bdir|
       fs.mkdir_p bdir
-      fs.ln_sf(bdir, format('%s/tmp/builds/latest', pwd))
+      fs.ln_sf(bdir, format('%s/builds/latest', pwd))
     end
   end
 
   def build
-    dirs = Dir[format '%s/*/', src].reject{|dir| ignored_dirs.include? fs.basename(dir) }
+    dirs = Dir['*/'].reject{|dir| ignored_dirs.include? fs.basename(dir) }
     dirs.each do |dir|
       dotdir = fs.join(dir, 'dot')
 
@@ -173,25 +169,23 @@ class Dotfiles
         dest = ?. + dest unless no_dots.include? dest
         dest = format '%s/%s', build_dir, dest
 
-        fs.link dot, dest
+        link dot, dest
       end
     end
   end
 
   def owd
-    @owd ||= fs.pwd
+    @owd ||= pwd
   end
 
   def pwd
-    owd
-    @pwd ||= fs.pwd
+    fs.pwd.tap{ owd }
   end
 
-  def backup_dir(latest=false)
-    @backup_dir ||= format('%s/tmp/builds/backups/latest/', pwd) if latest == true && fs.exist?(format('%s/tmp/builds/backups/latest/', pwd))
-    @backup_dir ||= format('%s/tmp/builds/backups/%s/', pwd, Time.now.to_i).tap do |bdir|
-      fs.mkdir_p bdir
-      fs.ln_sf(pwd, format('%s/tmp/builds/backups/latest', pwd))
+  def backup_dir
+    @backup_dir ||= format('%s/builds/backups/%s/', pwd, Time.now.to_i).tap do |bdir|
+      fs.mkdir_p bdir, file_opts
+      fs.ln_sf(pwd, format('%s/builds/backups/latest', pwd), file_opts)
     end
   end
 
@@ -199,25 +193,19 @@ class Dotfiles
     fs.realpath(base)
   end
 
-  def real_src
-    fs.realpath(src)
+  def real_pwd
+    fs.realpath(fs.pwd)
   end
 
-  def ensure_base_dir_is_src
-    if real_base_dir != real_src
-      dest = fs.join(backup_dir(true), format("config.%s", now))
-      fs.mv base, dest, file_opts.merge(noop: true)
-      fs.ln_s src, base, file_opts.merge(noop: true)
+  def ensure_base_dir_is_pwd
+    if real_base_dir != real_pwd
+      fs.mv [real_base_dir], backup_dir, file_opts
     end
   end
 
   def install
-    ensure_base_dir_is_src
-    Dir['%s/{.,}*' % build_dir(true)].select{|f| !%w{. .. backups}.include? fs.basename(f) }.each do |f|
-      puts %{RUNNING: 'rsync -avzn --exclude "#{backup_dir(true)}" --delete --backup --backup-dir="#{backup_dir(true)}" #{f} #{fs.home}/'}
-      output = `rsync -avzn --exclude "#{backup_dir(true)}" --delete --backup --backup-dir="#{backup_dir(true)}" #{f} #{fs.home}/`
-      puts output
-    end
+    ensure_base_dir_is_pwd
+    system %{rsync -avz --delete --backup --backup-dir="#{backup_dir}" iphone:/ iPhone/ 2>&1}
   end
 
   def setup
@@ -228,11 +216,11 @@ class Dotfiles
 
     ## EVERYTHING BELOW HERE IS FOR REFERENCE
 
-    if pwd != base
-      fs.rm(base) if fs.symlink? base
-      fs.mv(base, base_backup) if fs.exist? base
-      fs.mkdir_p(dots_backup)
-      fs.ln_s pwd, base
+    if fs.pwd != base
+      fs.rm(base, file_opts) if fs.symlink? base
+      fs.mv(base, base_backup, file_opts) if fs.exist? base
+      fs.mkdir_p(dots_backup, file_opts)
+      fs.ln_s pwd, base, file_opts
     end
 
     fs.chdir base if debug == false
@@ -260,9 +248,9 @@ class Dotfiles
         dest = ?. + dest unless no_dots.include? dest
         dest = format '%s/%s', home, dest
 
-        fs.mv [dest], dots_backup if fs.exist? dest
+        fs.mv [dest], dots_backup, file_opts if fs.exist? dest
 
-        fs.link dot, dest
+        link dot, dest
       end
     end
   end
@@ -305,9 +293,9 @@ class Dotfiles
   end
 end
 
-#Dotfiles.build ARGV
+Dotfiles.build ARGV
 #Dotfiles.install ARGV
-Dotfiles.setup ARGV
+#Dotfiles.setup ARGV
 
 ## OLD NOTES
 
