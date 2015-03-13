@@ -1,0 +1,3 @@
+0000000000000000000000000000000000000000 c34098af20cafdf016f68f3e7f612ed60ca93aa1 Joshua Toyota <jearsh@gmail.com> 1426269539 -0400	clone: from https://github.com/sorin-ionescu/prezto.git
+c34098af20cafdf016f68f3e7f612ed60ca93aa1 ad23d1e64b599b340ef051fb116dbec8321a92ab Joshua Toyota <jearsh@gmail.com> 1426272059 -0400	commit: switch editor/visual env vars to vim
+ad23d1e64b599b340ef051fb116dbec8321a92ab 84cd353394723ff0be31a2992a70351a2e455eb3 Joshua Toyota <jearsh@gmail.com> 1426274040 -0400	commit: copy runcoms to main prezto dir; point dotfiles to these versions

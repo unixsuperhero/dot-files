@@ -35,6 +35,13 @@ tap benswift/extempore
 install extempore
 
 install par
+
+install fasd
+
+#
+# MY CURRENT LIST
+# ---------------
+#
 # aalib
 # ack
 # autoconf

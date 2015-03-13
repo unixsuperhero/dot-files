@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	worktree = ../../../../../modules/completion/external
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = https://github.com/zsh-users/zsh-completions.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master

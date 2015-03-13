@@ -1,23 +1,2 @@
-
-## Setup "pure" zsh prompt
-#
-### fpath=( "$HOME/.zfunctions" $fpath )
-### 
-### autoload -U promptinit && promptinit
-### 
-### prompt pure
-
-source ~/.config/zsh/local
-
-ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="pure"
-plugins=(git rbenv rails)
-
-source $ZSH/oh-my-zsh.sh
-#export PATH="/usr/local/bin:$PATH"
-
-### Added by the Heroku Toolbelt
-prepend_path '/usr/local/heroku/bin'
-
-export HOMEBREW_GITHUB_API_TOKEN='1ded2a99f810f6dc2968805612da3986bc8b412c'
-
+export ZDOTDIR=~/dotfiles/zsh/prezto
+source $ZDOTDIR/zshrc

@@ -1,0 +1,32 @@
+README.md:20:        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+README.md:26:        for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+README.md:27:          ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+init.zsh:34:  fpath=(${pmodules:+${ZDOTDIR:-$HOME}/modules/${^pmodules}/functions(/FN)} $fpath)
+init.zsh:43:    for pfunction in ${ZDOTDIR:-$HOME}/modules/${^pmodules}/functions/$~pfunction_glob; do
+init.zsh:52:    elif [[ ! -d "${ZDOTDIR:-$HOME}/modules/$pmodule" ]]; then
+init.zsh:56:      if [[ -s "${ZDOTDIR:-$HOME}/modules/$pmodule/init.zsh" ]]; then
+init.zsh:57:        source "${ZDOTDIR:-$HOME}/modules/$pmodule/init.zsh"
+init.zsh:64:        fpath[(r)${ZDOTDIR:-$HOME}/modules/${pmodule}/functions]=()
+init.zsh:74:          for pfunction in ${ZDOTDIR:-$HOME}/modules/$pmodule/functions/$~pfunction_glob; do
+init.zsh:90:if [[ -s "${ZDOTDIR:-$HOME}/zpreztorc" ]]; then
+init.zsh:91:  source "${ZDOTDIR:-$HOME}/zpreztorc"
+modules/completion/external/src/_mvn:580:  print ${cache_dir:-${ZDOTDIR:-$HOME}/.zcompcache}
+modules/completion/init.zsh:39:zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
+modules/history/init.zsh:13:HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"       # The path to the history file.
+runcoms/README.md:13:stored in the `$ZDOTDIR` environmental variable. However, if said variable is
+runcoms/zlogin:11:  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+runcoms/zlogin:17:  zcompdump="${ZDOTDIR:-$HOME}/zcompdump"
+runcoms/zshenv:9:if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+runcoms/zshenv:10:  source "${ZDOTDIR:-$HOME}/.zprofile"
+runcoms/zshenv:13:if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/zprofile" ]]; then
+runcoms/zshenv:14:  source "${ZDOTDIR:-$HOME}/zprofile"
+runcoms/zshrc:9:if [[ -s "${ZDOTDIR:-$HOME}/init.zsh" ]]; then
+runcoms/zshrc:10:  source "${ZDOTDIR:-$HOME}/init.zsh"
+zlogin:11:  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+zlogin:17:  zcompdump="${ZDOTDIR:-$HOME}/zcompdump"
+zshenv:9:if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
+zshenv:10:  source "${ZDOTDIR:-$HOME}/.zprofile"
+zshenv:13:if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/zprofile" ]]; then
+zshenv:14:  source "${ZDOTDIR:-$HOME}/zprofile"
+zshrc:9:if [[ -s "${ZDOTDIR:-$HOME}/init.zsh" ]]; then
+zshrc:10:  source "${ZDOTDIR:-$HOME}/init.zsh"
