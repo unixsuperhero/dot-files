@@ -42,6 +42,43 @@ class Notes
     end
   end
 
+  def full_glob(f)
+    pieces = f.split(?/)
+    file = pieces.pop
+    dirs = pieces.map{|d| format('%s{.secure,}', d) }
+    dirs.unshift('**').push(format('%s{,.secure}{.textile,.md}', file)).join(?/)
+  end
+
+  def file_globs
+    '{,**/}%s{.secure,}.{textile,md}'
+  end
+
+  def file_globs_expanded
+    %w{
+      %s.secure.textile
+      %s.secure.md
+      %s.textile
+      %s.md
+      **/%s.secure.textile
+      **/%s.secure.md
+      **/%s.textile
+      **/%s.md
+    }
+  end
+
+  def dir_globs
+    %w{
+      %s{.secure,}
+    }
+  end
+
+  def dir_globs_expanded
+    %w{
+      %s.secure.md
+      %s.md
+    }
+  end
+
   def possible_notes(arg)
     names = []
     names << '%s.secure.textile' % arg
