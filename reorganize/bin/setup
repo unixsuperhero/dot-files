@@ -1,5 +1,108 @@
 #!/usr/bin/env ruby
 
+=begin
+
+Explanation:
+
+In the description below, I use some placeholder/variables.
+They are:
+
+  section:
+    descr: the name of a group of related dotfiles
+    example usage: src/<section>/
+    examples:
+      - bash
+      - zsh
+      - tmux
+      - git
+
+The repo directory structure:
+
+bin/         # => where setup and other scripts are
+doc/         # => misc. markdown files
+src/         # => this will be symlinked to ~/.config
+versions/    # => different subsets of src/ used on different machines
+current/     # => like src/, but folders contain links to the
+             #    files to include for the _CURRENT_ system/env
+             #    only; might be a symlink to src/current
+
+The src/ directory structure:
+
+  src/<section>/
+    home/
+      dot/
+    patches/
+
+Example using vim:
+
+src/
+  vim/
+    ...see: custom_files...
+      home/
+        ...see: normal_home_files...
+        dot/
+          ...see: home_dot_files...
+
+src/
+src/<section>/*             :custom_files
+src/<section>/home/*        :normal_home_files
+src/<section>/home/dot/*    :home_dot_files
+src/<section>/patches/*     :patch_files
+
+custom_files:      my custom vim files
+normal_home_files: files in $HOME without adding a dot
+home_dot_files:    files in $HOME that need to start with a dot
+patch_files:       files that could be in another section's custom_files directory
+
+The src/current directory structure:
+
+versions/mbp/
+versions/mbp/<section>/*
+versions/mbp/<section>/home/*
+versions/mbp/<section>/home/dot/*
+versions/mbp/<section>/patches/*
+
+
+TO DO:
+======
+
+I haven't decided on a few things yet:
+
+* should the custom include files be:
+** compiled into 1 file, or included separately
+*** compiling downsides:
+*** - would constantly have to rebuild a section
+
+The dot command to manage this directory:
+
+* sections
+** new section
+** build section (aka)
+** compile section
+
+* versions
+** [re]build <version>   (from versions/name/config.dot)
+** manage config
+*** dot v <name> use|add <section|custom>
+**** dot v <name> use|add vim      # for a whole section
+**** dot v <name> use|add vim/git  # for a custom incl. file
+
+*** dot v <name> del|rm  <section|custom>
+**** dot v <name> del|rm  vim      # for a whole section
+**** dot v <name> del|rm  vim/git  # for a custom incl. file
+
+* editing
+** dot e vim/git
+* organizing (files in sections or versions)
+** dot m|mv vim/git root|home|dot
+
+* misc
+** new dot
+** new home
+** new custom
+
+=end
+
 require 'singleton'
 require 'fileutils'
 require 'optparse'

@@ -196,8 +196,12 @@ let g:listFiles="{*/lists/*,/Volumes/jearsh/*/readme}"
 
 " --------------------------- AUTOCOMMANDS ---------------------------
 
+augroup autosource_vimrc
+  au!
+
   " AUTO-RELOAD ANY .vimrc* FILE
-au BufWrite,BufWritePost .vimrc* nested source %
+  au BufWrite,BufWritePost *vimrc* nested source %
+augroup END
 
   " bin/list ---------------------------------------------------------
 au BufNewFile,BufRead,BufReadPost */lists/* set filetype=lists syntax=lists
@@ -337,6 +341,18 @@ ca xthis !chmod +x %
 ca llthis !ls -l %
 ca rbthis set mp=ruby\ -c\ %
 ca tset set?<left>
+
+ca dbdownup !bundle exec rake db:migrate:{down,up} VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+ca rakedownup !bundle exec rake db:migrate:{down,up} VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+ca migratedownup !bundle exec rake db:migrate:{down,up} VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+
+ca dbdown !bundle exec rake db:migrate:down VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+ca rakedown !bundle exec rake db:migrate:down VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+ca migratedown !bundle exec rake db:migrate:down VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+
+ca dbup !bundle exec rake db:migrate:up VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+ca rakeup !bundle exec rake db:migrate:up VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
+ca migrateup !bundle exec rake db:migrate:up VERSION=<c-r>=matchstr(expand('%'), '\d\{10,15\}', '')<cr>
 
 " => *me
 ca :: %

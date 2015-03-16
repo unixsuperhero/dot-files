@@ -1,4 +1,6 @@
 
+alias rrails='bundle exec rrails'
+
 function _rails_command --description="in: rails.fish"
   if test -e "script/rails"
     ruby script/rails $argv
