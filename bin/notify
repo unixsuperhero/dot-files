@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'awesome_print'
+
+class String
+  def trim
+    self.gsub(/^\s+|\s+$/, '')
+  end
+end
+
+class Notification
+  attr_accessor :args, :original_args
+  attr_accessor :title
+
+  def self.display(args=ARGV.dup)
+    new(args).display
+  end
+
+  def self.test
+    title = ['-t', Time.now.to_s]
+    message = %w{this is a test}.push(Time.now.to_i)
+    new(title + message).display
+  end
+
+  def initialize(args=ARGV.dup)
+    @original_args = args.dup
+    @args = args
+
+    parse_options
+  end
+
+  def parse_options
+    return args if @options_parsed == true
+    @options_parsed = true
+
+    OptionParser.new do |opts|
+      opts.on '-t', '--title TITLE', 'add a title to the notification' do |title|
+        @title = title
+      end
+    end.parse! args
+  end
+
+  def message
+    @message ||= args.join(' ')
+  end
+
+  def with_title
+    format('with title "%s"', title) if title.to_s.length > 0
+  end
+
+  def osascript
+    @osascript ||= `which osascript`.trim
+  end
+
+  def script
+    @script = format('display notification "%s" %s', message, with_title).trim
+  end
+
+  def command
+    @command ||= format("%s -e '%s'", osascript, script).trim
+  end
+
+  def display
+    system(command)
+  end
+
+end
+
+if ARGV[0] == 'test'
+  n = Notification.new
+  ap title: n.title
+  ap message: n.message
+  ap osascript: n.osascript
+  ap with_title: n.with_title
+  ap script: n.script
+  ap command: n.command
+  ap display: Notification.test
+else
+  ap Notification.display, raw: true, index: false
+end
+

@@ -46,7 +46,7 @@ class Notes
     pieces = f.split(?/)
     file = pieces.pop
     dirs = pieces.map{|d| format('%s{.secure,}', d) }
-    dirs.unshift('**').push(format('%s{,.secure}{.textile,.md}', file)).join(?/)
+    File.join *(dirs.push(format('%s{,.secure}{.textile,.md}', file)))
   end
 
   def file_globs
@@ -93,22 +93,7 @@ class Notes
 
   def expanded_args
     @expanded_args ||= args.map do |arg|
-      notes = possible_notes(arg)
-      files = possible_notes(arg).map(&File.method(:file?))
-      existing_note = possible_notes(arg).find(&File.method(:file?))
-      ap arg: arg, existing_possibles: notes.zip(files).map{|n| format('%-50s => %s', *n) }, found: existing_note
-      next existing_note if existing_note != nil
-      #next "%s.secure.textile" % arg if File.file?('%s.secure.textile' % arg)
-      #ap orig_dir: arg, secure_dirs: secure_dirs(arg)
-      #secure_md = secure_dirs(arg).find{|sd| File.file?('%s.md' % sd) }
-      #next '%s.md' % secure_md if secure_md
-      #secure_textile = secure_dirs(arg).find{|sd| File.file?('%s.textile' % sd) }
-      #next '%s.textile' % secure_textile if secure_textile
-      #next "%s.secure.md" % arg if File.file?('%s.secure.md' % arg)
-      #next "%s.md" % arg if File.file?('%s.md' % arg)
-      #next arg if File.directory?(arg)
-      ##Fileutils.mkdir_p File.dirname(arg)
-      "%s.md" % arg
+      Dir[full_glob( arg ), full_glob("**/#{arg}")].first || format('%s.md', arg)
     end
   end
 
