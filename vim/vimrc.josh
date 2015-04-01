@@ -363,7 +363,7 @@ ca makerb set mp=ruby\ -c\ %
 ca mset set?<left>
 
 " => pagers (capture a cmd's stdout in a new vs)
-ca man vnew \| set buftype=nofile \| r!man  \| col -b<M-b><M-b><M-b><left><C-R>=Eatchar('\s')<CR>
+ca man vnew \| set buftype=nofile \| r!man  \| col -b<left><left><left><left><left><left><left><left><left><C-R>=Eatchar('\s')<CR>
 ca pager vnew \| set buftype=nofile \| r! \| col -b<M-b><M-b><M-b><left><C-R>=Eatchar('\s')<CR>
 
 " => source this file
@@ -371,7 +371,7 @@ ca vimso so ~/.vimrc.josh
 ca sovim so ~/.vimrc.josh
 
 
-ca ll !ls -l
+ca ll <c-u>!ls -l
 
 " use a vertical split with commands that normally make a horizontal split
 ca V vert
@@ -389,8 +389,10 @@ ca vall vert sall
 ca vnext vert snext
 ca vprev vert sprevious
 
-ca note setl buftype=nofile
-ca nonote setl buftype=
+ca scratchthis setl buftype=nofile
+ca noscratchthis setl buftype=
+ca notethis setl buftype=nofile
+ca nonotethis setl buftype=
 ca w!! w ! sudo tee "%"
 "ca man !man
 ca Ls ls
@@ -433,8 +435,8 @@ ca editinputrc vs ~/.inputrc
 ca editvim vs ~/.vimrc.josh
 ca evim vs ~/.vimrc.josh
 
-ca ebundle vs ~/.vimbundles/**/<C-r>=Eatchar('\s')<cr>
-ca vimbundle vs ~/.vimbundles/**/<C-r>=Eatchar('\s')<cr>
+ca ebundle vs ~/.vimbundles/**<C-r>=Eatchar('\s')<cr>
+ca vimbundle vs ~/.vimbundles/**<C-r>=Eatchar('\s')<cr>
 
 ca configbundles vs ~/repos/dot-files/bash/home/vimbundle
 ca ebundleconf vs ~/repos/dot-files/bash/home/vimbundle

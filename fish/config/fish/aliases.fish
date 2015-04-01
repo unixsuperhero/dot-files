@@ -27,6 +27,10 @@ alias dh=dirh
 alias pd=prevd
 alias nd=nextd
 
+alias t=tmux
+
+alias fn=functions
+
 ## Making things easier
 
 alias fn=functions
